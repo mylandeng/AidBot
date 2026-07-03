@@ -1,0 +1,53 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: aidbot-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-aidbot}
+      POSTGRES_USER: ${POSTGRES_USER:-aidbot}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aidbot_dev_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - aidbot-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aidbot} -d ${POSTGRES_DB:-aidbot}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: aidbot-backend
+    environment:
+      APP_NAME: ${APP_NAME:-AidBot}
+      APP_ENV: ${APP_ENV:-development}
+      BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:3010}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-aidbot}:${POSTGRES_PASSWORD:-aidbot_dev_password}@db:5432/${POSTGRES_DB:-aidbot}
+    ports:
+      - "8010:8010"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend/app:/app/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8010 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: aidbot-frontend
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8010}
+    ports:
+      - "3010:3010"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    command: npm run dev -- --hostname 0.0.0.0
+
+volumes:
+  aidbot-postgres-data:

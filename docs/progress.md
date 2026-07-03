@@ -9,3 +9,5 @@
 - 已创建用于本次架构审阅和开发拆解的规划文件。
 - 已完成架构审阅，并将推荐开发阶段写入 `task_plan.md`。
 - 已将 `task_plan.md`、`findings.md`、`progress.md` 翻译并整理为中文格式。
+- 已完成阶段 0 脚手架：新增 FastAPI 后端、Next.js 前端、Docker Compose、环境变量示例和 API 合同草案。
+- 已验证后端测试、前端类型检查和前端生产构建通过；Docker Compose 配置有效。
