@@ -46,3 +46,12 @@ npm run dev
 ```
 
 默认前端通过 `NEXT_PUBLIC_API_BASE_URL=http://localhost:8010` 访问后端。
+
+### 阶段 1 默认登录
+
+本地开发默认账号：
+
+- 邮箱：`admin@aidbot.local`
+- 密码：`aidbot123`
+
+这些值只用于本地阶段验证，部署前需要在 `.env` 中覆盖 `AUTH_SECRET_KEY`、`SEED_ADMIN_EMAIL` 和 `SEED_ADMIN_PASSWORD`。

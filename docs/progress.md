@@ -11,3 +11,4 @@
 - 已将 `task_plan.md`、`findings.md`、`progress.md` 翻译并整理为中文格式。
 - 已完成阶段 0 脚手架：新增 FastAPI 后端、Next.js 前端、Docker Compose、环境变量示例和 API 合同草案。
 - 已验证后端测试、前端类型检查和前端生产构建通过；Docker Compose 配置有效。
+- 已推进阶段 1 认证基线：新增种子管理员登录、签名 token、当前用户接口、`users/roles` 模型和前端受保护路由。

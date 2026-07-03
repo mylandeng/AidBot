@@ -23,7 +23,7 @@ services:
     environment:
       APP_NAME: ${APP_NAME:-AidBot}
       APP_ENV: ${APP_ENV:-development}
-      BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:3010}
+      BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:3010,http://127.0.0.1:3010}
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-aidbot}:${POSTGRES_PASSWORD:-aidbot_dev_password}@db:5432/${POSTGRES_DB:-aidbot}
     ports:
       - "8010:8010"

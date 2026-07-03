@@ -1,4 +1,5 @@
 import { HealthBadge } from "@/components/layout/health-badge";
+import { requireSession } from "@/lib/auth";
 
 const sources = [
   { title: "AX-42 联网排查手册", type: "上传文档", score: "0.86" },
@@ -12,7 +13,9 @@ const conversations = [
   "客户要求远程恢复出厂设置",
 ];
 
-export default function Home() {
+export default async function Home() {
+  await requireSession();
+
   return (
     <div className="app-shell">
       <aside className="sidebar">

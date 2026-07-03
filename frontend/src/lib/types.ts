@@ -7,6 +7,20 @@ export interface HealthResponse {
   environment: string;
 }
 
+export interface CurrentUser {
+  id: string;
+  email: string;
+  name: string;
+  roles: string[];
+}
+
+export interface LoginResponse {
+  access_token: string;
+  token_type: "bearer";
+  expires_in: number;
+  user: CurrentUser;
+}
+
 export interface ChatRequest {
   question: string;
   conversation_id?: string | null;

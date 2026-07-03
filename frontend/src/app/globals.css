@@ -572,6 +572,85 @@ textarea {
   color: #d5ded9;
 }
 
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(240, 194, 135, 0.28), transparent 26%),
+    linear-gradient(135deg, #17211f 0%, #22312d 46%, #f4f6f3 46%, #f4f6f3 100%);
+}
+
+.login-panel {
+  width: min(100%, 520px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  background: rgba(255, 253, 248, 0.96);
+  box-shadow: 0 28px 80px rgba(23, 33, 31, 0.24);
+}
+
+.login-brand {
+  margin-bottom: 34px;
+  color: var(--ink);
+}
+
+.login-copy h1 {
+  margin: 8px 0 10px;
+  font-family: var(--display);
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.08;
+}
+
+.login-copy p:not(.eyebrow) {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.login-form label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.login-form input {
+  min-height: 48px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  padding: 0 14px;
+  background: #fbfaf5;
+  color: var(--ink);
+}
+
+.login-form input:focus {
+  border-color: var(--green);
+}
+
+.form-error {
+  margin: 2px 0 0;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.login-button {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.login-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .nav-item,
   .primary-button,

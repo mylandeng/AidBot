@@ -14,6 +14,70 @@
 }
 ```
 
+## 认证接口
+
+阶段 1 使用内置种子管理员账号验证登录链路：
+
+- 邮箱：`admin@aidbot.local`
+- 密码：`aidbot123`
+
+生产环境必须通过环境变量覆盖默认密码和 `AUTH_SECRET_KEY`。
+
+`GET /api/auth/status`
+
+```json
+{
+  "status": "configured",
+  "provider": "seed_admin"
+}
+```
+
+`POST /api/auth/login`
+
+请求：
+
+```json
+{
+  "email": "admin@aidbot.local",
+  "password": "aidbot123"
+}
+```
+
+响应：
+
+```json
+{
+  "access_token": "...",
+  "token_type": "bearer",
+  "expires_in": 28800,
+  "user": {
+    "id": "seed-admin",
+    "email": "admin@aidbot.local",
+    "name": "售后管理员",
+    "roles": ["admin", "support"]
+  }
+}
+```
+
+`GET /api/auth/me`
+
+请求头：
+
+```text
+Authorization: Bearer <access_token>
+```
+
+响应：
+
+```json
+{
+  "id": "seed-admin",
+  "email": "admin@aidbot.local",
+  "name": "售后管理员",
+  "roles": ["admin", "support"]
+}
+```
+
 ## 聊天接口
 
 `POST /api/chat`

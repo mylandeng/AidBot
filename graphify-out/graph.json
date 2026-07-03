@@ -60,18 +60,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_auth",
-      "community": 5,
+      "community": 31,
       "norm_label": "auth.py"
     },
     {
       "label": "auth_status()",
       "file_type": "code",
       "source_file": "backend/app/api/auth.py",
-      "source_location": "L7",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "api_auth_auth_status",
-      "community": 5,
+      "community": 31,
       "norm_label": "auth_status()"
+    },
+    {
+      "label": "login()",
+      "file_type": "code",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "api_auth_login",
+      "community": 31,
+      "norm_label": "login()"
+    },
+    {
+      "label": "LoginRequest",
+      "file_type": "code",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "loginrequest",
+      "community": 31,
+      "norm_label": "loginrequest"
+    },
+    {
+      "label": "LoginResponse",
+      "file_type": "code",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "loginresponse",
+      "community": 31,
+      "norm_label": "loginresponse"
+    },
+    {
+      "label": "me()",
+      "file_type": "code",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "api_auth_me",
+      "community": 31,
+      "norm_label": "me()"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "backend_app_api_auth_py_currentuser",
+      "community": 31,
+      "norm_label": "currentuser"
     },
     {
       "label": "chat.py",
@@ -247,7 +297,7 @@
       "label": ".cors_origins()",
       "file_type": "code",
       "source_file": "backend/app/core/config.py",
-      "source_location": "L16",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "core_config_settings_cors_origins",
       "community": 11,
@@ -257,7 +307,7 @@
       "label": "get_settings()",
       "file_type": "code",
       "source_file": "backend/app/core/config.py",
-      "source_location": "L21",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "core_config_get_settings",
       "community": 11,
@@ -314,14 +364,94 @@
       "norm_label": "security.py"
     },
     {
-      "label": "password_authentication_not_configured()",
+      "label": "_b64encode()",
       "file_type": "code",
       "source_file": "backend/app/core/security.py",
-      "source_location": "L1",
+      "source_location": "L18",
       "_origin": "ast",
-      "id": "core_security_password_authentication_not_configured",
+      "id": "core_security_b64encode",
       "community": 31,
-      "norm_label": "password_authentication_not_configured()"
+      "norm_label": "_b64encode()"
+    },
+    {
+      "label": "_b64decode()",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "core_security_b64decode",
+      "community": 31,
+      "norm_label": "_b64decode()"
+    },
+    {
+      "label": "create_access_token()",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "core_security_create_access_token",
+      "community": 31,
+      "norm_label": "create_access_token()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "any",
+      "community": 31,
+      "norm_label": "any"
+    },
+    {
+      "label": "decode_access_token()",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "core_security_decode_access_token",
+      "community": 31,
+      "norm_label": "decode_access_token()"
+    },
+    {
+      "label": "verify_seed_password()",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "core_security_verify_seed_password",
+      "community": 31,
+      "norm_label": "verify_seed_password()"
+    },
+    {
+      "label": "get_current_user()",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "core_security_get_current_user",
+      "community": 31,
+      "norm_label": "get_current_user()"
+    },
+    {
+      "label": "HTTPAuthorizationCredentials",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "httpauthorizationcredentials",
+      "community": 31,
+      "norm_label": "httpauthorizationcredentials"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "backend_app_core_security_py_currentuser",
+      "community": 31,
+      "norm_label": "currentuser"
     },
     {
       "label": "main.py",
@@ -440,18 +570,28 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_user",
-      "community": 41,
+      "community": 14,
       "norm_label": "user.py"
     },
     {
-      "label": "User and role models are planned for phase 1.",
-      "file_type": "rationale",
+      "label": "User",
+      "file_type": "code",
       "source_file": "backend/app/models/user.py",
-      "source_location": "L1",
+      "source_location": "L14",
       "_origin": "ast",
-      "id": "models_user_rationale_1",
-      "community": 41,
-      "norm_label": "user and role models are planned for phase 1."
+      "id": "models_user_user",
+      "community": 14,
+      "norm_label": "user"
+    },
+    {
+      "label": "Role",
+      "file_type": "code",
+      "source_file": "backend/app/models/user.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "models_user_role",
+      "community": 14,
+      "norm_label": "role"
     },
     {
       "label": "__init__.py",
@@ -470,18 +610,48 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "schemas_auth",
-      "community": 42,
+      "community": 10,
       "norm_label": "auth.py"
     },
     {
-      "label": "Authentication schemas are planned for phase 1.",
-      "file_type": "rationale",
+      "label": "LoginRequest",
+      "file_type": "code",
       "source_file": "backend/app/schemas/auth.py",
-      "source_location": "L1",
+      "source_location": "L4",
       "_origin": "ast",
-      "id": "schemas_auth_rationale_1",
-      "community": 42,
-      "norm_label": "authentication schemas are planned for phase 1."
+      "id": "schemas_auth_loginrequest",
+      "community": 10,
+      "norm_label": "loginrequest"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "basemodel",
+      "community": 10,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "schemas_auth_currentuser",
+      "community": 10,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "LoginResponse",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "schemas_auth_loginresponse",
+      "community": 10,
+      "norm_label": "loginresponse"
     },
     {
       "label": "chat.py",
@@ -502,16 +672,6 @@
       "id": "schemas_chat_chatrequest",
       "community": 10,
       "norm_label": "chatrequest"
-    },
-    {
-      "label": "BaseModel",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "basemodel",
-      "community": 10,
-      "norm_label": "basemodel"
     },
     {
       "label": "SourceCitation",
@@ -1114,6 +1274,76 @@
       "norm_label": ".run_once()"
     },
     {
+      "label": "test_auth.py",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_auth",
+      "community": 5,
+      "norm_label": "test_auth.py"
+    },
+    {
+      "label": "test_auth_status_is_configured()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "tests_test_auth_test_auth_status_is_configured",
+      "community": 5,
+      "norm_label": "test_auth_status_is_configured()"
+    },
+    {
+      "label": "test_login_returns_token_and_user()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tests_test_auth_test_login_returns_token_and_user",
+      "community": 5,
+      "norm_label": "test_login_returns_token_and_user()"
+    },
+    {
+      "label": "test_login_rejects_invalid_password()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "tests_test_auth_test_login_rejects_invalid_password",
+      "community": 5,
+      "norm_label": "test_login_rejects_invalid_password()"
+    },
+    {
+      "label": "test_me_requires_token()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "tests_test_auth_test_me_requires_token",
+      "community": 5,
+      "norm_label": "test_me_requires_token()"
+    },
+    {
+      "label": "test_me_rejects_invalid_token()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "tests_test_auth_test_me_rejects_invalid_token",
+      "community": 5,
+      "norm_label": "test_me_rejects_invalid_token()"
+    },
+    {
+      "label": "test_me_returns_current_user_with_token()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "tests_test_auth_test_me_returns_current_user_with_token",
+      "community": 5,
+      "norm_label": "test_me_returns_current_user_with_token()"
+    },
+    {
       "label": "test_chat_contract.py",
       "file_type": "code",
       "source_file": "backend/tests/test_chat_contract.py",
@@ -1407,7 +1637,7 @@
       "label": "AdminPage()",
       "file_type": "code",
       "source_file": "frontend/src/app/admin/page.tsx",
-      "source_location": "L1",
+      "source_location": "L3",
       "_origin": "ast",
       "id": "admin_page_adminpage",
       "community": 27,
@@ -1420,17 +1650,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chat_page",
-      "community": 29,
+      "community": 27,
       "norm_label": "page.tsx"
     },
     {
       "label": "ChatPage()",
       "file_type": "code",
       "source_file": "frontend/src/app/chat/page.tsx",
-      "source_location": "L1",
+      "source_location": "L3",
       "_origin": "ast",
       "id": "chat_page_chatpage",
-      "community": 29,
+      "community": 27,
       "norm_label": "chatpage()"
     },
     {
@@ -1440,17 +1670,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "feedback_page",
-      "community": 32,
+      "community": 27,
       "norm_label": "page.tsx"
     },
     {
       "label": "FeedbackPage()",
       "file_type": "code",
       "source_file": "frontend/src/app/feedback/page.tsx",
-      "source_location": "L1",
+      "source_location": "L3",
       "_origin": "ast",
       "id": "feedback_page_feedbackpage",
-      "community": 32,
+      "community": 27,
       "norm_label": "feedbackpage()"
     },
     {
@@ -1460,17 +1690,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "knowledge_page",
-      "community": 34,
+      "community": 27,
       "norm_label": "page.tsx"
     },
     {
       "label": "KnowledgePage()",
       "file_type": "code",
       "source_file": "frontend/src/app/knowledge/page.tsx",
-      "source_location": "L1",
+      "source_location": "L3",
       "_origin": "ast",
       "id": "knowledge_page_knowledgepage",
-      "community": 34,
+      "community": 27,
       "norm_label": "knowledgepage()"
     },
     {
@@ -1504,23 +1734,43 @@
       "norm_label": "rootlayout()"
     },
     {
+      "label": "login-form.tsx",
+      "file_type": "code",
+      "source_file": "frontend/src/app/login/login-form.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "login_login_form",
+      "community": 27,
+      "norm_label": "login-form.tsx"
+    },
+    {
+      "label": "LoginForm()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/login/login-form.tsx",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "login_login_form_loginform",
+      "community": 27,
+      "norm_label": "loginform()"
+    },
+    {
       "label": "page.tsx",
       "file_type": "code",
       "source_file": "frontend/src/app/login/page.tsx",
       "source_location": "L1",
       "_origin": "ast",
       "id": "login_page",
-      "community": 36,
+      "community": 27,
       "norm_label": "page.tsx"
     },
     {
       "label": "LoginPage()",
       "file_type": "code",
       "source_file": "frontend/src/app/login/page.tsx",
-      "source_location": "L1",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "login_page_loginpage",
-      "community": 36,
+      "community": 27,
       "norm_label": "loginpage()"
     },
     {
@@ -1530,37 +1780,37 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_page",
-      "community": 8,
+      "community": 27,
       "norm_label": "page.tsx"
     },
     {
       "label": "sources",
       "file_type": "code",
       "source_file": "frontend/src/app/page.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "app_page_sources",
-      "community": 8,
+      "community": 27,
       "norm_label": "sources"
     },
     {
       "label": "conversations",
       "file_type": "code",
       "source_file": "frontend/src/app/page.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "app_page_conversations",
-      "community": 8,
+      "community": 27,
       "norm_label": "conversations"
     },
     {
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/app/page.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "app_page_home",
-      "community": 8,
+      "community": 27,
       "norm_label": "home()"
     },
     {
@@ -1604,24 +1854,74 @@
       "norm_label": "gethealth()"
     },
     {
+      "label": "login()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "lib_api_login",
+      "community": 27,
+      "norm_label": "login()"
+    },
+    {
       "label": "auth.ts",
       "file_type": "code",
       "source_file": "frontend/src/lib/auth.ts",
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_auth",
-      "community": 35,
+      "community": 27,
       "norm_label": "auth.ts"
     },
     {
-      "label": "isAuthenticationConfigured()",
+      "label": "getSessionToken()",
       "file_type": "code",
       "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "lib_auth_getsessiontoken",
+      "community": 27,
+      "norm_label": "getsessiontoken()"
+    },
+    {
+      "label": "isValidToken()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "lib_auth_isvalidtoken",
+      "community": 27,
+      "norm_label": "isvalidtoken()"
+    },
+    {
+      "label": "requireSession()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "lib_auth_requiresession",
+      "community": 27,
+      "norm_label": "requiresession()"
+    },
+    {
+      "label": "redirectAuthenticatedUser()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "lib_auth_redirectauthenticateduser",
+      "community": 27,
+      "norm_label": "redirectauthenticateduser()"
+    },
+    {
+      "label": "session.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/session.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "lib_auth_isauthenticationconfigured",
-      "community": 35,
-      "norm_label": "isauthenticationconfigured()"
+      "id": "lib_session",
+      "community": 27,
+      "norm_label": "session.ts"
     },
     {
       "label": "types.ts",
@@ -1664,10 +1964,30 @@
       "norm_label": "healthresponse"
     },
     {
-      "label": "ChatRequest",
+      "label": "CurrentUser",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
       "source_location": "L10",
+      "_origin": "ast",
+      "id": "lib_types_currentuser",
+      "community": 8,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "LoginResponse",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "lib_types_loginresponse",
+      "community": 8,
+      "norm_label": "loginresponse"
+    },
+    {
+      "label": "ChatRequest",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "lib_types_chatrequest",
       "community": 8,
@@ -1677,7 +1997,7 @@
       "label": "SourceCitation",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L16",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "lib_types_sourcecitation",
       "community": 8,
@@ -1687,7 +2007,7 @@
       "label": "ChatResponse",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L25",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "lib_types_chatresponse",
       "community": 8,
@@ -1984,6 +2304,16 @@
       "norm_label": "\u672c\u673a\u5206\u522b\u542f\u52a8"
     },
     {
+      "label": "\u9636\u6bb5 1 \u9ed8\u8ba4\u767b\u5f55",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "readme_\u9636\u6bb5_1_\u9ed8\u8ba4\u767b\u5f55",
+      "community": 13,
+      "norm_label": "\u9636\u6bb5 1 \u9ed8\u8ba4\u767b\u5f55"
+    },
+    {
       "label": "api-contract.md",
       "file_type": "document",
       "source_file": "docs/api-contract.md",
@@ -2014,10 +2344,20 @@
       "norm_label": "\u5065\u5eb7\u68c0\u67e5"
     },
     {
-      "label": "\u804a\u5929\u63a5\u53e3",
+      "label": "\u8ba4\u8bc1\u63a5\u53e3",
       "file_type": "document",
       "source_file": "docs/api-contract.md",
       "source_location": "L17",
+      "_origin": "ast",
+      "id": "docs_api_contract_\u8ba4\u8bc1\u63a5\u53e3",
+      "community": 12,
+      "norm_label": "\u8ba4\u8bc1\u63a5\u53e3"
+    },
+    {
+      "label": "\u804a\u5929\u63a5\u53e3",
+      "file_type": "document",
+      "source_file": "docs/api-contract.md",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "docs_api_contract_\u804a\u5929\u63a5\u53e3",
       "community": 12,
@@ -2027,7 +2367,7 @@
       "label": "\u6838\u5fc3\u7c7b\u578b",
       "file_type": "document",
       "source_file": "docs/api-contract.md",
-      "source_location": "L44",
+      "source_location": "L108",
       "_origin": "ast",
       "id": "docs_api_contract_\u6838\u5fc3\u7c7b\u578b",
       "community": 12,
@@ -2537,6 +2877,26 @@
       "target": "api_auth_auth_status"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_auth",
+      "target": "api_auth_login"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_auth",
+      "target": "api_auth_me"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2546,6 +2906,162 @@
       "confidence_score": 1.0,
       "source": "api_auth",
       "target": "fastapi"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_auth_login",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "api_auth_login",
+      "target": "core_security_create_access_token"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "api_auth_login",
+      "target": "core_security_verify_seed_password"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_auth_login",
+      "target": "loginrequest"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_auth_login",
+      "target": "loginresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_auth_py_currentuser",
+      "target": "loginrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "loginrequest",
+      "target": "loginrequest",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "loginrequest",
+      "target": "loginresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_auth_py_currentuser",
+      "target": "loginresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "loginresponse",
+      "target": "loginresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_auth_me",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "any",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "backend_app_api_auth_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_core_security_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "httpauthorizationcredentials",
+      "target": "backend_app_api_auth_py_currentuser"
     },
     {
       "relation": "contains",
@@ -2936,14 +3452,202 @@
       "target": "declarativebase"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/user.py",
+      "source_location": "L4",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_user_role",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/user.py",
+      "source_location": "L4",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_user_user",
+      "target": "core_database_base"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/core/security.py",
-      "source_location": "L1",
+      "source_location": "L21",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "core_security",
-      "target": "core_security_password_authentication_not_configured"
+      "target": "core_security_b64decode"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security",
+      "target": "core_security_b64encode"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security",
+      "target": "core_security_create_access_token"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security",
+      "target": "core_security_decode_access_token"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security",
+      "target": "core_security_get_current_user"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security",
+      "target": "core_security_verify_seed_password"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security",
+      "target": "fastapi"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_create_access_token",
+      "target": "core_security_b64encode"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_decode_access_token",
+      "target": "core_security_b64decode"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_create_access_token",
+      "target": "any"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "any",
+      "target": "httpauthorizationcredentials"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_decode_access_token",
+      "target": "any"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_get_current_user",
+      "target": "core_security_decode_access_token"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_get_current_user",
+      "target": "backend_app_core_security_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_security_get_current_user",
+      "target": "httpauthorizationcredentials"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_core_security_py_currentuser",
+      "target": "httpauthorizationcredentials"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "source": "httpauthorizationcredentials",
+      "target": "httpauthorizationcredentials",
+      "confidence_score": 0.5
     },
     {
       "relation": "contains",
@@ -2965,6 +3669,17 @@
       "confidence_score": 1.0,
       "source": "app_main",
       "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_auth",
+      "target": "app_main"
     },
     {
       "relation": "imports_from",
@@ -3040,24 +3755,124 @@
       "target": "models_knowledge"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/models/user.py",
-      "source_location": "L1",
+      "source_location": "L26",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "models_user_rationale_1",
-      "target": "models_user"
+      "source": "models_user",
+      "target": "models_user_role"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/app/schemas/auth.py",
-      "source_location": "L1",
+      "source_file": "backend/app/models/user.py",
+      "source_location": "L14",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "schemas_auth_rationale_1",
-      "target": "schemas_auth"
+      "source": "models_user",
+      "target": "models_user_user"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_auth",
+      "target": "schemas_auth_currentuser"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_auth",
+      "target": "schemas_auth_loginrequest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_auth",
+      "target": "schemas_auth_loginresponse"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_auth_loginrequest",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_auth_currentuser",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/auth.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_auth_loginresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_answerresult",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_chatrequest",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_chatresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_sourcecitation",
+      "target": "basemodel"
     },
     {
       "relation": "contains",
@@ -3098,46 +3913,6 @@
       "confidence_score": 1.0,
       "source": "schemas_chat",
       "target": "schemas_chat_sourcecitation"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/schemas/chat.py",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "schemas_chat_chatrequest",
-      "target": "basemodel"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/schemas/chat.py",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "schemas_chat_answerresult",
-      "target": "basemodel"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/schemas/chat.py",
-      "source_location": "L34",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "schemas_chat_chatresponse",
-      "target": "basemodel"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/schemas/chat.py",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "schemas_chat_sourcecitation",
-      "target": "basemodel"
     },
     {
       "relation": "rationale_for",
@@ -3620,6 +4395,66 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_auth",
+      "target": "tests_test_auth_test_auth_status_is_configured"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_auth",
+      "target": "tests_test_auth_test_login_rejects_invalid_password"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_auth",
+      "target": "tests_test_auth_test_login_returns_token_and_user"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tests_test_auth",
+      "target": "tests_test_auth_test_me_rejects_invalid_token",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_auth",
+      "target": "tests_test_auth_test_me_requires_token"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_auth.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_auth",
+      "target": "tests_test_auth_test_me_returns_current_user_with_token"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat_contract.py",
       "source_location": "L9",
       "weight": 1.0,
@@ -3858,6 +4693,39 @@
       "target": "admin_page_adminpage"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/admin/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "admin_page",
+      "target": "lib_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/admin/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "admin_page",
+      "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/app/admin/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "admin_page_adminpage",
+      "target": "lib_auth_requiresession"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/chat/page.tsx",
@@ -3866,6 +4734,39 @@
       "confidence_score": 1.0,
       "source": "chat_page",
       "target": "chat_page_chatpage"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_page",
+      "target": "lib_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_page",
+      "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/app/chat/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "chat_page_chatpage",
+      "target": "lib_auth_requiresession"
     },
     {
       "relation": "contains",
@@ -3878,6 +4779,39 @@
       "target": "feedback_page_feedbackpage"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_page",
+      "target": "lib_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_page",
+      "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/app/feedback/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "feedback_page_feedbackpage",
+      "target": "lib_auth_requiresession"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/knowledge/page.tsx",
@@ -3886,6 +4820,39 @@
       "confidence_score": 1.0,
       "source": "knowledge_page",
       "target": "knowledge_page_knowledgepage"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_page",
+      "target": "lib_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_page",
+      "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/app/knowledge/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "knowledge_page_knowledgepage",
+      "target": "lib_auth_requiresession"
     },
     {
       "relation": "contains",
@@ -3908,6 +4875,93 @@
       "target": "app_layout_rootlayout"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/login-form.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_login_form",
+      "target": "lib_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/login-form.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_login_form",
+      "target": "lib_api_login"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/login-form.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_login_form",
+      "target": "lib_session"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/login-form.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_login_form",
+      "target": "login_login_form_loginform"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_page",
+      "target": "login_login_form"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_page",
+      "target": "login_login_form_loginform"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_page",
+      "target": "lib_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/login/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "login_page",
+      "target": "lib_auth_redirectauthenticateduser"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/login/page.tsx",
@@ -3918,14 +4972,25 @@
       "target": "login_page_loginpage"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/app/login/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "login_page_loginpage",
+      "target": "lib_auth_redirectauthenticateduser"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "app_page_conversations",
-      "confidence_score": 1.0
+      "target": "app_page_conversations"
     },
     {
       "relation": "contains",
@@ -3943,9 +5008,9 @@
       "source_file": "frontend/src/app/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "app_page_sources",
-      "confidence_score": 1.0
+      "target": "app_page_sources"
     },
     {
       "relation": "imports_from",
@@ -3968,6 +5033,39 @@
       "confidence_score": 1.0,
       "source": "app_page",
       "target": "layout_health_badge_healthbadge"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_page",
+      "target": "lib_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_page",
+      "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/app/page.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "app_page_home",
+      "target": "lib_auth_requiresession"
     },
     {
       "relation": "contains",
@@ -4023,6 +5121,16 @@
       "target": "lib_api_gethealth"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_login"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4045,14 +5153,110 @@
       "target": "lib_types_healthresponse"
     },
     {
-      "relation": "contains",
+      "relation": "imports",
+      "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/auth.ts",
+      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_loginresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_auth",
-      "target": "lib_auth_isauthenticationconfigured"
+      "target": "lib_auth_getsessiontoken"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "lib_auth",
+      "target": "lib_auth_isvalidtoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_auth",
+      "target": "lib_auth_redirectauthenticateduser"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_auth",
+      "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_auth",
+      "target": "lib_session"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_auth_redirectauthenticateduser",
+      "target": "lib_auth_getsessiontoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_auth_requiresession",
+      "target": "lib_auth_getsessiontoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "lib_auth_redirectauthenticateduser",
+      "target": "lib_auth_isvalidtoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/auth.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "lib_auth_requiresession",
+      "target": "lib_auth_isvalidtoken",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4088,11 +5292,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_currentuser"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
       "source_location": "L4",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_types",
       "target": "lib_types_healthresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_loginresponse"
     },
     {
       "relation": "contains",
@@ -4367,6 +5591,16 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "readme_\u672c\u5730\u5f00\u53d1",
+      "target": "readme_\u9636\u6bb5_1_\u9ed8\u8ba4\u767b\u5f55"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/api-contract.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -4403,6 +5637,16 @@
       "confidence_score": 1.0,
       "source": "docs_api_contract_aidbot_api_\u5408\u540c\u8349\u6848",
       "target": "docs_api_contract_\u804a\u5929\u63a5\u53e3"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-contract.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_api_contract_aidbot_api_\u5408\u540c\u8349\u6848",
+      "target": "docs_api_contract_\u8ba4\u8bc1\u63a5\u53e3"
     },
     {
       "relation": "contains",
@@ -4826,5 +6070,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2312eebb15139835d5265c6eedc553614597a27d"
+  "built_at_commit": "a46d0d0297c97db5898347b0637c52d1e776869e"
 }
