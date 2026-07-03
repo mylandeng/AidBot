@@ -1,0 +1,47 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1783072878.0387511,
+    "ast_hash": "598cb075410bcd95220ac90bbb60344a",
+    "semantic_hash": ""
+  },
+  ".codex/hooks.json": {
+    "mtime": 1783072878.5168998,
+    "ast_hash": "afe8e0dfe9a338611ed983301bd348d4",
+    "semantic_hash": ""
+  },
+  ".meta-kim/state/default/active-run.json": {
+    "mtime": 1783072872.1821425,
+    "ast_hash": "b9cebc29c22057f97e456d8e31dd8eb9",
+    "semantic_hash": ""
+  },
+  ".meta-kim/state/default/post-copy-init.json": {
+    "mtime": 1783072872.1286497,
+    "ast_hash": "eb4cda581b65bcac8763ea56b2c1491a",
+    "semantic_hash": ""
+  },
+  ".meta-kim/state/default/runs/meta-2026-07-03T10-01-12-173Z/status.json": {
+    "mtime": 1783072872.1821425,
+    "ast_hash": "b9cebc29c22057f97e456d8e31dd8eb9",
+    "semantic_hash": ""
+  },
+  ".meta-kim/state/default/spine/spine-state.json": {
+    "mtime": 1783072872.1785254,
+    "ast_hash": "167228d5a3b7ffdf8e1d544ac2535655",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1783072878.5137439,
+    "ast_hash": "21ceb6533048be51308e69e7b74a35cf",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1783072878.0374947,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": ""
+  },
+  "docs/mvp-architecture.md": {
+    "mtime": 1783071990.2492666,
+    "ast_hash": "f1f411b1a7bbd545db40c9a033e102bf",
+    "semantic_hash": ""
+  }
+}

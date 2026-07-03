@@ -1,0 +1,440 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents",
+      "community": 3,
+      "norm_label": "agents.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents_graphify",
+      "community": 3,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 4,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_graphify",
+      "community": 4,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "mvp-architecture.md",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture",
+      "community": 0,
+      "norm_label": "mvp-architecture.md"
+    },
+    {
+      "label": "AidBot MVP \u67b6\u6784\u6f14\u8fdb\u56fe",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "community": 0,
+      "norm_label": "aidbot mvp \u67b6\u6784\u6f14\u8fdb\u56fe"
+    },
+    {
+      "label": "1. \u9879\u76ee\u5b9a\u4f4d",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_1_\u9879\u76ee\u5b9a\u4f4d",
+      "community": 0,
+      "norm_label": "1. \u9879\u76ee\u5b9a\u4f4d"
+    },
+    {
+      "label": "2. MVP \u603b\u4f53\u67b6\u6784\u56fe",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_2_mvp_\u603b\u4f53\u67b6\u6784\u56fe",
+      "community": 0,
+      "norm_label": "2. mvp \u603b\u4f53\u67b6\u6784\u56fe"
+    },
+    {
+      "label": "3. \u95ee\u7b54\u6570\u636e\u6d41",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_3_\u95ee\u7b54\u6570\u636e\u6d41",
+      "community": 0,
+      "norm_label": "3. \u95ee\u7b54\u6570\u636e\u6d41"
+    },
+    {
+      "label": "4. \u77e5\u8bc6\u5165\u5e93\u6570\u636e\u6d41",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L130",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_4_\u77e5\u8bc6\u5165\u5e93\u6570\u636e\u6d41",
+      "community": 0,
+      "norm_label": "4. \u77e5\u8bc6\u5165\u5e93\u6570\u636e\u6d41"
+    },
+    {
+      "label": "5. \u7ba1\u7406\u5458\u53cd\u9988\u95ed\u73af",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L171",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_5_\u7ba1\u7406\u5458\u53cd\u9988\u95ed\u73af",
+      "community": 0,
+      "norm_label": "5. \u7ba1\u7406\u5458\u53cd\u9988\u95ed\u73af"
+    },
+    {
+      "label": "6. \u9636\u6bb5\u6f14\u8fdb\u56fe",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L216",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_6_\u9636\u6bb5\u6f14\u8fdb\u56fe",
+      "community": 0,
+      "norm_label": "6. \u9636\u6bb5\u6f14\u8fdb\u56fe"
+    },
+    {
+      "label": "7. MVP \u6a21\u5757\u6e05\u5355",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L234",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_7_mvp_\u6a21\u5757\u6e05\u5355",
+      "community": 2,
+      "norm_label": "7. mvp \u6a21\u5757\u6e05\u5355"
+    },
+    {
+      "label": "\u524d\u7aef",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L236",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_\u524d\u7aef",
+      "community": 2,
+      "norm_label": "\u524d\u7aef"
+    },
+    {
+      "label": "\u540e\u7aef",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L249",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_\u540e\u7aef",
+      "community": 2,
+      "norm_label": "\u540e\u7aef"
+    },
+    {
+      "label": "\u6570\u636e\u8868 MVP",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L260",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_\u6570\u636e\u8868_mvp",
+      "community": 2,
+      "norm_label": "\u6570\u636e\u8868 mvp"
+    },
+    {
+      "label": "8. \u63a8\u8350\u76ee\u5f55\u7ed3\u6784",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L274",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_8_\u63a8\u8350\u76ee\u5f55\u7ed3\u6784",
+      "community": 0,
+      "norm_label": "8. \u63a8\u8350\u76ee\u5f55\u7ed3\u6784"
+    },
+    {
+      "label": "9. MVP \u8fb9\u754c",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L335",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_9_mvp_\u8fb9\u754c",
+      "community": 0,
+      "norm_label": "9. mvp \u8fb9\u754c"
+    },
+    {
+      "label": "10. \u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L359",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_10_\u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "community": 1,
+      "norm_label": "10. \u540e\u7eed\u6269\u5c55\u8fb9\u754c"
+    },
+    {
+      "label": "MCP \u63a5\u5165\u8fb9\u754c",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L361",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_mcp_\u63a5\u5165\u8fb9\u754c",
+      "community": 1,
+      "norm_label": "mcp \u63a5\u5165\u8fb9\u754c"
+    },
+    {
+      "label": "RAG \u670d\u52a1\u8fb9\u754c",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L369",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_rag_\u670d\u52a1\u8fb9\u754c",
+      "community": 1,
+      "norm_label": "rag \u670d\u52a1\u8fb9\u754c"
+    },
+    {
+      "label": "\u6743\u9650\u8fb9\u754c",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L380",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_\u6743\u9650\u8fb9\u754c",
+      "community": 1,
+      "norm_label": "\u6743\u9650\u8fb9\u754c"
+    },
+    {
+      "label": "\u8d28\u91cf\u4f18\u5316\u8fb9\u754c",
+      "file_type": "document",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L388",
+      "_origin": "ast",
+      "id": "docs_mvp_architecture_\u8d28\u91cf\u4f18\u5316\u8fb9\u754c",
+      "community": 1,
+      "norm_label": "\u8d28\u91cf\u4f18\u5316\u8fb9\u754c"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "agents",
+      "target": "agents_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "claude_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture",
+      "target": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L359",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_10_\u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_1_\u9879\u76ee\u5b9a\u4f4d",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_2_mvp_\u603b\u4f53\u67b6\u6784\u56fe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_3_\u95ee\u7b54\u6570\u636e\u6d41",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_4_\u77e5\u8bc6\u5165\u5e93\u6570\u636e\u6d41",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_5_\u7ba1\u7406\u5458\u53cd\u9988\u95ed\u73af",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L216",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_6_\u9636\u6bb5\u6f14\u8fdb\u56fe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L234",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_7_mvp_\u6a21\u5757\u6e05\u5355",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L274",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_8_\u63a8\u8350\u76ee\u5f55\u7ed3\u6784",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L335",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_aidbot_mvp_\u67b6\u6784\u6f14\u8fdb\u56fe",
+      "target": "docs_mvp_architecture_9_mvp_\u8fb9\u754c",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L236",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_7_mvp_\u6a21\u5757\u6e05\u5355",
+      "target": "docs_mvp_architecture_\u524d\u7aef",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L249",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_7_mvp_\u6a21\u5757\u6e05\u5355",
+      "target": "docs_mvp_architecture_\u540e\u7aef",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L260",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_7_mvp_\u6a21\u5757\u6e05\u5355",
+      "target": "docs_mvp_architecture_\u6570\u636e\u8868_mvp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L361",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_10_\u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "target": "docs_mvp_architecture_mcp_\u63a5\u5165\u8fb9\u754c",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L369",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_10_\u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "target": "docs_mvp_architecture_rag_\u670d\u52a1\u8fb9\u754c",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L380",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_10_\u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "target": "docs_mvp_architecture_\u6743\u9650\u8fb9\u754c",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/mvp-architecture.md",
+      "source_location": "L388",
+      "weight": 1.0,
+      "source": "docs_mvp_architecture_10_\u540e\u7eed\u6269\u5c55\u8fb9\u754c",
+      "target": "docs_mvp_architecture_\u8d28\u91cf\u4f18\u5316\u8fb9\u754c",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}
