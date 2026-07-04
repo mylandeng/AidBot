@@ -1,8 +1,18 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import admin, auth, chat, conversations, feedback, health, knowledge
 from app.core.config import settings
+from app.core.database import Base, engine
+from app import models  # noqa: F401
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    Base.metadata.create_all(bind=engine)
+    yield
 
 
 def create_app() -> FastAPI:
@@ -10,6 +20,7 @@ def create_app() -> FastAPI:
         title=settings.app_name,
         version="0.1.0",
         description="AidBot internal support Q&A API.",
+        lifespan=lifespan,
     )
 
     app.add_middleware(

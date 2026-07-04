@@ -1,16 +1,16 @@
-# Graph Report - AidBot  (2026-07-04)
+# Graph Report - 6179e34e5fe92566  (2026-07-04)
 
 ## Corpus Check
-- 68 files · ~4,540 words
+- 70 files · ~5,690 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 281 nodes · 312 edges · 44 communities (18 shown, 26 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 41 edges (avg confidence: 0.52)
+- 319 nodes · 439 edges · 44 communities (22 shown, 22 thin omitted)
+- Extraction: 78% EXTRACTED · 22% INFERRED · 0% AMBIGUOUS · INFERRED: 98 edges (avg confidence: 0.52)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a46d0d02`
+- Built from commit: `0e507efe`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -47,9 +47,7 @@
 - [[_COMMUNITY_Community 30|Community 30]]
 - [[_COMMUNITY_Community 31|Community 31]]
 - [[_COMMUNITY_Community 33|Community 33]]
-- [[_COMMUNITY_Community 37|Community 37]]
 - [[_COMMUNITY_Community 38|Community 38]]
-- [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 43|Community 43]]
 - [[_COMMUNITY_Community 44|Community 44]]
@@ -57,45 +55,50 @@
 - [[_COMMUNITY_Community 46|Community 46]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `compilerOptions` - 16 edges
-2. `ChatRequest` - 14 edges
-3. `requireSession()` - 12 edges
-4. `AidBot MVP 架构演进图` - 11 edges
-5. `FastAPI` - 10 edges
-6. `CurrentUser` - 9 edges
-7. `AnswerRouter` - 9 edges
-8. `ChatResponse` - 8 edges
-9. `AidBot MVP 架构审阅计划` - 8 edges
-10. `推荐开发阶段` - 8 edges
+1. `CurrentUser` - 23 edges
+2. `ChatRequest` - 19 edges
+3. `compilerOptions` - 16 edges
+4. `ChatResponse` - 13 edges
+5. `FastAPI` - 13 edges
+6. `Conversation` - 13 edges
+7. `Message` - 13 edges
+8. `requireSession()` - 13 edges
+9. `ChatService` - 12 edges
+10. `AidBot MVP 架构演进图` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `login()` --calls--> `verify_seed_password()`  [INFERRED]
   backend/app/api/auth.py → backend/app/core/security.py
-- `AnswerResult` --uses--> `ChatRequest`  [INFERRED]
-  backend/app/services/strategies/template_strategy.py → backend/app/api/chat.py
-- `ChatRequest` --uses--> `ChatRequest`  [INFERRED]
-  backend/app/services/strategies/template_strategy.py → backend/app/api/chat.py
-- `login()` --calls--> `create_access_token()`  [INFERRED]
-  backend/app/api/auth.py → backend/app/core/security.py
 - `Any` --uses--> `CurrentUser`  [INFERRED]
   backend/app/core/security.py → backend/app/api/auth.py
+- `CurrentUser` --uses--> `CurrentUser`  [INFERRED]
+  backend/app/core/security.py → backend/app/api/auth.py
+- `HTTPAuthorizationCredentials` --uses--> `CurrentUser`  [INFERRED]
+  backend/app/core/security.py → backend/app/api/auth.py
+- `AnswerResult` --uses--> `ChatRequest`  [INFERRED]
+  backend/app/services/strategies/template_strategy.py → backend/app/api/chat.py
 
 ## Import Cycles
 - 1-file cycle: `backend/app/main.py -> backend/app/main.py`
+- 1-file cycle: `backend/app/models/conversation.py -> backend/app/models/conversation.py`
 
-## Communities (44 total, 26 thin omitted)
+## Communities (44 total, 22 thin omitted)
 
 ### Community 0 - "AidBot MVP 架构演进图"
 Cohesion: 0.10
 Nodes (19): 10. 后续扩展边界, 1. 项目定位, 2. MVP 总体架构图, 3. 问答数据流, 4. 知识入库数据流, 5. 管理员反馈闭环, 6. 阶段演进图, 7. MVP 模块清单 (+11 more)
 
 ### Community 1 - "10. 后续扩展边界"
-Cohesion: 0.20
-Nodes (13): AnswerRouter, create_chat_response(), ChatRequest, ChatResponse, AnswerResult, ChatRequest, ChatRequest, ChatResponse (+5 more)
+Cohesion: 0.16
+Nodes (29): create_chat_response(), get_conversation(), list_conversations(), CurrentUser, ChatRequest, ChatResponse, CurrentUser, Session (+21 more)
 
 ### Community 2 - "7. MVP 模块清单"
 Cohesion: 0.10
 Nodes (20): dependencies, next, react, react-dom, devDependencies, eslint, eslint-config-next, @types/node (+12 more)
+
+### Community 5 - "Community 5"
+Cohesion: 0.08
+Nodes (6): create_app(), lifespan(), FastAPI, auth_headers(), test_chat_can_continue_existing_conversation(), test_chat_persists_conversation_and_placeholder_sources()
 
 ### Community 6 - "Community 6"
 Cohesion: 0.10
@@ -106,16 +109,16 @@ Cohesion: 0.12
 Nodes (15): AidBot MVP 架构审阅计划, MVP 最短路径, 备注, 推荐开发阶段, 状态, 目标, 证据来源, 遇到的错误 (+7 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.21
-Nodes (10): HealthBadge(), getHealth(), ChatRequest, ChatResponse, Confidence, CurrentUser, HealthResponse, LoginResponse (+2 more)
+Cohesion: 0.18
+Nodes (17): HealthBadge(), askQuestion(), authorized(), getConversation(), getHealth(), listConversations(), ChatRequest, ChatResponse (+9 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.29
 Nodes (6): AidBot MVP 架构审阅发现, 初步审阅发现, 当前项目状态, 推荐决策, 架构审阅, 架构文档摘要
 
 ### Community 10 - "Community 10"
-Cohesion: 0.31
-Nodes (8): BaseModel, CurrentUser, LoginRequest, LoginResponse, AnswerResult, ChatRequest, ChatResponse, SourceCitation
+Cohesion: 0.26
+Nodes (11): BaseModel, CurrentUser, LoginRequest, LoginResponse, AnswerResult, ChatRequest, ChatResponse, ConversationDetail (+3 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.50
@@ -133,33 +136,37 @@ Nodes (5): AidBot, Docker 一键启动, 本地开发, 本机分别启动, 阶段
 Cohesion: 0.33
 Nodes (4): Base, DeclarativeBase, Role, User
 
+### Community 20 - "Community 20"
+Cohesion: 0.27
+Nodes (5): Protocol, LLMCompletion, LLMProvider, LocalSupportProvider, Deterministic phase-2 provider; replaceable without changing the chat contract.
+
 ### Community 27 - "Community 27"
-Cohesion: 0.16
-Nodes (13): AdminPage(), conversations, Home(), sources, ChatPage(), FeedbackPage(), KnowledgePage(), login() (+5 more)
+Cohesion: 0.15
+Nodes (15): AdminPage(), conversations, Home(), sources, ChatPage(), ChatWorkbench(), FeedbackPage(), KnowledgePage() (+7 more)
 
 ### Community 31 - "Community 31"
-Cohesion: 0.25
-Nodes (14): Any, login(), me(), CurrentUser, CurrentUser, _b64decode(), _b64encode(), create_access_token() (+6 more)
+Cohesion: 0.22
+Nodes (13): Any, login(), me(), CurrentUser, _b64decode(), _b64encode(), create_access_token(), decode_access_token() (+5 more)
 
 ## Knowledge Gaps
-- **88 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+83 more)
+- **86 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+81 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **26 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **22 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `FastAPI` connect `Community 5` to `Community 31`?**
-  _High betweenness centrality (0.036) - this node is a cross-community bridge._
-- **Why does `create_chat_response()` connect `10. 后续扩展边界` to `Community 5`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Are the 12 inferred relationships involving `ChatRequest` (e.g. with `AnswerRouter` and `ChatRequest`) actually correct?**
-  _`ChatRequest` has 12 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `AidBot backend package.`, `Core configuration and infrastructure.`, `SQLAlchemy models will be added in later phases.` to the rest of the system?**
-  _98 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `AidBot MVP 架构演进图` be split into smaller, more focused modules?**
-  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
-- **Should `7. MVP 模块清单` be split into smaller, more focused modules?**
-  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
-- **Should `Community 5` be split into smaller, more focused modules?**
-  _Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected._
+- **Why does `FastAPI` connect `Community 5` to `10. 后续扩展边界`, `Community 14`, `Community 31`?**
+  _High betweenness centrality (0.054) - this node is a cross-community bridge._
+- **Why does `get_conversation()` connect `10. 后续扩展边界` to `Community 10`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `CurrentUser` connect `10. 后续扩展边界` to `Community 31`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Are the 20 inferred relationships involving `CurrentUser` (e.g. with `Any` and `CurrentUser`) actually correct?**
+  _`CurrentUser` has 20 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 17 inferred relationships involving `ChatRequest` (e.g. with `CurrentUser` and `ChatRequest`) actually correct?**
+  _`ChatRequest` has 17 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 11 inferred relationships involving `ChatResponse` (e.g. with `ChatRequest` and `CurrentUser`) actually correct?**
+  _`ChatResponse` has 11 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `AidBot backend package.`, `Core configuration and infrastructure.`, `Feedback models are planned for phase 4.` to the rest of the system?**
+  _95 weakly-connected nodes found - possible documentation gaps or missing edges._

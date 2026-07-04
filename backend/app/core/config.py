@@ -14,6 +14,11 @@ class Settings(BaseSettings):
     seed_admin_email: str = "admin@aidbot.local"
     seed_admin_password: str = "aidbot123"
     seed_admin_name: str = "售后管理员"
+    llm_provider: str = "local"
+    llm_model: str = "aidbot-local-v1"
+    llm_api_key: str = ""
+    llm_base_url: str = "https://api.deepseek.com"
+    llm_timeout_seconds: float = 60.0
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 

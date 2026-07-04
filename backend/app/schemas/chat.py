@@ -25,16 +25,40 @@ class SourceCitation(BaseModel):
 class AnswerResult(BaseModel):
     strategy: StrategyName
     context: str
-    sources: list[SourceCitation] = []
+    sources: list[SourceCitation] = Field(default_factory=list)
     confidence: Confidence = "low"
     handoff_required: bool = False
     handoff_reason: str = ""
 
 
 class ChatResponse(BaseModel):
+    conversation_id: str
+    message_id: str
     answer: str
-    solution_steps: list[str] = []
+    solution_steps: list[str] = Field(default_factory=list)
     confidence: Confidence = "low"
-    sources: list[SourceCitation] = []
+    sources: list[SourceCitation] = Field(default_factory=list)
     handoff_required: bool = False
     handoff_reason: str = ""
+
+
+class MessageResponse(BaseModel):
+    id: str
+    role: Literal["user", "assistant"]
+    content: str
+    solution_steps: list[str] = Field(default_factory=list)
+    sources: list[SourceCitation] = Field(default_factory=list)
+    confidence: Confidence = "low"
+    created_at: str
+
+
+class ConversationSummary(BaseModel):
+    id: str
+    title: str
+    product_line: str | None = None
+    updated_at: str
+    message_count: int
+
+
+class ConversationDetail(ConversationSummary):
+    messages: list[MessageResponse]

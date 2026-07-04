@@ -25,6 +25,11 @@ services:
       APP_ENV: ${APP_ENV:-development}
       BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:3010,http://127.0.0.1:3010}
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-aidbot}:${POSTGRES_PASSWORD:-aidbot_dev_password}@db:5432/${POSTGRES_DB:-aidbot}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.deepseek.com}
+      LLM_MODEL: ${LLM_MODEL:-aidbot-local-v1}
+      LLM_PROVIDER: ${LLM_PROVIDER:-local}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-60}
     ports:
       - "8010:8010"
     depends_on:
@@ -39,7 +44,8 @@ services:
       context: ./frontend
     container_name: aidbot-frontend
     environment:
-      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8010}
+      API_INTERNAL_BASE_URL: ${API_INTERNAL_BASE_URL:-http://backend:8010}
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://127.0.0.1:8010}
     ports:
       - "3010:3010"
     depends_on:

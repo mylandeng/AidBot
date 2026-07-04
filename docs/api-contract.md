@@ -47,6 +47,8 @@
 
 ```json
 {
+  "conversation_id": "...",
+  "message_id": "...",
   "access_token": "...",
   "token_type": "bearer",
   "expires_in": 28800,
@@ -58,6 +60,8 @@
   }
 }
 ```
+
+聊天和会话接口均要求 `Authorization: Bearer <access_token>`。`GET /api/conversations` 返回当前用户的会话摘要，`GET /api/conversations/{id}` 返回消息历史；服务端不会返回其他用户的会话。
 
 `GET /api/auth/me`
 
@@ -96,6 +100,8 @@ Authorization: Bearer <access_token>
 
 ```json
 {
+  "conversation_id": "...",
+  "message_id": "...",
   "answer": "...",
   "solution_steps": ["..."],
   "confidence": "low",
@@ -103,6 +109,30 @@ Authorization: Bearer <access_token>
   "handoff_required": false,
   "handoff_reason": ""
 }
+```
+
+`POST /api/chat/stream`
+
+返回 `text/event-stream`。流式事件只用于前端展示中的打字机效果；结构化结果以后端 `final` 事件为准，前端不得从模型自然语言中反推结构化字段。
+
+事件：
+
+```text
+event: message_start
+data: {"conversation_id":"..."}
+
+event: answer_delta
+data: {"delta":"..."}
+
+event: final
+data: {"conversation_id":"...","message_id":"...","answer":"...","solution_steps":["..."],"confidence":"low","sources":[],"handoff_required":false,"handoff_reason":""}
+```
+
+错误：
+
+```text
+event: error
+data: {"message":"模型暂时不可用，请稍后重试。"}
 ```
 
 ## 核心类型

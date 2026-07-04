@@ -37,10 +37,40 @@ export interface SourceCitation {
 }
 
 export interface ChatResponse {
+  conversation_id: string;
+  message_id: string;
   answer: string;
   solution_steps: string[];
   confidence: Confidence;
   sources: SourceCitation[];
   handoff_required: boolean;
   handoff_reason: string;
+}
+
+export type ChatStreamEvent =
+  | { event: "message_start"; data: { conversation_id: string } }
+  | { event: "answer_delta"; data: { delta: string } }
+  | { event: "final"; data: ChatResponse }
+  | { event: "error"; data: { message: string } };
+
+export interface ConversationSummary {
+  id: string;
+  title: string;
+  product_line?: string | null;
+  updated_at: string;
+  message_count: number;
+}
+
+export interface ConversationMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  solution_steps: string[];
+  sources: SourceCitation[];
+  confidence: Confidence;
+  created_at: string;
+}
+
+export interface ConversationDetail extends ConversationSummary {
+  messages: ConversationMessage[];
 }

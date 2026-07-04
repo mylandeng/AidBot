@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import { SESSION_COOKIE_NAME } from "./session";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8010";
+const API_BASE_URL = process.env.API_INTERNAL_BASE_URL ?? process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8010";
 
 export async function getSessionToken(): Promise<string | undefined> {
   const cookieStore = await cookies();

@@ -120,7 +120,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_app_api_auth_py_currentuser",
-      "community": 31,
+      "community": 1,
       "norm_label": "currentuser"
     },
     {
@@ -130,14 +130,14 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_chat",
-      "community": 5,
+      "community": 1,
       "norm_label": "chat.py"
     },
     {
       "label": "create_chat_response()",
       "file_type": "code",
       "source_file": "backend/app/api/chat.py",
-      "source_location": "L11",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "api_chat_create_chat_response",
       "community": 1,
@@ -147,21 +147,61 @@
       "label": "ChatRequest",
       "file_type": "code",
       "source_file": "backend/app/api/chat.py",
-      "source_location": "L11",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_api_chat_py_chatrequest",
       "community": 1,
       "norm_label": "chatrequest"
     },
     {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "backend_app_api_chat_py_currentuser",
+      "community": 1,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "backend_app_api_chat_py_session",
+      "community": 1,
+      "norm_label": "session"
+    },
+    {
       "label": "ChatResponse",
       "file_type": "code",
       "source_file": "backend/app/api/chat.py",
-      "source_location": "L11",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_api_chat_py_chatresponse",
       "community": 1,
       "norm_label": "chatresponse"
+    },
+    {
+      "label": "stream_chat_response()",
+      "file_type": "code",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "api_chat_stream_chat_response",
+      "community": 1,
+      "norm_label": "stream_chat_response()"
+    },
+    {
+      "label": "StreamingResponse",
+      "file_type": "code",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "streamingresponse",
+      "community": 1,
+      "norm_label": "streamingresponse"
     },
     {
       "label": "conversations.py",
@@ -170,18 +210,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_conversations",
-      "community": 5,
+      "community": 1,
       "norm_label": "conversations.py"
     },
     {
       "label": "list_conversations()",
       "file_type": "code",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L7",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "api_conversations_list_conversations",
-      "community": 5,
+      "community": 1,
       "norm_label": "list_conversations()"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_api_conversations_py_currentuser",
+      "community": 1,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_api_conversations_py_session",
+      "community": 1,
+      "norm_label": "session"
+    },
+    {
+      "label": "ConversationSummary",
+      "file_type": "code",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "conversationsummary",
+      "community": 1,
+      "norm_label": "conversationsummary"
+    },
+    {
+      "label": "get_conversation()",
+      "file_type": "code",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "api_conversations_get_conversation",
+      "community": 1,
+      "norm_label": "get_conversation()"
+    },
+    {
+      "label": "ConversationDetail",
+      "file_type": "code",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "conversationdetail",
+      "community": 1,
+      "norm_label": "conversationdetail"
     },
     {
       "label": "feedback.py",
@@ -297,7 +387,7 @@
       "label": ".cors_origins()",
       "file_type": "code",
       "source_file": "backend/app/core/config.py",
-      "source_location": "L21",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "core_config_settings_cors_origins",
       "community": 11,
@@ -307,7 +397,7 @@
       "label": "get_settings()",
       "file_type": "code",
       "source_file": "backend/app/core/config.py",
-      "source_location": "L26",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "core_config_get_settings",
       "community": 11,
@@ -464,24 +554,34 @@
       "norm_label": "main.py"
     },
     {
-      "label": "create_app()",
+      "label": "lifespan()",
       "file_type": "code",
       "source_file": "backend/app/main.py",
-      "source_location": "L8",
+      "source_location": "L13",
       "_origin": "ast",
-      "id": "app_main_create_app",
+      "id": "app_main_lifespan",
       "community": 5,
-      "norm_label": "create_app()"
+      "norm_label": "lifespan()"
     },
     {
       "label": "FastAPI",
       "file_type": "code",
       "source_file": "backend/app/main.py",
-      "source_location": "L8",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "fastapi",
       "community": 5,
       "norm_label": "fastapi"
+    },
+    {
+      "label": "create_app()",
+      "file_type": "code",
+      "source_file": "backend/app/main.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "app_main_create_app",
+      "community": 5,
+      "norm_label": "create_app()"
     },
     {
       "label": "__init__.py",
@@ -494,34 +594,54 @@
       "norm_label": "__init__.py"
     },
     {
-      "label": "SQLAlchemy models will be added in later phases.",
-      "file_type": "rationale",
-      "source_file": "backend/app/models/__init__.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "models_init_rationale_1",
-      "community": 39,
-      "norm_label": "sqlalchemy models will be added in later phases."
-    },
-    {
       "label": "conversation.py",
       "file_type": "code",
       "source_file": "backend/app/models/conversation.py",
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_conversation",
-      "community": 37,
+      "community": 14,
       "norm_label": "conversation.py"
     },
     {
-      "label": "Conversation and message models are planned for phase 2.",
-      "file_type": "rationale",
+      "label": "utcnow()",
+      "file_type": "code",
       "source_file": "backend/app/models/conversation.py",
-      "source_location": "L1",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "models_conversation_rationale_1",
-      "community": 37,
-      "norm_label": "conversation and message models are planned for phase 2."
+      "id": "models_conversation_utcnow",
+      "community": 14,
+      "norm_label": "utcnow()"
+    },
+    {
+      "label": "datetime",
+      "file_type": "code",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "datetime",
+      "community": 14,
+      "norm_label": "datetime"
+    },
+    {
+      "label": "Conversation",
+      "file_type": "code",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "models_conversation_conversation",
+      "community": 1,
+      "norm_label": "conversation"
+    },
+    {
+      "label": "Message",
+      "file_type": "code",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "models_conversation_message",
+      "community": 1,
+      "norm_label": "message"
     },
     {
       "label": "feedback.py",
@@ -704,6 +824,36 @@
       "norm_label": "chatresponse"
     },
     {
+      "label": "MessageResponse",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "schemas_chat_messageresponse",
+      "community": 10,
+      "norm_label": "messageresponse"
+    },
+    {
+      "label": "ConversationSummary",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "schemas_chat_conversationsummary",
+      "community": 10,
+      "norm_label": "conversationsummary"
+    },
+    {
+      "label": "ConversationDetail",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "schemas_chat_conversationdetail",
+      "community": 10,
+      "norm_label": "conversationdetail"
+    },
+    {
       "label": "feedback.py",
       "file_type": "code",
       "source_file": "backend/app/schemas/feedback.py",
@@ -770,7 +920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_answer_router",
-      "community": 1,
+      "community": 32,
       "norm_label": "answer_router.py"
     },
     {
@@ -780,7 +930,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "services_answer_router_answerrouter",
-      "community": 1,
+      "community": 32,
       "norm_label": "answerrouter"
     },
     {
@@ -790,7 +940,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "services_answer_router_answerrouter_init",
-      "community": 1,
+      "community": 32,
       "norm_label": ".__init__()"
     },
     {
@@ -800,7 +950,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "services_answer_router_answerrouter_route",
-      "community": 1,
+      "community": 32,
       "norm_label": ".route()"
     },
     {
@@ -810,7 +960,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_services_answer_router_py_chatrequest",
-      "community": 1,
+      "community": 32,
       "norm_label": "chatrequest"
     },
     {
@@ -820,7 +970,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_services_answer_router_py_answerresult",
-      "community": 1,
+      "community": 32,
       "norm_label": "answerresult"
     },
     {
@@ -830,14 +980,14 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_chat_service",
-      "community": 1,
+      "community": 5,
       "norm_label": "chat_service.py"
     },
     {
       "label": "ChatService",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L5",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "services_chat_service_chatservice",
       "community": 1,
@@ -847,27 +997,27 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L6",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_init",
       "community": 1,
       "norm_label": ".__init__()"
     },
     {
-      "label": "AnswerRouter",
+      "label": "LLMService",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L6",
+      "source_location": "L16",
       "_origin": "ast",
-      "id": "answerrouter",
+      "id": "llmservice",
       "community": 1,
-      "norm_label": "answerrouter"
+      "norm_label": "llmservice"
     },
     {
       "label": ".answer()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L9",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_answer",
       "community": 1,
@@ -877,21 +1027,111 @@
       "label": "ChatRequest",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L9",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_services_chat_service_py_chatrequest",
       "community": 1,
       "norm_label": "chatrequest"
     },
     {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "backend_app_services_chat_service_py_currentuser",
+      "community": 1,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "backend_app_services_chat_service_py_session",
+      "community": 1,
+      "norm_label": "session"
+    },
+    {
       "label": "ChatResponse",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L9",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_services_chat_service_py_chatresponse",
       "community": 1,
       "norm_label": "chatresponse"
+    },
+    {
+      "label": ".stream_answer()",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "services_chat_service_chatservice_stream_answer",
+      "community": 1,
+      "norm_label": ".stream_answer()"
+    },
+    {
+      "label": "._resolve_conversation()",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "services_chat_service_chatservice_resolve_conversation",
+      "community": 1,
+      "norm_label": "._resolve_conversation()"
+    },
+    {
+      "label": "Conversation",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "conversation",
+      "community": 1,
+      "norm_label": "conversation"
+    },
+    {
+      "label": "._assistant_message()",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "services_chat_service_chatservice_assistant_message",
+      "community": 1,
+      "norm_label": "._assistant_message()"
+    },
+    {
+      "label": "Message",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "message",
+      "community": 1,
+      "norm_label": "message"
+    },
+    {
+      "label": "._default_steps()",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "services_chat_service_chatservice_default_steps",
+      "community": 1,
+      "norm_label": "._default_steps()"
+    },
+    {
+      "label": "._event()",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "services_chat_service_chatservice_event",
+      "community": 1,
+      "norm_label": "._event()"
     },
     {
       "label": "document_service.py",
@@ -994,24 +1234,224 @@
       "norm_label": "llm_service.py"
     },
     {
-      "label": "LLMService",
+      "label": "LLMCompletion",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L1",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "services_llm_service_llmservice",
+      "id": "services_llm_service_llmcompletion",
       "community": 20,
-      "norm_label": "llmservice"
+      "norm_label": "llmcompletion"
+    },
+    {
+      "label": "LLMProvider",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "services_llm_service_llmprovider",
+      "community": 20,
+      "norm_label": "llmprovider"
+    },
+    {
+      "label": "Protocol",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "protocol",
+      "community": 20,
+      "norm_label": "protocol"
     },
     {
       "label": ".complete()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L2",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "services_llm_service_llmprovider_complete",
+      "community": 20,
+      "norm_label": ".complete()"
+    },
+    {
+      "label": ".stream_answer()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "services_llm_service_llmprovider_stream_answer",
+      "community": 20,
+      "norm_label": ".stream_answer()"
+    },
+    {
+      "label": "_support_prompt()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "services_llm_service_support_prompt",
+      "community": 20,
+      "norm_label": "_support_prompt()"
+    },
+    {
+      "label": "LocalSupportProvider",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "services_llm_service_localsupportprovider",
+      "community": 20,
+      "norm_label": "localsupportprovider"
+    },
+    {
+      "label": ".complete()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "services_llm_service_localsupportprovider_complete",
+      "community": 20,
+      "norm_label": ".complete()"
+    },
+    {
+      "label": ".stream_answer()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "services_llm_service_localsupportprovider_stream_answer",
+      "community": 20,
+      "norm_label": ".stream_answer()"
+    },
+    {
+      "label": "OpenAICompatibleProvider",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider",
+      "community": 20,
+      "norm_label": "openaicompatibleprovider"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider_init",
+      "community": 20,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".complete()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider_complete",
+      "community": 20,
+      "norm_label": ".complete()"
+    },
+    {
+      "label": ".stream_answer()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider_stream_answer",
+      "community": 20,
+      "norm_label": ".stream_answer()"
+    },
+    {
+      "label": "._headers()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L95",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider_headers",
+      "community": 20,
+      "norm_label": "._headers()"
+    },
+    {
+      "label": "._parse_delta()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider_parse_delta",
+      "community": 20,
+      "norm_label": "._parse_delta()"
+    },
+    {
+      "label": "._default_steps()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L112",
+      "_origin": "ast",
+      "id": "services_llm_service_openaicompatibleprovider_default_steps",
+      "community": 20,
+      "norm_label": "._default_steps()"
+    },
+    {
+      "label": "create_provider()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L122",
+      "_origin": "ast",
+      "id": "services_llm_service_create_provider",
+      "community": 20,
+      "norm_label": "create_provider()"
+    },
+    {
+      "label": "LLMService",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "services_llm_service_llmservice",
+      "community": 1,
+      "norm_label": "llmservice"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L130",
+      "_origin": "ast",
+      "id": "services_llm_service_llmservice_init",
+      "community": 20,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".complete()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "services_llm_service_llmservice_complete",
       "community": 20,
       "norm_label": ".complete()"
+    },
+    {
+      "label": ".stream_answer()",
+      "file_type": "code",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "services_llm_service_llmservice_stream_answer",
+      "community": 20,
+      "norm_label": ".stream_answer()"
+    },
+    {
+      "label": "Deterministic phase-2 provider; replaceable without changing the chat contract.",
+      "file_type": "rationale",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "services_llm_service_rationale_40",
+      "community": 20,
+      "norm_label": "deterministic phase-2 provider; replaceable without changing the chat contract."
     },
     {
       "label": "permission_service.py",
@@ -1190,7 +1630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "strategies_template_strategy",
-      "community": 1,
+      "community": 32,
       "norm_label": "template_strategy.py"
     },
     {
@@ -1200,7 +1640,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "strategies_template_strategy_templatestrategy",
-      "community": 1,
+      "community": 32,
       "norm_label": "templatestrategy"
     },
     {
@@ -1210,7 +1650,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "strategies_template_strategy_templatestrategy_run",
-      "community": 1,
+      "community": 32,
       "norm_label": ".run()"
     },
     {
@@ -1220,7 +1660,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_app_services_strategies_template_strategy_py_chatrequest",
-      "community": 1,
+      "community": 32,
       "norm_label": "chatrequest"
     },
     {
@@ -1230,7 +1670,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_app_services_strategies_template_strategy_py_answerresult",
-      "community": 1,
+      "community": 32,
       "norm_label": "answerresult"
     },
     {
@@ -1272,6 +1712,16 @@
       "id": "workers_ingestion_worker_ingestionworker_run_once",
       "community": 26,
       "norm_label": ".run_once()"
+    },
+    {
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "backend/tests/conftest.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_conftest",
+      "community": 29,
+      "norm_label": "conftest.py"
     },
     {
       "label": "test_auth.py",
@@ -1354,14 +1804,54 @@
       "norm_label": "test_chat_contract.py"
     },
     {
-      "label": "test_chat_contract_returns_phase_zero_placeholder()",
+      "label": "auth_headers()",
       "file_type": "code",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "tests_test_chat_contract_test_chat_contract_returns_phase_zero_placeholder",
+      "id": "tests_test_chat_contract_auth_headers",
       "community": 5,
-      "norm_label": "test_chat_contract_returns_phase_zero_placeholder()"
+      "norm_label": "auth_headers()"
+    },
+    {
+      "label": "test_chat_requires_authentication()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tests_test_chat_contract_test_chat_requires_authentication",
+      "community": 5,
+      "norm_label": "test_chat_requires_authentication()"
+    },
+    {
+      "label": "test_chat_persists_conversation_and_placeholder_sources()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "tests_test_chat_contract_test_chat_persists_conversation_and_placeholder_sources",
+      "community": 5,
+      "norm_label": "test_chat_persists_conversation_and_placeholder_sources()"
+    },
+    {
+      "label": "test_chat_can_continue_existing_conversation()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "tests_test_chat_contract_test_chat_can_continue_existing_conversation",
+      "community": 5,
+      "norm_label": "test_chat_can_continue_existing_conversation()"
+    },
+    {
+      "label": "test_stream_chat_emits_delta_and_structured_final()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "tests_test_chat_contract_test_stream_chat_emits_delta_and_structured_final",
+      "community": 5,
+      "norm_label": "test_stream_chat_emits_delta_and_structured_final()"
     },
     {
       "label": "test_health.py",
@@ -1657,11 +2147,41 @@
       "label": "ChatPage()",
       "file_type": "code",
       "source_file": "frontend/src/app/chat/page.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "chat_page_chatpage",
       "community": 27,
       "norm_label": "chatpage()"
+    },
+    {
+      "label": "workbench.tsx",
+      "file_type": "code",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "chat_workbench",
+      "community": 8,
+      "norm_label": "workbench.tsx"
+    },
+    {
+      "label": "ChatWorkbench()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "chat_workbench_chatworkbench",
+      "community": 27,
+      "norm_label": "chatworkbench()"
+    },
+    {
+      "label": "createTempMessage()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L212",
+      "_origin": "ast",
+      "id": "chat_workbench_createtempmessage",
+      "community": 8,
+      "norm_label": "createtempmessage()"
     },
     {
       "label": "page.tsx",
@@ -1820,7 +2340,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "layout_health_badge",
-      "community": 8,
+      "community": 27,
       "norm_label": "health-badge.tsx"
     },
     {
@@ -1830,7 +2350,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "layout_health_badge_healthbadge",
-      "community": 8,
+      "community": 27,
       "norm_label": "healthbadge()"
     },
     {
@@ -1844,24 +2364,94 @@
       "norm_label": "api.ts"
     },
     {
+      "label": "apiBaseUrl()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "lib_api_apibaseurl",
+      "community": 8,
+      "norm_label": "apibaseurl()"
+    },
+    {
       "label": "getHealth()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L5",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "lib_api_gethealth",
-      "community": 8,
+      "community": 27,
       "norm_label": "gethealth()"
     },
     {
       "label": "login()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L21",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "lib_api_login",
-      "community": 27,
+      "community": 8,
       "norm_label": "login()"
+    },
+    {
+      "label": "authorized()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "lib_api_authorized",
+      "community": 8,
+      "norm_label": "authorized()"
+    },
+    {
+      "label": "askQuestion()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "lib_api_askquestion",
+      "community": 8,
+      "norm_label": "askquestion()"
+    },
+    {
+      "label": "askQuestionStream()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "lib_api_askquestionstream",
+      "community": 8,
+      "norm_label": "askquestionstream()"
+    },
+    {
+      "label": "parseStreamEvent()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "lib_api_parsestreamevent",
+      "community": 8,
+      "norm_label": "parsestreamevent()"
+    },
+    {
+      "label": "listConversations()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "lib_api_listconversations",
+      "community": 8,
+      "norm_label": "listconversations()"
+    },
+    {
+      "label": "getConversation()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L122",
+      "_origin": "ast",
+      "id": "lib_api_getconversation",
+      "community": 8,
+      "norm_label": "getconversation()"
     },
     {
       "label": "auth.ts",
@@ -2012,6 +2602,46 @@
       "id": "lib_types_chatresponse",
       "community": 8,
       "norm_label": "chatresponse"
+    },
+    {
+      "label": "ChatStreamEvent",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "lib_types_chatstreamevent",
+      "community": 8,
+      "norm_label": "chatstreamevent"
+    },
+    {
+      "label": "ConversationSummary",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "lib_types_conversationsummary",
+      "community": 8,
+      "norm_label": "conversationsummary"
+    },
+    {
+      "label": "ConversationMessage",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "lib_types_conversationmessage",
+      "community": 8,
+      "norm_label": "conversationmessage"
+    },
+    {
+      "label": "ConversationDetail",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "lib_types_conversationdetail",
+      "community": 8,
+      "norm_label": "conversationdetail"
     },
     {
       "label": "tsconfig.json",
@@ -2357,7 +2987,7 @@
       "label": "\u804a\u5929\u63a5\u53e3",
       "file_type": "document",
       "source_file": "docs/api-contract.md",
-      "source_location": "L81",
+      "source_location": "L85",
       "_origin": "ast",
       "id": "docs_api_contract_\u804a\u5929\u63a5\u53e3",
       "community": 12,
@@ -2367,7 +2997,7 @@
       "label": "\u6838\u5fc3\u7c7b\u578b",
       "file_type": "document",
       "source_file": "docs/api-contract.md",
-      "source_location": "L108",
+      "source_location": "L138",
       "_origin": "ast",
       "id": "docs_api_contract_\u6838\u5fc3\u7c7b\u578b",
       "community": 12,
@@ -3046,11 +3676,141 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_chatrequest",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_chatresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_conversations_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_conversations_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/core/security.py",
       "source_location": "L12",
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "backend_app_core_security_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatrequest",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversationdetail",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversationsummary",
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
@@ -3064,6 +3824,46 @@
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_chat_service_chatservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "streamingresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/api/chat.py",
@@ -3072,6 +3872,16 @@
       "confidence_score": 1.0,
       "source": "api_chat",
       "target": "api_chat_create_chat_response"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat",
+      "target": "api_chat_stream_chat_response"
     },
     {
       "relation": "imports_from",
@@ -3107,20 +3917,43 @@
       "target": "backend_app_api_chat_py_chatresponse"
     },
     {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L1",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "answerrouter",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat_create_chat_response",
+      "target": "backend_app_api_chat_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat_create_chat_response",
+      "target": "backend_app_api_chat_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat_stream_chat_response",
       "target": "backend_app_api_chat_py_chatrequest"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/api/chat.py",
-      "source_location": "L3",
+      "source_location": "L8",
       "weight": 0.8,
       "source": "backend_app_api_chat_py_chatrequest",
       "target": "backend_app_api_chat_py_chatrequest",
@@ -3145,6 +3978,26 @@
       "confidence_score": 0.5,
       "source": "backend_app_api_chat_py_chatrequest",
       "target": "services_chat_service_chatservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_currentuser",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_session",
+      "target": "backend_app_api_chat_py_chatrequest"
     },
     {
       "relation": "uses",
@@ -3189,6 +4042,26 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/services/strategies/template_strategy.py",
       "source_location": "L1",
       "weight": 0.8,
@@ -3204,6 +4077,36 @@
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "backend_app_services_strategies_template_strategy_py_chatrequest",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
       "target": "backend_app_api_chat_py_chatrequest"
     },
     {
@@ -3229,18 +4132,80 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L1",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L8",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "answerrouter",
+      "source": "streamingresponse",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat_stream_chat_response",
+      "target": "backend_app_api_chat_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_currentuser",
       "target": "backend_app_api_chat_py_chatresponse"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/api/chat.py",
-      "source_location": "L3",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_currentuser",
+      "target": "services_chat_service_chatservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat_stream_chat_response",
+      "target": "backend_app_api_chat_py_session"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_session",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_chat_py_session",
+      "target": "services_chat_service_chatservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L8",
       "weight": 0.8,
       "source": "backend_app_api_chat_py_chatresponse",
       "target": "backend_app_api_chat_py_chatresponse",
@@ -3277,6 +4242,97 @@
       "target": "backend_app_api_chat_py_chatresponse"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "streamingresponse",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_chat_stream_chat_response",
+      "target": "streamingresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/chat.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "streamingresponse",
+      "target": "services_chat_service_chatservice"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations",
+      "target": "api_conversations_get_conversation"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/api/conversations.py",
@@ -3296,6 +4352,163 @@
       "confidence_score": 1.0,
       "source": "api_conversations",
       "target": "fastapi"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations_list_conversations",
+      "target": "backend_app_api_conversations_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations_list_conversations",
+      "target": "backend_app_api_conversations_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations_list_conversations",
+      "target": "conversationsummary"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations_get_conversation",
+      "target": "backend_app_api_conversations_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_conversations_py_currentuser",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_conversations_py_currentuser",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations_get_conversation",
+      "target": "backend_app_api_conversations_py_session"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_conversations_py_session",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_conversations_py_session",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversationsummary",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversationsummary",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_conversations_get_conversation",
+      "target": "conversationdetail"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "api_conversations_get_conversation",
+      "target": "schemas_chat_messageresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversationdetail",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversationdetail",
+      "target": "models_conversation_message"
     },
     {
       "relation": "contains",
@@ -3450,6 +4663,46 @@
       "confidence_score": 1.0,
       "source": "core_database_base",
       "target": "declarativebase"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "datetime",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/main.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "fastapi",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_conversation_conversation",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_conversation_message",
+      "target": "core_database_base"
     },
     {
       "relation": "uses",
@@ -3660,6 +4913,16 @@
       "target": "app_main_create_app"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/main.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main",
+      "target": "app_main_lifespan"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -3705,6 +4968,17 @@
     },
     {
       "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/main.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main_lifespan",
+      "target": "fastapi"
+    },
+    {
+      "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/main.py",
@@ -3715,24 +4989,271 @@
       "target": "fastapi"
     },
     {
-      "relation": "rationale_for",
+      "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "backend/app/models/__init__.py",
+      "source_file": "backend/app/services/chat_service.py",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "models_init_rationale_1",
-      "target": "models_init"
+      "source": "services_chat_service",
+      "target": "fastapi"
     },
     {
-      "relation": "rationale_for",
+      "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/models/conversation.py",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "models_conversation_rationale_1",
-      "target": "models_conversation"
+      "source": "models_conversation",
+      "target": "datetime"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_conversation",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_conversation",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_conversation",
+      "target": "models_conversation_utcnow"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/conversation.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_conversation_utcnow",
+      "target": "datetime"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "models_conversation_utcnow"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "models_conversation_utcnow"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatrequest",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatresponse",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_chat_service_chatservice",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatrequest",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatresponse",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_chat_service_chatservice",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "models_conversation_message"
     },
     {
       "relation": "rationale_for",
@@ -3868,6 +5389,26 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_conversationsummary",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_messageresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
       "source_location": "L16",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3908,11 +5449,51 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat",
+      "target": "schemas_chat_conversationdetail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat",
+      "target": "schemas_chat_conversationsummary"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat",
+      "target": "schemas_chat_messageresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
       "source_location": "L16",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "schemas_chat",
       "target": "schemas_chat_sourcecitation"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/chat.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_chat_conversationdetail",
+      "target": "schemas_chat_conversationsummary"
     },
     {
       "relation": "rationale_for",
@@ -3952,16 +5533,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "services_answer_router",
-      "target": "services_answer_router_answerrouter"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L2",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "answerrouter",
       "target": "services_answer_router_answerrouter"
     },
     {
@@ -4101,6 +5672,36 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice",
+      "target": "services_chat_service_chatservice_assistant_message"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice",
+      "target": "services_chat_service_chatservice_default_steps"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice",
+      "target": "services_chat_service_chatservice_event"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
       "source_location": "L6",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4108,15 +5709,55 @@
       "target": "services_chat_service_chatservice_init"
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice",
+      "target": "services_chat_service_chatservice_resolve_conversation"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice",
+      "target": "services_chat_service_chatservice_stream_answer"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_chat_service_chatservice",
+      "target": "services_llm_service_llmservice"
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L6",
+      "source_location": "L12",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "services_chat_service_chatservice_init",
-      "target": "answerrouter"
+      "target": "llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "services_llm_service_llmservice"
     },
     {
       "relation": "references",
@@ -4139,6 +5780,275 @@
       "confidence_score": 1.0,
       "source": "services_chat_service_chatservice_answer",
       "target": "backend_app_services_chat_service_py_chatresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "backend_app_services_chat_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "backend_app_services_chat_service_py_session"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "message"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "services_chat_service_chatservice_assistant_message"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "services_chat_service_chatservice_resolve_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatrequest",
+      "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_resolve_conversation",
+      "target": "backend_app_services_chat_service_py_chatrequest"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "backend_app_services_chat_service_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_resolve_conversation",
+      "target": "backend_app_services_chat_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "backend_app_services_chat_service_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_resolve_conversation",
+      "target": "backend_app_services_chat_service_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "backend_app_services_chat_service_py_session"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatresponse",
+      "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "backend_app_services_chat_service_py_chatresponse"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "message"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "services_chat_service_chatservice_assistant_message"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "services_chat_service_chatservice_default_steps"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "services_chat_service_chatservice_event"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_stream_answer",
+      "target": "services_chat_service_chatservice_resolve_conversation"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_resolve_conversation",
+      "target": "conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_assistant_message",
+      "target": "message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
+      "target": "services_llm_service_llmservice"
     },
     {
       "relation": "contains",
@@ -4204,11 +6114,367 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service",
+      "target": "services_llm_service_create_provider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service",
+      "target": "services_llm_service_llmcompletion"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service",
+      "target": "services_llm_service_llmprovider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "services_llm_service",
       "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service",
+      "target": "services_llm_service_localsupportprovider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service",
+      "target": "services_llm_service_openaicompatibleprovider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service",
+      "target": "services_llm_service_support_prompt"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmprovider_complete",
+      "target": "services_llm_service_llmcompletion"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmservice_complete",
+      "target": "services_llm_service_llmcompletion"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_localsupportprovider_complete",
+      "target": "services_llm_service_llmcompletion"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider_complete",
+      "target": "services_llm_service_llmcompletion"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_create_provider",
+      "target": "services_llm_service_llmprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmprovider",
+      "target": "protocol"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmprovider",
+      "target": "services_llm_service_llmprovider_complete"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmprovider",
+      "target": "services_llm_service_llmprovider_stream_answer"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmservice_init",
+      "target": "services_llm_service_llmprovider"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider_stream_answer",
+      "target": "services_llm_service_support_prompt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L126",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_create_provider",
+      "target": "services_llm_service_localsupportprovider"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmservice_init",
+      "target": "services_llm_service_localsupportprovider"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_localsupportprovider",
+      "target": "services_llm_service_localsupportprovider_complete"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_localsupportprovider",
+      "target": "services_llm_service_localsupportprovider_stream_answer"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_rationale_40",
+      "target": "services_llm_service_localsupportprovider"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_localsupportprovider_stream_answer",
+      "target": "services_llm_service_llmservice_complete"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_create_provider",
+      "target": "services_llm_service_openaicompatibleprovider"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider",
+      "target": "services_llm_service_openaicompatibleprovider_complete"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider",
+      "target": "services_llm_service_openaicompatibleprovider_default_steps"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider",
+      "target": "services_llm_service_openaicompatibleprovider_headers"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider",
+      "target": "services_llm_service_openaicompatibleprovider_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider",
+      "target": "services_llm_service_openaicompatibleprovider_parse_delta"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider",
+      "target": "services_llm_service_openaicompatibleprovider_stream_answer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider_complete",
+      "target": "services_llm_service_llmservice_stream_answer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider_complete",
+      "target": "services_llm_service_openaicompatibleprovider_default_steps"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider_stream_answer",
+      "target": "services_llm_service_openaicompatibleprovider_headers"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_openaicompatibleprovider_stream_answer",
+      "target": "services_llm_service_openaicompatibleprovider_parse_delta"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L131",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmservice_init",
+      "target": "services_llm_service_create_provider"
     },
     {
       "relation": "method",
@@ -4219,6 +6485,26 @@
       "confidence_score": 1.0,
       "source": "services_llm_service_llmservice",
       "target": "services_llm_service_llmservice_complete"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmservice",
+      "target": "services_llm_service_llmservice_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/llm_service.py",
+      "source_location": "L136",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_llm_service_llmservice",
+      "target": "services_llm_service_llmservice_stream_answer"
     },
     {
       "relation": "contains",
@@ -4428,9 +6714,9 @@
       "source_file": "backend/tests/test_auth.py",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_me_rejects_invalid_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_me_rejects_invalid_token"
     },
     {
       "relation": "contains",
@@ -4460,7 +6746,80 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_test_chat_contract",
-      "target": "tests_test_chat_contract_test_chat_contract_returns_phase_zero_placeholder"
+      "target": "tests_test_chat_contract_auth_headers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract",
+      "target": "tests_test_chat_contract_test_chat_can_continue_existing_conversation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract",
+      "target": "tests_test_chat_contract_test_chat_persists_conversation_and_placeholder_sources"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract",
+      "target": "tests_test_chat_contract_test_chat_requires_authentication"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract",
+      "target": "tests_test_chat_contract_test_stream_chat_emits_delta_and_structured_final"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract_test_chat_can_continue_existing_conversation",
+      "target": "tests_test_chat_contract_auth_headers"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract_test_chat_persists_conversation_and_placeholder_sources",
+      "target": "tests_test_chat_contract_auth_headers"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_chat_contract.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_chat_contract_test_stream_chat_emits_delta_and_structured_final",
+      "target": "tests_test_chat_contract_auth_headers"
     },
     {
       "relation": "contains",
@@ -4740,6 +7099,28 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/chat/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_page",
+      "target": "chat_workbench"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_page",
+      "target": "chat_workbench_chatworkbench"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4767,6 +7148,114 @@
       "weight": 1.0,
       "source": "chat_page_chatpage",
       "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "chat_workbench_chatworkbench"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L206",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "chat_workbench_createtempmessage"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_api_askquestion"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_api_askquestionstream"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_api_getconversation"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_api_listconversations"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_types_conversationmessage"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/chat/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chat_workbench",
+      "target": "lib_types_conversationsummary"
     },
     {
       "relation": "contains",
@@ -5114,11 +7603,71 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_apibaseurl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_askquestion"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_askquestionstream"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_authorized"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_getconversation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L5",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_api",
       "target": "lib_api_gethealth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_listconversations"
     },
     {
       "relation": "contains",
@@ -5131,6 +7680,16 @@
       "target": "lib_api_login"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_parsestreamevent"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -5140,6 +7699,61 @@
       "confidence_score": 1.0,
       "source": "lib_api",
       "target": "lib_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_chatrequest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_chatresponse"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_chatstreamevent"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_conversationdetail"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_conversationsummary"
     },
     {
       "relation": "imports",
@@ -5164,6 +7778,94 @@
       "target": "lib_types_loginresponse"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_askquestionstream",
+      "target": "lib_api_apibaseurl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_authorized",
+      "target": "lib_api_apibaseurl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_gethealth",
+      "target": "lib_api_apibaseurl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_login",
+      "target": "lib_api_apibaseurl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_askquestion",
+      "target": "lib_api_authorized"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_getconversation",
+      "target": "lib_api_authorized"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_listconversations",
+      "target": "lib_api_authorized"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_askquestionstream",
+      "target": "lib_api_parsestreamevent"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/auth.ts",
@@ -5179,9 +7881,9 @@
       "source_file": "frontend/src/lib/auth.ts",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_auth",
-      "target": "lib_auth_isvalidtoken",
-      "confidence_score": 1.0
+      "target": "lib_auth_isvalidtoken"
     },
     {
       "relation": "contains",
@@ -5243,9 +7945,9 @@
       "source_file": "frontend/src/lib/auth.ts",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_auth_redirectauthenticateduser",
-      "target": "lib_auth_isvalidtoken",
-      "confidence_score": 1.0
+      "target": "lib_auth_isvalidtoken"
     },
     {
       "relation": "calls",
@@ -5254,9 +7956,9 @@
       "source_file": "frontend/src/lib/auth.ts",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_auth_requiresession",
-      "target": "lib_auth_isvalidtoken",
-      "confidence_score": 1.0
+      "target": "lib_auth_isvalidtoken"
     },
     {
       "relation": "contains",
@@ -5282,11 +7984,51 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_chatstreamevent"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_types",
       "target": "lib_types_confidence"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_conversationdetail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_conversationmessage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_conversationsummary"
     },
     {
       "relation": "contains",
@@ -5337,6 +8079,17 @@
       "confidence_score": 1.0,
       "source": "lib_types",
       "target": "lib_types_sourcetype"
+    },
+    {
+      "relation": "inherits",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types_conversationdetail",
+      "target": "lib_types_conversationsummary"
     },
     {
       "relation": "contains",
@@ -6070,5 +8823,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a46d0d0297c97db5898347b0637c52d1e776869e"
+  "built_at_commit": "0e507efeb9a9261f705b3e62e100ef078398525a"
 }

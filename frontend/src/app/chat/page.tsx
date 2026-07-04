@@ -1,7 +1,7 @@
 import { requireSession } from "@/lib/auth";
+import { ChatWorkbench } from "./workbench";
 
 export default async function ChatPage() {
-  await requireSession();
-
-  return <main className="content">会话历史将在阶段 2 接入。</main>;
+  const token = await requireSession();
+  return <ChatWorkbench token={token} />;
 }

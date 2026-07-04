@@ -651,6 +651,31 @@ textarea {
   opacity: 0.72;
 }
 
+.chat-history-list { display: grid; gap: 8px; }
+.chat-history-list button { display: grid; gap: 5px; width: 100%; border: 1px solid transparent; border-radius: 12px; padding: 12px; background: transparent; color: #dbe3df; text-align: left; cursor: pointer; }
+.chat-history-list button:hover, .chat-history-list button.active { border-color: rgba(240,194,135,.48); background: rgba(240,194,135,.14); }
+.chat-history-list small { color: #aeb9b4; }
+.sidebar-empty { margin: 0; color: #aeb9b4; font-size: 13px; }
+.chat-content { padding-bottom: 34px; }
+.chat-panel { min-height: calc(100vh - 122px); display: grid; grid-template-rows: auto minmax(320px, 1fr) auto; }
+.message-stream { overflow-y: auto; display: grid; align-content: start; gap: 18px; padding: 24px; }
+.message { max-width: 760px; border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: var(--paper); }
+.message.user { justify-self: end; background: var(--mint); }
+.message > span, .message > small { color: var(--muted); font-size: 12px; font-weight: 800; }
+.message p { white-space: pre-wrap; line-height: 1.7; }
+.message ol { color: var(--ink-soft); line-height: 1.65; }
+.empty-chat { place-self: center; max-width: 460px; text-align: center; color: var(--muted); }
+.empty-chat b { color: var(--ink); font-family: var(--display); font-size: 24px; }
+.chat-composer { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 20px 24px 24px; border-top: 1px solid var(--line); background: var(--paper); }
+.chat-composer textarea { min-height: 76px; resize: vertical; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px; }
+.chat-composer .form-error { grid-column: 1 / -1; }
+
+@media (max-width: 760px) {
+  .chat-history-list { max-height: 180px; overflow: auto; }
+  .chat-composer { grid-template-columns: 1fr; padding: 16px 18px; }
+  .chat-panel { min-height: 70vh; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .nav-item,
   .primary-button,
