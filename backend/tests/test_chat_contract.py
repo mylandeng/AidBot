@@ -17,7 +17,7 @@ def test_chat_requires_authentication() -> None:
     assert client.post("/api/chat/stream", json={"question": "如何处理售后问题？"}).status_code == 401
 
 
-def test_chat_persists_conversation_and_placeholder_sources() -> None:
+def test_chat_persists_conversation_and_sources_field() -> None:
     headers = auth_headers()
     response = client.post("/api/chat", json={"question": "如何处理售后问题？"}, headers=headers)
     assert response.status_code == 200
@@ -32,7 +32,7 @@ def test_chat_persists_conversation_and_placeholder_sources() -> None:
         "handoff_required",
         "handoff_reason",
     }
-    assert payload["sources"] == []
+    assert isinstance(payload["sources"], list)
     history = client.get(f"/api/conversations/{payload['conversation_id']}", headers=headers)
     assert history.status_code == 200
     assert [message["role"] for message in history.json()["messages"]] == ["user", "assistant"]
@@ -62,4 +62,4 @@ def test_stream_chat_emits_delta_and_structured_final() -> None:
     final_payload = json.loads(final_line.removeprefix("data: "))
     assert final_payload["conversation_id"]
     assert final_payload["message_id"]
-    assert final_payload["sources"] == []
+    assert isinstance(final_payload["sources"], list)

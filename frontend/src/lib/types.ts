@@ -74,3 +74,27 @@ export interface ConversationMessage {
 export interface ConversationDetail extends ConversationSummary {
   messages: ConversationMessage[];
 }
+
+export interface KnowledgeSource {
+  id: string;
+  title: string;
+  source_type: SourceType;
+  visibility: "internal" | "private";
+  status: string;
+  chunk_count: number;
+  updated_at: string;
+}
+
+export interface KnowledgeSourceList {
+  items: KnowledgeSource[];
+}
+
+export interface ManualKnowledgeRequest {
+  title: string;
+  content: string;
+  visibility: "internal" | "private";
+}
+
+export interface MarkdownKnowledgeRequest extends ManualKnowledgeRequest {
+  filename: string;
+}

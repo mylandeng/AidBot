@@ -10,27 +10,39 @@ from app.models.conversation import Conversation, Message, utcnow
 from app.schemas.auth import CurrentUser
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.services.llm_service import LLMService
+from app.services.rag_service import RAGService
 
 
 class ChatService:
-    def __init__(self, llm_service: LLMService | None = None) -> None:
+    def __init__(self, llm_service: LLMService | None = None, rag_service: RAGService | None = None) -> None:
         self.llm_service = llm_service or LLMService()
+        self.rag_service = rag_service or RAGService()
 
     def answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> ChatResponse:
         conversation = self._resolve_conversation(request, current_user, db)
 
-        db.add(Message(conversation_id=conversation.id, role="user", content=request.question.strip()))
-        completion = self.llm_service.complete(request.question.strip(), request.product_line)
-        assistant = self._assistant_message(conversation.id, completion.answer, completion.solution_steps, completion.model_name)
+        question = request.question.strip()
+        retrieved = self.rag_service.retrieve(question, current_user, db)
+        context = self.rag_service.context_for_prompt(retrieved)
+        sources = [item.citation().model_dump() for item in retrieved]
+
+        db.add(Message(conversation_id=conversation.id, role="user", content=question))
+        completion = self.llm_service.complete(question, request.product_line, context)
+        assistant = self._assistant_message(conversation.id, completion.answer, completion.solution_steps, completion.model_name, sources)
         db.add(assistant)
         conversation.updated_at = utcnow()
         db.commit()
         db.refresh(assistant)
-        return ChatResponse(conversation_id=conversation.id, message_id=assistant.id, answer=assistant.content, solution_steps=assistant.solution_steps, confidence="low", sources=[], handoff_required=False, handoff_reason="")
+        return ChatResponse(conversation_id=conversation.id, message_id=assistant.id, answer=assistant.content, solution_steps=assistant.solution_steps, confidence="medium" if sources else "low", sources=sources, handoff_required=False, handoff_reason="")
 
     def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> Iterator[str]:
         conversation = self._resolve_conversation(request, current_user, db)
-        db.add(Message(conversation_id=conversation.id, role="user", content=request.question.strip()))
+        question = request.question.strip()
+        retrieved = self.rag_service.retrieve(question, current_user, db)
+        context = self.rag_service.context_for_prompt(retrieved)
+        sources = [item.citation().model_dump() for item in retrieved]
+
+        db.add(Message(conversation_id=conversation.id, role="user", content=question))
         conversation.updated_at = utcnow()
         db.commit()
 
@@ -38,7 +50,7 @@ class ChatService:
 
         answer_parts: list[str] = []
         try:
-            for delta in self.llm_service.stream_answer(request.question.strip(), request.product_line):
+            for delta in self.llm_service.stream_answer(question, request.product_line, context):
                 answer_parts.append(delta)
                 yield self._event("answer_delta", {"delta": delta})
         except Exception:
@@ -48,7 +60,7 @@ class ChatService:
 
         answer = "".join(answer_parts).strip() or "暂时没有生成有效回答，请补充故障现象后重试。"
         steps = self._default_steps(request.product_line)
-        assistant = self._assistant_message(conversation.id, answer, steps, settings.llm_model)
+        assistant = self._assistant_message(conversation.id, answer, steps, settings.llm_model, sources)
         db.add(assistant)
         conversation.updated_at = utcnow()
         db.commit()
@@ -59,8 +71,8 @@ class ChatService:
             message_id=assistant.id,
             answer=assistant.content,
             solution_steps=assistant.solution_steps,
-            confidence="low",
-            sources=[],
+            confidence="medium" if sources else "low",
+            sources=sources,
             handoff_required=False,
             handoff_reason="",
         )
@@ -78,8 +90,16 @@ class ChatService:
         db.flush()
         return conversation
 
-    def _assistant_message(self, conversation_id: str, answer: str, steps: list[str], model_name: str) -> Message:
-        return Message(conversation_id=conversation_id, role="assistant", content=answer, solution_steps=steps, sources=[], confidence="low", model_name=model_name)
+    def _assistant_message(self, conversation_id: str, answer: str, steps: list[str], model_name: str, sources: list[dict]) -> Message:
+        return Message(
+            conversation_id=conversation_id,
+            role="assistant",
+            content=answer,
+            solution_steps=steps,
+            sources=sources,
+            confidence="medium" if sources else "low",
+            model_name=model_name,
+        )
 
     def _default_steps(self, product_line: str | None = None) -> list[str]:
         scope = f"{product_line} 产品线" if product_line else "当前产品"

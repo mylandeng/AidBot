@@ -1,4 +1,16 @@
-import type { ChatRequest, ChatResponse, ChatStreamEvent, ConversationDetail, ConversationSummary, HealthResponse, LoginResponse } from "./types";
+import type {
+  ChatRequest,
+  ChatResponse,
+  ChatStreamEvent,
+  ConversationDetail,
+  ConversationSummary,
+  HealthResponse,
+  KnowledgeSource,
+  KnowledgeSourceList,
+  LoginResponse,
+  ManualKnowledgeRequest,
+  MarkdownKnowledgeRequest,
+} from "./types";
 
 const PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8010";
 const SERVER_API_BASE_URL = process.env.API_INTERNAL_BASE_URL ?? PUBLIC_API_BASE_URL;
@@ -121,4 +133,17 @@ export function listConversations(token: string): Promise<ConversationSummary[]>
 
 export function getConversation(id: string, token: string): Promise<ConversationDetail> {
   return authorized(`/api/conversations/${id}`, token);
+}
+
+export async function listKnowledgeSources(token: string): Promise<KnowledgeSource[]> {
+  const payload = await authorized<KnowledgeSourceList>("/api/knowledge/sources", token);
+  return payload.items;
+}
+
+export function createManualKnowledge(request: ManualKnowledgeRequest, token: string): Promise<KnowledgeSource> {
+  return authorized("/api/knowledge/manual", token, { method: "POST", body: JSON.stringify(request) });
+}
+
+export function importMarkdownKnowledge(request: MarkdownKnowledgeRequest, token: string): Promise<KnowledgeSource> {
+  return authorized("/api/knowledge/markdown", token, { method: "POST", body: JSON.stringify(request) });
 }

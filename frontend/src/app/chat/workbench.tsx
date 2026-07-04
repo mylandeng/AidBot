@@ -170,9 +170,21 @@ export function ChatWorkbench({ token }: { token: string }) {
                       </ol>
                     ) : null}
                     {message.role === "assistant" ? (
-                      <small>
-                        置信度：{message.confidence} · 来源 {message.sources.length} 条
-                      </small>
+                      <>
+                        <small>
+                          置信度：{message.confidence} · 来源 {message.sources.length} 条
+                        </small>
+                        {message.sources.length ? (
+                          <div className="message-sources">
+                            {message.sources.map((source) => (
+                              <a href="/knowledge" key={source.chunk_id}>
+                                <strong>{source.title}</strong>
+                                <span>{Math.round(source.score * 100)}% 匹配</span>
+                              </a>
+                            ))}
+                          </div>
+                        ) : null}
+                      </>
                     ) : null}
                   </article>
                 ))

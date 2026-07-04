@@ -669,11 +669,43 @@ textarea {
 .chat-composer { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 20px 24px 24px; border-top: 1px solid var(--line); background: var(--paper); }
 .chat-composer textarea { min-height: 76px; resize: vertical; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px; }
 .chat-composer .form-error { grid-column: 1 / -1; }
+.message-sources { display: grid; gap: 8px; margin-top: 14px; }
+.message-sources a { display: flex; justify-content: space-between; gap: 12px; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: #ffffff; }
+.message-sources strong { font-size: 13px; }
+.message-sources span { color: var(--green); font-family: var(--mono); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.knowledge-main .topbar { padding-bottom: 16px; }
+.knowledge-main .topbar h1 { max-width: 900px; font-size: clamp(28px, 2.7vw, 38px); }
+.knowledge-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; max-width: 1120px; }
+.knowledge-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.import-button { display: inline-grid; place-items: center; }
+.import-button input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.knowledge-form { display: grid; gap: 10px; padding: 20px 24px 24px; }
+.knowledge-form label { color: var(--muted); font-size: 13px; font-weight: 800; }
+.knowledge-form input,
+.knowledge-form textarea { width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px; background: #fbfaf5; color: var(--ink); }
+.knowledge-form input { min-height: 48px; }
+.knowledge-form textarea { min-height: 150px; resize: vertical; line-height: 1.65; }
+.segmented-control { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; border: 1px solid var(--line); border-radius: 14px; padding: 6px; background: var(--paper); }
+.segmented-control button { min-height: 38px; border: 1px solid transparent; border-radius: 10px; background: transparent; color: var(--ink-soft); cursor: pointer; font-weight: 800; }
+.segmented-control button.active { border-color: rgba(31, 107, 90, .28); background: var(--mint); color: var(--green-deep); }
+.form-notice { margin: 2px 0 0; color: var(--green); font-size: 13px; font-weight: 800; }
+.knowledge-list { min-height: 260px; }
+.knowledge-empty { padding: 34px 16px; }
+
+@media (min-width: 1520px) {
+  .knowledge-grid {
+    grid-template-columns: minmax(620px, 1fr) minmax(360px, 420px);
+    max-width: none;
+  }
+}
 
 @media (max-width: 760px) {
   .chat-history-list { max-height: 180px; overflow: auto; }
   .chat-composer { grid-template-columns: 1fr; padding: 16px 18px; }
   .chat-panel { min-height: 70vh; }
+  .knowledge-form { padding: 18px; }
+  .knowledge-form textarea { min-height: 180px; }
+  .segmented-control { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -698,7 +730,8 @@ textarea {
   }
 
   .hero-workbench,
-  .workspace-grid {
+  .workspace-grid,
+  .knowledge-grid {
     grid-template-columns: 1fr;
   }
 

@@ -60,7 +60,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_auth",
-      "community": 31,
+      "community": 18,
       "norm_label": "auth.py"
     },
     {
@@ -70,7 +70,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "api_auth_auth_status",
-      "community": 31,
+      "community": 18,
       "norm_label": "auth_status()"
     },
     {
@@ -80,7 +80,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "api_auth_login",
-      "community": 31,
+      "community": 18,
       "norm_label": "login()"
     },
     {
@@ -90,7 +90,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "loginrequest",
-      "community": 31,
+      "community": 18,
       "norm_label": "loginrequest"
     },
     {
@@ -100,7 +100,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "loginresponse",
-      "community": 31,
+      "community": 18,
       "norm_label": "loginresponse"
     },
     {
@@ -110,7 +110,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "api_auth_me",
-      "community": 31,
+      "community": 18,
       "norm_label": "me()"
     },
     {
@@ -120,7 +120,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_app_api_auth_py_currentuser",
-      "community": 1,
+      "community": 8,
       "norm_label": "currentuser"
     },
     {
@@ -320,18 +320,118 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_knowledge",
-      "community": 5,
+      "community": 8,
       "norm_label": "knowledge.py"
     },
     {
       "label": "list_knowledge_sources()",
       "file_type": "code",
       "source_file": "backend/app/api/knowledge.py",
-      "source_location": "L7",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "api_knowledge_list_knowledge_sources",
-      "community": 5,
+      "community": 8,
       "norm_label": "list_knowledge_sources()"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_api_knowledge_py_currentuser",
+      "community": 8,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_api_knowledge_py_session",
+      "community": 8,
+      "norm_label": "session"
+    },
+    {
+      "label": "KnowledgeSourceList",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "knowledgesourcelist",
+      "community": 8,
+      "norm_label": "knowledgesourcelist"
+    },
+    {
+      "label": "create_manual_knowledge()",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "api_knowledge_create_manual_knowledge",
+      "community": 8,
+      "norm_label": "create_manual_knowledge()"
+    },
+    {
+      "label": "ManualKnowledgeCreate",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "community": 8,
+      "norm_label": "manualknowledgecreate"
+    },
+    {
+      "label": "KnowledgeSourceResponse",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "community": 8,
+      "norm_label": "knowledgesourceresponse"
+    },
+    {
+      "label": "import_markdown_knowledge()",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "api_knowledge_import_markdown_knowledge",
+      "community": 8,
+      "norm_label": "import_markdown_knowledge()"
+    },
+    {
+      "label": "MarkdownKnowledgeImport",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "community": 8,
+      "norm_label": "markdownknowledgeimport"
+    },
+    {
+      "label": "search_knowledge()",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "api_knowledge_search_knowledge",
+      "community": 8,
+      "norm_label": "search_knowledge()"
+    },
+    {
+      "label": "KnowledgeSearchResponse",
+      "file_type": "code",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "knowledgesearchresponse",
+      "community": 8,
+      "norm_label": "knowledgesearchresponse"
     },
     {
       "label": "__init__.py",
@@ -410,7 +510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "core_database",
-      "community": 14,
+      "community": 22,
       "norm_label": "database.py"
     },
     {
@@ -420,7 +520,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "core_database_base",
-      "community": 14,
+      "community": 22,
       "norm_label": "base"
     },
     {
@@ -430,7 +530,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "declarativebase",
-      "community": 14,
+      "community": 22,
       "norm_label": "declarativebase"
     },
     {
@@ -440,7 +540,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "core_database_get_db",
-      "community": 14,
+      "community": 22,
       "norm_label": "get_db()"
     },
     {
@@ -450,7 +550,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "core_security",
-      "community": 31,
+      "community": 18,
       "norm_label": "security.py"
     },
     {
@@ -460,7 +560,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "core_security_b64encode",
-      "community": 31,
+      "community": 18,
       "norm_label": "_b64encode()"
     },
     {
@@ -470,7 +570,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "core_security_b64decode",
-      "community": 31,
+      "community": 18,
       "norm_label": "_b64decode()"
     },
     {
@@ -480,7 +580,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "core_security_create_access_token",
-      "community": 31,
+      "community": 18,
       "norm_label": "create_access_token()"
     },
     {
@@ -490,7 +590,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "any",
-      "community": 31,
+      "community": 18,
       "norm_label": "any"
     },
     {
@@ -500,7 +600,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "core_security_decode_access_token",
-      "community": 31,
+      "community": 18,
       "norm_label": "decode_access_token()"
     },
     {
@@ -510,7 +610,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "core_security_verify_seed_password",
-      "community": 31,
+      "community": 18,
       "norm_label": "verify_seed_password()"
     },
     {
@@ -520,7 +620,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "core_security_get_current_user",
-      "community": 31,
+      "community": 18,
       "norm_label": "get_current_user()"
     },
     {
@@ -530,7 +630,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "httpauthorizationcredentials",
-      "community": 31,
+      "community": 18,
       "norm_label": "httpauthorizationcredentials"
     },
     {
@@ -540,7 +640,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "backend_app_core_security_py_currentuser",
-      "community": 31,
+      "community": 18,
       "norm_label": "currentuser"
     },
     {
@@ -600,7 +700,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_conversation",
-      "community": 14,
+      "community": 1,
       "norm_label": "conversation.py"
     },
     {
@@ -610,7 +710,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "models_conversation_utcnow",
-      "community": 14,
+      "community": 1,
       "norm_label": "utcnow()"
     },
     {
@@ -620,7 +720,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "datetime",
-      "community": 14,
+      "community": 1,
       "norm_label": "datetime"
     },
     {
@@ -670,18 +770,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_knowledge",
-      "community": 40,
+      "community": 22,
       "norm_label": "knowledge.py"
     },
     {
-      "label": "Knowledge source and document models are planned for phase 3.",
-      "file_type": "rationale",
+      "label": "KnowledgeSource",
+      "file_type": "code",
       "source_file": "backend/app/models/knowledge.py",
-      "source_location": "L1",
+      "source_location": "L11",
       "_origin": "ast",
-      "id": "models_knowledge_rationale_1",
-      "community": 40,
-      "norm_label": "knowledge source and document models are planned for phase 3."
+      "id": "models_knowledge_knowledgesource",
+      "community": 22,
+      "norm_label": "knowledgesource"
+    },
+    {
+      "label": "KnowledgeDocument",
+      "file_type": "code",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "models_knowledge_knowledgedocument",
+      "community": 22,
+      "norm_label": "knowledgedocument"
+    },
+    {
+      "label": "KnowledgeChunk",
+      "file_type": "code",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "models_knowledge_knowledgechunk",
+      "community": 22,
+      "norm_label": "knowledgechunk"
     },
     {
       "label": "user.py",
@@ -690,7 +810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_user",
-      "community": 14,
+      "community": 22,
       "norm_label": "user.py"
     },
     {
@@ -700,7 +820,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "models_user_user",
-      "community": 14,
+      "community": 22,
       "norm_label": "user"
     },
     {
@@ -710,7 +830,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "models_user_role",
-      "community": 14,
+      "community": 22,
       "norm_label": "role"
     },
     {
@@ -880,18 +1000,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "schemas_knowledge",
-      "community": 44,
+      "community": 10,
       "norm_label": "knowledge.py"
     },
     {
-      "label": "Knowledge schemas are planned for phase 3.",
-      "file_type": "rationale",
+      "label": "ManualKnowledgeCreate",
+      "file_type": "code",
       "source_file": "backend/app/schemas/knowledge.py",
-      "source_location": "L1",
+      "source_location": "L8",
       "_origin": "ast",
-      "id": "schemas_knowledge_rationale_1",
-      "community": 44,
-      "norm_label": "knowledge schemas are planned for phase 3."
+      "id": "schemas_knowledge_manualknowledgecreate",
+      "community": 10,
+      "norm_label": "manualknowledgecreate"
+    },
+    {
+      "label": "MarkdownKnowledgeImport",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "schemas_knowledge_markdownknowledgeimport",
+      "community": 10,
+      "norm_label": "markdownknowledgeimport"
+    },
+    {
+      "label": "KnowledgeSourceResponse",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "schemas_knowledge_knowledgesourceresponse",
+      "community": 10,
+      "norm_label": "knowledgesourceresponse"
+    },
+    {
+      "label": "KnowledgeSourceList",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "schemas_knowledge_knowledgesourcelist",
+      "community": 10,
+      "norm_label": "knowledgesourcelist"
+    },
+    {
+      "label": "KnowledgeSearchResult",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "schemas_knowledge_knowledgesearchresult",
+      "community": 10,
+      "norm_label": "knowledgesearchresult"
+    },
+    {
+      "label": "KnowledgeSearchResponse",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "schemas_knowledge_knowledgesearchresponse",
+      "community": 10,
+      "norm_label": "knowledgesearchresponse"
     },
     {
       "label": "__init__.py",
@@ -920,7 +1090,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_answer_router",
-      "community": 32,
+      "community": 1,
       "norm_label": "answer_router.py"
     },
     {
@@ -930,7 +1100,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "services_answer_router_answerrouter",
-      "community": 32,
+      "community": 1,
       "norm_label": "answerrouter"
     },
     {
@@ -940,7 +1110,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "services_answer_router_answerrouter_init",
-      "community": 32,
+      "community": 1,
       "norm_label": ".__init__()"
     },
     {
@@ -950,7 +1120,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "services_answer_router_answerrouter_route",
-      "community": 32,
+      "community": 1,
       "norm_label": ".route()"
     },
     {
@@ -960,7 +1130,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_services_answer_router_py_chatrequest",
-      "community": 32,
+      "community": 1,
       "norm_label": "chatrequest"
     },
     {
@@ -970,7 +1140,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_services_answer_router_py_answerresult",
-      "community": 32,
+      "community": 1,
       "norm_label": "answerresult"
     },
     {
@@ -987,7 +1157,7 @@
       "label": "ChatService",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "services_chat_service_chatservice",
       "community": 1,
@@ -997,7 +1167,7 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_init",
       "community": 1,
@@ -1007,17 +1177,27 @@
       "label": "LLMService",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "llmservice",
       "community": 1,
       "norm_label": "llmservice"
     },
     {
+      "label": "RAGService",
+      "file_type": "code",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "ragservice",
+      "community": 1,
+      "norm_label": "ragservice"
+    },
+    {
       "label": ".answer()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_answer",
       "community": 1,
@@ -1027,7 +1207,7 @@
       "label": "ChatRequest",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_services_chat_service_py_chatrequest",
       "community": 1,
@@ -1037,7 +1217,7 @@
       "label": "CurrentUser",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_services_chat_service_py_currentuser",
       "community": 1,
@@ -1047,7 +1227,7 @@
       "label": "Session",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_services_chat_service_py_session",
       "community": 1,
@@ -1057,7 +1237,7 @@
       "label": "ChatResponse",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_services_chat_service_py_chatresponse",
       "community": 1,
@@ -1067,7 +1247,7 @@
       "label": ".stream_answer()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L31",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_stream_answer",
       "community": 1,
@@ -1077,7 +1257,7 @@
       "label": "._resolve_conversation()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L69",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_resolve_conversation",
       "community": 1,
@@ -1087,7 +1267,7 @@
       "label": "Conversation",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L69",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "conversation",
       "community": 1,
@@ -1097,7 +1277,7 @@
       "label": "._assistant_message()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L81",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_assistant_message",
       "community": 1,
@@ -1107,7 +1287,7 @@
       "label": "Message",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L81",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "message",
       "community": 1,
@@ -1117,7 +1297,7 @@
       "label": "._default_steps()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L84",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_default_steps",
       "community": 1,
@@ -1127,7 +1307,7 @@
       "label": "._event()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L93",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_event",
       "community": 1,
@@ -1170,28 +1350,48 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_embedding_service",
-      "community": 18,
+      "community": 8,
       "norm_label": "embedding_service.py"
     },
     {
       "label": "EmbeddingService",
       "file_type": "code",
       "source_file": "backend/app/services/embedding_service.py",
-      "source_location": "L1",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "services_embedding_service_embeddingservice",
-      "community": 18,
+      "community": 8,
       "norm_label": "embeddingservice"
     },
     {
       "label": ".embed()",
       "file_type": "code",
       "source_file": "backend/app/services/embedding_service.py",
-      "source_location": "L2",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "services_embedding_service_embeddingservice_embed",
-      "community": 18,
+      "community": 8,
       "norm_label": ".embed()"
+    },
+    {
+      "label": ".similarity()",
+      "file_type": "code",
+      "source_file": "backend/app/services/embedding_service.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "services_embedding_service_embeddingservice_similarity",
+      "community": 8,
+      "norm_label": ".similarity()"
+    },
+    {
+      "label": "._tokens()",
+      "file_type": "code",
+      "source_file": "backend/app/services/embedding_service.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "services_embedding_service_embeddingservice_tokens",
+      "community": 8,
+      "norm_label": "._tokens()"
     },
     {
       "label": "feedback_service.py",
@@ -1297,7 +1497,7 @@
       "label": "LocalSupportProvider",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L39",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "services_llm_service_localsupportprovider",
       "community": 20,
@@ -1307,7 +1507,7 @@
       "label": ".complete()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L42",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "services_llm_service_localsupportprovider_complete",
       "community": 20,
@@ -1317,7 +1517,7 @@
       "label": ".stream_answer()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L55",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "services_llm_service_localsupportprovider_stream_answer",
       "community": 20,
@@ -1327,7 +1527,7 @@
       "label": "OpenAICompatibleProvider",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L61",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider",
       "community": 20,
@@ -1337,7 +1537,7 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L62",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider_init",
       "community": 20,
@@ -1347,7 +1547,7 @@
       "label": ".complete()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L67",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider_complete",
       "community": 20,
@@ -1357,7 +1557,7 @@
       "label": ".stream_answer()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L75",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider_stream_answer",
       "community": 20,
@@ -1367,7 +1567,7 @@
       "label": "._headers()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L95",
+      "source_location": "L98",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider_headers",
       "community": 20,
@@ -1377,7 +1577,7 @@
       "label": "._parse_delta()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L101",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider_parse_delta",
       "community": 20,
@@ -1387,7 +1587,7 @@
       "label": "._default_steps()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L112",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "services_llm_service_openaicompatibleprovider_default_steps",
       "community": 20,
@@ -1397,7 +1597,7 @@
       "label": "create_provider()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L122",
+      "source_location": "L125",
       "_origin": "ast",
       "id": "services_llm_service_create_provider",
       "community": 20,
@@ -1407,7 +1607,7 @@
       "label": "LLMService",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L129",
+      "source_location": "L132",
       "_origin": "ast",
       "id": "services_llm_service_llmservice",
       "community": 1,
@@ -1417,7 +1617,7 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L130",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "services_llm_service_llmservice_init",
       "community": 20,
@@ -1427,7 +1627,7 @@
       "label": ".complete()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L133",
+      "source_location": "L136",
       "_origin": "ast",
       "id": "services_llm_service_llmservice_complete",
       "community": 20,
@@ -1437,7 +1637,7 @@
       "label": ".stream_answer()",
       "file_type": "code",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L136",
+      "source_location": "L139",
       "_origin": "ast",
       "id": "services_llm_service_llmservice_stream_answer",
       "community": 20,
@@ -1447,9 +1647,9 @@
       "label": "Deterministic phase-2 provider; replaceable without changing the chat contract.",
       "file_type": "rationale",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L40",
+      "source_location": "L42",
       "_origin": "ast",
-      "id": "services_llm_service_rationale_40",
+      "id": "services_llm_service_rationale_42",
       "community": 20,
       "norm_label": "deterministic phase-2 provider; replaceable without changing the chat contract."
     },
@@ -1490,28 +1690,258 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_rag_service",
-      "community": 22,
+      "community": 8,
       "norm_label": "rag_service.py"
+    },
+    {
+      "label": "RetrievedChunk",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "services_rag_service_retrievedchunk",
+      "community": 8,
+      "norm_label": "retrievedchunk"
+    },
+    {
+      "label": ".citation()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "services_rag_service_retrievedchunk_citation",
+      "community": 8,
+      "norm_label": ".citation()"
+    },
+    {
+      "label": "SourceCitation",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "sourcecitation",
+      "community": 8,
+      "norm_label": "sourcecitation"
+    },
+    {
+      "label": ".context_block()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "services_rag_service_retrievedchunk_context_block",
+      "community": 8,
+      "norm_label": ".context_block()"
     },
     {
       "label": "RAGService",
       "file_type": "code",
       "source_file": "backend/app/services/rag_service.py",
-      "source_location": "L1",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "services_rag_service_ragservice",
-      "community": 22,
+      "community": 8,
       "norm_label": "ragservice"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_init",
+      "community": 8,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "EmbeddingService",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "embeddingservice",
+      "community": 8,
+      "norm_label": "embeddingservice"
+    },
+    {
+      "label": ".create_manual_entry()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_create_manual_entry",
+      "community": 8,
+      "norm_label": ".create_manual_entry()"
+    },
+    {
+      "label": "ManualKnowledgeCreate",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "backend_app_services_rag_service_py_manualknowledgecreate",
+      "community": 8,
+      "norm_label": "manualknowledgecreate"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "backend_app_services_rag_service_py_currentuser",
+      "community": 8,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "backend_app_services_rag_service_py_session",
+      "community": 8,
+      "norm_label": "session"
+    },
+    {
+      "label": "KnowledgeSourceResponse",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "community": 8,
+      "norm_label": "knowledgesourceresponse"
+    },
+    {
+      "label": ".import_markdown()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_import_markdown",
+      "community": 8,
+      "norm_label": ".import_markdown()"
+    },
+    {
+      "label": "MarkdownKnowledgeImport",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "community": 8,
+      "norm_label": "markdownknowledgeimport"
+    },
+    {
+      "label": "._create_entry()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_create_entry",
+      "community": 8,
+      "norm_label": "._create_entry()"
+    },
+    {
+      "label": ".list_sources()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_list_sources",
+      "community": 8,
+      "norm_label": ".list_sources()"
+    },
+    {
+      "label": ".search()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_search",
+      "community": 8,
+      "norm_label": ".search()"
+    },
+    {
+      "label": "KnowledgeSearchResult",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "knowledgesearchresult",
+      "community": 8,
+      "norm_label": "knowledgesearchresult"
     },
     {
       "label": ".retrieve()",
       "file_type": "code",
       "source_file": "backend/app/services/rag_service.py",
-      "source_location": "L2",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_retrieve",
-      "community": 22,
+      "community": 8,
       "norm_label": ".retrieve()"
+    },
+    {
+      "label": ".context_for_prompt()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_context_for_prompt",
+      "community": 8,
+      "norm_label": ".context_for_prompt()"
+    },
+    {
+      "label": "._visible_sources_query()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_visible_sources_query",
+      "community": 8,
+      "norm_label": "._visible_sources_query()"
+    },
+    {
+      "label": "Select",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "select",
+      "community": 8,
+      "norm_label": "select"
+    },
+    {
+      "label": "KnowledgeSource",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "knowledgesource",
+      "community": 8,
+      "norm_label": "knowledgesource"
+    },
+    {
+      "label": "._source_response()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L126",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_source_response",
+      "community": 8,
+      "norm_label": "._source_response()"
+    },
+    {
+      "label": "._split_text()",
+      "file_type": "code",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L138",
+      "_origin": "ast",
+      "id": "services_rag_service_ragservice_split_text",
+      "community": 8,
+      "norm_label": "._split_text()"
     },
     {
       "label": "__init__.py",
@@ -1630,7 +2060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "strategies_template_strategy",
-      "community": 32,
+      "community": 1,
       "norm_label": "template_strategy.py"
     },
     {
@@ -1640,7 +2070,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "strategies_template_strategy_templatestrategy",
-      "community": 32,
+      "community": 1,
       "norm_label": "templatestrategy"
     },
     {
@@ -1650,7 +2080,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "strategies_template_strategy_templatestrategy_run",
-      "community": 32,
+      "community": 1,
       "norm_label": ".run()"
     },
     {
@@ -1660,7 +2090,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_app_services_strategies_template_strategy_py_chatrequest",
-      "community": 32,
+      "community": 1,
       "norm_label": "chatrequest"
     },
     {
@@ -1670,7 +2100,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_app_services_strategies_template_strategy_py_answerresult",
-      "community": 32,
+      "community": 1,
       "norm_label": "answerresult"
     },
     {
@@ -1824,14 +2254,14 @@
       "norm_label": "test_chat_requires_authentication()"
     },
     {
-      "label": "test_chat_persists_conversation_and_placeholder_sources()",
+      "label": "test_chat_persists_conversation_and_sources_field()",
       "file_type": "code",
       "source_file": "backend/tests/test_chat_contract.py",
       "source_location": "L20",
       "_origin": "ast",
-      "id": "tests_test_chat_contract_test_chat_persists_conversation_and_placeholder_sources",
+      "id": "tests_test_chat_contract_test_chat_persists_conversation_and_sources_field",
       "community": 5,
-      "norm_label": "test_chat_persists_conversation_and_placeholder_sources()"
+      "norm_label": "test_chat_persists_conversation_and_sources_field()"
     },
     {
       "label": "test_chat_can_continue_existing_conversation()",
@@ -1872,6 +2302,66 @@
       "id": "tests_test_health_test_health_check",
       "community": 5,
       "norm_label": "test_health_check()"
+    },
+    {
+      "label": "test_knowledge.py",
+      "file_type": "code",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_knowledge",
+      "community": 5,
+      "norm_label": "test_knowledge.py"
+    },
+    {
+      "label": "auth_headers()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "tests_test_knowledge_auth_headers",
+      "community": 5,
+      "norm_label": "auth_headers()"
+    },
+    {
+      "label": "test_knowledge_requires_authentication()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "tests_test_knowledge_test_knowledge_requires_authentication",
+      "community": 5,
+      "norm_label": "test_knowledge_requires_authentication()"
+    },
+    {
+      "label": "test_manual_knowledge_can_be_indexed_and_retrieved()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "tests_test_knowledge_test_manual_knowledge_can_be_indexed_and_retrieved",
+      "community": 5,
+      "norm_label": "test_manual_knowledge_can_be_indexed_and_retrieved()"
+    },
+    {
+      "label": "test_markdown_import_is_indexed_as_upload_source()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "tests_test_knowledge_test_markdown_import_is_indexed_as_upload_source",
+      "community": 5,
+      "norm_label": "test_markdown_import_is_indexed_as_upload_source()"
+    },
+    {
+      "label": "test_chat_returns_citations_when_knowledge_matches()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "tests_test_knowledge_test_chat_returns_citations_when_knowledge_matches",
+      "community": 5,
+      "norm_label": "test_chat_returns_citations_when_knowledge_matches()"
     },
     {
       "label": "next-env.d.ts",
@@ -2120,7 +2610,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_page",
-      "community": 27,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
@@ -2130,7 +2620,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "admin_page_adminpage",
-      "community": 27,
+      "community": 14,
       "norm_label": "adminpage()"
     },
     {
@@ -2140,7 +2630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chat_page",
-      "community": 27,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
@@ -2150,7 +2640,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "chat_page_chatpage",
-      "community": 27,
+      "community": 14,
       "norm_label": "chatpage()"
     },
     {
@@ -2160,7 +2650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chat_workbench",
-      "community": 8,
+      "community": 27,
       "norm_label": "workbench.tsx"
     },
     {
@@ -2170,17 +2660,17 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "chat_workbench_chatworkbench",
-      "community": 27,
+      "community": 14,
       "norm_label": "chatworkbench()"
     },
     {
       "label": "createTempMessage()",
       "file_type": "code",
       "source_file": "frontend/src/app/chat/workbench.tsx",
-      "source_location": "L212",
+      "source_location": "L224",
       "_origin": "ast",
       "id": "chat_workbench_createtempmessage",
-      "community": 8,
+      "community": 27,
       "norm_label": "createtempmessage()"
     },
     {
@@ -2190,7 +2680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "feedback_page",
-      "community": 27,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
@@ -2200,7 +2690,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "feedback_page_feedbackpage",
-      "community": 27,
+      "community": 14,
       "norm_label": "feedbackpage()"
     },
     {
@@ -2210,18 +2700,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "knowledge_page",
-      "community": 27,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
       "label": "KnowledgePage()",
       "file_type": "code",
       "source_file": "frontend/src/app/knowledge/page.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "knowledge_page_knowledgepage",
-      "community": 27,
+      "community": 14,
       "norm_label": "knowledgepage()"
+    },
+    {
+      "label": "workbench.tsx",
+      "file_type": "code",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "knowledge_workbench",
+      "community": 27,
+      "norm_label": "workbench.tsx"
+    },
+    {
+      "label": "KnowledgeWorkbench()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "knowledge_workbench_knowledgeworkbench",
+      "community": 14,
+      "norm_label": "knowledgeworkbench()"
     },
     {
       "label": "layout.tsx",
@@ -2260,7 +2770,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "login_login_form",
-      "community": 27,
+      "community": 14,
       "norm_label": "login-form.tsx"
     },
     {
@@ -2270,7 +2780,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "login_login_form_loginform",
-      "community": 27,
+      "community": 14,
       "norm_label": "loginform()"
     },
     {
@@ -2280,7 +2790,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "login_page",
-      "community": 27,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
@@ -2290,7 +2800,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "login_page_loginpage",
-      "community": 27,
+      "community": 14,
       "norm_label": "loginpage()"
     },
     {
@@ -2300,7 +2810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_page",
-      "community": 27,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
@@ -2310,7 +2820,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "app_page_sources",
-      "community": 27,
+      "community": 14,
       "norm_label": "sources"
     },
     {
@@ -2320,7 +2830,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_page_conversations",
-      "community": 27,
+      "community": 14,
       "norm_label": "conversations"
     },
     {
@@ -2330,7 +2840,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_page_home",
-      "community": 27,
+      "community": 14,
       "norm_label": "home()"
     },
     {
@@ -2360,24 +2870,24 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_api",
-      "community": 8,
+      "community": 27,
       "norm_label": "api.ts"
     },
     {
       "label": "apiBaseUrl()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L6",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "lib_api_apibaseurl",
-      "community": 8,
+      "community": 27,
       "norm_label": "apibaseurl()"
     },
     {
       "label": "getHealth()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L10",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "lib_api_gethealth",
       "community": 27,
@@ -2387,71 +2897,101 @@
       "label": "login()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L26",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "lib_api_login",
-      "community": 8,
+      "community": 27,
       "norm_label": "login()"
     },
     {
       "label": "authorized()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L42",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "lib_api_authorized",
-      "community": 8,
+      "community": 27,
       "norm_label": "authorized()"
     },
     {
       "label": "askQuestion()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L52",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "lib_api_askquestion",
-      "community": 8,
+      "community": 27,
       "norm_label": "askquestion()"
     },
     {
       "label": "askQuestionStream()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L56",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "lib_api_askquestionstream",
-      "community": 8,
+      "community": 27,
       "norm_label": "askquestionstream()"
     },
     {
       "label": "parseStreamEvent()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L102",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "lib_api_parsestreamevent",
-      "community": 8,
+      "community": 27,
       "norm_label": "parsestreamevent()"
     },
     {
       "label": "listConversations()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L118",
+      "source_location": "L130",
       "_origin": "ast",
       "id": "lib_api_listconversations",
-      "community": 8,
+      "community": 27,
       "norm_label": "listconversations()"
     },
     {
       "label": "getConversation()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L122",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "lib_api_getconversation",
-      "community": 8,
+      "community": 27,
       "norm_label": "getconversation()"
+    },
+    {
+      "label": "listKnowledgeSources()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L138",
+      "_origin": "ast",
+      "id": "lib_api_listknowledgesources",
+      "community": 27,
+      "norm_label": "listknowledgesources()"
+    },
+    {
+      "label": "createManualKnowledge()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L143",
+      "_origin": "ast",
+      "id": "lib_api_createmanualknowledge",
+      "community": 27,
+      "norm_label": "createmanualknowledge()"
+    },
+    {
+      "label": "importMarkdownKnowledge()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L147",
+      "_origin": "ast",
+      "id": "lib_api_importmarkdownknowledge",
+      "community": 27,
+      "norm_label": "importmarkdownknowledge()"
     },
     {
       "label": "auth.ts",
@@ -2460,7 +3000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_auth",
-      "community": 27,
+      "community": 14,
       "norm_label": "auth.ts"
     },
     {
@@ -2470,7 +3010,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "lib_auth_getsessiontoken",
-      "community": 27,
+      "community": 14,
       "norm_label": "getsessiontoken()"
     },
     {
@@ -2480,7 +3020,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "lib_auth_isvalidtoken",
-      "community": 27,
+      "community": 14,
       "norm_label": "isvalidtoken()"
     },
     {
@@ -2490,7 +3030,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "lib_auth_requiresession",
-      "community": 27,
+      "community": 14,
       "norm_label": "requiresession()"
     },
     {
@@ -2500,7 +3040,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "lib_auth_redirectauthenticateduser",
-      "community": 27,
+      "community": 14,
       "norm_label": "redirectauthenticateduser()"
     },
     {
@@ -2510,7 +3050,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_session",
-      "community": 27,
+      "community": 14,
       "norm_label": "session.ts"
     },
     {
@@ -2520,7 +3060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_types",
-      "community": 8,
+      "community": 27,
       "norm_label": "types.ts"
     },
     {
@@ -2530,7 +3070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_types_confidence",
-      "community": 8,
+      "community": 27,
       "norm_label": "confidence"
     },
     {
@@ -2540,7 +3080,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "lib_types_sourcetype",
-      "community": 8,
+      "community": 27,
       "norm_label": "sourcetype"
     },
     {
@@ -2550,7 +3090,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_types_healthresponse",
-      "community": 8,
+      "community": 27,
       "norm_label": "healthresponse"
     },
     {
@@ -2560,7 +3100,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "lib_types_currentuser",
-      "community": 8,
+      "community": 27,
       "norm_label": "currentuser"
     },
     {
@@ -2570,7 +3110,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "lib_types_loginresponse",
-      "community": 8,
+      "community": 27,
       "norm_label": "loginresponse"
     },
     {
@@ -2580,7 +3120,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "lib_types_chatrequest",
-      "community": 8,
+      "community": 27,
       "norm_label": "chatrequest"
     },
     {
@@ -2590,7 +3130,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "lib_types_sourcecitation",
-      "community": 8,
+      "community": 27,
       "norm_label": "sourcecitation"
     },
     {
@@ -2600,7 +3140,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "lib_types_chatresponse",
-      "community": 8,
+      "community": 27,
       "norm_label": "chatresponse"
     },
     {
@@ -2610,7 +3150,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "lib_types_chatstreamevent",
-      "community": 8,
+      "community": 27,
       "norm_label": "chatstreamevent"
     },
     {
@@ -2620,7 +3160,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "lib_types_conversationsummary",
-      "community": 8,
+      "community": 27,
       "norm_label": "conversationsummary"
     },
     {
@@ -2630,7 +3170,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "lib_types_conversationmessage",
-      "community": 8,
+      "community": 27,
       "norm_label": "conversationmessage"
     },
     {
@@ -2640,8 +3180,48 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "lib_types_conversationdetail",
-      "community": 8,
+      "community": 27,
       "norm_label": "conversationdetail"
+    },
+    {
+      "label": "KnowledgeSource",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "lib_types_knowledgesource",
+      "community": 27,
+      "norm_label": "knowledgesource"
+    },
+    {
+      "label": "KnowledgeSourceList",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "lib_types_knowledgesourcelist",
+      "community": 27,
+      "norm_label": "knowledgesourcelist"
+    },
+    {
+      "label": "ManualKnowledgeRequest",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "lib_types_manualknowledgerequest",
+      "community": 27,
+      "norm_label": "manualknowledgerequest"
+    },
+    {
+      "label": "MarkdownKnowledgeRequest",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L98",
+      "_origin": "ast",
+      "id": "lib_types_markdownknowledgerequest",
+      "community": 27,
+      "norm_label": "markdownknowledgerequest"
     },
     {
       "label": "tsconfig.json",
@@ -3736,6 +4316,56 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "target": "backend_app_api_auth_py_currentuser",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/core/security.py",
       "source_location": "L12",
       "weight": 0.8,
@@ -3786,6 +4416,56 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_manualknowledgecreate",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "target": "backend_app_api_auth_py_currentuser",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L10",
       "weight": 0.8,
@@ -3816,11 +4496,61 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "embeddingservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/core/security.py",
       "source_location": "L12",
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "httpauthorizationcredentials",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresult",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesource",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesourcelist",
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
@@ -3847,10 +4577,60 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "select",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
       "source_location": "L6",
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "services_chat_service_chatservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_rag_service_ragservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "sourcecitation",
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
@@ -4112,6 +4892,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
+      "target": "backend_app_api_chat_py_chatrequest"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/services/answer_router.py",
       "source_location": "L1",
       "weight": 0.8,
@@ -4294,6 +5084,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
+      "target": "backend_app_api_chat_py_chatresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/api/chat.py",
       "source_location": "L8",
       "weight": 0.8,
@@ -4385,6 +5185,17 @@
       "confidence_score": 1.0,
       "source": "api_conversations_list_conversations",
       "target": "conversationsummary"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "api_conversations_list_conversations",
+      "target": "select"
     },
     {
       "relation": "references",
@@ -4491,6 +5302,17 @@
       "target": "schemas_chat_messageresponse"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "api_conversations_get_conversation",
+      "target": "select"
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/api/conversations.py",
@@ -4556,11 +5378,41 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge",
+      "target": "api_knowledge_create_manual_knowledge"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "api_knowledge",
+      "target": "api_knowledge_import_markdown_knowledge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
       "source_location": "L7",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "api_knowledge",
       "target": "api_knowledge_list_knowledge_sources"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge",
+      "target": "api_knowledge_search_knowledge"
     },
     {
       "relation": "imports_from",
@@ -4572,6 +5424,810 @@
       "confidence_score": 1.0,
       "source": "api_knowledge",
       "target": "fastapi"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_list_knowledge_sources",
+      "target": "backend_app_api_knowledge_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_list_knowledge_sources",
+      "target": "backend_app_api_knowledge_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_list_knowledge_sources",
+      "target": "knowledgesourcelist"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_create_manual_knowledge",
+      "target": "backend_app_api_knowledge_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "api_knowledge_import_markdown_knowledge",
+      "target": "backend_app_api_knowledge_py_currentuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_search_knowledge",
+      "target": "backend_app_api_knowledge_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "knowledgesearchresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "knowledgesourcelist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_currentuser",
+      "target": "services_rag_service_ragservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_create_manual_knowledge",
+      "target": "backend_app_api_knowledge_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "api_knowledge_import_markdown_knowledge",
+      "target": "backend_app_api_knowledge_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_search_knowledge",
+      "target": "backend_app_api_knowledge_py_session"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "knowledgesearchresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "knowledgesourcelist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_session",
+      "target": "services_rag_service_ragservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "knowledgesourcelist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "target": "knowledgesourcelist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "target": "knowledgesourcelist",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresponse",
+      "target": "knowledgesourcelist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "knowledgesourcelist",
+      "target": "knowledgesourcelist",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesourcelist",
+      "target": "services_rag_service_ragservice"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_create_manual_knowledge",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_create_manual_knowledge",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "target": "knowledgesearchresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "target": "services_rag_service_ragservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_currentuser",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_manualknowledgecreate",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_session",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "embeddingservice",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresult",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesource",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "select",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "sourcecitation",
+      "target": "backend_app_api_knowledge_py_manualknowledgecreate"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "api_knowledge_import_markdown_knowledge",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "knowledgesearchresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "target": "services_rag_service_ragservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_currentuser",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_manualknowledgecreate",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_session",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "embeddingservice",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresult",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesource",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "select",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "sourcecitation",
+      "target": "backend_app_api_knowledge_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "api_knowledge_import_markdown_knowledge",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "target": "knowledgesearchresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "source": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "target": "services_rag_service_ragservice",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_currentuser",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_manualknowledgecreate",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_session",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "embeddingservice",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "knowledgesearchresult",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "knowledgesource",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "select",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "source": "sourcecitation",
+      "target": "backend_app_api_knowledge_py_markdownknowledgeimport",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_knowledge_search_knowledge",
+      "target": "knowledgesearchresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "knowledgesearchresponse",
+      "target": "knowledgesearchresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/knowledge.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresponse",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "rationale_for",
@@ -4702,6 +6358,36 @@
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "models_conversation_message",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_knowledge_knowledgechunk",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_knowledge_knowledgedocument",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_knowledge_knowledgesource",
       "target": "core_database_base"
     },
     {
@@ -4967,6 +6653,17 @@
       "target": "app_main"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge",
+      "target": "app_main"
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
@@ -5074,6 +6771,17 @@
       "target": "models_conversation_utcnow"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_knowledge",
+      "target": "datetime"
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
@@ -5141,6 +6849,16 @@
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "message",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
       "target": "models_conversation_conversation"
     },
     {
@@ -5238,6 +6956,16 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
       "source_location": "L5",
       "weight": 0.8,
       "confidence_score": 0.5,
@@ -5266,14 +6994,78 @@
       "target": "models_feedback"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/models/knowledge.py",
-      "source_location": "L1",
+      "source_location": "L41",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "models_knowledge_rationale_1",
-      "target": "models_knowledge"
+      "source": "models_knowledge",
+      "target": "models_knowledge_knowledgechunk"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_knowledge",
+      "target": "models_knowledge_knowledgedocument"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/models/knowledge.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "models_knowledge",
+      "target": "models_knowledge_knowledgesource"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "models_knowledge_knowledgedocument"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "models_knowledge_knowledgedocument"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "models_knowledge_knowledgechunk"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "models_knowledge_knowledgechunk"
     },
     {
       "relation": "contains",
@@ -5416,6 +7208,66 @@
       "target": "basemodel"
     },
     {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge_knowledgesearchresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge_knowledgesearchresult",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge_knowledgesourcelist",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge_knowledgesourceresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge_manualknowledgecreate",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "schemas_knowledge_markdownknowledgeimport",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/schemas/chat.py",
@@ -5506,14 +7358,64 @@
       "target": "schemas_feedback"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/schemas/knowledge.py",
-      "source_location": "L1",
+      "source_location": "L38",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "schemas_knowledge_rationale_1",
-      "target": "schemas_knowledge"
+      "source": "schemas_knowledge",
+      "target": "schemas_knowledge_knowledgesearchresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge",
+      "target": "schemas_knowledge_knowledgesearchresult"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge",
+      "target": "schemas_knowledge_knowledgesourcelist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge",
+      "target": "schemas_knowledge_knowledgesourceresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_knowledge",
+      "target": "schemas_knowledge_manualknowledgecreate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/knowledge.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "schemas_knowledge",
+      "target": "schemas_knowledge_markdownknowledgeimport",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -5739,6 +7641,16 @@
       "target": "services_llm_service_llmservice"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_chat_service_chatservice",
+      "target": "services_rag_service_ragservice"
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
@@ -5750,6 +7662,17 @@
       "target": "llmservice"
     },
     {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_init",
+      "target": "ragservice"
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
@@ -5758,6 +7681,36 @@
       "confidence_score": 0.5,
       "source": "llmservice",
       "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "services_rag_service_ragservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
+      "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "ragservice",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "references",
@@ -5847,6 +7800,16 @@
       "target": "services_llm_service_llmservice"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatrequest",
+      "target": "services_rag_service_ragservice"
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
@@ -5877,6 +7840,16 @@
       "confidence_score": 0.5,
       "source": "backend_app_services_chat_service_py_currentuser",
       "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "references",
@@ -5911,6 +7884,16 @@
       "target": "services_llm_service_llmservice"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_session",
+      "target": "services_rag_service_ragservice"
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
@@ -5941,6 +7924,16 @@
       "confidence_score": 0.5,
       "source": "backend_app_services_chat_service_py_chatresponse",
       "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_chatresponse",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "calls",
@@ -6020,6 +8013,17 @@
       "target": "conversation"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "services_chat_service_chatservice_resolve_conversation",
+      "target": "select"
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
@@ -6028,6 +8032,16 @@
       "confidence_score": 0.5,
       "source": "conversation",
       "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "references",
@@ -6049,6 +8063,16 @@
       "confidence_score": 0.5,
       "source": "message",
       "target": "services_llm_service_llmservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L13",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "message",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "contains",
@@ -6081,6 +8105,96 @@
       "target": "services_embedding_service_embeddingservice"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_currentuser",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_manualknowledgecreate",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "source": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "target": "services_embedding_service_embeddingservice",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_rag_service_py_session",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "embeddingservice",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesearchresult",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "knowledgesource",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "select",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/embedding_service.py",
@@ -6089,6 +8203,67 @@
       "confidence_score": 1.0,
       "source": "services_embedding_service_embeddingservice",
       "target": "services_embedding_service_embeddingservice_embed"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/embedding_service.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_embedding_service_embeddingservice",
+      "target": "services_embedding_service_embeddingservice_similarity"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/embedding_service.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_embedding_service_embeddingservice",
+      "target": "services_embedding_service_embeddingservice_tokens"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_rag_service_ragservice",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "sourcecitation",
+      "target": "services_embedding_service_embeddingservice"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/embedding_service.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_embedding_service_embeddingservice_embed",
+      "target": "services_embedding_service_embeddingservice_tokens"
     },
     {
       "relation": "contains",
@@ -6333,10 +8508,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/llm_service.py",
-      "source_location": "L40",
+      "source_location": "L42",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "services_llm_service_rationale_40",
+      "source": "services_llm_service_rationale_42",
       "target": "services_llm_service_localsupportprovider"
     },
     {
@@ -6537,6 +8712,151 @@
       "target": "services_rag_service_ragservice"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service",
+      "target": "services_rag_service_retrievedchunk"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_context_for_prompt",
+      "target": "services_rag_service_retrievedchunk"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_retrieve",
+      "target": "services_rag_service_retrievedchunk"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "services_rag_service_retrievedchunk_citation"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_retrievedchunk",
+      "target": "services_rag_service_retrievedchunk_context_block"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_search",
+      "target": "services_rag_service_retrievedchunk_citation"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_retrievedchunk_citation",
+      "target": "sourcecitation"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_context_for_prompt",
+      "target": "services_rag_service_retrievedchunk_context_block"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_context_for_prompt"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_create_entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_create_manual_entry"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_import_markdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_list_sources"
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/rag_service.py",
@@ -6545,6 +8865,453 @@
       "confidence_score": 1.0,
       "source": "services_rag_service_ragservice",
       "target": "services_rag_service_ragservice_retrieve"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_search"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_source_response"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_split_text"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice",
+      "target": "services_rag_service_ragservice_visible_sources_query"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_init",
+      "target": "embeddingservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "backend_app_services_rag_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "backend_app_services_rag_service_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "backend_app_services_rag_service_py_manualknowledgecreate"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "backend_app_services_rag_service_py_session"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "knowledgesource"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "services_rag_service_ragservice_create_entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "services_rag_service_ragservice_source_response"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_create_manual_entry",
+      "target": "services_rag_service_ragservice_split_text"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "backend_app_services_rag_service_py_currentuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_import_markdown",
+      "target": "backend_app_services_rag_service_py_currentuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_list_sources",
+      "target": "backend_app_services_rag_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_retrieve",
+      "target": "backend_app_services_rag_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_search",
+      "target": "backend_app_services_rag_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_visible_sources_query",
+      "target": "backend_app_services_rag_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "backend_app_services_rag_service_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_import_markdown",
+      "target": "backend_app_services_rag_service_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_list_sources",
+      "target": "backend_app_services_rag_service_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_retrieve",
+      "target": "backend_app_services_rag_service_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_search",
+      "target": "backend_app_services_rag_service_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_import_markdown",
+      "target": "backend_app_services_rag_service_py_knowledgesourceresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_list_sources",
+      "target": "backend_app_services_rag_service_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_source_response",
+      "target": "backend_app_services_rag_service_py_knowledgesourceresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_import_markdown",
+      "target": "backend_app_services_rag_service_py_markdownknowledgeimport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_import_markdown",
+      "target": "services_rag_service_ragservice_create_entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "knowledgesource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "services_rag_service_ragservice_source_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_create_entry",
+      "target": "services_rag_service_ragservice_split_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_list_sources",
+      "target": "services_rag_service_ragservice_source_response"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_list_sources",
+      "target": "services_rag_service_ragservice_visible_sources_query"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_search",
+      "target": "knowledgesearchresult"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_search",
+      "target": "services_rag_service_ragservice_retrieve"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_rag_service_ragservice_retrieve",
+      "target": "select"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_visible_sources_query",
+      "target": "knowledgesource"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_visible_sources_query",
+      "target": "select"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/rag_service.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_rag_service_ragservice_source_response",
+      "target": "knowledgesource"
     },
     {
       "relation": "rationale_for",
@@ -6762,11 +9529,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L18",
+      "source_location": "L20",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_test_chat_contract",
-      "target": "tests_test_chat_contract_test_chat_persists_conversation_and_placeholder_sources"
+      "target": "tests_test_chat_contract_test_chat_persists_conversation_and_sources_field"
     },
     {
       "relation": "contains",
@@ -6804,10 +9571,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L19",
+      "source_location": "L21",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "tests_test_chat_contract_test_chat_persists_conversation_and_placeholder_sources",
+      "source": "tests_test_chat_contract_test_chat_persists_conversation_and_sources_field",
       "target": "tests_test_chat_contract_auth_headers"
     },
     {
@@ -6830,6 +9597,89 @@
       "confidence_score": 1.0,
       "source": "tests_test_health",
       "target": "tests_test_health_test_health_check"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge",
+      "target": "tests_test_knowledge_auth_headers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge",
+      "target": "tests_test_knowledge_test_chat_returns_citations_when_knowledge_matches"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge",
+      "target": "tests_test_knowledge_test_knowledge_requires_authentication"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge",
+      "target": "tests_test_knowledge_test_manual_knowledge_can_be_indexed_and_retrieved"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "tests_test_knowledge",
+      "target": "tests_test_knowledge_test_markdown_import_is_indexed_as_upload_source",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge_test_chat_returns_citations_when_knowledge_matches",
+      "target": "tests_test_knowledge_auth_headers"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_knowledge_test_manual_knowledge_can_be_indexed_and_retrieved",
+      "target": "tests_test_knowledge_auth_headers"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_knowledge.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_knowledge_test_markdown_import_is_indexed_as_upload_source",
+      "target": "tests_test_knowledge_auth_headers",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7315,6 +10165,28 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/knowledge/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_page",
+      "target": "knowledge_workbench"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_page",
+      "target": "knowledge_workbench_knowledgeworkbench"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7342,6 +10214,82 @@
       "weight": 1.0,
       "source": "knowledge_page_knowledgepage",
       "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_workbench",
+      "target": "knowledge_workbench_knowledgeworkbench"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_workbench",
+      "target": "lib_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_workbench",
+      "target": "lib_api_createmanualknowledge"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "knowledge_workbench",
+      "target": "lib_api_importmarkdownknowledge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_workbench",
+      "target": "lib_api_listknowledgesources"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_workbench",
+      "target": "lib_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/knowledge/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "knowledge_workbench",
+      "target": "lib_types_knowledgesource"
     },
     {
       "relation": "contains",
@@ -7643,6 +10591,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L142",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_createmanualknowledge"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L55",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7663,11 +10621,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_importmarkdownknowledge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L51",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_api",
       "target": "lib_api_listconversations"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L137",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_api_listknowledgesources"
     },
     {
       "relation": "contains",
@@ -7775,7 +10753,51 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_api",
+      "target": "lib_types_knowledgesource"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_knowledgesourcelist"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
       "target": "lib_types_loginresponse"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_manualknowledgerequest"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "lib_api",
+      "target": "lib_types_markdownknowledgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -7837,11 +10859,33 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L143",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_api_createmanualknowledge",
+      "target": "lib_api_authorized"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L56",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_api_getconversation",
       "target": "lib_api_authorized"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/api.ts",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "lib_api_importmarkdownknowledge",
+      "target": "lib_api_authorized",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -8054,11 +11098,51 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_knowledgesource"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L88",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_knowledgesourcelist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
       "source_location": "L17",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "lib_types",
       "target": "lib_types_loginresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_manualknowledgerequest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "lib_types",
+      "target": "lib_types_markdownknowledgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8090,6 +11174,17 @@
       "confidence_score": 1.0,
       "source": "lib_types_conversationdetail",
       "target": "lib_types_conversationsummary"
+    },
+    {
+      "relation": "inherits",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/types.ts",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "lib_types_markdownknowledgerequest",
+      "target": "lib_types_manualknowledgerequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8823,5 +11918,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0e507efeb9a9261f705b3e62e100ef078398525a"
+  "built_at_commit": "b14390ed6faa10cdf56d3ae1d89ff44e617c17c2"
 }

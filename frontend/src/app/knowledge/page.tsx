@@ -1,7 +1,8 @@
 import { requireSession } from "@/lib/auth";
+import { KnowledgeWorkbench } from "./workbench";
 
 export default async function KnowledgePage() {
-  await requireSession();
+  const token = await requireSession();
 
-  return <main className="content">知识库管理将在阶段 3 接入。</main>;
+  return <KnowledgeWorkbench token={token} />;
 }
