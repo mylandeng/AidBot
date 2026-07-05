@@ -574,6 +574,22 @@ textarea {
   background: var(--mint);
 }
 
+.source-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.source-action.danger {
+  color: var(--red);
+}
+
+.source-action.danger:hover {
+  border-color: rgba(180, 73, 61, .45);
+  background: #f8e1dd;
+}
+
 .review-panel {
   background: #24302d;
   color: #fffdf8;
@@ -691,6 +707,12 @@ textarea {
 .message-sources a { display: flex; justify-content: space-between; gap: 12px; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: #ffffff; }
 .message-sources strong { font-size: 13px; }
 .message-sources span { color: var(--green); font-family: var(--mono); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.message-feedback { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.message-feedback button { min-height: 32px; border: 1px solid var(--line-strong); border-radius: 999px; padding: 0 11px; background: #ffffff; color: var(--ink-soft); cursor: pointer; font-size: 12px; font-weight: 800; }
+.message-feedback button:hover,
+.message-feedback button.active { border-color: var(--green); background: var(--mint); color: var(--green-deep); }
+.message-feedback button:disabled { cursor: default; opacity: .72; }
+.chat-composer .form-notice { grid-column: 1 / -1; }
 .knowledge-main .topbar { padding-bottom: 16px; }
 .knowledge-main .topbar h1 { max-width: 900px; font-size: clamp(28px, 2.7vw, 38px); }
 .knowledge-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; max-width: 1120px; }
@@ -700,15 +722,36 @@ textarea {
 .knowledge-form { display: grid; gap: 10px; padding: 20px 24px 24px; }
 .knowledge-form label { color: var(--muted); font-size: 13px; font-weight: 800; }
 .knowledge-form input,
+.knowledge-form select,
 .knowledge-form textarea { width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px; background: #fbfaf5; color: var(--ink); }
 .knowledge-form input { min-height: 48px; }
+.knowledge-form select { min-height: 48px; }
 .knowledge-form textarea { min-height: 150px; resize: vertical; line-height: 1.65; }
+.knowledge-form.compact { border-bottom: 1px solid var(--line); }
+.knowledge-form.compact textarea { min-height: 92px; }
 .segmented-control { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; border: 1px solid var(--line); border-radius: 14px; padding: 6px; background: var(--paper); }
 .segmented-control button { min-height: 38px; border: 1px solid transparent; border-radius: 10px; background: transparent; color: var(--ink-soft); cursor: pointer; font-weight: 800; }
 .segmented-control button.active { border-color: rgba(31, 107, 90, .28); background: var(--mint); color: var(--green-deep); }
 .form-notice { margin: 2px 0 0; color: var(--green); font-size: 13px; font-weight: 800; }
 .knowledge-list { min-height: 260px; }
 .knowledge-empty { padding: 34px 16px; }
+.feedback-main .topbar h1 { max-width: 900px; font-size: clamp(28px, 2.7vw, 38px); }
+.feedback-grid { max-width: 1180px; }
+.feedback-queue { min-height: calc(100vh - 132px); }
+.feedback-filter { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.feedback-filter button { min-height: 32px; border: 1px solid var(--line-strong); border-radius: 999px; padding: 0 11px; background: var(--paper); color: var(--ink-soft); cursor: pointer; font-size: 12px; font-weight: 800; }
+.feedback-filter button.active { border-color: rgba(31, 107, 90, .28); background: var(--mint); color: var(--green-deep); }
+.feedback-banner { margin: 16px 24px 0; border: 1px solid rgba(31, 107, 90, .24); border-radius: 12px; padding: 10px 12px; background: var(--mint); color: var(--green-deep); font-size: 13px; font-weight: 800; }
+.feedback-banner.error { border-color: rgba(180, 73, 61, .25); background: #f8e1dd; color: var(--red); }
+.feedback-list { display: grid; gap: 14px; padding: 20px 24px 24px; }
+.feedback-item { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #ffffff; }
+.feedback-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.feedback-meta span { min-height: 26px; border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; color: var(--muted); font-size: 12px; font-weight: 800; }
+.feedback-item h3 { margin: 12px 0 8px; font-family: var(--display); font-size: 20px; line-height: 1.25; }
+.feedback-item p { margin: 0; color: var(--ink-soft); line-height: 1.65; white-space: pre-wrap; }
+.feedback-item small { display: block; margin-top: 10px; color: var(--amber); font-weight: 800; }
+.feedback-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.feedback-empty { padding: 48px 16px; }
 
 @media (min-width: 1520px) {
   .knowledge-grid {

@@ -1,5 +1,7 @@
 export type Confidence = "low" | "medium" | "high";
 export type SourceType = "upload" | "feishu" | "manual" | "ticket";
+export type FeedbackRating = "useful" | "not_useful" | "needs_review";
+export type FeedbackStatus = "pending" | "processing" | "resolved" | "ignored";
 
 export interface HealthResponse {
   status: "ok";
@@ -77,8 +79,12 @@ export interface ConversationDetail extends ConversationSummary {
 
 export interface KnowledgeSource {
   id: string;
+  space_id?: string | null;
+  space_name?: string | null;
   title: string;
   source_type: SourceType;
+  content_format: "text" | "markdown" | "html" | "pdf";
+  filename: string;
   visibility: "internal" | "private";
   status: string;
   chunk_count: number;
@@ -89,12 +95,71 @@ export interface KnowledgeSourceList {
   items: KnowledgeSource[];
 }
 
+export interface KnowledgeSpace {
+  id: string;
+  name: string;
+  description: string;
+  visibility: "internal" | "private";
+  status: string;
+  source_count: number;
+  chunk_count: number;
+  updated_at: string;
+}
+
+export interface KnowledgeSpaceList {
+  items: KnowledgeSpace[];
+}
+
+export interface KnowledgeSpaceRequest {
+  name: string;
+  description: string;
+  visibility: "internal" | "private";
+}
+
 export interface ManualKnowledgeRequest {
   title: string;
   content: string;
   visibility: "internal" | "private";
+  space_id?: string | null;
 }
 
 export interface MarkdownKnowledgeRequest extends ManualKnowledgeRequest {
   filename: string;
+}
+
+export interface KnowledgeDocumentRequest extends ManualKnowledgeRequest {
+  filename: string;
+  content_format: "text" | "markdown" | "html" | "pdf";
+}
+
+export interface FeedbackCreateRequest {
+  message_id: string;
+  rating: FeedbackRating;
+  tags?: string[];
+  note?: string;
+}
+
+export interface FeedbackStatusRequest {
+  status: FeedbackStatus;
+  admin_note?: string;
+}
+
+export interface FeedbackItem {
+  id: string;
+  message_id: string;
+  conversation_id: string;
+  rating: FeedbackRating;
+  status: FeedbackStatus;
+  tags: string[];
+  note: string;
+  admin_note: string;
+  answer_preview: string;
+  question_preview: string;
+  source_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FeedbackList {
+  items: FeedbackItem[];
 }

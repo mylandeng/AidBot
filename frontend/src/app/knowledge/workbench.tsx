@@ -1,13 +1,26 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
-import { createManualKnowledge, importMarkdownKnowledge, listKnowledgeSources, reindexKnowledgeSource } from "@/lib/api";
-import type { KnowledgeSource } from "@/lib/types";
+import {
+  createKnowledgeSpace,
+  createManualKnowledge,
+  deleteKnowledgeSource,
+  deleteKnowledgeSpace,
+  importKnowledgeDocument,
+  listKnowledgeSources,
+  listKnowledgeSpaces,
+  reindexKnowledgeSource,
+} from "@/lib/api";
+import type { KnowledgeSource, KnowledgeSpace } from "@/lib/types";
 
 export function KnowledgeWorkbench({ token }: { token: string }) {
   const [sources, setSources] = useState<KnowledgeSource[]>([]);
+  const [spaces, setSpaces] = useState<KnowledgeSpace[]>([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [spaceName, setSpaceName] = useState("");
+  const [spaceDescription, setSpaceDescription] = useState("");
+  const [selectedSpaceId, setSelectedSpaceId] = useState<string | null>(null);
   const [visibility, setVisibility] = useState<"internal" | "private">("internal");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -16,7 +29,10 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
   const totalChunks = useMemo(() => sources.reduce((sum, source) => sum + source.chunk_count, 0), [sources]);
 
   async function refresh() {
-    setSources(await listKnowledgeSources(token));
+    const [nextSources, nextSpaces] = await Promise.all([listKnowledgeSources(token), listKnowledgeSpaces(token)]);
+    setSources(nextSources);
+    setSpaces(nextSpaces);
+    setSelectedSpaceId((current) => current ?? nextSpaces[0]?.id ?? null);
   }
 
   useEffect(() => {
@@ -30,8 +46,9 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
     setError("");
     setNotice("");
     try {
-      const source = await createManualKnowledge({ title: title.trim(), content: content.trim(), visibility }, token);
+      const source = await createManualKnowledge({ title: title.trim(), content: content.trim(), visibility, space_id: selectedSpaceId }, token);
       setSources((current) => [source, ...current]);
+      await refresh();
       setTitle("");
       setContent("");
       setNotice("已入库，聊天会优先检索这条知识。");
@@ -42,34 +59,107 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
     }
   }
 
-  async function importMarkdown(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
+  async function addKnowledgeFiles(event: ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.target.files ?? []);
     event.target.value = "";
-    if (!file || busy) return;
-    if (!file.name.toLowerCase().match(/\.(md|markdown)$/)) {
-      setError("请选择 .md 或 .markdown 文件");
+    if (!files.length || busy) return;
+
+    const unsupported = files.filter((file) => !detectContentFormat(file.name));
+    if (unsupported.length) {
+      setError(`暂不支持：${unsupported.map((file) => file.name).join("、")}`);
       return;
     }
+
+    const pdfFiles = files.filter((file) => detectContentFormat(file.name) === "pdf");
+    if (pdfFiles.length) {
+      setError("PDF 解析器还未接入，当前可添加 Markdown、HTML 和纯文本文件。");
+      return;
+    }
+
     setBusy(true);
     setError("");
     setNotice("");
     try {
-      const text = await file.text();
-      const fallbackTitle = file.name.replace(/\.(md|markdown)$/i, "");
-      const firstHeading = text.match(/^#\s+(.+)$/m)?.[1]?.trim();
-      const source = await importMarkdownKnowledge(
-        {
-          title: firstHeading || fallbackTitle,
-          content: text,
-          filename: file.name,
-          visibility,
-        },
-        token,
-      );
-      setSources((current) => [source, ...current]);
-      setNotice(`已导入 ${file.name}，生成 ${source.chunk_count} 个知识片段。`);
+      const imported: KnowledgeSource[] = [];
+      for (const file of files) {
+        const text = await file.text();
+        const contentFormat = detectContentFormat(file.name);
+        if (!contentFormat || contentFormat === "pdf") continue;
+        const fallbackTitle = file.name.replace(/\.(md|markdown|txt|html|htm)$/i, "");
+        const firstHeading = text.match(/^#\s+(.+)$/m)?.[1]?.trim() ?? text.match(/<h1[^>]*>(.*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, "").trim();
+        const source = await importKnowledgeDocument(
+          {
+            title: firstHeading || fallbackTitle,
+            content: text,
+            filename: file.name,
+            content_format: contentFormat,
+            visibility,
+            space_id: selectedSpaceId,
+          },
+          token,
+        );
+        imported.push(source);
+      }
+      setSources((current) => [...imported, ...current]);
+      await refresh();
+      const chunkCount = imported.reduce((sum, source) => sum + source.chunk_count, 0);
+      setNotice(`已添加 ${imported.length} 个文件，生成 ${chunkCount} 个知识片段。`);
     } catch (reason) {
-      setError(reason instanceof Error ? reason.message : "Markdown 导入失败");
+      setError(reason instanceof Error ? reason.message : "添加知识失败");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function createSpace(event: FormEvent) {
+    event.preventDefault();
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const space = await createKnowledgeSpace({ name: spaceName.trim(), description: spaceDescription.trim(), visibility }, token);
+      setSpaces((current) => [space, ...current]);
+      setSelectedSpaceId(space.id);
+      setSpaceName("");
+      setSpaceDescription("");
+      setNotice(`已创建知识库：${space.name}`);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "知识库创建失败");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function removeSpace(space: KnowledgeSpace) {
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      await deleteKnowledgeSpace(space.id, token);
+      await refresh();
+      setSelectedSpaceId((current) => (current === space.id ? null : current));
+      setNotice(`已删除知识库：${space.name}`);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "知识库删除失败");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function removeSource(source: KnowledgeSource) {
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      await deleteKnowledgeSource(source.id, token);
+      setSources((current) => current.filter((item) => item.id !== source.id));
+      await refresh();
+      setNotice(`已删除知识源：${source.title}`);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "知识源删除失败");
     } finally {
       setBusy(false);
     }
@@ -132,7 +222,7 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
               <a href="/chat">{totalChunks} 个知识片段可用于聊天引用</a>
             </li>
             <li>
-              <a href="/knowledge">手动录入即时生效</a>
+              <a href="/knowledge">{spaces.length} 个知识库可管理</a>
             </li>
           </ul>
         </section>
@@ -156,14 +246,24 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
               </div>
               <div className="knowledge-actions">
                 <label className="secondary-button import-button">
-                  导入 Markdown
-                  <input accept=".md,.markdown,text/markdown,text/plain" onChange={importMarkdown} type="file" />
+                  添加知识
+                  <input accept=".md,.markdown,.txt,.html,.htm,.pdf,text/markdown,text/plain,text/html,application/pdf" multiple onChange={addKnowledgeFiles} type="file" />
                 </label>
                 <span className="confidence-chip">{visibility === "internal" ? "内部可见" : "仅本人"}</span>
               </div>
             </div>
 
             <div className="knowledge-form">
+              <label htmlFor="knowledge-space">目标知识库</label>
+              <select id="knowledge-space" value={selectedSpaceId ?? ""} onChange={(event) => setSelectedSpaceId(event.target.value || null)}>
+                <option value="">默认知识空间</option>
+                {spaces.map((space) => (
+                  <option key={space.id} value={space.id}>
+                    {space.name}
+                  </option>
+                ))}
+              </select>
+
               <label htmlFor="knowledge-title">标题</label>
               <input
                 id="knowledge-title"
@@ -218,12 +318,17 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
                     <div>
                       <strong>{source.title}</strong>
                       <span>
-                        {source.source_type} · {source.visibility === "internal" ? "内部共享" : "仅本人"} · {source.chunk_count} 片段
+                        {source.space_name || "默认知识空间"} · {source.content_format} · {source.visibility === "internal" ? "内部共享" : "仅本人"} · {source.chunk_count} 片段
                       </span>
                     </div>
-                    <button className="source-action" disabled={busy} onClick={() => reindexSource(source)} type="button">
-                      重新索引
-                    </button>
+                    <div className="source-actions">
+                      <button className="source-action" disabled={busy} onClick={() => reindexSource(source)} type="button">
+                        重新索引
+                      </button>
+                      <button className="source-action danger" disabled={busy} onClick={() => removeSource(source)} type="button">
+                        删除
+                      </button>
+                    </div>
                   </article>
                 ))
               ) : (
@@ -234,8 +339,51 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
               )}
             </div>
           </section>
+
+          <section className="source-panel knowledge-list" aria-label="知识空间">
+            <div className="panel-heading compact">
+              <div>
+                <p className="eyebrow">知识空间</p>
+                <h2>{spaces.length ? `${spaces.length} 个知识库` : "创建第一个知识库"}</h2>
+              </div>
+              <span className="confidence-chip">可删除</span>
+            </div>
+            <form className="knowledge-form compact" onSubmit={createSpace}>
+              <label htmlFor="space-name">知识库名称</label>
+              <input id="space-name" placeholder="例如：产品售后常见问题知识库" value={spaceName} onChange={(event) => setSpaceName(event.target.value)} required />
+              <label htmlFor="space-description">说明</label>
+              <textarea id="space-description" placeholder="写清这个知识库适合被哪些问题引用。" value={spaceDescription} onChange={(event) => setSpaceDescription(event.target.value)} />
+              <button className="secondary-button" disabled={busy} type="submit">
+                创建知识库
+              </button>
+            </form>
+            <div className="source-list">
+              {spaces.map((space) => (
+                <article className="source-item" key={space.id}>
+                  <div>
+                    <strong>{space.name}</strong>
+                    <span>
+                      {space.description || "暂无说明"} · {space.source_count} 来源 · {space.chunk_count} 片段
+                    </span>
+                  </div>
+                  <button className="source-action danger" disabled={busy} onClick={() => removeSpace(space)} type="button">
+                    删除知识库
+                  </button>
+                </article>
+              ))}
+            </div>
+          </section>
         </section>
       </main>
     </div>
   );
+}
+
+function detectContentFormat(filename: string): "text" | "markdown" | "html" | "pdf" | null {
+  const lower = filename.toLowerCase();
+  if (lower.endsWith(".md") || lower.endsWith(".markdown")) return "markdown";
+  if (lower.endsWith(".html") || lower.endsWith(".htm")) return "html";
+  if (lower.endsWith(".txt")) return "text";
+  if (lower.endsWith(".pdf")) return "pdf";
+  return null;
 }

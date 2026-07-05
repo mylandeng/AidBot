@@ -4,9 +4,18 @@ import type {
   ChatStreamEvent,
   ConversationDetail,
   ConversationSummary,
+  FeedbackCreateRequest,
+  FeedbackItem,
+  FeedbackList,
+  FeedbackStatus,
+  FeedbackStatusRequest,
   HealthResponse,
   KnowledgeSource,
   KnowledgeSourceList,
+  KnowledgeSpace,
+  KnowledgeSpaceList,
+  KnowledgeSpaceRequest,
+  KnowledgeDocumentRequest,
   LoginResponse,
   ManualKnowledgeRequest,
   MarkdownKnowledgeRequest,
@@ -58,6 +67,7 @@ async function authorized<T>(path: string, token: string, init?: RequestInit): P
     cache: "no-store",
   });
   if (!response.ok) throw new Error(response.status === 401 ? "登录已失效，请重新登录" : "请求失败，请稍后重试");
+  if (response.status === 204) return undefined as T;
   return response.json();
 }
 
@@ -140,6 +150,19 @@ export async function listKnowledgeSources(token: string): Promise<KnowledgeSour
   return payload.items;
 }
 
+export async function listKnowledgeSpaces(token: string): Promise<KnowledgeSpace[]> {
+  const payload = await authorized<KnowledgeSpaceList>("/api/knowledge/spaces", token);
+  return payload.items;
+}
+
+export function createKnowledgeSpace(request: KnowledgeSpaceRequest, token: string): Promise<KnowledgeSpace> {
+  return authorized("/api/knowledge/spaces", token, { method: "POST", body: JSON.stringify(request) });
+}
+
+export function deleteKnowledgeSpace(id: string, token: string): Promise<void> {
+  return authorized(`/api/knowledge/spaces/${id}`, token, { method: "DELETE" });
+}
+
 export function createManualKnowledge(request: ManualKnowledgeRequest, token: string): Promise<KnowledgeSource> {
   return authorized("/api/knowledge/manual", token, { method: "POST", body: JSON.stringify(request) });
 }
@@ -148,6 +171,28 @@ export function importMarkdownKnowledge(request: MarkdownKnowledgeRequest, token
   return authorized("/api/knowledge/markdown", token, { method: "POST", body: JSON.stringify(request) });
 }
 
+export function importKnowledgeDocument(request: KnowledgeDocumentRequest, token: string): Promise<KnowledgeSource> {
+  return authorized("/api/knowledge/documents", token, { method: "POST", body: JSON.stringify(request) });
+}
+
 export function reindexKnowledgeSource(id: string, token: string): Promise<KnowledgeSource> {
   return authorized(`/api/knowledge/sources/${id}/reindex`, token, { method: "POST" });
+}
+
+export function deleteKnowledgeSource(id: string, token: string): Promise<void> {
+  return authorized(`/api/knowledge/sources/${id}`, token, { method: "DELETE" });
+}
+
+export async function listFeedback(token: string, status?: FeedbackStatus): Promise<FeedbackItem[]> {
+  const query = status ? `?status=${status}` : "";
+  const payload = await authorized<FeedbackList>(`/api/feedback${query}`, token);
+  return payload.items;
+}
+
+export function createFeedback(request: FeedbackCreateRequest, token: string): Promise<FeedbackItem> {
+  return authorized("/api/feedback", token, { method: "POST", body: JSON.stringify(request) });
+}
+
+export function updateFeedbackStatus(id: string, request: FeedbackStatusRequest, token: string): Promise<FeedbackItem> {
+  return authorized(`/api/feedback/${id}`, token, { method: "PATCH", body: JSON.stringify(request) });
 }
