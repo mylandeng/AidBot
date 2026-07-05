@@ -82,6 +82,8 @@ class ChatService:
             conversation = db.scalar(select(Conversation).where(Conversation.id == request.conversation_id, Conversation.user_id == current_user.id))
             if conversation is None:
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
+            if conversation.status != "active":
+                raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Archived conversations cannot receive new messages")
             return conversation
 
         conversation = Conversation(user_id=current_user.id, title=request.question.strip()[:80], product_line=request.product_line)

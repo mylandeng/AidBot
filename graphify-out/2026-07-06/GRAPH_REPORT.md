@@ -1,16 +1,16 @@
-# Graph Report - AidBot  (2026-07-06)
+# Graph Report - AidBot  (2026-07-05)
 
 ## Corpus Check
-- 74 files · ~12,317 words
+- 76 files · ~12,912 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 490 nodes · 1145 edges · 39 communities (24 shown, 15 thin omitted)
-- Extraction: 64% EXTRACTED · 36% INFERRED · 0% AMBIGUOUS · INFERRED: 410 edges (avg confidence: 0.52)
+- 511 nodes · 1251 edges · 38 communities (24 shown, 14 thin omitted)
+- Extraction: 61% EXTRACTED · 39% INFERRED · 0% AMBIGUOUS · INFERRED: 489 edges (avg confidence: 0.52)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ec64a036`
+- Built from commit: `53fbb0c8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,7 +29,6 @@
 - [[_COMMUNITY_Community 11|Community 11]]
 - [[_COMMUNITY_Community 12|Community 12]]
 - [[_COMMUNITY_Community 13|Community 13]]
-- [[_COMMUNITY_Community 14|Community 14]]
 - [[_COMMUNITY_Community 15|Community 15]]
 - [[_COMMUNITY_Community 16|Community 16]]
 - [[_COMMUNITY_Community 17|Community 17]]
@@ -50,7 +49,7 @@
 - [[_COMMUNITY_Community 46|Community 46]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `CurrentUser` - 58 edges
+1. `CurrentUser` - 71 edges
 2. `RAGService` - 50 edges
 3. `KnowledgeSourceResponse` - 35 edges
 4. `KnowledgeSpaceCreate` - 32 edges
@@ -77,15 +76,15 @@
 - 1-file cycle: `backend/app/main.py -> backend/app/main.py`
 - 1-file cycle: `backend/app/models/conversation.py -> backend/app/models/conversation.py`
 
-## Communities (39 total, 15 thin omitted)
+## Communities (38 total, 14 thin omitted)
 
 ### Community 0 - "AidBot MVP 架构演进图"
 Cohesion: 0.10
 Nodes (19): 10. 后续扩展边界, 1. 项目定位, 2. MVP 总体架构图, 3. 问答数据流, 4. 知识入库数据流, 5. 管理员反馈闭环, 6. 阶段演进图, 7. MVP 模块清单 (+11 more)
 
 ### Community 1 - "10. 后续扩展边界"
-Cohesion: 0.17
-Nodes (26): create_chat_response(), stream_chat_response(), ChatRequest, ChatResponse, CurrentUser, Session, AnswerResult, ChatRequest (+18 more)
+Cohesion: 0.14
+Nodes (32): create_chat_response(), stream_chat_response(), get_conversation(), list_conversations(), ChatRequest, ChatResponse, CurrentUser, Session (+24 more)
 
 ### Community 2 - "7. MVP 模块清单"
 Cohesion: 0.10
@@ -93,7 +92,7 @@ Nodes (20): dependencies, next, react, react-dom, devDependencies, eslint, eslin
 
 ### Community 5 - "Community 5"
 Cohesion: 0.06
-Nodes (16): create_app(), lifespan(), ensure_runtime_schema(), Engine, FastAPI, FeedbackService, _clean_markdown_for_prompt(), auth_headers() (+8 more)
+Nodes (17): create_app(), lifespan(), ensure_runtime_schema(), Engine, FastAPI, _clean_markdown_for_prompt(), auth_headers(), test_answer_feedback_can_enter_review_queue_and_update_status() (+9 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.10
@@ -104,16 +103,16 @@ Cohesion: 0.12
 Nodes (15): AidBot MVP 架构审阅计划, MVP 最短路径, 备注, 推荐开发阶段, 状态, 目标, 证据来源, 遇到的错误 (+7 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.22
-Nodes (38): create_knowledge_space(), create_manual_knowledge(), delete_knowledge_source(), delete_knowledge_space(), import_knowledge_document(), import_markdown_knowledge(), list_knowledge_sources(), list_knowledge_spaces() (+30 more)
+Cohesion: 0.13
+Nodes (42): create_knowledge_space(), create_manual_knowledge(), delete_knowledge_source(), delete_knowledge_space(), import_knowledge_document(), import_markdown_knowledge(), list_knowledge_sources(), list_knowledge_spaces() (+34 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.29
 Nodes (6): AidBot MVP 架构审阅发现, 初步审阅发现, 当前项目状态, 推荐决策, 架构审阅, 架构文档摘要
 
 ### Community 10 - "Community 10"
-Cohesion: 0.14
-Nodes (21): BaseModel, CurrentUser, LoginRequest, LoginResponse, AnswerResult, ChatRequest, ChatResponse, ConversationDetail (+13 more)
+Cohesion: 0.12
+Nodes (25): BaseModel, CurrentUser, LoginRequest, LoginResponse, AnswerResult, ChatRequest, ChatResponse, ConversationDetail (+17 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.50
@@ -127,46 +126,46 @@ Nodes (5): AidBot API 合同草案, 健康检查, 核心类型, 聊天接口, �
 Cohesion: 0.33
 Nodes (5): AidBot, Docker 一键启动, 本地开发, 本机分别启动, 阶段 1 默认登录
 
-### Community 14 - "Community 14"
-Cohesion: 0.28
-Nodes (14): archive_conversation(), delete_conversation(), get_conversation(), _get_owned_conversation(), list_conversations(), restore_conversation(), _summary_response(), Conversation (+6 more)
-
 ### Community 17 - "Community 17"
-Cohesion: 0.15
-Nodes (15): AdminPage(), conversations, Home(), sources, ChatPage(), ChatWorkbench(), FeedbackPage(), KnowledgePage() (+7 more)
+Cohesion: 0.12
+Nodes (18): AdminPage(), conversations, Home(), sources, ChatPage(), ChatWorkbench(), FeedbackPage(), FeedbackWorkbench() (+10 more)
 
 ### Community 18 - "Community 18"
 Cohesion: 0.22
 Nodes (13): Any, login(), me(), CurrentUser, _b64decode(), _b64encode(), create_access_token(), decode_access_token() (+5 more)
 
+### Community 19 - "Community 19"
+Cohesion: 0.37
+Nodes (19): AnswerFeedback, create_feedback(), list_feedback(), update_feedback_status(), CurrentUser, CurrentUser, FeedbackCreate, FeedbackResponse (+11 more)
+
 ### Community 20 - "Community 20"
 Cohesion: 0.10
-Nodes (17): Protocol, create_provider(), LLMCompletion, LLMProvider, LocalSupportProvider, OpenAICompatibleProvider, Deterministic phase-2 provider; replaceable without changing the chat contract., build_support_prompt() (+9 more)
+Nodes (16): Protocol, create_provider(), LLMCompletion, LLMProvider, LocalSupportProvider, OpenAICompatibleProvider, Deterministic phase-2 provider; replaceable without changing the chat contract., build_support_prompt() (+8 more)
 
 ### Community 22 - "Community 22"
-Cohesion: 0.14
-Nodes (13): CurrentUser, KnowledgeSourceResponse, Session, Base, DeclarativeBase, KnowledgeChunk, KnowledgeDocument, KnowledgeSource (+5 more)
+Cohesion: 0.19
+Nodes (10): Base, datetime, DeclarativeBase, AnswerFeedback, KnowledgeChunk, KnowledgeDocument, KnowledgeSource, KnowledgeSpace (+2 more)
 
 ### Community 27 - "Community 27"
-Cohesion: 0.07
-Nodes (50): HealthBadge(), apiBaseUrl(), archiveConversation(), askQuestion(), askQuestionStream(), authorized(), createFeedback(), createKnowledgeSpace() (+42 more)
+Cohesion: 0.08
+Nodes (48): ratingLabels, statusLabels, apiBaseUrl(), askQuestion(), askQuestionStream(), authorized(), createFeedback(), createKnowledgeSpace() (+40 more)
 
 ## Knowledge Gaps
-- **88 isolated node(s):** `Engine`, `ContentFormat`, `nextConfig`, `name`, `version` (+83 more)
+- **90 isolated node(s):** `Engine`, `ContentFormat`, `nextConfig`, `name`, `version` (+85 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `FastAPI` connect `Community 5` to `10. 后续扩展边界`, `Community 8`, `Community 14`, `Community 18`, `Community 22`?**
-  _High betweenness centrality (0.081) - this node is a cross-community bridge._
-- **Why does `CurrentUser` connect `Community 8` to `10. 后续扩展边界`, `Community 5`, `Community 14`, `Community 18`, `Community 22`?**
-  _High betweenness centrality (0.063) - this node is a cross-community bridge._
-- **Why does `RAGService` connect `Community 22` to `Community 8`, `10. 后续扩展边界`, `Community 5`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
-- **Are the 55 inferred relationships involving `CurrentUser` (e.g. with `Any` and `CurrentUser`) actually correct?**
-  _`CurrentUser` has 55 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `FastAPI` connect `Community 5` to `10. 后续扩展边界`, `Community 8`, `Community 18`, `Community 19`, `Community 22`?**
+  _High betweenness centrality (0.084) - this node is a cross-community bridge._
+- **Why does `CurrentUser` connect `Community 19` to `Community 8`, `10. 后续扩展边界`, `Community 18`?**
+  _High betweenness centrality (0.080) - this node is a cross-community bridge._
+- **Why does `get_conversation()` connect `10. 后续扩展边界` to `Community 8`, `Community 10`?**
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+- **Are the 68 inferred relationships involving `CurrentUser` (e.g. with `AnswerFeedback` and `Any`) actually correct?**
+  _`CurrentUser` has 68 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 23 inferred relationships involving `RAGService` (e.g. with `CurrentUser` and `KnowledgeDocumentImport`) actually correct?**
   _`RAGService` has 23 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 30 inferred relationships involving `KnowledgeSourceResponse` (e.g. with `CurrentUser` and `KnowledgeDocumentImport`) actually correct?**

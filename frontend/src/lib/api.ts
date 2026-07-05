@@ -137,12 +137,28 @@ function parseStreamEvent(rawEvent: string): ChatStreamEvent | null {
   return null;
 }
 
-export function listConversations(token: string): Promise<ConversationSummary[]> {
-  return authorized("/api/conversations", token);
+export function listConversations(token: string, options?: { q?: string; includeArchived?: boolean }): Promise<ConversationSummary[]> {
+  const params = new URLSearchParams();
+  if (options?.q?.trim()) params.set("q", options.q.trim());
+  if (options?.includeArchived) params.set("include_archived", "true");
+  const query = params.toString();
+  return authorized(`/api/conversations${query ? `?${query}` : ""}`, token);
 }
 
 export function getConversation(id: string, token: string): Promise<ConversationDetail> {
   return authorized(`/api/conversations/${id}`, token);
+}
+
+export function archiveConversation(id: string, token: string): Promise<ConversationSummary> {
+  return authorized(`/api/conversations/${id}/archive`, token, { method: "POST" });
+}
+
+export function restoreConversation(id: string, token: string): Promise<ConversationSummary> {
+  return authorized(`/api/conversations/${id}/restore`, token, { method: "POST" });
+}
+
+export function deleteConversation(id: string, token: string): Promise<void> {
+  return authorized(`/api/conversations/${id}`, token, { method: "DELETE" });
 }
 
 export async function listKnowledgeSources(token: string): Promise<KnowledgeSource[]> {

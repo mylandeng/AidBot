@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import { askQuestionStream, getConversation, listConversations } from "@/lib/api";
+import { archiveConversation, askQuestionStream, deleteConversation, getConversation, listConversations, restoreConversation } from "@/lib/api";
 import type { ConversationMessage, ConversationSummary } from "@/lib/types";
 
 export function ChatWorkbench({ token }: { token: string }) {
@@ -9,8 +9,11 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [messages, setMessages] = useState<ConversationMessage[]>([]);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [question, setQuestion] = useState("");
+  const [historyQuery, setHistoryQuery] = useState("");
+  const [includeArchived, setIncludeArchived] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [historyBusyId, setHistoryBusyId] = useState<string | null>(null);
   const streamEndRef = useRef<HTMLDivElement | null>(null);
   const lastMessageContent = messages.at(-1)?.content ?? "";
   const messageCount = messages.length;
@@ -20,12 +23,19 @@ export function ChatWorkbench({ token }: { token: string }) {
   );
 
   async function refreshList() {
-    setItems(await listConversations(token));
+    setItems(await listConversations(token, { q: historyQuery, includeArchived }));
   }
 
   useEffect(() => {
     refreshList().catch(() => setError("会话列表加载失败"));
   }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      refreshList().catch(() => setError("会话列表加载失败"));
+    }, 250);
+    return () => window.clearTimeout(timer);
+  }, [historyQuery, includeArchived]);
 
   useEffect(() => {
     streamEndRef.current?.scrollIntoView({ behavior: busy ? "auto" : "smooth", block: "end" });
@@ -36,6 +46,42 @@ export function ChatWorkbench({ token }: { token: string }) {
     setConversationId(id);
     setMessages(detail.messages);
     setError("");
+  }
+
+  async function updateConversationStatus(item: ConversationSummary) {
+    if (historyBusyId) return;
+    setHistoryBusyId(item.id);
+    setError("");
+    try {
+      const nextItem = item.status === "archived" ? await restoreConversation(item.id, token) : await archiveConversation(item.id, token);
+      if (nextItem.status === "archived" && item.id === conversationId) {
+        setConversationId(null);
+        setMessages([]);
+      }
+      await refreshList();
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "会话状态更新失败");
+    } finally {
+      setHistoryBusyId(null);
+    }
+  }
+
+  async function removeConversation(item: ConversationSummary) {
+    if (historyBusyId || !window.confirm(`删除会话“${item.title}”？此操作会同时删除消息记录。`)) return;
+    setHistoryBusyId(item.id);
+    setError("");
+    try {
+      await deleteConversation(item.id, token);
+      if (item.id === conversationId) {
+        setConversationId(null);
+        setMessages([]);
+      }
+      await refreshList();
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "会话删除失败");
+    } finally {
+      setHistoryBusyId(null);
+    }
   }
 
   async function submit(event: FormEvent) {
@@ -118,21 +164,39 @@ export function ChatWorkbench({ token }: { token: string }) {
 
         <section className="sidebar-block" aria-labelledby="chat-history-title">
           <h2 id="chat-history-title">最近会话</h2>
+          <div className="history-search">
+            <input
+              aria-label="搜索会话记录"
+              placeholder="搜索主题或消息关键字"
+              value={historyQuery}
+              onChange={(event) => setHistoryQuery(event.target.value)}
+            />
+            <button className={includeArchived ? "active" : ""} onClick={() => setIncludeArchived((value) => !value)} type="button">
+              归档
+            </button>
+          </div>
           <div className="chat-history-list">
             {items.length ? (
-              items.slice(0, 5).map((item) => (
-                <button
-                  className={item.id === conversationId ? "active" : ""}
-                  key={item.id}
-                  onClick={() => openConversation(item.id)}
-                  type="button"
-                >
-                  <strong>{item.title}</strong>
-                  <small>{item.message_count} 条消息</small>
-                </button>
+              items.map((item) => (
+                <article className={`history-item ${item.id === conversationId ? "active" : ""} ${item.status === "archived" ? "archived" : ""}`} key={item.id}>
+                  <button className="history-open" onClick={() => openConversation(item.id)} type="button">
+                    <strong>{item.title}</strong>
+                    <small>
+                      {item.message_count} 条消息 · {item.status === "archived" ? "已归档" : "活跃"}
+                    </small>
+                  </button>
+                  <div className="history-actions">
+                    <button disabled={historyBusyId === item.id} onClick={() => updateConversationStatus(item)} type="button">
+                      {item.status === "archived" ? "恢复" : "归档"}
+                    </button>
+                    <button className="danger" disabled={historyBusyId === item.id} onClick={() => removeConversation(item)} type="button">
+                      删除
+                    </button>
+                  </div>
+                </article>
               ))
             ) : (
-              <p className="sidebar-empty">暂无会话</p>
+              <p className="sidebar-empty">{historyQuery ? "没有匹配的会话" : "暂无会话"}</p>
             )}
           </div>
         </section>

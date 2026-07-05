@@ -120,7 +120,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_app_api_auth_py_currentuser",
-      "community": 8,
+      "community": 19,
       "norm_label": "currentuser"
     },
     {
@@ -210,7 +210,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_conversations",
-      "community": 14,
+      "community": 1,
       "norm_label": "conversations.py"
     },
     {
@@ -220,7 +220,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "api_conversations_list_conversations",
-      "community": 14,
+      "community": 1,
       "norm_label": "list_conversations()"
     },
     {
@@ -230,7 +230,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_api_conversations_py_currentuser",
-      "community": 14,
+      "community": 1,
       "norm_label": "currentuser"
     },
     {
@@ -240,7 +240,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_api_conversations_py_session",
-      "community": 14,
+      "community": 1,
       "norm_label": "session"
     },
     {
@@ -250,88 +250,28 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "conversationsummary",
-      "community": 14,
+      "community": 1,
       "norm_label": "conversationsummary"
     },
     {
       "label": "get_conversation()",
       "file_type": "code",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L38",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "api_conversations_get_conversation",
-      "community": 14,
+      "community": 1,
       "norm_label": "get_conversation()"
     },
     {
       "label": "ConversationDetail",
       "file_type": "code",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L38",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "conversationdetail",
       "community": 1,
       "norm_label": "conversationdetail"
-    },
-    {
-      "label": "archive_conversation()",
-      "file_type": "code",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L47",
-      "_origin": "ast",
-      "id": "api_conversations_archive_conversation",
-      "community": 14,
-      "norm_label": "archive_conversation()"
-    },
-    {
-      "label": "restore_conversation()",
-      "file_type": "code",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "api_conversations_restore_conversation",
-      "community": 14,
-      "norm_label": "restore_conversation()"
-    },
-    {
-      "label": "delete_conversation()",
-      "file_type": "code",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L67",
-      "_origin": "ast",
-      "id": "api_conversations_delete_conversation",
-      "community": 14,
-      "norm_label": "delete_conversation()"
-    },
-    {
-      "label": "_get_owned_conversation()",
-      "file_type": "code",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L73",
-      "_origin": "ast",
-      "id": "api_conversations_get_owned_conversation",
-      "community": 14,
-      "norm_label": "_get_owned_conversation()"
-    },
-    {
-      "label": "Conversation",
-      "file_type": "code",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L73",
-      "_origin": "ast",
-      "id": "backend_app_api_conversations_py_conversation",
-      "community": 14,
-      "norm_label": "conversation"
-    },
-    {
-      "label": "_summary_response()",
-      "file_type": "code",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L80",
-      "_origin": "ast",
-      "id": "api_conversations_summary_response",
-      "community": 14,
-      "norm_label": "_summary_response()"
     },
     {
       "label": "feedback.py",
@@ -340,18 +280,108 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "api_feedback",
-      "community": 5,
+      "community": 19,
       "norm_label": "feedback.py"
     },
     {
       "label": "list_feedback()",
       "file_type": "code",
       "source_file": "backend/app/api/feedback.py",
-      "source_location": "L7",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "api_feedback_list_feedback",
-      "community": 5,
+      "community": 19,
       "norm_label": "list_feedback()"
+    },
+    {
+      "label": "FeedbackStatus",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "feedbackstatus",
+      "community": 19,
+      "norm_label": "feedbackstatus"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_api_feedback_py_currentuser",
+      "community": 19,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_api_feedback_py_session",
+      "community": 19,
+      "norm_label": "session"
+    },
+    {
+      "label": "FeedbackList",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "feedbacklist",
+      "community": 19,
+      "norm_label": "feedbacklist"
+    },
+    {
+      "label": "create_feedback()",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "api_feedback_create_feedback",
+      "community": 19,
+      "norm_label": "create_feedback()"
+    },
+    {
+      "label": "FeedbackCreate",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "backend_app_api_feedback_py_feedbackcreate",
+      "community": 19,
+      "norm_label": "feedbackcreate"
+    },
+    {
+      "label": "FeedbackResponse",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "backend_app_api_feedback_py_feedbackresponse",
+      "community": 19,
+      "norm_label": "feedbackresponse"
+    },
+    {
+      "label": "update_feedback_status()",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "api_feedback_update_feedback_status",
+      "community": 19,
+      "norm_label": "update_feedback_status()"
+    },
+    {
+      "label": "FeedbackStatusUpdate",
+      "file_type": "code",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "community": 19,
+      "norm_label": "feedbackstatusupdate"
     },
     {
       "label": "health.py",
@@ -890,7 +920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_conversation",
-      "community": 14,
+      "community": 1,
       "norm_label": "conversation.py"
     },
     {
@@ -900,7 +930,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "models_conversation_utcnow",
-      "community": 14,
+      "community": 1,
       "norm_label": "utcnow()"
     },
     {
@@ -910,7 +940,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "datetime",
-      "community": 14,
+      "community": 22,
       "norm_label": "datetime"
     },
     {
@@ -927,7 +957,7 @@
       "label": "Message",
       "file_type": "code",
       "source_file": "backend/app/models/conversation.py",
-      "source_location": "L26",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "models_conversation_message",
       "community": 1,
@@ -940,18 +970,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_feedback",
-      "community": 14,
+      "community": 22,
       "norm_label": "feedback.py"
     },
     {
-      "label": "Feedback models are planned for phase 4.",
-      "file_type": "rationale",
+      "label": "AnswerFeedback",
+      "file_type": "code",
       "source_file": "backend/app/models/feedback.py",
-      "source_location": "L1",
+      "source_location": "L11",
       "_origin": "ast",
-      "id": "models_feedback_rationale_1",
-      "community": 14,
-      "norm_label": "feedback models are planned for phase 4."
+      "id": "models_feedback_answerfeedback",
+      "community": 22,
+      "norm_label": "answerfeedback"
     },
     {
       "label": "knowledge.py",
@@ -1167,7 +1197,7 @@
       "label": "ConversationDetail",
       "file_type": "code",
       "source_file": "backend/app/schemas/chat.py",
-      "source_location": "L64",
+      "source_location": "L63",
       "_origin": "ast",
       "id": "schemas_chat_conversationdetail",
       "community": 10,
@@ -1180,18 +1210,48 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "schemas_feedback",
-      "community": 19,
+      "community": 10,
       "norm_label": "feedback.py"
     },
     {
-      "label": "Feedback schemas are planned for phase 4.",
-      "file_type": "rationale",
+      "label": "FeedbackCreate",
+      "file_type": "code",
       "source_file": "backend/app/schemas/feedback.py",
-      "source_location": "L1",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "schemas_feedback_rationale_1",
-      "community": 19,
-      "norm_label": "feedback schemas are planned for phase 4."
+      "id": "schemas_feedback_feedbackcreate",
+      "community": 10,
+      "norm_label": "feedbackcreate"
+    },
+    {
+      "label": "FeedbackStatusUpdate",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "schemas_feedback_feedbackstatusupdate",
+      "community": 10,
+      "norm_label": "feedbackstatusupdate"
+    },
+    {
+      "label": "FeedbackResponse",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "schemas_feedback_feedbackresponse",
+      "community": 10,
+      "norm_label": "feedbackresponse"
+    },
+    {
+      "label": "FeedbackList",
+      "file_type": "code",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "schemas_feedback_feedbacklist",
+      "community": 10,
+      "norm_label": "feedbacklist"
     },
     {
       "label": "knowledge.py",
@@ -1509,7 +1569,7 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "backend_app_services_chat_service_py_conversation",
+      "id": "conversation",
       "community": 1,
       "norm_label": "conversation"
     },
@@ -1517,7 +1577,7 @@
       "label": "._assistant_message()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L94",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_assistant_message",
       "community": 1,
@@ -1527,9 +1587,9 @@
       "label": "Message",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L94",
+      "source_location": "L92",
       "_origin": "ast",
-      "id": "message",
+      "id": "backend_app_services_chat_service_py_message",
       "community": 1,
       "norm_label": "message"
     },
@@ -1537,7 +1597,7 @@
       "label": "._event()",
       "file_type": "code",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L105",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "services_chat_service_chatservice_event",
       "community": 1,
@@ -1667,21 +1727,131 @@
       "label": "FeedbackService",
       "file_type": "code",
       "source_file": "backend/app/services/feedback_service.py",
-      "source_location": "L1",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "services_feedback_service_feedbackservice",
-      "community": 5,
+      "community": 19,
       "norm_label": "feedbackservice"
     },
     {
-      "label": ".record()",
+      "label": ".create()",
       "file_type": "code",
       "source_file": "backend/app/services/feedback_service.py",
-      "source_location": "L2",
+      "source_location": "L12",
       "_origin": "ast",
-      "id": "services_feedback_service_feedbackservice_record",
-      "community": 5,
-      "norm_label": ".record()"
+      "id": "services_feedback_service_feedbackservice_create",
+      "community": 19,
+      "norm_label": ".create()"
+    },
+    {
+      "label": "FeedbackCreate",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_app_services_feedback_service_py_feedbackcreate",
+      "community": 19,
+      "norm_label": "feedbackcreate"
+    },
+    {
+      "label": "CurrentUser",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_app_services_feedback_service_py_currentuser",
+      "community": 19,
+      "norm_label": "currentuser"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_app_services_feedback_service_py_session",
+      "community": 19,
+      "norm_label": "session"
+    },
+    {
+      "label": "FeedbackResponse",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_app_services_feedback_service_py_feedbackresponse",
+      "community": 19,
+      "norm_label": "feedbackresponse"
+    },
+    {
+      "label": ".list_queue()",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "services_feedback_service_feedbackservice_list_queue",
+      "community": 19,
+      "norm_label": ".list_queue()"
+    },
+    {
+      "label": ".update_status()",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "services_feedback_service_feedbackservice_update_status",
+      "community": 19,
+      "norm_label": ".update_status()"
+    },
+    {
+      "label": "FeedbackStatusUpdate",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "community": 19,
+      "norm_label": "feedbackstatusupdate"
+    },
+    {
+      "label": "._require_reviewer()",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "services_feedback_service_feedbackservice_require_reviewer",
+      "community": 19,
+      "norm_label": "._require_reviewer()"
+    },
+    {
+      "label": "._response()",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "services_feedback_service_feedbackservice_response",
+      "community": 19,
+      "norm_label": "._response()"
+    },
+    {
+      "label": "AnswerFeedback",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "answerfeedback",
+      "community": 19,
+      "norm_label": "answerfeedback"
+    },
+    {
+      "label": "Message",
+      "file_type": "code",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "backend_app_services_feedback_service_py_message",
+      "community": 19,
+      "norm_label": "message"
     },
     {
       "label": "llm_service.py",
@@ -2040,7 +2210,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "services_rag_service_retrievedchunk_context_block",
-      "community": 5,
+      "community": 8,
       "norm_label": ".context_block()"
     },
     {
@@ -2050,7 +2220,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "services_rag_service_ragservice",
-      "community": 22,
+      "community": 8,
       "norm_label": "ragservice"
     },
     {
@@ -2090,7 +2260,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_create_space",
-      "community": 22,
+      "community": 8,
       "norm_label": ".create_space()"
     },
     {
@@ -2110,7 +2280,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "backend_app_services_rag_service_py_currentuser",
-      "community": 22,
+      "community": 8,
       "norm_label": "currentuser"
     },
     {
@@ -2120,7 +2290,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "backend_app_services_rag_service_py_session",
-      "community": 22,
+      "community": 8,
       "norm_label": "session"
     },
     {
@@ -2140,7 +2310,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_list_spaces",
-      "community": 22,
+      "community": 8,
       "norm_label": ".list_spaces()"
     },
     {
@@ -2150,7 +2320,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_delete_space",
-      "community": 22,
+      "community": 8,
       "norm_label": ".delete_space()"
     },
     {
@@ -2160,7 +2330,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_create_manual_entry",
-      "community": 22,
+      "community": 8,
       "norm_label": ".create_manual_entry()"
     },
     {
@@ -2180,7 +2350,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "backend_app_services_rag_service_py_knowledgesourceresponse",
-      "community": 22,
+      "community": 8,
       "norm_label": "knowledgesourceresponse"
     },
     {
@@ -2190,7 +2360,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_import_markdown",
-      "community": 22,
+      "community": 8,
       "norm_label": ".import_markdown()"
     },
     {
@@ -2210,7 +2380,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_import_document",
-      "community": 22,
+      "community": 8,
       "norm_label": ".import_document()"
     },
     {
@@ -2230,7 +2400,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_create_entry",
-      "community": 22,
+      "community": 8,
       "norm_label": "._create_entry()"
     },
     {
@@ -2240,7 +2410,7 @@
       "source_location": "L181",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_reindex_source",
-      "community": 22,
+      "community": 8,
       "norm_label": ".reindex_source()"
     },
     {
@@ -2250,7 +2420,7 @@
       "source_location": "L199",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_delete_source",
-      "community": 22,
+      "community": 8,
       "norm_label": ".delete_source()"
     },
     {
@@ -2260,7 +2430,7 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_list_sources",
-      "community": 22,
+      "community": 8,
       "norm_label": ".list_sources()"
     },
     {
@@ -2270,7 +2440,7 @@
       "source_location": "L210",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_search",
-      "community": 22,
+      "community": 8,
       "norm_label": ".search()"
     },
     {
@@ -2290,7 +2460,7 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_retrieve",
-      "community": 22,
+      "community": 8,
       "norm_label": ".retrieve()"
     },
     {
@@ -2300,7 +2470,7 @@
       "source_location": "L251",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_context_for_prompt",
-      "community": 5,
+      "community": 8,
       "norm_label": ".context_for_prompt()"
     },
     {
@@ -2310,7 +2480,7 @@
       "source_location": "L256",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_visible_sources_query",
-      "community": 22,
+      "community": 8,
       "norm_label": "._visible_sources_query()"
     },
     {
@@ -2320,7 +2490,7 @@
       "source_location": "L256",
       "_origin": "ast",
       "id": "select",
-      "community": 22,
+      "community": 8,
       "norm_label": "select"
     },
     {
@@ -2340,7 +2510,7 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_visible_spaces_query",
-      "community": 22,
+      "community": 8,
       "norm_label": "._visible_spaces_query()"
     },
     {
@@ -2360,7 +2530,7 @@
       "source_location": "L262",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_resolve_space",
-      "community": 22,
+      "community": 8,
       "norm_label": "._resolve_space()"
     },
     {
@@ -2370,7 +2540,7 @@
       "source_location": "L284",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_get_editable_space",
-      "community": 22,
+      "community": 8,
       "norm_label": "._get_editable_space()"
     },
     {
@@ -2380,7 +2550,7 @@
       "source_location": "L290",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_space_response",
-      "community": 22,
+      "community": 8,
       "norm_label": "._space_response()"
     },
     {
@@ -2390,7 +2560,7 @@
       "source_location": "L304",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_source_response",
-      "community": 22,
+      "community": 8,
       "norm_label": "._source_response()"
     },
     {
@@ -2400,7 +2570,7 @@
       "source_location": "L320",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_append_chunks",
-      "community": 22,
+      "community": 8,
       "norm_label": "._append_chunks()"
     },
     {
@@ -2420,7 +2590,7 @@
       "source_location": "L342",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_split_text",
-      "community": 22,
+      "community": 8,
       "norm_label": "._split_text()"
     },
     {
@@ -2430,7 +2600,7 @@
       "source_location": "L371",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_markdown_sections",
-      "community": 22,
+      "community": 8,
       "norm_label": "._markdown_sections()"
     },
     {
@@ -2440,7 +2610,7 @@
       "source_location": "L403",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_split_long_text",
-      "community": 22,
+      "community": 8,
       "norm_label": "._split_long_text()"
     },
     {
@@ -2450,7 +2620,7 @@
       "source_location": "L414",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_lexical_terms",
-      "community": 22,
+      "community": 8,
       "norm_label": "._lexical_terms()"
     },
     {
@@ -2460,7 +2630,7 @@
       "source_location": "L425",
       "_origin": "ast",
       "id": "services_rag_service_ragservice_lexical_score",
-      "community": 22,
+      "community": 8,
       "norm_label": "._lexical_score()"
     },
     {
@@ -2794,20 +2964,10 @@
       "norm_label": "test_chat_can_continue_existing_conversation()"
     },
     {
-      "label": "test_conversations_can_be_searched_archived_restored_and_deleted()",
-      "file_type": "code",
-      "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L54",
-      "_origin": "ast",
-      "id": "tests_test_chat_contract_test_conversations_can_be_searched_archived_restored_and_deleted",
-      "community": 20,
-      "norm_label": "test_conversations_can_be_searched_archived_restored_and_deleted()"
-    },
-    {
       "label": "test_stream_chat_emits_delta_and_structured_final()",
       "file_type": "code",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L86",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "tests_test_chat_contract_test_stream_chat_emits_delta_and_structured_final",
       "community": 20,
@@ -2817,11 +2977,51 @@
       "label": "test_openai_provider_adapts_support_prompt_to_chat_messages()",
       "file_type": "code",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L104",
+      "source_location": "L72",
       "_origin": "ast",
       "id": "tests_test_chat_contract_test_openai_provider_adapts_support_prompt_to_chat_messages",
       "community": 20,
       "norm_label": "test_openai_provider_adapts_support_prompt_to_chat_messages()"
+    },
+    {
+      "label": "test_feedback.py",
+      "file_type": "code",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_feedback",
+      "community": 5,
+      "norm_label": "test_feedback.py"
+    },
+    {
+      "label": "auth_headers()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "tests_test_feedback_auth_headers",
+      "community": 5,
+      "norm_label": "auth_headers()"
+    },
+    {
+      "label": "test_feedback_requires_authentication()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "tests_test_feedback_test_feedback_requires_authentication",
+      "community": 5,
+      "norm_label": "test_feedback_requires_authentication()"
+    },
+    {
+      "label": "test_answer_feedback_can_enter_review_queue_and_update_status()",
+      "file_type": "code",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "tests_test_feedback_test_answer_feedback_can_enter_review_queue_and_update_status",
+      "community": 5,
+      "norm_label": "test_answer_feedback_can_enter_review_queue_and_update_status()"
     },
     {
       "label": "test_health.py",
@@ -3287,7 +3487,7 @@
       "label": "relevanceLabel()",
       "file_type": "code",
       "source_file": "frontend/src/app/chat/workbench.tsx",
-      "source_location": "L300",
+      "source_location": "L292",
       "_origin": "ast",
       "id": "chat_workbench_relevancelabel",
       "community": 27,
@@ -3297,7 +3497,7 @@
       "label": "createTempMessage()",
       "file_type": "code",
       "source_file": "frontend/src/app/chat/workbench.tsx",
-      "source_location": "L306",
+      "source_location": "L298",
       "_origin": "ast",
       "id": "chat_workbench_createtempmessage",
       "community": 27,
@@ -3317,11 +3517,51 @@
       "label": "FeedbackPage()",
       "file_type": "code",
       "source_file": "frontend/src/app/feedback/page.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "feedback_page_feedbackpage",
       "community": 17,
       "norm_label": "feedbackpage()"
+    },
+    {
+      "label": "workbench.tsx",
+      "file_type": "code",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "feedback_workbench",
+      "community": 27,
+      "norm_label": "workbench.tsx"
+    },
+    {
+      "label": "statusLabels",
+      "file_type": "code",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "feedback_workbench_statuslabels",
+      "community": 27,
+      "norm_label": "statuslabels"
+    },
+    {
+      "label": "ratingLabels",
+      "file_type": "code",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "feedback_workbench_ratinglabels",
+      "community": 27,
+      "norm_label": "ratinglabels"
+    },
+    {
+      "label": "FeedbackWorkbench()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "feedback_workbench_feedbackworkbench",
+      "community": 17,
+      "norm_label": "feedbackworkbench()"
     },
     {
       "label": "page.tsx",
@@ -3490,7 +3730,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "layout_health_badge",
-      "community": 27,
+      "community": 17,
       "norm_label": "health-badge.tsx"
     },
     {
@@ -3500,7 +3740,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "layout_health_badge_healthbadge",
-      "community": 27,
+      "community": 17,
       "norm_label": "healthbadge()"
     },
     {
@@ -3530,7 +3770,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "lib_api_gethealth",
-      "community": 27,
+      "community": 17,
       "norm_label": "gethealth()"
     },
     {
@@ -3597,47 +3837,17 @@
       "label": "getConversation()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L148",
+      "source_location": "L144",
       "_origin": "ast",
       "id": "lib_api_getconversation",
       "community": 27,
       "norm_label": "getconversation()"
     },
     {
-      "label": "archiveConversation()",
-      "file_type": "code",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L152",
-      "_origin": "ast",
-      "id": "lib_api_archiveconversation",
-      "community": 27,
-      "norm_label": "archiveconversation()"
-    },
-    {
-      "label": "restoreConversation()",
-      "file_type": "code",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L156",
-      "_origin": "ast",
-      "id": "lib_api_restoreconversation",
-      "community": 27,
-      "norm_label": "restoreconversation()"
-    },
-    {
-      "label": "deleteConversation()",
-      "file_type": "code",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L160",
-      "_origin": "ast",
-      "id": "lib_api_deleteconversation",
-      "community": 27,
-      "norm_label": "deleteconversation()"
-    },
-    {
       "label": "listKnowledgeSources()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L164",
+      "source_location": "L148",
       "_origin": "ast",
       "id": "lib_api_listknowledgesources",
       "community": 27,
@@ -3647,7 +3857,7 @@
       "label": "listKnowledgeSpaces()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L169",
+      "source_location": "L153",
       "_origin": "ast",
       "id": "lib_api_listknowledgespaces",
       "community": 27,
@@ -3657,7 +3867,7 @@
       "label": "createKnowledgeSpace()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L174",
+      "source_location": "L158",
       "_origin": "ast",
       "id": "lib_api_createknowledgespace",
       "community": 27,
@@ -3667,7 +3877,7 @@
       "label": "deleteKnowledgeSpace()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L178",
+      "source_location": "L162",
       "_origin": "ast",
       "id": "lib_api_deleteknowledgespace",
       "community": 27,
@@ -3677,7 +3887,7 @@
       "label": "createManualKnowledge()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L182",
+      "source_location": "L166",
       "_origin": "ast",
       "id": "lib_api_createmanualknowledge",
       "community": 27,
@@ -3687,7 +3897,7 @@
       "label": "importMarkdownKnowledge()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L186",
+      "source_location": "L170",
       "_origin": "ast",
       "id": "lib_api_importmarkdownknowledge",
       "community": 27,
@@ -3697,7 +3907,7 @@
       "label": "importKnowledgeDocument()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L190",
+      "source_location": "L174",
       "_origin": "ast",
       "id": "lib_api_importknowledgedocument",
       "community": 27,
@@ -3707,7 +3917,7 @@
       "label": "reindexKnowledgeSource()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L194",
+      "source_location": "L178",
       "_origin": "ast",
       "id": "lib_api_reindexknowledgesource",
       "community": 27,
@@ -3717,7 +3927,7 @@
       "label": "deleteKnowledgeSource()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L198",
+      "source_location": "L182",
       "_origin": "ast",
       "id": "lib_api_deleteknowledgesource",
       "community": 27,
@@ -3727,7 +3937,7 @@
       "label": "listFeedback()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L202",
+      "source_location": "L186",
       "_origin": "ast",
       "id": "lib_api_listfeedback",
       "community": 27,
@@ -3737,7 +3947,7 @@
       "label": "createFeedback()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L208",
+      "source_location": "L192",
       "_origin": "ast",
       "id": "lib_api_createfeedback",
       "community": 27,
@@ -3747,7 +3957,7 @@
       "label": "updateFeedbackStatus()",
       "file_type": "code",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L212",
+      "source_location": "L196",
       "_origin": "ast",
       "id": "lib_api_updatefeedbackstatus",
       "community": 27,
@@ -3947,7 +4157,7 @@
       "label": "ConversationMessage",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L67",
+      "source_location": "L66",
       "_origin": "ast",
       "id": "lib_types_conversationmessage",
       "community": 27,
@@ -3957,7 +4167,7 @@
       "label": "ConversationDetail",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L77",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "lib_types_conversationdetail",
       "community": 27,
@@ -3967,7 +4177,7 @@
       "label": "KnowledgeSource",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L81",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "lib_types_knowledgesource",
       "community": 27,
@@ -3977,7 +4187,7 @@
       "label": "KnowledgeSourceList",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L95",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "lib_types_knowledgesourcelist",
       "community": 27,
@@ -3987,7 +4197,7 @@
       "label": "KnowledgeSpace",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L99",
+      "source_location": "L98",
       "_origin": "ast",
       "id": "lib_types_knowledgespace",
       "community": 27,
@@ -3997,7 +4207,7 @@
       "label": "KnowledgeSpaceList",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L110",
+      "source_location": "L109",
       "_origin": "ast",
       "id": "lib_types_knowledgespacelist",
       "community": 27,
@@ -4007,7 +4217,7 @@
       "label": "KnowledgeSpaceRequest",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L114",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "lib_types_knowledgespacerequest",
       "community": 27,
@@ -4017,7 +4227,7 @@
       "label": "ManualKnowledgeRequest",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L120",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "lib_types_manualknowledgerequest",
       "community": 27,
@@ -4027,7 +4237,7 @@
       "label": "MarkdownKnowledgeRequest",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L127",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "lib_types_markdownknowledgerequest",
       "community": 27,
@@ -4037,7 +4247,7 @@
       "label": "KnowledgeDocumentRequest",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L131",
+      "source_location": "L130",
       "_origin": "ast",
       "id": "lib_types_knowledgedocumentrequest",
       "community": 27,
@@ -4047,7 +4257,7 @@
       "label": "FeedbackCreateRequest",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L136",
+      "source_location": "L135",
       "_origin": "ast",
       "id": "lib_types_feedbackcreaterequest",
       "community": 27,
@@ -4057,7 +4267,7 @@
       "label": "FeedbackStatusRequest",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L143",
+      "source_location": "L142",
       "_origin": "ast",
       "id": "lib_types_feedbackstatusrequest",
       "community": 27,
@@ -4067,7 +4277,7 @@
       "label": "FeedbackItem",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L148",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "lib_types_feedbackitem",
       "community": 27,
@@ -4077,7 +4287,7 @@
       "label": "FeedbackList",
       "file_type": "code",
       "source_file": "frontend/src/lib/types.ts",
-      "source_location": "L164",
+      "source_location": "L163",
       "_origin": "ast",
       "id": "lib_types_feedbacklist",
       "community": 27,
@@ -5096,6 +5306,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "answerfeedback",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/core/security.py",
       "source_location": "L12",
       "weight": 0.8,
@@ -5159,16 +5379,6 @@
       "source_file": "backend/app/api/conversations.py",
       "source_location": "L8",
       "weight": 0.8,
-      "source": "backend_app_api_conversations_py_conversation",
-      "target": "backend_app_api_auth_py_currentuser",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L8",
-      "weight": 0.8,
       "confidence_score": 0.5,
       "source": "backend_app_api_conversations_py_currentuser",
       "target": "backend_app_api_auth_py_currentuser"
@@ -5181,6 +5391,56 @@
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "backend_app_api_conversations_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
@@ -5297,16 +5557,6 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L10",
-      "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "backend_app_api_auth_py_currentuser",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
       "source_location": "L6",
       "weight": 0.8,
       "confidence_score": 0.5,
@@ -5317,10 +5567,80 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_message",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
       "source_location": "L6",
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "backend_app_services_chat_service_py_session",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_currentuser",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackcreate",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackresponse",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_message",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_session",
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
@@ -5406,6 +5726,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/api/conversations.py",
       "source_location": "L8",
       "weight": 0.8,
@@ -5441,6 +5771,26 @@
       "weight": 0.8,
       "confidence_score": 0.5,
       "source": "embeddingservice",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "feedbacklist",
+      "target": "backend_app_api_auth_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "feedbackstatus",
       "target": "backend_app_api_auth_py_currentuser"
     },
     {
@@ -5532,16 +5882,6 @@
       "confidence_score": 0.5,
       "source": "llmservice",
       "target": "backend_app_api_auth_py_currentuser"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L10",
-      "weight": 0.8,
-      "source": "message",
-      "target": "backend_app_api_auth_py_currentuser",
-      "confidence_score": 0.5
     },
     {
       "relation": "uses",
@@ -5803,20 +6143,20 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L11",
+      "source_location": "L7",
       "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "backend_app_api_chat_py_chatrequest",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "backend_app_api_chat_py_chatrequest"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "backend_app_services_chat_service_py_currentuser",
+      "source": "backend_app_services_chat_service_py_message",
       "target": "backend_app_api_chat_py_chatrequest"
     },
     {
@@ -5853,21 +6193,21 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "llmservice",
+      "source": "conversation",
       "target": "backend_app_api_chat_py_chatrequest"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L11",
+      "source_location": "L7",
       "weight": 0.8,
-      "source": "message",
-      "target": "backend_app_api_chat_py_chatrequest",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "backend_app_api_chat_py_chatrequest"
     },
     {
       "relation": "uses",
@@ -6015,20 +6355,20 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L11",
+      "source_location": "L7",
       "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "backend_app_api_chat_py_chatresponse",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "backend_app_api_chat_py_chatresponse"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "backend_app_services_chat_service_py_currentuser",
+      "source": "backend_app_services_chat_service_py_message",
       "target": "backend_app_api_chat_py_chatresponse"
     },
     {
@@ -6045,21 +6385,21 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "llmservice",
+      "source": "conversation",
       "target": "backend_app_api_chat_py_chatresponse"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L11",
+      "source_location": "L7",
       "weight": 0.8,
-      "source": "message",
-      "target": "backend_app_api_chat_py_chatresponse",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "backend_app_api_chat_py_chatresponse"
     },
     {
       "relation": "uses",
@@ -6106,41 +6446,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "api_conversations",
-      "target": "api_conversations_archive_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L67",
-      "weight": 1.0,
-      "source": "api_conversations",
-      "target": "api_conversations_delete_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
       "source_location": "L21",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "api_conversations",
       "target": "api_conversations_get_conversation"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "api_conversations",
-      "target": "api_conversations_get_owned_conversation",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6153,26 +6463,6 @@
       "target": "api_conversations_list_conversations"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "api_conversations",
-      "target": "api_conversations_restore_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L80",
-      "weight": 1.0,
-      "source": "api_conversations",
-      "target": "api_conversations_summary_response",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -6182,17 +6472,6 @@
       "confidence_score": 1.0,
       "source": "api_conversations",
       "target": "fastapi"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L34",
-      "weight": 1.0,
-      "source": "api_conversations_list_conversations",
-      "target": "api_conversations_summary_response",
-      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -6243,55 +6522,11 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "api_conversations_archive_conversation",
-      "target": "backend_app_api_conversations_py_currentuser",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L67",
-      "weight": 1.0,
-      "source": "api_conversations_delete_conversation",
-      "target": "backend_app_api_conversations_py_currentuser",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
       "source_location": "L21",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "api_conversations_get_conversation",
       "target": "backend_app_api_conversations_py_currentuser"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "api_conversations_get_owned_conversation",
-      "target": "backend_app_api_conversations_py_currentuser",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "api_conversations_restore_conversation",
-      "target": "backend_app_api_conversations_py_currentuser",
-      "confidence_score": 1.0
     },
     {
       "relation": "uses",
@@ -6312,28 +6547,6 @@
       "confidence_score": 0.5,
       "source": "backend_app_api_conversations_py_currentuser",
       "target": "models_conversation_message"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "api_conversations_archive_conversation",
-      "target": "backend_app_api_conversations_py_session",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L67",
-      "weight": 1.0,
-      "source": "api_conversations_delete_conversation",
-      "target": "backend_app_api_conversations_py_session",
-      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -6347,28 +6560,6 @@
       "target": "backend_app_api_conversations_py_session"
     },
     {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "api_conversations_get_owned_conversation",
-      "target": "backend_app_api_conversations_py_session",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "api_conversations_restore_conversation",
-      "target": "backend_app_api_conversations_py_session",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/api/conversations.py",
@@ -6387,39 +6578,6 @@
       "confidence_score": 0.5,
       "source": "backend_app_api_conversations_py_session",
       "target": "models_conversation_message"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "api_conversations_archive_conversation",
-      "target": "conversationsummary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "api_conversations_restore_conversation",
-      "target": "conversationsummary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L80",
-      "weight": 1.0,
-      "source": "api_conversations_summary_response",
-      "target": "conversationsummary",
-      "confidence_score": 1.0
     },
     {
       "relation": "uses",
@@ -6495,134 +6653,14 @@
       "target": "models_conversation_message"
     },
     {
-      "relation": "calls",
-      "context": "call",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L48",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
       "weight": 1.0,
-      "source": "api_conversations_archive_conversation",
-      "target": "api_conversations_get_owned_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L53",
-      "weight": 1.0,
-      "source": "api_conversations_archive_conversation",
-      "target": "api_conversations_summary_response",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L50",
-      "weight": 1.0,
-      "source": "api_conversations_archive_conversation",
-      "target": "models_conversation_utcnow"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "source": "api_conversations_restore_conversation",
-      "target": "api_conversations_get_owned_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "source": "api_conversations_restore_conversation",
-      "target": "api_conversations_summary_response",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "api_conversations_restore_conversation",
-      "target": "models_conversation_utcnow"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L68",
-      "weight": 1.0,
-      "source": "api_conversations_delete_conversation",
-      "target": "api_conversations_get_owned_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "api_conversations_get_owned_conversation",
-      "target": "backend_app_api_conversations_py_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L74",
-      "weight": 1.0,
-      "source": "api_conversations_get_owned_conversation",
-      "target": "select"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L80",
-      "weight": 1.0,
-      "source": "api_conversations_summary_response",
-      "target": "backend_app_api_conversations_py_conversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L7",
-      "weight": 0.8,
-      "source": "backend_app_api_conversations_py_conversation",
-      "target": "models_conversation_conversation",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L7",
-      "weight": 0.8,
-      "source": "backend_app_api_conversations_py_conversation",
-      "target": "models_conversation_message",
-      "confidence_score": 0.5
+      "confidence_score": 1.0,
+      "source": "api_feedback",
+      "target": "api_feedback_create_feedback"
     },
     {
       "relation": "contains",
@@ -6635,6 +6673,16 @@
       "target": "api_feedback_list_feedback"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback",
+      "target": "api_feedback_update_feedback_status"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -6644,6 +6692,668 @@
       "confidence_score": 1.0,
       "source": "api_feedback",
       "target": "fastapi"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_list_feedback",
+      "target": "backend_app_api_feedback_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_list_feedback",
+      "target": "backend_app_api_feedback_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_list_feedback",
+      "target": "feedbacklist"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_list_feedback",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackresponse",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "feedbacklist",
+      "target": "feedbackstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "feedbackstatus",
+      "target": "feedbackstatus",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "feedbackstatus",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_create_feedback",
+      "target": "backend_app_api_feedback_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_update_feedback_status",
+      "target": "backend_app_api_feedback_py_currentuser"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "feedbacklist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_currentuser",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_create_feedback",
+      "target": "backend_app_api_feedback_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_update_feedback_status",
+      "target": "backend_app_api_feedback_py_session"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
+      "target": "feedbacklist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_session",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "feedbacklist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackresponse",
+      "target": "feedbacklist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "target": "feedbacklist"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "feedbacklist",
+      "target": "feedbacklist",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "feedbacklist",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_create_feedback",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_create_feedback",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "answerfeedback",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "backend_app_api_feedback_py_feedbackcreate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackcreate",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_currentuser",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackcreate",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackresponse",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_message",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_session",
+      "target": "backend_app_api_feedback_py_feedbackcreate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "answerfeedback",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_update_feedback_status",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_feedback_py_feedbackresponse",
+      "target": "backend_app_api_feedback_py_feedbackresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackresponse",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackresponse",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_currentuser",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackcreate",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackresponse",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_message",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_session",
+      "target": "backend_app_api_feedback_py_feedbackresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_feedback_update_feedback_status",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "answerfeedback",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/api/feedback.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_api_feedback_py_feedbackstatusupdate",
+      "target": "services_feedback_service_feedbackservice"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_currentuser",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackcreate",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackresponse",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_message",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_session",
+      "target": "backend_app_api_feedback_py_feedbackstatusupdate"
     },
     {
       "relation": "contains",
@@ -9023,6 +9733,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/models/feedback.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "models_feedback_answerfeedback",
+      "target": "core_database_base"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/models/knowledge.py",
       "source_location": "L7",
       "weight": 0.8,
@@ -9347,6 +10067,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_feedback",
+      "target": "app_main"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_health.py",
       "source_location": "L3",
       "weight": 1.0,
@@ -9541,6 +10272,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "answerfeedback",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L5",
       "weight": 0.8,
@@ -9562,20 +10303,20 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L9",
+      "source_location": "L5",
       "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "models_conversation_conversation",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "models_conversation_conversation"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "backend_app_services_chat_service_py_currentuser",
+      "source": "backend_app_services_chat_service_py_message",
       "target": "models_conversation_conversation"
     },
     {
@@ -9591,11 +10332,61 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
+      "source_file": "backend/app/services/feedback_service.py",
       "source_location": "L5",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "llmservice",
+      "source": "backend_app_services_feedback_service_py_currentuser",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackcreate",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackresponse",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_message",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_session",
       "target": "models_conversation_conversation"
     },
     {
@@ -9604,9 +10395,19 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L9",
       "weight": 0.8,
-      "source": "message",
-      "target": "models_conversation_conversation",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "models_conversation_conversation"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "models_conversation_conversation"
     },
     {
       "relation": "uses",
@@ -9652,6 +10453,16 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "answerfeedback",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L5",
       "weight": 0.8,
@@ -9673,20 +10484,20 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L9",
+      "source_location": "L5",
       "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "models_conversation_message",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_currentuser",
+      "target": "models_conversation_message"
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "backend_app_services_chat_service_py_currentuser",
+      "source": "backend_app_services_chat_service_py_message",
       "target": "models_conversation_message"
     },
     {
@@ -9702,11 +10513,61 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
-      "source_file": "backend/app/services/chat_service.py",
+      "source_file": "backend/app/services/feedback_service.py",
       "source_location": "L5",
       "weight": 0.8,
       "confidence_score": 0.5,
-      "source": "llmservice",
+      "source": "backend_app_services_feedback_service_py_currentuser",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackcreate",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackresponse",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_feedbackstatusupdate",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_message",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "backend_app_services_feedback_service_py_session",
       "target": "models_conversation_message"
     },
     {
@@ -9715,9 +10576,19 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L9",
       "weight": 0.8,
-      "source": "message",
-      "target": "models_conversation_message",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "models_conversation_message"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "llmservice",
+      "target": "models_conversation_message"
     },
     {
       "relation": "uses",
@@ -9761,14 +10632,14 @@
       "target": "models_conversation_message"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/models/feedback.py",
-      "source_location": "L1",
+      "source_location": "L11",
       "weight": 1.0,
-      "source": "models_feedback_rationale_1",
-      "target": "models_feedback",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "models_feedback",
+      "target": "models_feedback_answerfeedback"
     },
     {
       "relation": "contains",
@@ -10008,6 +10879,46 @@
     {
       "relation": "inherits",
       "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback_feedbackcreate",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback_feedbacklist",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback_feedbackresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback_feedbackstatusupdate",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
       "source_file": "backend/app/schemas/knowledge.py",
       "source_location": "L24",
       "weight": 1.0,
@@ -10186,14 +11097,44 @@
       "target": "schemas_chat_conversationsummary"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/schemas/feedback.py",
-      "source_location": "L1",
+      "source_location": "L10",
       "weight": 1.0,
-      "source": "schemas_feedback_rationale_1",
-      "target": "schemas_feedback",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "schemas_feedback",
+      "target": "schemas_feedback_feedbackcreate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback",
+      "target": "schemas_feedback_feedbacklist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback",
+      "target": "schemas_feedback_feedbackresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/schemas/feedback.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_feedback",
+      "target": "schemas_feedback_feedbackstatusupdate"
     },
     {
       "relation": "contains",
@@ -10614,6 +11555,17 @@
       "target": "backend_app_services_chat_service_py_currentuser"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/chat_service.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_chat_service_chatservice_answer",
+      "target": "backend_app_services_chat_service_py_message"
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
@@ -10623,17 +11575,6 @@
       "confidence_score": 1.0,
       "source": "services_chat_service_chatservice_answer",
       "target": "backend_app_services_chat_service_py_session"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "services_chat_service_chatservice_answer",
-      "target": "message",
-      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -10821,9 +11762,9 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_chat_service_chatservice_stream_answer",
-      "target": "message",
-      "confidence_score": 1.0
+      "target": "backend_app_services_chat_service_py_message"
     },
     {
       "relation": "calls",
@@ -10863,11 +11804,11 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L80",
+      "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_chat_service_chatservice_resolve_conversation",
-      "target": "backend_app_services_chat_service_py_conversation",
-      "confidence_score": 1.0
+      "target": "conversation"
     },
     {
       "relation": "calls",
@@ -10886,9 +11827,9 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L12",
       "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "services_llm_service_llmservice",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "services_llm_service_llmservice"
     },
     {
       "relation": "uses",
@@ -10896,20 +11837,20 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L13",
       "weight": 0.8,
-      "source": "backend_app_services_chat_service_py_conversation",
-      "target": "services_rag_service_ragservice",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "conversation",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/chat_service.py",
-      "source_location": "L94",
+      "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_chat_service_chatservice_assistant_message",
-      "target": "message",
-      "confidence_score": 1.0
+      "target": "backend_app_services_chat_service_py_message"
     },
     {
       "relation": "uses",
@@ -10917,9 +11858,9 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L12",
       "weight": 0.8,
-      "source": "message",
-      "target": "services_llm_service_llmservice",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_message",
+      "target": "services_llm_service_llmservice"
     },
     {
       "relation": "uses",
@@ -10927,9 +11868,9 @@
       "source_file": "backend/app/services/chat_service.py",
       "source_location": "L13",
       "weight": 0.8,
-      "source": "message",
-      "target": "services_rag_service_ragservice",
-      "confidence_score": 0.5
+      "confidence_score": 0.5,
+      "source": "backend_app_services_chat_service_py_message",
+      "target": "services_rag_service_ragservice"
     },
     {
       "relation": "contains",
@@ -11429,11 +12370,315 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/services/feedback_service.py",
-      "source_location": "L2",
+      "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_feedback_service_feedbackservice",
-      "target": "services_feedback_service_feedbackservice_record",
-      "confidence_score": 1.0
+      "target": "services_feedback_service_feedbackservice_create"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice",
+      "target": "services_feedback_service_feedbackservice_list_queue"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice",
+      "target": "services_feedback_service_feedbackservice_require_reviewer"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice",
+      "target": "services_feedback_service_feedbackservice_response"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice",
+      "target": "services_feedback_service_feedbackservice_update_status"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "answerfeedback"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "backend_app_services_feedback_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "backend_app_services_feedback_service_py_feedbackcreate"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "backend_app_services_feedback_service_py_feedbackresponse"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "backend_app_services_feedback_service_py_session"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "select"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_create",
+      "target": "services_feedback_service_feedbackservice_response"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_list_queue",
+      "target": "backend_app_services_feedback_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_require_reviewer",
+      "target": "backend_app_services_feedback_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "backend_app_services_feedback_service_py_currentuser"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_list_queue",
+      "target": "backend_app_services_feedback_service_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "backend_app_services_feedback_service_py_session"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_list_queue",
+      "target": "backend_app_services_feedback_service_py_feedbackresponse"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_response",
+      "target": "backend_app_services_feedback_service_py_feedbackresponse"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "backend_app_services_feedback_service_py_feedbackresponse"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "services_feedback_service_feedbackservice_list_queue",
+      "target": "select"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_list_queue",
+      "target": "services_feedback_service_feedbackservice_require_reviewer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_list_queue",
+      "target": "services_feedback_service_feedbackservice_response"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "backend_app_services_feedback_service_py_feedbackstatusupdate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "select"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "services_feedback_service_feedbackservice_require_reviewer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_update_status",
+      "target": "services_feedback_service_feedbackservice_response"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_response",
+      "target": "answerfeedback"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/services/feedback_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_feedback_service_feedbackservice_response",
+      "target": "backend_app_services_feedback_service_py_message"
     },
     {
       "relation": "contains",
@@ -12229,9 +13474,9 @@
       "source_file": "backend/app/services/rag_service.py",
       "source_location": "L425",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "services_rag_service_ragservice",
-      "target": "services_rag_service_ragservice_lexical_score"
+      "target": "services_rag_service_ragservice_lexical_score",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -12239,9 +13484,9 @@
       "source_file": "backend/app/services/rag_service.py",
       "source_location": "L414",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "services_rag_service_ragservice",
-      "target": "services_rag_service_ragservice_lexical_terms"
+      "target": "services_rag_service_ragservice_lexical_terms",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -13194,9 +14439,9 @@
       "source_file": "backend/app/services/rag_service.py",
       "source_location": "L247",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "services_rag_service_ragservice_retrieve",
-      "target": "services_rag_service_ragservice_lexical_score"
+      "target": "services_rag_service_ragservice_lexical_score",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -13205,9 +14450,9 @@
       "source_file": "backend/app/services/rag_service.py",
       "source_location": "L231",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "services_rag_service_ragservice_retrieve",
-      "target": "services_rag_service_ragservice_lexical_terms"
+      "target": "services_rag_service_ragservice_lexical_terms",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -13392,9 +14637,9 @@
       "source_file": "backend/app/services/rag_service.py",
       "source_location": "L428",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "services_rag_service_ragservice_lexical_score",
-      "target": "services_rag_service_ragservice_lexical_terms"
+      "target": "services_rag_service_ragservice_lexical_terms",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -13632,16 +14877,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L54",
-      "weight": 1.0,
-      "source": "tests_test_chat_contract",
-      "target": "tests_test_chat_contract_test_conversations_can_be_searched_archived_restored_and_deleted",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/tests/test_chat_contract.py",
       "source_location": "L72",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -13685,22 +14920,52 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/test_chat_contract.py",
-      "source_location": "L55",
-      "weight": 1.0,
-      "source": "tests_test_chat_contract_test_conversations_can_be_searched_archived_restored_and_deleted",
-      "target": "tests_test_chat_contract_auth_headers",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/tests/test_chat_contract.py",
       "source_location": "L53",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_test_chat_contract_test_stream_chat_emits_delta_and_structured_final",
       "target": "tests_test_chat_contract_auth_headers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_feedback",
+      "target": "tests_test_feedback_auth_headers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_feedback",
+      "target": "tests_test_feedback_test_answer_feedback_can_enter_review_queue_and_update_status"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_feedback",
+      "target": "tests_test_feedback_test_feedback_requires_authentication"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/test_feedback.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_feedback_test_answer_feedback_can_enter_review_queue_and_update_status",
+      "target": "tests_test_feedback_auth_headers"
     },
     {
       "relation": "contains",
@@ -13738,9 +15003,9 @@
       "source_file": "backend/tests/test_knowledge.py",
       "source_location": "L101",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_test_knowledge",
-      "target": "tests_test_knowledge_test_html_document_recall_prioritizes_exact_product_tokens"
+      "target": "tests_test_knowledge_test_html_document_recall_prioritizes_exact_product_tokens",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13860,9 +15125,9 @@
       "source_file": "backend/tests/test_knowledge.py",
       "source_location": "L102",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_test_knowledge_test_html_document_recall_prioritizes_exact_product_tokens",
-      "target": "tests_test_knowledge_auth_headers"
+      "target": "tests_test_knowledge_auth_headers",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -14285,17 +15550,6 @@
       "source_file": "frontend/src/app/chat/workbench.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "source": "chat_workbench",
-      "target": "lib_api_archiveconversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/app/chat/workbench.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "chat_workbench",
       "target": "lib_api_askquestion"
@@ -14329,17 +15583,6 @@
       "source_file": "frontend/src/app/chat/workbench.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "source": "chat_workbench",
-      "target": "lib_api_deleteconversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/app/chat/workbench.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "chat_workbench",
       "target": "lib_api_getconversation"
@@ -14354,17 +15597,6 @@
       "confidence_score": 1.0,
       "source": "chat_workbench",
       "target": "lib_api_listconversations"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/app/chat/workbench.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "chat_workbench",
-      "target": "lib_api_restoreconversation",
-      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -14425,6 +15657,28 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/app/feedback/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_page",
+      "target": "feedback_workbench"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_page",
+      "target": "feedback_workbench_feedbackworkbench"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -14452,6 +15706,102 @@
       "weight": 1.0,
       "source": "feedback_page_feedbackpage",
       "target": "lib_auth_requiresession"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "feedback_workbench_feedbackworkbench"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "feedback_workbench_ratinglabels"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "feedback_workbench_statuslabels"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "lib_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "lib_api_listfeedback"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "lib_api_updatefeedbackstatus"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "lib_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "lib_types_feedbackitem"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/feedback/workbench.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "feedback_workbench",
+      "target": "lib_types_feedbackstatus"
     },
     {
       "relation": "contains",
@@ -14951,16 +16301,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L152",
-      "weight": 1.0,
-      "source": "lib_api",
-      "target": "lib_api_archiveconversation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L47",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -15016,16 +16356,6 @@
       "confidence_score": 1.0,
       "source": "lib_api",
       "target": "lib_api_createmanualknowledge"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L160",
-      "weight": 1.0,
-      "source": "lib_api",
-      "target": "lib_api_deleteconversation",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -15156,16 +16486,6 @@
       "confidence_score": 1.0,
       "source": "lib_api",
       "target": "lib_api_reindexknowledgesource"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L156",
-      "weight": 1.0,
-      "source": "lib_api",
-      "target": "lib_api_restoreconversation",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -15457,17 +16777,6 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L153",
-      "weight": 1.0,
-      "source": "lib_api_archiveconversation",
-      "target": "lib_api_authorized",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/api.ts",
       "source_location": "L48",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -15506,17 +16815,6 @@
       "confidence_score": 1.0,
       "source": "lib_api_createmanualknowledge",
       "target": "lib_api_authorized"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L161",
-      "weight": 1.0,
-      "source": "lib_api_deleteconversation",
-      "target": "lib_api_authorized",
-      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -15594,17 +16892,6 @@
       "confidence_score": 1.0,
       "source": "lib_api_reindexknowledgesource",
       "target": "lib_api_authorized"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/lib/api.ts",
-      "source_location": "L157",
-      "weight": 1.0,
-      "source": "lib_api_restoreconversation",
-      "target": "lib_api_authorized",
-      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -16748,5 +18035,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ec64a03653b778347ca80c3db59c4d22618fc697"
+  "built_at_commit": "53fbb0c8c504a2ec135cc2646620585862df6b42"
 }

@@ -51,6 +51,38 @@ def test_chat_can_continue_existing_conversation() -> None:
     assert any(item["id"] == first["conversation_id"] and item["message_count"] == 4 for item in listing.json())
 
 
+def test_conversations_can_be_searched_archived_restored_and_deleted() -> None:
+    headers = auth_headers()
+    first = client.post("/api/chat", json={"question": "AX-900 夜间离线后如何处理？"}, headers=headers).json()
+    second = client.post("/api/chat", json={"question": "BX-100 固件升级失败怎么排查？"}, headers=headers).json()
+
+    search = client.get("/api/conversations", params={"q": "BX-100"}, headers=headers)
+    assert search.status_code == 200
+    assert [item["id"] for item in search.json()] == [second["conversation_id"]]
+
+    archived = client.post(f"/api/conversations/{second['conversation_id']}/archive", headers=headers)
+    assert archived.status_code == 200
+    assert archived.json()["status"] == "archived"
+
+    default_listing = client.get("/api/conversations", params={"q": "BX-100"}, headers=headers)
+    assert all(item["id"] != second["conversation_id"] for item in default_listing.json())
+
+    archived_listing = client.get("/api/conversations", params={"q": "BX-100", "include_archived": "true"}, headers=headers)
+    assert any(item["id"] == second["conversation_id"] and item["status"] == "archived" for item in archived_listing.json())
+
+    blocked = client.post("/api/chat", json={"question": "继续这个归档会话", "conversation_id": second["conversation_id"]}, headers=headers)
+    assert blocked.status_code == 409
+
+    restored = client.post(f"/api/conversations/{second['conversation_id']}/restore", headers=headers)
+    assert restored.status_code == 200
+    assert restored.json()["status"] == "active"
+
+    deleted = client.delete(f"/api/conversations/{first['conversation_id']}", headers=headers)
+    assert deleted.status_code == 204
+    missing = client.get(f"/api/conversations/{first['conversation_id']}", headers=headers)
+    assert missing.status_code == 404
+
+
 def test_stream_chat_emits_delta_and_structured_final() -> None:
     headers = auth_headers()
     with client.stream("POST", "/api/chat/stream", json={"question": "设备离线怎么处理？"}, headers=headers) as response:

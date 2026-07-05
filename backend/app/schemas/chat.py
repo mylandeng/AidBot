@@ -56,6 +56,7 @@ class ConversationSummary(BaseModel):
     id: str
     title: str
     product_line: str | None = None
+    status: Literal["active", "archived"] = "active"
     updated_at: str
     message_count: int
 

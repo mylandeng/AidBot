@@ -59,6 +59,7 @@ export interface ConversationSummary {
   id: string;
   title: string;
   product_line?: string | null;
+  status: "active" | "archived";
   updated_at: string;
   message_count: number;
 }

@@ -40,13 +40,13 @@
     "semantic_hash": ""
   },
   "backend/app/api/conversations.py": {
-    "mtime": 1783267640.3389347,
-    "ast_hash": "f1ea6ddbc62b21eaeef5fc5dd0dee10e",
+    "mtime": 1783164792.6144269,
+    "ast_hash": "07bb3b355eee26859f6a2172266cab87",
     "semantic_hash": ""
   },
   "backend/app/api/feedback.py": {
-    "mtime": 1783267322.2943573,
-    "ast_hash": "8e03a567a3d91861d9ff222157799354",
+    "mtime": 1783240304.4870846,
+    "ast_hash": "712854ba9672f1b3b8a529c700e4160e",
     "semantic_hash": ""
   },
   "backend/app/api/health.py": {
@@ -85,18 +85,18 @@
     "semantic_hash": ""
   },
   "backend/app/models/__init__.py": {
-    "mtime": 1783267804.4760568,
-    "ast_hash": "97a4e7f2c6896c755b72f5e89546eddd",
+    "mtime": 1783262460.9978323,
+    "ast_hash": "05f80f30581609fa1dc785f13aa210b1",
     "semantic_hash": ""
   },
   "backend/app/models/conversation.py": {
-    "mtime": 1783267591.9075503,
-    "ast_hash": "019411eacb5f560b9e48a4dd257d9d6d",
+    "mtime": 1783164754.4900715,
+    "ast_hash": "9bc415dbfb293d839402ee9c23856980",
     "semantic_hash": ""
   },
   "backend/app/models/feedback.py": {
-    "mtime": 1783267322.2943573,
-    "ast_hash": "daea9de7f1df2e456cf1ba928bd67aaf",
+    "mtime": 1783240251.9507878,
+    "ast_hash": "cb052658176256e5b6f9d89d12676270",
     "semantic_hash": ""
   },
   "backend/app/models/knowledge.py": {
@@ -120,13 +120,13 @@
     "semantic_hash": ""
   },
   "backend/app/schemas/chat.py": {
-    "mtime": 1783267613.1360831,
-    "ast_hash": "64c5f588556b86dc1c8e040b0b508119",
+    "mtime": 1783164967.8080661,
+    "ast_hash": "b3c73e81649d982c6df5cbf6613a40a8",
     "semantic_hash": ""
   },
   "backend/app/schemas/feedback.py": {
-    "mtime": 1783267322.2957187,
-    "ast_hash": "ebd0c171e684a0c5b20b159d9d6e64d7",
+    "mtime": 1783240269.01005,
+    "ast_hash": "648e263417c4dd0418a884c2b2e8452f",
     "semantic_hash": ""
   },
   "backend/app/schemas/knowledge.py": {
@@ -145,8 +145,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/chat_service.py": {
-    "mtime": 1783267646.6011364,
-    "ast_hash": "dad3a4bfff442a880577119a0f06f2c8",
+    "mtime": 1783237789.0015206,
+    "ast_hash": "962649b1f75473c946ccce70dbb6fcfd",
     "semantic_hash": ""
   },
   "backend/app/services/document_service.py": {
@@ -160,8 +160,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/feedback_service.py": {
-    "mtime": 1783267322.296722,
-    "ast_hash": "aaf96a5097f4aca86f2310d0bb098cfb",
+    "mtime": 1783240291.850443,
+    "ast_hash": "f24a33d8e51a638a54733adeccc5a66f",
     "semantic_hash": ""
   },
   "backend/app/services/llm_service.py": {
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "backend/tests/test_chat_contract.py": {
-    "mtime": 1783267768.424558,
-    "ast_hash": "38f1fd78a449558a1fa9f86f25d34702",
+    "mtime": 1783238926.454472,
+    "ast_hash": "81feb3d43e85b7f4207177d2978ac25c",
     "semantic_hash": ""
   },
   "backend/tests/test_health.py": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/feedback/page.tsx": {
-    "mtime": 1783267322.297722,
-    "ast_hash": "bb5ef0f71443d4fe3123bc81f0858cce",
+    "mtime": 1783240367.492202,
+    "ast_hash": "da12bead5748f0421c8b0de203d2b387",
     "semantic_hash": ""
   },
   "frontend/src/app/knowledge/page.tsx": {
@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/api.ts": {
-    "mtime": 1783267668.0740035,
-    "ast_hash": "a85a52260bb3c7475220febda325bd76",
+    "mtime": 1783264718.1649094,
+    "ast_hash": "71482eb468dc375affbc205a75c29452",
     "semantic_hash": ""
   },
   "frontend/src/lib/auth.ts": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/types.ts": {
-    "mtime": 1783267655.7184668,
-    "ast_hash": "636f9f6d4abb06889350a57c09273670",
+    "mtime": 1783264710.8250043,
+    "ast_hash": "de665fc35e5fa8229997dc2ad8fdebb7",
     "semantic_hash": ""
   },
   "frontend/tsconfig.json": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/chat/workbench.tsx": {
-    "mtime": 1783267697.3988316,
-    "ast_hash": "9c3d696481f225a68a2a68415a2fb64c",
+    "mtime": 1783240359.0861263,
+    "ast_hash": "2380a56a22d5741cd429ca7f887c2608",
     "semantic_hash": ""
   },
   "backend/tests/test_knowledge.py": {
@@ -374,9 +374,19 @@
     "ast_hash": "41b886433558341003f036e62731937b",
     "semantic_hash": ""
   },
+  "backend/tests/test_feedback.py": {
+    "mtime": 1783240505.3964117,
+    "ast_hash": "fe084a39e1c8e1fcab156fb77d08f378",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/feedback/workbench.tsx": {
+    "mtime": 1783240402.3750353,
+    "ast_hash": "084980740eb94b7828d25ad38a849998",
+    "semantic_hash": ""
+  },
   "backend/app/core/schema.py": {
-    "mtime": 1783267606.6154199,
-    "ast_hash": "cacec571fc815e4630449df1971a416c",
+    "mtime": 1783262635.3633919,
+    "ast_hash": "59b24aa96bde14fd54ae298524e8c74d",
     "semantic_hash": ""
   }
 }
