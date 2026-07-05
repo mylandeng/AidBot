@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
-import { createManualKnowledge, importMarkdownKnowledge, listKnowledgeSources } from "@/lib/api";
+import { createManualKnowledge, importMarkdownKnowledge, listKnowledgeSources, reindexKnowledgeSource } from "@/lib/api";
 import type { KnowledgeSource } from "@/lib/types";
 
 export function KnowledgeWorkbench({ token }: { token: string }) {
@@ -70,6 +70,22 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
       setNotice(`已导入 ${file.name}，生成 ${source.chunk_count} 个知识片段。`);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Markdown 导入失败");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function reindexSource(source: KnowledgeSource) {
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const updated = await reindexKnowledgeSource(source.id, token);
+      setSources((current) => current.map((item) => (item.id === updated.id ? updated : item)));
+      setNotice(`已重新索引 ${updated.title}，当前 ${updated.chunk_count} 个知识片段。`);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "重新索引失败");
     } finally {
       setBusy(false);
     }
@@ -205,7 +221,9 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
                         {source.source_type} · {source.visibility === "internal" ? "内部共享" : "仅本人"} · {source.chunk_count} 片段
                       </span>
                     </div>
-                    <em>{source.status}</em>
+                    <button className="source-action" disabled={busy} onClick={() => reindexSource(source)} type="button">
+                      重新索引
+                    </button>
                   </article>
                 ))
               ) : (

@@ -34,6 +34,15 @@ def import_markdown_knowledge(
     return rag_service.import_markdown(payload, current_user, db)
 
 
+@router.post("/sources/{source_id}/reindex", response_model=KnowledgeSourceResponse)
+def reindex_knowledge_source(
+    source_id: str,
+    current_user: CurrentUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> KnowledgeSourceResponse:
+    return rag_service.reindex_source(source_id, current_user, db)
+
+
 @router.get("/search", response_model=KnowledgeSearchResponse)
 def search_knowledge(
     q: str = Query(min_length=1, max_length=500),

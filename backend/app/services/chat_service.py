@@ -59,8 +59,7 @@ class ChatService:
             return
 
         answer = "".join(answer_parts).strip() or "暂时没有生成有效回答，请补充故障现象后重试。"
-        steps = self._default_steps(request.product_line)
-        assistant = self._assistant_message(conversation.id, answer, steps, settings.llm_model, sources)
+        assistant = self._assistant_message(conversation.id, answer, [], settings.llm_model, sources)
         db.add(assistant)
         conversation.updated_at = utcnow()
         db.commit()
@@ -100,15 +99,6 @@ class ChatService:
             confidence="medium" if sources else "low",
             model_name=model_name,
         )
-
-    def _default_steps(self, product_line: str | None = None) -> list[str]:
-        scope = f"{product_line} 产品线" if product_line else "当前产品"
-        return [
-            f"确认{scope}的型号、固件版本和故障发生时间。",
-            "记录客户已尝试步骤、设备状态和客户端提示。",
-            "按回答建议逐项排查，并保留可复现证据。",
-            "若仍无法定位，携带完整上下文转交人工支持。",
-        ]
 
     def _event(self, event: str, payload: dict) -> str:
         return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n"

@@ -147,3 +147,7 @@ export function createManualKnowledge(request: ManualKnowledgeRequest, token: st
 export function importMarkdownKnowledge(request: MarkdownKnowledgeRequest, token: string): Promise<KnowledgeSource> {
   return authorized("/api/knowledge/markdown", token, { method: "POST", body: JSON.stringify(request) });
 }
+
+export function reindexKnowledgeSource(id: string, token: string): Promise<KnowledgeSource> {
+  return authorized(`/api/knowledge/sources/${id}/reindex`, token, { method: "POST" });
+}

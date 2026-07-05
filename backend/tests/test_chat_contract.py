@@ -2,6 +2,8 @@ from fastapi.testclient import TestClient
 import json
 
 from app.main import app
+from app.services.llm_service import OpenAICompatibleProvider
+from app.services.prompt_service import build_support_prompt
 
 
 client = TestClient(app)
@@ -63,3 +65,18 @@ def test_stream_chat_emits_delta_and_structured_final() -> None:
     assert final_payload["conversation_id"]
     assert final_payload["message_id"]
     assert isinstance(final_payload["sources"], list)
+    assert final_payload["solution_steps"] == []
+    assert "型号、固件版本和故障发生时间" not in json.dumps(final_payload, ensure_ascii=False)
+
+
+def test_openai_provider_adapts_support_prompt_to_chat_messages() -> None:
+    provider = OpenAICompatibleProvider("https://llm.example.test", "test-key", "test-model")
+    prompt = build_support_prompt("怎么配置 MCP？", product_line="内部工具", context="使用 .mcp.json 配置服务器。")
+
+    messages = provider._messages_for_prompt(prompt)
+
+    assert messages == [
+        {"role": "system", "content": prompt.system_instruction},
+        {"role": "user", "content": prompt.user_instruction()},
+    ]
+    assert "产品线：内部工具" in messages[1]["content"]

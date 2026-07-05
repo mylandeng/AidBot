@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.services.prompt_service import build_support_prompt
+from app.services.rag_service import RAGService, _clean_markdown_for_prompt
 
 
 client = TestClient(app)
@@ -52,6 +54,76 @@ def test_markdown_import_is_indexed_as_upload_source() -> None:
     assert search.status_code == 200
     assert search.json()["items"][0]["source_type"] == "upload"
     assert search.json()["items"][0]["title"] == payload["title"]
+
+
+def test_markdown_splitter_keeps_heading_context_and_merges_short_sections() -> None:
+    long_step = "Check power, network, firmware, app status, and collect reproducible evidence. " * 8
+    markdown = "\n\n".join(
+        [
+            "# AX Support Manual",
+            "## Offline Issues",
+            "### Offline After Pairing",
+            long_step,
+            "### Offline After Reboot",
+            long_step,
+            "## Alarm Issues",
+            "### Red Light Flashing",
+            long_step,
+        ]
+    )
+
+    chunks = RAGService()._split_text(markdown, chunk_size=700, overlap=80)
+
+    assert 1 < len(chunks) < 6
+    assert any("标题路径：AX Support Manual > Offline Issues > Offline After Pairing" in chunk for chunk in chunks)
+    assert any("标题路径：AX Support Manual > Alarm Issues > Red Light Flashing" in chunk for chunk in chunks)
+
+
+def test_prompt_context_strips_markdown_formatting() -> None:
+    raw = "\n".join(
+        [
+            "## 使用方法",
+            "**使用方法**：",
+            "1. 在项目根目录创建 `.mcp.json` 配置文件",
+            "2. 配置 [MCP服务器](https://example.local)",
+            "| 工具 | 支持 |",
+            "| --- | --- |",
+        ]
+    )
+
+    cleaned = _clean_markdown_for_prompt(raw)
+
+    assert "**" not in cleaned
+    assert "`" not in cleaned
+    assert "| ---" not in cleaned
+    assert "使用方法：" in cleaned
+    assert "在项目根目录创建 .mcp.json 配置文件" in cleaned
+    assert "配置 MCP服务器" in cleaned
+
+
+def test_support_prompt_rewrites_markdown_documents() -> None:
+    prompt = build_support_prompt("怎么配置 MCP？", context="**使用方法**：\n1. 创建 `.mcp.json`")
+
+    assert "不得复制标题、加粗、编号清单、表格或原文段落结构" in prompt.system_instruction
+    assert "改写成客服可直接发送的自然语言" in prompt.system_instruction
+    assert "当前没有命中的知识库片段" not in prompt.knowledge_context
+
+
+def test_knowledge_source_can_be_reindexed() -> None:
+    headers = auth_headers()
+    payload = {
+        "title": "REINDEX-01 Manual",
+        "filename": "reindex-01.md",
+        "content": "# REINDEX-01 Manual\n\n## Pairing\n\n" + ("Pairing recovery step. " * 120),
+        "visibility": "internal",
+    }
+    created = client.post("/api/knowledge/markdown", json=payload, headers=headers).json()
+
+    response = client.post(f"/api/knowledge/sources/{created['id']}/reindex", headers=headers)
+
+    assert response.status_code == 200
+    assert response.json()["id"] == created["id"]
+    assert response.json()["chunk_count"] >= 1
 
 
 def test_chat_returns_citations_when_knowledge_matches() -> None:

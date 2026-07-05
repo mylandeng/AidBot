@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "backend/app/api/knowledge.py": {
-    "mtime": 1783187817.1724706,
-    "ast_hash": "414c987507ebaeacb01975ef4973ae0f",
+    "mtime": 1783222278.3433309,
+    "ast_hash": "0a1912a6e9f28b39b82e92f53351d67f",
     "semantic_hash": ""
   },
   "backend/app/core/__init__.py": {
@@ -145,8 +145,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/chat_service.py": {
-    "mtime": 1783186004.4387362,
-    "ast_hash": "66f28dfa460dce73584d9a451f3ccaab",
+    "mtime": 1783237789.0015206,
+    "ast_hash": "962649b1f75473c946ccce70dbb6fcfd",
     "semantic_hash": ""
   },
   "backend/app/services/document_service.py": {
@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/llm_service.py": {
-    "mtime": 1783186004.437729,
-    "ast_hash": "cc39dcc33e55c8ee099f3f6905a1d43f",
+    "mtime": 1783239028.6000485,
+    "ast_hash": "ffc793530ffa0b494b77bca8eb94a322",
     "semantic_hash": ""
   },
   "backend/app/services/permission_service.py": {
@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/rag_service.py": {
-    "mtime": 1783187817.1714692,
-    "ast_hash": "99fc6c7ae6a7a366ceb5e600ddfcfb31",
+    "mtime": 1783222767.9432406,
+    "ast_hash": "8057164aa5446f2d9398419175bd259a",
     "semantic_hash": ""
   },
   "backend/app/services/strategies/__init__.py": {
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "backend/tests/test_chat_contract.py": {
-    "mtime": 1783186166.4352853,
-    "ast_hash": "9b9f13daa4282dee15b382aab119b512",
+    "mtime": 1783238926.454472,
+    "ast_hash": "81feb3d43e85b7f4207177d2978ac25c",
     "semantic_hash": ""
   },
   "backend/tests/test_health.py": {
@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/api.ts": {
-    "mtime": 1783187817.1744697,
-    "ast_hash": "64bbefccbcf2d9370e6a2e227dfbf72d",
+    "mtime": 1783222292.809726,
+    "ast_hash": "b893d513ee786d86d2c8458f7082e072",
     "semantic_hash": ""
   },
   "frontend/src/lib/auth.ts": {
@@ -355,18 +355,23 @@
     "semantic_hash": ""
   },
   "frontend/src/app/chat/workbench.tsx": {
-    "mtime": 1783186136.2320724,
-    "ast_hash": "a0cdc946b8797293e15d6e5a66d19421",
+    "mtime": 1783239393.0030448,
+    "ast_hash": "8cebcf87fdf6a363994d6ac37ba2b8fe",
     "semantic_hash": ""
   },
   "backend/tests/test_knowledge.py": {
-    "mtime": 1783187850.797721,
-    "ast_hash": "dc7d611baa79c4e9c431d7e513486f93",
+    "mtime": 1783238918.0497224,
+    "ast_hash": "c6342303f6c9a9df4300ad0c379d861d",
     "semantic_hash": ""
   },
   "frontend/src/app/knowledge/workbench.tsx": {
-    "mtime": 1783187839.9039183,
-    "ast_hash": "25e540d561789717891df0507a2a422b",
+    "mtime": 1783222292.8111007,
+    "ast_hash": "c3d5003fae6c68546194a468df50cc66",
+    "semantic_hash": ""
+  },
+  "backend/app/services/prompt_service.py": {
+    "mtime": 1783239281.7928438,
+    "ast_hash": "fb4c12a313a9180dca0a4c91c4d4e05c",
     "semantic_hash": ""
   }
 }

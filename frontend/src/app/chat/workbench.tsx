@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { askQuestionStream, getConversation, listConversations } from "@/lib/api";
 import type { ConversationMessage, ConversationSummary } from "@/lib/types";
 
@@ -11,6 +11,13 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const streamEndRef = useRef<HTMLDivElement | null>(null);
+  const lastMessageContent = messages.at(-1)?.content ?? "";
+  const messageCount = messages.length;
+  const sourceCount = useMemo(
+    () => messages.filter((message) => message.role === "assistant").reduce((count, message) => count + message.sources.length, 0),
+    [messages],
+  );
 
   async function refreshList() {
     setItems(await listConversations(token));
@@ -19,6 +26,10 @@ export function ChatWorkbench({ token }: { token: string }) {
   useEffect(() => {
     refreshList().catch(() => setError("会话列表加载失败"));
   }, []);
+
+  useEffect(() => {
+    streamEndRef.current?.scrollIntoView({ behavior: busy ? "auto" : "smooth", block: "end" });
+  }, [busy, messageCount, lastMessageContent]);
 
   async function openConversation(id: string) {
     const detail = await getConversation(id, token);
@@ -153,7 +164,7 @@ export function ChatWorkbench({ token }: { token: string }) {
                 <p className="eyebrow">当前问答</p>
                 <h2>{messages.length ? "已保存的排查记录" : "从一个真实问题开始"}</h2>
               </div>
-              <span className="confidence-chip">来源 {messages.filter((message) => message.role === "assistant").reduce((count, message) => count + message.sources.length, 0)} 条</span>
+              <span className="confidence-chip">来源 {sourceCount} 条</span>
             </div>
 
             <section className="message-stream">
@@ -179,7 +190,7 @@ export function ChatWorkbench({ token }: { token: string }) {
                             {message.sources.map((source) => (
                               <a href="/knowledge" key={source.chunk_id}>
                                 <strong>{source.title}</strong>
-                                <span>{Math.round(source.score * 100)}% 匹配</span>
+                                <span>{relevanceLabel(source.score)}</span>
                               </a>
                             ))}
                           </div>
@@ -194,6 +205,7 @@ export function ChatWorkbench({ token }: { token: string }) {
                   <p>例如：AX-42 完成配网后，App 仍显示离线，设备指示灯常亮。</p>
                 </div>
               )}
+              <div aria-hidden="true" ref={streamEndRef} />
             </section>
 
             <form className="chat-composer" onSubmit={submit}>
@@ -219,6 +231,12 @@ export function ChatWorkbench({ token }: { token: string }) {
       </main>
     </div>
   );
+}
+
+function relevanceLabel(score: number): string {
+  if (score >= 0.22) return "相关度高";
+  if (score >= 0.12) return "相关度中";
+  return "相关度低";
 }
 
 function createTempMessage(id: string, role: "user" | "assistant", content: string): ConversationMessage {
