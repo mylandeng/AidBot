@@ -8,18 +8,37 @@ from app.core.database import Base
 from app.models.conversation import utcnow
 
 
+class KnowledgeSpace(Base):
+    __tablename__ = "knowledge_spaces"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid4()))
+    name: Mapped[str] = mapped_column(String(160), nullable=False)
+    description: Mapped[str] = mapped_column(Text, default="", nullable=False)
+    visibility: Mapped[str] = mapped_column(String(24), default="internal", nullable=False)
+    status: Mapped[str] = mapped_column(String(24), default="active", index=True, nullable=False)
+    owner_user_id: Mapped[str] = mapped_column(String(64), index=True, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
+
+    sources: Mapped[list["KnowledgeSource"]] = relationship(back_populates="space", cascade="all, delete-orphan")
+
+
 class KnowledgeSource(Base):
     __tablename__ = "knowledge_sources"
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid4()))
+    space_id: Mapped[str | None] = mapped_column(ForeignKey("knowledge_spaces.id", ondelete="CASCADE"), index=True, nullable=True)
     title: Mapped[str] = mapped_column(String(160), nullable=False)
     source_type: Mapped[str] = mapped_column(String(24), default="manual", nullable=False)
+    content_format: Mapped[str] = mapped_column(String(24), default="markdown", nullable=False)
+    filename: Mapped[str] = mapped_column(String(240), default="", nullable=False)
     visibility: Mapped[str] = mapped_column(String(24), default="internal", nullable=False)
     status: Mapped[str] = mapped_column(String(24), default="active", nullable=False)
     owner_user_id: Mapped[str] = mapped_column(String(64), index=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
 
+    space: Mapped[KnowledgeSpace | None] = relationship(back_populates="sources")
     documents: Mapped[list["KnowledgeDocument"]] = relationship(back_populates="source", cascade="all, delete-orphan")
 
 

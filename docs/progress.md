@@ -13,3 +13,5 @@
 - 已验证后端测试、前端类型检查和前端生产构建通过；Docker Compose 配置有效。
 - 已推进阶段 1 认证基线：新增种子管理员登录、签名 token、当前用户接口、`users/roles` 模型和前端受保护路由。
 - 已完成阶段 2 问答 MVP：新增会话/消息持久化、登录用户隔离、可替换 LLM provider、带占位来源的聊天合同、会话历史 API 与交互式聊天 UI。
+- 已完成阶段 3 RAG 知识库 MVP 收尾：支持手动知识、Markdown 导入、文档切片、embedding、向量召回、来源引用、重建索引、Markdown prompt 清洗和 provider 无关 prompt builder。
+- 已启动阶段 4 质量反馈闭环：回答反馈入口、反馈 API、管理员复盘队列和基础状态流转进入实现。

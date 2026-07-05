@@ -6,12 +6,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api import admin, auth, chat, conversations, feedback, health, knowledge
 from app.core.config import settings
 from app.core.database import Base, engine
+from app.core.schema import ensure_runtime_schema
 from app import models  # noqa: F401
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     Base.metadata.create_all(bind=engine)
+    ensure_runtime_schema(engine)
     yield
 
 

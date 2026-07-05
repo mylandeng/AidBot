@@ -205,8 +205,10 @@ flowchart LR
 
 必须保存的知识元数据：
 
+- `space_id`: 知识空间 ID，用于区分产品手册、使用说明、售后 FAQ 等可独立启停或删除的知识库。
 - `source_type`: upload / feishu / manual / ticket
 - `source_id`: 外部系统文档 ID
+- `content_format`: text / markdown / html / pdf
 - `title`: 文档标题
 - `owner`: 负责人
 - `product_line`: 产品线
@@ -217,10 +219,21 @@ flowchart LR
 
 RAG 内部服务边界：
 
+- `knowledge_space`: 业务侧知识库边界，管理员可创建多个空间；删除空间会移除其下所有来源、文档和 chunk，后续回答不得再引用。
+- `knowledge_source`: 一次手动录入、上传文件、飞书同步或工单沉淀形成的来源记录，可独立删除或重建索引。
+- `knowledge_document`: 解析后的规范文本，保留原始标题、格式、文件名和状态。
+- `knowledge_chunk`: RAG 检索最小单元，只服务召回和引用，不承担空间管理语义。
 - `document_service`: 负责 parsing，包括文件解析、文本清洗、去重和切片。
 - `embedding_service`: 负责 embedding，包括 chunk 向量化、embedding provider 适配和失败重试。
 - `rag_service`: 负责 retrieval，包括权限过滤后的向量检索、关键词/元数据过滤、召回结果整理和来源引用。
 - `answer_router`: 负责回答策略选择，不负责具体解析、向量化或数据库读写细节。
+
+文档格式扩展策略：
+
+- Markdown 和纯文本走轻量 parser，保留标题层级用于切片上下文。
+- HTML 先解析为可检索正文，去掉脚本、样式和标签噪声，再进入统一切片链路。
+- PDF、芯片手册等复杂格式通过新增 parser 插件接入 `document_service`，解析结果仍统一写入 `knowledge_document.content`，不改变 `rag_service.retrieve(...)`、聊天 API 或前端引用结构。
+- 未接入 parser 的格式必须显式返回“暂不支持”，不能静默当作纯文本入库。
 
 这些服务 MVP 阶段可以都在 FastAPI 进程内运行，但边界必须按接口拆开。后续如果拆成独立 RAG Gateway，`chat_service` 只需要把 `rag_service.retrieve(...)` 的实现从本地函数调用替换为 HTTP/gRPC 调用，不应重写 `/api/chat`、前端调用或聊天响应结构。
 
@@ -286,6 +299,8 @@ flowchart LR
   P4 --- P4D[每条问答评分 / 低分处理 / 高分沉淀]
   P5 --- P5D[多知识源 / 多模型 / 审计 / 评测 / 独立 RAG Gateway]
 ```
+
+> 2026-07-05 迭代备注：当前实现已完成 Phase 2 RAG 知识库的 MVP 收尾，包括 Markdown 导入、手动知识、切片、向量检索、来源引用和重建索引。下一步进入 Phase 4 质量反馈闭环；Phase 3 MCP + 飞书同步暂不阻塞内部试点，可以在反馈闭环稳定后接入。
 
 ## 7. MVP 模块清单
 
