@@ -51,6 +51,66 @@ def _clean_markdown_for_prompt(text: str) -> str:
     return "\n".join(cleaned_lines)
 
 
+def _heading_path_from_chunk(text: str) -> str:
+    match = re.search(r"^标题路径：(.+)$", text, flags=re.MULTILINE)
+    return match.group(1).strip() if match else ""
+
+
+def _parent_section_excerpt(document_text: str, heading_path: str, max_chars: int = 1200) -> str:
+    if not heading_path:
+        return ""
+
+    sections = _markdown_sections_for_context(document_text)
+    for path, body in sections:
+        if path == heading_path:
+            return body[:max_chars]
+    return ""
+
+
+def _markdown_sections_for_context(text: str) -> list[tuple[str, str]]:
+    heading_pattern = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
+    sections: list[tuple[str, str]] = []
+    heading_stack: list[tuple[int, str]] = []
+    body: list[str] = []
+
+    def flush() -> None:
+        compact_body = "\n".join(line.strip() for line in body if line.strip()).strip()
+        if not compact_body:
+            return
+        heading_path = " > ".join(title for _, title in heading_stack)
+        if heading_path:
+            sections.append((heading_path, compact_body))
+        body.clear()
+
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        match = heading_pattern.match(line)
+        if match:
+            flush()
+            level = len(match.group(1))
+            title = match.group(2).strip()
+            heading_stack = [(item_level, item_title) for item_level, item_title in heading_stack if item_level < level]
+            heading_stack.append((level, title))
+            continue
+        body.append(line)
+
+    flush()
+    return sections
+
+
+def _unique_sorted(values: list[str] | set[str]) -> list[str]:
+    return sorted({value.strip() for value in values if value and value.strip()})
+
+
+def _merge_entity_metadata(*items: dict) -> dict:
+    merged: dict[str, list[str]] = {}
+    for item in items:
+        for key, values in (item or {}).items():
+            if isinstance(values, list):
+                merged.setdefault(key, []).extend(str(value) for value in values)
+    return {key: _unique_sorted(values) for key, values in merged.items()}
+
+
 @dataclass(frozen=True)
 class RetrievedChunk:
     chunk: KnowledgeChunk
@@ -69,12 +129,24 @@ class RetrievedChunk:
         )
 
     def context_block(self) -> str:
-        return f"标题：{self.chunk.title}\n来源ID：{self.chunk.id}\n内容：{_clean_markdown_for_prompt(self.chunk.content)}"
+        heading_path = self.chunk.section_path or _heading_path_from_chunk(self.chunk.content)
+        parent_excerpt = self.chunk.section_content or _parent_section_excerpt(self.document.content, heading_path)
+        parts = [
+            f"标题：{self.chunk.title}",
+            f"来源ID：{self.chunk.id}",
+        ]
+        if heading_path:
+            parts.append(f"父级章节：{heading_path}")
+        if parent_excerpt:
+            parts.append(f"章节回填：{_clean_markdown_for_prompt(parent_excerpt)}")
+        parts.append(f"命中片段：{_clean_markdown_for_prompt(self.chunk.content)}")
+        return "\n".join(parts)
 
 
 class RAGService:
-    chunk_size = 1800
-    chunk_overlap = 250
+    chunk_size = 900
+    chunk_overlap = 120
+    candidate_pool_size = 20
 
     def __init__(self, embedding_service: EmbeddingService | None = None, document_service: DocumentService | None = None) -> None:
         self.embedding_service = embedding_service or EmbeddingService()
@@ -162,16 +234,18 @@ class RAGService:
         db: Session,
     ) -> KnowledgeSourceResponse:
         space = self._resolve_space(space_id, visibility, current_user, db)
+        source_metadata = self._extract_entities("\n".join([title, filename, content_format, content]))
         source = KnowledgeSource(
             space=space,
             title=title,
             source_type=source_type,
             content_format=content_format,
             filename=filename,
+            search_metadata=source_metadata,
             visibility=visibility,
             owner_user_id=current_user.id,
         )
-        document = KnowledgeDocument(title=title, content=content, source=source)
+        document = KnowledgeDocument(title=title, content=content, source=source, sections=self._section_metadata(content))
         self._append_chunks(document, source, title, content)
         db.add(source)
         db.commit()
@@ -189,8 +263,10 @@ class RAGService:
             for chunk in list(document.chunks):
                 db.delete(chunk)
             db.flush()
+            document.sections = self._section_metadata(document.content)
             self._append_chunks(document, source, document.title, document.content)
             document.updated_at = utcnow()
+        source.search_metadata = self._extract_entities("\n".join([source.title, source.filename, source.content_format, *[document.content for document in source.documents]]))
         source.updated_at = utcnow()
         db.commit()
         db.refresh(source)
@@ -229,6 +305,8 @@ class RAGService:
             .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.visibility == "internal", KnowledgeSpace.owner_user_id == current_user.id))
         ).all()
         query_terms = self._lexical_terms(query_text)
+        exact_terms = self._exact_terms(query_text)
+        query_entities = self._extract_entities(query_text)
         scored = []
         for chunk, source, document in rows:
             vector_score = self.embedding_service.similarity(query_vector, chunk.embedding or [])
@@ -245,8 +323,14 @@ class RAGService:
                 if part
             )
             lexical_score = self._lexical_score(query_terms, searchable_text)
-            scored.append(RetrievedChunk(chunk=chunk, source=source, document=document, score=(vector_score * 0.65) + (lexical_score * 0.55)))
-        return [item for item in sorted(scored, key=lambda item: item.score, reverse=True) if item.score > 0.08][:limit]
+            exact_score = self._exact_score(exact_terms, searchable_text)
+            title_score = self._exact_score(exact_terms, "\n".join(part for part in [source.title, document.title, chunk.title] if part))
+            metadata_score = self._metadata_score(query_entities, _merge_entity_metadata(source.search_metadata or {}, chunk.entities or {}))
+            hybrid_score = (vector_score * 0.4) + (lexical_score * 0.4) + (exact_score * 0.65) + (title_score * 0.25) + (metadata_score * 0.45)
+            scored.append(RetrievedChunk(chunk=chunk, source=source, document=document, score=hybrid_score))
+        ranked = [item for item in sorted(scored, key=lambda item: item.score, reverse=True) if item.score > 0.1]
+        ranked = ranked[: max(self.candidate_pool_size, limit * 6)]
+        return self._diversify_sources(ranked, limit)
 
     def context_for_prompt(self, chunks: list[RetrievedChunk]) -> str:
         if not chunks:
@@ -328,16 +412,27 @@ class RAGService:
             ]
             if part
         )
-        for index, chunk_text in enumerate(self._split_text(content)):
-            document.chunks.append(
-                KnowledgeChunk(
-                    source=source,
-                    title=title,
-                    content=chunk_text,
-                    chunk_index=index,
-                    embedding=self.embedding_service.embed(f"{embedding_prefix}\n{chunk_text}"),
+        chunk_index = 0
+        for section in self._section_records(content):
+            section_text = f"标题路径：{section['path']}\n{section['content']}" if section["path"] else section["content"]
+            for chunk_text in self._split_long_text(section_text, self.chunk_size, self.chunk_overlap):
+                entities = _merge_entity_metadata(
+                    self._extract_entities("\n".join([source.title, source.filename, document.title, section["path"]])),
+                    self._extract_entities(chunk_text),
                 )
-            )
+                document.chunks.append(
+                    KnowledgeChunk(
+                        source=source,
+                        title=title,
+                        content=chunk_text,
+                        section_path=section["path"],
+                        section_content=section["content"],
+                        entities=entities,
+                        chunk_index=chunk_index,
+                        embedding=self.embedding_service.embed(f"{embedding_prefix}\n{section['path']}\n{chunk_text}"),
+                    )
+                )
+                chunk_index += 1
 
     def _split_text(self, text: str, chunk_size: int | None = None, overlap: int | None = None) -> list[str]:
         size = chunk_size or self.chunk_size
@@ -400,22 +495,68 @@ class RAGService:
         compact = "\n".join(line.strip() for line in text.splitlines() if line.strip()).strip()
         return [compact] if compact else []
 
+    def _section_records(self, text: str) -> list[dict[str, str]]:
+        sections = _markdown_sections_for_context(text)
+        if sections:
+            return [{"path": path, "content": body} for path, body in sections]
+        compact = "\n".join(line.strip() for line in text.splitlines() if line.strip()).strip()
+        return [{"path": "", "content": compact}] if compact else []
+
+    def _section_metadata(self, text: str) -> list[dict[str, object]]:
+        return [
+            {
+                "path": section["path"],
+                "length": len(section["content"]),
+                "entities": self._extract_entities("\n".join([section["path"], section["content"]])),
+            }
+            for section in self._section_records(text)
+        ]
+
     def _split_long_text(self, text: str, chunk_size: int, overlap: int) -> list[str]:
         compact = "\n".join(line.strip() for line in text.splitlines() if line.strip())
         if len(compact) <= chunk_size:
             return [compact]
+        heading_path = _heading_path_from_chunk(compact)
+        if heading_path:
+            compact = re.sub(r"^标题路径：.+\n?", "", compact, count=1)
+        prefix = f"标题路径：{heading_path}\n" if heading_path else ""
+        body_size = max(chunk_size - len(prefix), 200)
+        step = max(body_size - overlap, 1)
         chunks: list[str] = []
         start = 0
         while start < len(compact):
-            chunks.append(compact[start : start + chunk_size])
-            start += chunk_size - overlap
+            chunks.append(f"{prefix}{compact[start : start + body_size]}")
+            start += step
         return chunks
+
+    def _diversify_sources(self, ranked: list[RetrievedChunk], limit: int) -> list[RetrievedChunk]:
+        if limit <= 0:
+            return []
+
+        selected: list[RetrievedChunk] = []
+        seen_sources: set[str] = set()
+        for item in ranked:
+            if item.source.id in seen_sources:
+                continue
+            selected.append(item)
+            seen_sources.add(item.source.id)
+            if len(selected) >= limit:
+                return selected
+
+        for item in ranked:
+            if item in selected:
+                continue
+            selected.append(item)
+            if len(selected) >= limit:
+                break
+        return selected
 
     def _lexical_terms(self, text: str) -> set[str]:
         lowered = text.lower()
         terms = {token for token in re.findall(r"[a-z0-9_]{2,}", lowered)}
         cjk_runs = re.findall(r"[\u4e00-\u9fff]+", lowered)
         for run in cjk_runs:
+            terms.update(run)
             if len(run) == 1:
                 terms.add(run)
                 continue
@@ -429,3 +570,53 @@ class RAGService:
         if not candidate_terms:
             return 0.0
         return len(query_terms & candidate_terms) / len(query_terms)
+
+    def _exact_terms(self, text: str) -> set[str]:
+        lowered = text.lower()
+        terms = {token for token in re.findall(r"[a-z0-9]+(?:[-_][a-z0-9]+)+|[a-z0-9]{2,}", lowered)}
+        terms.update(re.findall(r"\d+(?:\.\d+)+", lowered))
+        terms.update(re.findall(r"[\u4e00-\u9fff]{2,}", lowered))
+        return terms
+
+    def _exact_score(self, query_terms: set[str], candidate_text: str) -> float:
+        if not query_terms:
+            return 0.0
+        lowered = candidate_text.lower()
+        return sum(1 for term in query_terms if term in lowered) / len(query_terms)
+
+    def _extract_entities(self, text: str) -> dict[str, list[str]]:
+        products = re.findall(r"\b[A-Z]{1,8}[A-Z0-9]*-\d+[A-Z0-9-]*\b", text, flags=re.IGNORECASE)
+        fault_codes = re.findall(r"\b(?:E|ERR|ERROR|F|LED)\d{1,5}\b", text, flags=re.IGNORECASE)
+        versions = re.findall(r"\b(?:v|版本)?\d+\.\d+(?:\.\d+)?\b", text, flags=re.IGNORECASE)
+        component_terms = [
+            "App",
+            "DNS",
+            "LED",
+            "主控",
+            "传感器",
+            "充电器",
+            "固件",
+            "指示灯",
+            "电池",
+            "电源",
+            "线束",
+            "网关",
+            "芯片",
+            "路由器",
+        ]
+        components = [term for term in component_terms if re.search(re.escape(term), text, flags=re.IGNORECASE)]
+        return {
+            "products": _unique_sorted(value.upper() for value in products),
+            "fault_codes": _unique_sorted(value.upper() for value in fault_codes),
+            "versions": _unique_sorted(value.lower().lstrip("v").removeprefix("版本") for value in versions),
+            "components": _unique_sorted(components),
+        }
+
+    def _metadata_score(self, query_entities: dict[str, list[str]], candidate_entities: dict[str, list[str]]) -> float:
+        query_values = {value for values in query_entities.values() for value in values}
+        if not query_values:
+            return 0.0
+        candidate_values = {value for values in candidate_entities.values() for value in values}
+        if not candidate_values:
+            return 0.0
+        return len(query_values & candidate_values) / len(query_values)

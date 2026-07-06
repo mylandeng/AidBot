@@ -1,0 +1,20 @@
+[
+  {
+    "query": "EVL-910 电池 LED7 紫灯闪烁 3 次怎么处理",
+    "expected_title": "EVL-910 电池灯语处理",
+    "expected_entities": {
+      "products": ["EVL-910"],
+      "fault_codes": ["LED7"],
+      "components": ["电池"]
+    }
+  },
+  {
+    "query": "EVL-920 固件 3.4.1 升级失败",
+    "expected_title": "EVL-920 固件升级失败",
+    "expected_entities": {
+      "products": ["EVL-920"],
+      "versions": ["3.4.1"],
+      "components": ["固件"]
+    }
+  }
+]

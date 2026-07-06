@@ -12,10 +12,31 @@ def ensure_runtime_schema(engine: Engine) -> None:
                 "space_id": "VARCHAR(36)",
                 "content_format": "VARCHAR(24) NOT NULL DEFAULT 'markdown'",
                 "filename": "VARCHAR(240) NOT NULL DEFAULT ''",
+                "search_metadata": "JSON NOT NULL DEFAULT '{}'",
             }
             for column_name, ddl in additions.items():
                 if column_name not in columns:
                     connection.execute(text(f"ALTER TABLE knowledge_sources ADD COLUMN {column_name} {ddl}"))
+
+        if "knowledge_documents" in table_names:
+            columns = {column["name"] for column in inspector.get_columns("knowledge_documents")}
+            additions = {
+                "sections": "JSON NOT NULL DEFAULT '[]'",
+            }
+            for column_name, ddl in additions.items():
+                if column_name not in columns:
+                    connection.execute(text(f"ALTER TABLE knowledge_documents ADD COLUMN {column_name} {ddl}"))
+
+        if "knowledge_chunks" in table_names:
+            columns = {column["name"] for column in inspector.get_columns("knowledge_chunks")}
+            additions = {
+                "section_path": "VARCHAR(500) NOT NULL DEFAULT ''",
+                "section_content": "TEXT NOT NULL DEFAULT ''",
+                "entities": "JSON NOT NULL DEFAULT '{}'",
+            }
+            for column_name, ddl in additions.items():
+                if column_name not in columns:
+                    connection.execute(text(f"ALTER TABLE knowledge_chunks ADD COLUMN {column_name} {ddl}"))
 
         if "conversations" in table_names:
             columns = {column["name"] for column in inspector.get_columns("conversations")}

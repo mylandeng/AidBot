@@ -1,9 +1,15 @@
+import json
+from pathlib import Path
+
 from fastapi.testclient import TestClient
+from sqlalchemy import select
 
 from app.main import app
+from app.core.database import SessionLocal
 from app.services.prompt_service import build_support_prompt
 from app.services.document_service import DocumentService
-from app.services.rag_service import RAGService, _clean_markdown_for_prompt
+from app.services.rag_service import RAGService, RetrievedChunk, _clean_markdown_for_prompt
+from app.models.knowledge import KnowledgeChunk, KnowledgeDocument, KnowledgeSource
 
 
 client = TestClient(app)
@@ -162,6 +168,88 @@ def test_markdown_splitter_keeps_heading_context_and_merges_short_sections() -> 
     assert any("标题路径：AX Support Manual > Alarm Issues > Red Light Flashing" in chunk for chunk in chunks)
 
 
+def test_long_section_child_chunks_keep_parent_heading_path() -> None:
+    markdown = "\n\n".join(
+        [
+            "# FP10 Service Manual",
+            "## Battery Faults",
+            "### LED5 Purple Blink",
+            "LED5 purple blink 4 times means charge over-current. " * 24,
+        ]
+    )
+
+    chunks = RAGService()._split_text(markdown, chunk_size=260, overlap=40)
+
+    assert len(chunks) > 1
+    assert all(chunk.startswith("标题路径：FP10 Service Manual > Battery Faults > LED5 Purple Blink") for chunk in chunks)
+
+
+def test_context_block_backfills_parent_section_for_small_chunk() -> None:
+    document = KnowledgeDocument(
+        id="doc-parent",
+        title="FP10 Manual",
+        source_id="source-parent",
+        content=(
+            "# FP10 Manual\n\n"
+            "## Battery Faults\n\n"
+            "### LED5 Purple Blink\n\n"
+            "确认电池温度、充电器规格和日志时间戳。\n"
+            "LED5 紫灯闪烁 4 次代表充电过流，需要停止充电并检查线束。"
+        ),
+    )
+    source = KnowledgeSource(id="source-parent", title="FP10 电池手册", owner_user_id="user")
+    chunk = KnowledgeChunk(
+        id="chunk-parent",
+        document_id=document.id,
+        source_id=source.id,
+        title="FP10 Manual",
+        content="标题路径：FP10 Manual > Battery Faults > LED5 Purple Blink\nLED5 紫灯闪烁 4 次代表充电过流。",
+        embedding=[],
+    )
+
+    block = RetrievedChunk(chunk, source, document, 1.0).context_block()
+
+    assert "父级章节：FP10 Manual > Battery Faults > LED5 Purple Blink" in block
+    assert "章节回填：" in block
+    assert "确认电池温度、充电器规格和日志时间戳" in block
+    assert "命中片段：" in block
+
+
+def test_imported_chunks_store_section_and_entity_metadata() -> None:
+    headers = auth_headers()
+    payload = {
+        "title": "META-710 电池灯语说明",
+        "filename": "meta-710.md",
+        "content": "# META-710 Service\n\n## 电池灯语\n\nMETA-710 出现 LED6 紫灯闪烁 2 次时，检查电池线束和固件 2.8.3。",
+        "visibility": "internal",
+    }
+
+    created = client.post("/api/knowledge/markdown", json=payload, headers=headers)
+    assert created.status_code == 200
+
+    db = SessionLocal()
+    try:
+        source = db.scalar(select(KnowledgeSource).where(KnowledgeSource.title == payload["title"]))
+        assert source is not None
+        assert source.search_metadata["products"] == ["META-710"]
+        assert "LED6" in source.search_metadata["fault_codes"]
+
+        document = db.scalar(select(KnowledgeDocument).where(KnowledgeDocument.source_id == source.id))
+        assert document is not None
+        assert document.sections
+        assert document.sections[0]["path"] == "META-710 Service > 电池灯语"
+
+        chunk = db.scalar(select(KnowledgeChunk).where(KnowledgeChunk.source_id == source.id))
+        assert chunk is not None
+        assert chunk.section_path == "META-710 Service > 电池灯语"
+        assert "META-710" in chunk.entities["products"]
+        assert "LED6" in chunk.entities["fault_codes"]
+        assert "2.8.3" in chunk.entities["versions"]
+        assert "电池" in chunk.entities["components"]
+    finally:
+        db.close()
+
+
 def test_html_parser_preserves_heading_context_for_chunking() -> None:
     html = """
     <html>
@@ -183,6 +271,107 @@ def test_html_parser_preserves_heading_context_for_chunking() -> None:
     assert "<h1>" not in parsed
     assert any("标题路径：AX-HTML 产品手册 > 离线问题" in chunk for chunk in chunks)
     assert any("导出设备日志" in chunk for chunk in chunks)
+
+
+def test_html_parser_preserves_table_row_relationships() -> None:
+    html = """
+    <html>
+      <body>
+        <h1>FP10 电池状态指示灯说明</h1>
+        <table>
+          <tr><th>故障类型</th><th>指示灯状态</th><th>闪烁规律</th></tr>
+          <tr><td>充电过流</td><td><img alt="LED5 紫色" /></td><td>持续闪烁 4 次</td></tr>
+        </table>
+      </body>
+    </html>
+    """
+
+    parsed = DocumentService().parse_text(html, "html")
+
+    assert "# FP10 电池状态指示灯说明" in parsed
+    assert "充电过流 | LED5 紫色 | 持续闪烁 4 次" in parsed
+    assert "故障类型：充电过流；指示灯状态：LED5 紫色；闪烁规律：持续闪烁 4 次" in parsed
+
+
+def test_retrieval_diversifies_top_sources() -> None:
+    service = RAGService()
+    document = KnowledgeDocument(id="doc", title="doc", source_id="source-a", content="content")
+    source_a = KnowledgeSource(id="source-a", title="主控说明书", owner_user_id="user")
+    source_b = KnowledgeSource(id="source-b", title="电池灯语说明", owner_user_id="user")
+    ranked = [
+        RetrievedChunk(KnowledgeChunk(id="a1", document_id="doc", source_id="source-a", title="A1", content="A1", embedding=[]), source_a, document, 0.9),
+        RetrievedChunk(KnowledgeChunk(id="a2", document_id="doc", source_id="source-a", title="A2", content="A2", embedding=[]), source_a, document, 0.8),
+        RetrievedChunk(KnowledgeChunk(id="b1", document_id="doc", source_id="source-b", title="B1", content="B1", embedding=[]), source_b, document, 0.7),
+    ]
+
+    selected = service._diversify_sources(ranked, limit=2)
+
+    assert [item.source.id for item in selected] == ["source-a", "source-b"]
+
+
+def test_hybrid_search_prioritizes_exact_entity_tokens() -> None:
+    headers = auth_headers()
+    client.post(
+        "/api/knowledge/manual",
+        json={
+            "title": "HYB-901 电池灯语精确说明",
+            "content": "HYB-901 出现 LED5 紫灯闪烁 4 次时，代表充电过流。处理方式是停止充电，检查充电器和电池线束。",
+            "visibility": "internal",
+        },
+        headers=headers,
+    )
+    client.post(
+        "/api/knowledge/manual",
+        json={
+            "title": "通用灯语排查说明",
+            "content": "红灯闪烁、紫灯闪烁和离线告警都需要检查网络、电源、固件和日志。灯语排查时先收集用户描述。",
+            "visibility": "internal",
+        },
+        headers=headers,
+    )
+
+    search = client.get("/api/knowledge/search", params={"q": "HYB-901 LED5 紫灯闪烁 4 次"}, headers=headers)
+
+    assert search.status_code == 200
+    assert search.json()["items"][0]["title"] == "HYB-901 电池灯语精确说明"
+
+
+def test_retrieval_eval_fixture_matches_expected_sources() -> None:
+    headers = auth_headers()
+    cases = json.loads((Path(__file__).parent / "fixtures" / "rag_retrieval_eval.json").read_text(encoding="utf-8"))
+    documents = [
+        {
+            "title": "EVL-910 电池灯语处理",
+            "content": "# EVL-910 维修手册\n\n## 电池灯语\n\nEVL-910 出现 LED7 紫灯闪烁 3 次代表电池温度传感异常，应停止使用并检查电池线束。",
+        },
+        {
+            "title": "EVL-920 固件升级失败",
+            "content": "# EVL-920 固件手册\n\n## 版本 3.4.1 升级失败\n\nEVL-920 固件 3.4.1 升级失败时，先校验升级包，再重启网关。",
+        },
+        {
+            "title": "通用灯语排查",
+            "content": "紫灯闪烁、红灯闪烁和升级失败都需要收集日志，但没有具体型号时不能判断具体故障。",
+        },
+    ]
+
+    for document in documents:
+        response = client.post(
+            "/api/knowledge/markdown",
+            json={**document, "filename": f"{document['title']}.md", "visibility": "internal"},
+            headers=headers,
+        )
+        assert response.status_code == 200
+
+    for case in cases:
+        expected = case["expected_entities"]
+        extracted = RAGService()._extract_entities(case["query"])
+        for key, values in expected.items():
+            for value in values:
+                assert value in extracted[key]
+
+        search = client.get("/api/knowledge/search", params={"q": case["query"]}, headers=headers)
+        assert search.status_code == 200
+        assert search.json()["items"][0]["title"] == case["expected_title"]
 
 
 def test_prompt_context_strips_markdown_formatting() -> None:
@@ -213,6 +402,14 @@ def test_support_prompt_rewrites_markdown_documents() -> None:
     assert "不得复制标题、加粗、编号清单、表格或原文段落结构" in prompt.system_instruction
     assert "改写成客服可直接发送的自然语言" in prompt.system_instruction
     assert "当前没有命中的知识库片段" not in prompt.knowledge_context
+
+
+def test_support_prompt_forbids_inferred_fault_light_mappings() -> None:
+    prompt = build_support_prompt("主控绿灯闪两次是什么故障？", context="故障灯语对照表存在于图片中。")
+
+    assert "必须逐字命中知识库中的具体条目才能回答" in prompt.system_instruction
+    assert "不得根据优先级、相邻条目、常识或图片标题推断未列出的映射" in prompt.system_instruction
+    assert "当前知识库未解析该图片表格" in prompt.system_instruction
 
 
 def test_knowledge_source_can_be_reindexed() -> None:

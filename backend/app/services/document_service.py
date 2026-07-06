@@ -16,6 +16,7 @@ class DocumentService:
 
     def _parse_html(self, content: str) -> str:
         text = re.sub(r"(?is)<(script|style).*?>.*?</\1>", " ", content)
+        text = re.sub(r"(?is)<table[^>]*>(.*?)</table>", lambda match: f"\n{self._parse_html_table(match.group(1))}\n", text)
         text = re.sub(
             r"(?is)<h([1-6])[^>]*>(.*?)</h\1>",
             lambda match: f"\n{'#' * int(match.group(1))} {self._strip_inline_html(match.group(2))}\n",
@@ -29,6 +30,31 @@ class DocumentService:
         lines = [re.sub(r"\s+", " ", unescape(line)).strip() for line in text.splitlines()]
         return "\n".join(line for line in lines if line)
 
+    def _parse_html_table(self, table_html: str) -> str:
+        rows: list[list[str]] = []
+        for row_match in re.finditer(r"(?is)<tr[^>]*>(.*?)</tr>", table_html):
+            cells = [self._strip_inline_html(cell.group(2)) for cell in re.finditer(r"(?is)<(td|th)[^>]*>(.*?)</\1>", row_match.group(1))]
+            cells = [cell for cell in cells if cell]
+            if cells:
+                rows.append(cells)
+        if not rows:
+            return self._strip_inline_html(table_html)
+
+        lines = [" | ".join(row) for row in rows]
+        headers = rows[0]
+        for row in rows[1:]:
+            if len(row) != len(headers):
+                continue
+            pairs = [f"{header}：{value}" for header, value in zip(headers, row) if header and value]
+            if pairs:
+                lines.append("；".join(pairs))
+        return "\n".join(lines)
+
     def _strip_inline_html(self, fragment: str) -> str:
+        fragment = re.sub(
+            r"(?is)<img[^>]*(?:alt|title)=[\"']([^\"']+)[\"'][^>]*>",
+            lambda match: f" {match.group(1)} ",
+            fragment,
+        )
         stripped = re.sub(r"<[^>]+>", " ", fragment)
         return re.sub(r"\s+", " ", unescape(stripped)).strip()
