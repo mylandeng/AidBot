@@ -1,7 +1,10 @@
 from fastapi.testclient import TestClient
 import json
 
+from app.core.database import SessionLocal
 from app.main import app
+from app.models.conversation import Conversation, Message
+from app.services.chat_service import ChatService
 from app.services.llm_service import OpenAICompatibleProvider
 from app.services.prompt_service import build_support_prompt
 
@@ -49,6 +52,29 @@ def test_chat_can_continue_existing_conversation() -> None:
     listing = client.get("/api/conversations", headers=headers)
     assert listing.status_code == 200
     assert any(item["id"] == first["conversation_id"] and item["message_count"] == 4 for item in listing.json())
+
+
+def test_chat_contextualizes_followup_questions_for_retrieval() -> None:
+    db = SessionLocal()
+    try:
+        conversation = Conversation(user_id="context-user", title="FP10 主控绿灯")
+        db.add(conversation)
+        db.flush()
+        db.add_all(
+            [
+                Message(conversation_id=conversation.id, role="user", content="FP10 主控绿灯一直闪烁是什么意思？"),
+                Message(conversation_id=conversation.id, role="assistant", content="绿灯闪烁表示系统出现故障，需要根据闪烁次数查故障灯语表。"),
+            ]
+        )
+        db.commit()
+
+        contextual = ChatService()._question_with_recent_context(conversation.id, "那闪两下代表啥", db)
+
+        assert "FP10 主控绿灯一直闪烁" in contextual
+        assert "绿灯闪烁表示系统出现故障" in contextual
+        assert "当前客户问题：那闪两下代表啥" in contextual
+    finally:
+        db.close()
 
 
 def test_conversations_can_be_searched_archived_restored_and_deleted() -> None:

@@ -22,12 +22,13 @@ class ChatService:
         conversation = self._resolve_conversation(request, current_user, db)
 
         question = request.question.strip()
-        retrieved = self.rag_service.retrieve(question, current_user, db)
+        contextual_question = self._question_with_recent_context(conversation.id, question, db)
+        retrieved = self.rag_service.retrieve(contextual_question, current_user, db)
         context = self.rag_service.context_for_prompt(retrieved)
         sources = [item.citation().model_dump() for item in retrieved]
 
         db.add(Message(conversation_id=conversation.id, role="user", content=question))
-        completion = self.llm_service.complete(question, request.product_line, context)
+        completion = self.llm_service.complete(contextual_question, request.product_line, context)
         assistant = self._assistant_message(conversation.id, completion.answer, completion.solution_steps, completion.model_name, sources)
         db.add(assistant)
         conversation.updated_at = utcnow()
@@ -38,7 +39,8 @@ class ChatService:
     def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> Iterator[str]:
         conversation = self._resolve_conversation(request, current_user, db)
         question = request.question.strip()
-        retrieved = self.rag_service.retrieve(question, current_user, db)
+        contextual_question = self._question_with_recent_context(conversation.id, question, db)
+        retrieved = self.rag_service.retrieve(contextual_question, current_user, db)
         context = self.rag_service.context_for_prompt(retrieved)
         sources = [item.citation().model_dump() for item in retrieved]
 
@@ -50,7 +52,7 @@ class ChatService:
 
         answer_parts: list[str] = []
         try:
-            for delta in self.llm_service.stream_answer(question, request.product_line, context):
+            for delta in self.llm_service.stream_answer(contextual_question, request.product_line, context):
                 answer_parts.append(delta)
                 yield self._event("answer_delta", {"delta": delta})
         except Exception:
@@ -101,6 +103,30 @@ class ChatService:
             confidence="medium" if sources else "low",
             model_name=model_name,
         )
+
+    def _question_with_recent_context(self, conversation_id: str, question: str, db: Session) -> str:
+        recent = list(
+            db.scalars(
+                select(Message)
+                .where(Message.conversation_id == conversation_id)
+                .order_by(Message.created_at.desc())
+                .limit(6)
+            ).all()
+        )
+        if not recent:
+            return question
+
+        lines = []
+        for message in reversed(recent):
+            role = "客户" if message.role == "user" else "助手"
+            content = message.content.strip()
+            if content:
+                lines.append(f"{role}：{content[:500]}")
+
+        if not lines:
+            return question
+        history = "\n".join(lines)
+        return f"会话上下文（仅用于理解代词、追问和省略信息）：\n{history}\n\n当前客户问题：{question}"
 
     def _event(self, event: str, payload: dict) -> str:
         return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n"
