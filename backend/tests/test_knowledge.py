@@ -246,6 +246,9 @@ def test_imported_chunks_store_section_and_entity_metadata() -> None:
         assert "LED6" in chunk.entities["fault_codes"]
         assert "2.8.3" in chunk.entities["versions"]
         assert "电池" in chunk.entities["components"]
+        assert chunk.embedding_provider == "hash"
+        assert chunk.embedding_model == "hash-v1"
+        assert chunk.embedding_dimensions == 96
     finally:
         db.close()
 

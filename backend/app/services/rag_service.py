@@ -309,7 +309,11 @@ class RAGService:
         query_entities = self._extract_entities(query_text)
         scored = []
         for chunk, source, document in rows:
-            vector_score = self.embedding_service.similarity(query_vector, chunk.embedding or [])
+            vector_score = (
+                self.embedding_service.similarity(query_vector, chunk.embedding or [])
+                if self.embedding_service.is_compatible(chunk.embedding_provider, chunk.embedding_model, chunk.embedding_dimensions)
+                else 0.0
+            )
             searchable_text = "\n".join(
                 part
                 for part in [
@@ -430,6 +434,9 @@ class RAGService:
                         entities=entities,
                         chunk_index=chunk_index,
                         embedding=self.embedding_service.embed(f"{embedding_prefix}\n{section['path']}\n{chunk_text}"),
+                        embedding_provider=self.embedding_service.provider_name,
+                        embedding_model=self.embedding_service.model_name,
+                        embedding_dimensions=self.embedding_service.dimensions,
                     )
                 )
                 chunk_index += 1

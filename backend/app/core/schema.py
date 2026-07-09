@@ -33,6 +33,9 @@ def ensure_runtime_schema(engine: Engine) -> None:
                 "section_path": "VARCHAR(500) NOT NULL DEFAULT ''",
                 "section_content": "TEXT NOT NULL DEFAULT ''",
                 "entities": "JSON NOT NULL DEFAULT '{}'",
+                "embedding_provider": "VARCHAR(32) NOT NULL DEFAULT 'hash'",
+                "embedding_model": "VARCHAR(120) NOT NULL DEFAULT 'hash-v1'",
+                "embedding_dimensions": "INTEGER NOT NULL DEFAULT 96",
             }
             for column_name, ddl in additions.items():
                 if column_name not in columns:

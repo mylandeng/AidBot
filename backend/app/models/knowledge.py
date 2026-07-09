@@ -72,6 +72,9 @@ class KnowledgeChunk(Base):
     entities: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
     chunk_index: Mapped[int] = mapped_column(default=0, nullable=False)
     embedding: Mapped[list[float]] = mapped_column(JSON, default=list, nullable=False)
+    embedding_provider: Mapped[str] = mapped_column(String(32), default="hash", nullable=False)
+    embedding_model: Mapped[str] = mapped_column(String(120), default="hash-v1", nullable=False)
+    embedding_dimensions: Mapped[int] = mapped_column(default=96, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)
 
