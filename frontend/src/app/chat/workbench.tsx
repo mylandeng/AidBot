@@ -3,12 +3,18 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { LogoutButton } from "@/components/layout/logout-button";
 import { askUserQuestionStream, createUserFeedback, getConversation, listConversations } from "@/lib/api";
-import type { ConversationMessage, ConversationSummary } from "@/lib/types";
+import type { ConversationMessage, ConversationSummary, FeedbackRating } from "@/lib/types";
 
 const examples = [
   "设备配网成功，但 App 一直显示离线怎么办？",
   "FP10 主控绿灯闪两下代表什么故障？",
   "固件升级失败后，应该先让客户检查哪些信息？",
+];
+
+const feedbackOptions: { rating: FeedbackRating; label: string; tags: string[] }[] = [
+  { rating: "useful", label: "有帮助", tags: [] },
+  { rating: "not_useful", label: "没帮助", tags: ["低分回答"] },
+  { rating: "needs_human", label: "需要人工跟进", tags: ["需要人工"] },
 ];
 
 export function ChatWorkbench({ token }: { token: string }) {
@@ -18,6 +24,7 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [feedbackByMessage, setFeedbackByMessage] = useState<Record<string, FeedbackRating>>({});
   const [busy, setBusy] = useState(false);
   const streamEndRef = useRef<HTMLDivElement | null>(null);
   const lastMessageContent = messages.at(-1)?.content ?? "";
@@ -88,13 +95,20 @@ export function ChatWorkbench({ token }: { token: string }) {
     }
   }
 
-  async function sendFeedback(messageId: string, rating: "useful" | "not_useful" | "needs_human") {
+  async function sendFeedback(messageId: string, rating: FeedbackRating, tags: string[]) {
+    if (messageId.startsWith("assistant-")) return;
     setNotice("");
     setError("");
+    setFeedbackByMessage((current) => ({ ...current, [messageId]: rating }));
     try {
-      await createUserFeedback({ message_id: messageId, rating, note: "" }, token);
+      await createUserFeedback({ message_id: messageId, rating, tags, note: "" }, token);
       setNotice("反馈已提交，感谢补充。");
     } catch (reason) {
+      setFeedbackByMessage((current) => {
+        const next = { ...current };
+        delete next[messageId];
+        return next;
+      });
       setError(reason instanceof Error ? reason.message : "反馈提交失败");
     }
   }
@@ -177,15 +191,16 @@ export function ChatWorkbench({ token }: { token: string }) {
                     <p>{message.content}</p>
                     {message.role === "assistant" && !message.id.startsWith("assistant-") ? (
                       <div className="message-feedback" aria-label="回答反馈">
-                        <button onClick={() => sendFeedback(message.id, "useful")} type="button">
-                          有帮助
-                        </button>
-                        <button onClick={() => sendFeedback(message.id, "not_useful")} type="button">
-                          没帮助
-                        </button>
-                        <button onClick={() => sendFeedback(message.id, "needs_human")} type="button">
-                          需要人工跟进
-                        </button>
+                        {feedbackOptions.map((option) => (
+                          <button
+                            className={feedbackByMessage[message.id] === option.rating ? "active" : ""}
+                            key={option.rating}
+                            onClick={() => sendFeedback(message.id, option.rating, option.tags)}
+                            type="button"
+                          >
+                            {option.label}
+                          </button>
+                        ))}
                       </div>
                     ) : null}
                   </article>

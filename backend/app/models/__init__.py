@@ -1,6 +1,18 @@
 from app.models.access_key import AccessKey
 from app.models.conversation import Conversation, Message
+from app.models.feedback import AnswerFeedback
 from app.models.knowledge import KnowledgeChunk, KnowledgeDocument, KnowledgeSource, KnowledgeSpace
 from app.models.user import Role, User
 
-__all__ = ["AccessKey", "Conversation", "KnowledgeChunk", "KnowledgeDocument", "KnowledgeSource", "KnowledgeSpace", "Message", "Role", "User"]
+__all__ = [
+    "AccessKey",
+    "AnswerFeedback",
+    "Conversation",
+    "KnowledgeChunk",
+    "KnowledgeDocument",
+    "KnowledgeSource",
+    "KnowledgeSpace",
+    "Message",
+    "Role",
+    "User",
+]
