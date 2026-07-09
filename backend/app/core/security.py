@@ -81,7 +81,23 @@ def get_current_user(credentials: HTTPAuthorizationCredentials | None = Depends(
     payload = decode_access_token(credentials.credentials)
     return CurrentUser(
         id=str(payload["sub"]),
-        email=str(payload["email"]),
-        name=str(payload["name"]),
+        email=str(payload.get("email", "")),
+        name=str(payload.get("name", "")),
         roles=list(payload.get("roles", [])),
+        auth_method=str(payload.get("auth_method", "password")),
+        key_id=payload.get("key_id"),
+        key_expires_at=payload.get("key_expires_at"),
     )
+
+
+def require_any_role(*allowed_roles: str):
+    def dependency(current_user: CurrentUser = Depends(get_current_user)) -> CurrentUser:
+        if not set(current_user.roles).intersection(allowed_roles):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Insufficient permissions")
+        return current_user
+
+    return dependency
+
+
+require_admin = require_any_role("admin")
+require_internal_user = require_any_role("admin", "support")

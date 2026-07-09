@@ -1,7 +1,7 @@
 export type Confidence = "low" | "medium" | "high";
 export type SourceType = "upload" | "feishu" | "manual" | "ticket";
 export type RetrievalProvider = "local" | "external";
-export type FeedbackRating = "useful" | "not_useful" | "needs_review";
+export type FeedbackRating = "useful" | "not_useful" | "needs_review" | "needs_human";
 export type FeedbackStatus = "pending" | "processing" | "resolved" | "ignored";
 
 export interface HealthResponse {
@@ -15,6 +15,9 @@ export interface CurrentUser {
   email: string;
   name: string;
   roles: string[];
+  auth_method: "password" | "access_key";
+  key_id?: string | null;
+  key_expires_at?: string | null;
 }
 
 export interface LoginResponse {
@@ -51,10 +54,18 @@ export interface ChatResponse {
   handoff_reason: string;
 }
 
+export interface UserChatResponse {
+  conversation_id: string;
+  message_id: string;
+  answer: string;
+  handoff_required: boolean;
+  handoff_reason: string;
+}
+
 export type ChatStreamEvent =
   | { event: "message_start"; data: { conversation_id: string } }
   | { event: "answer_delta"; data: { delta: string } }
-  | { event: "final"; data: ChatResponse }
+  | { event: "final"; data: ChatResponse | UserChatResponse }
   | { event: "error"; data: { message: string } };
 
 export interface ConversationSummary {
@@ -166,4 +177,36 @@ export interface FeedbackItem {
 
 export interface FeedbackList {
   items: FeedbackItem[];
+}
+
+export type AccessKeyDuration = "7d" | "30d" | "180d" | "365d";
+export type AccessKeyStatus = "active" | "disabled" | "deleted";
+
+export interface AccessKey {
+  id: string;
+  name: string;
+  key_prefix: string;
+  status: AccessKeyStatus;
+  expires_at: string;
+  max_requests?: number | null;
+  used_requests: number;
+  max_tokens?: number | null;
+  used_tokens: number;
+  note: string;
+  last_used_at?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AccessKeyCreateRequest {
+  name: string;
+  expires_in: AccessKeyDuration;
+  max_requests?: number | null;
+  max_tokens?: number | null;
+  note?: string;
+}
+
+export interface AccessKeyCreateResponse {
+  item: AccessKey;
+  access_key: string;
 }

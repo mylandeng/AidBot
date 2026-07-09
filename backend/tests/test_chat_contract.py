@@ -144,6 +144,46 @@ def test_stream_chat_emits_delta_and_structured_final() -> None:
     assert "型号、固件版本和故障发生时间" not in json.dumps(final_payload, ensure_ascii=False)
 
 
+def test_user_chat_stream_hides_retrieval_debug_fields() -> None:
+    admin = auth_headers()
+    created = client.post("/api/admin/access-keys", json={"name": "用户聊天", "expires_in": "7d"}, headers=admin)
+    key_login = client.post("/api/auth/key-login", json={"access_key": created.json()["access_key"]})
+    headers = {"Authorization": f"Bearer {key_login.json()['access_token']}"}
+
+    with client.stream("POST", "/api/user/chat/stream", json={"question": "设备离线怎么处理？"}, headers=headers) as response:
+        assert response.status_code == 200
+        body = response.read().decode("utf-8")
+
+    final_line = next(line for line in body.splitlines() if line.startswith("data: ") and '"message_id"' in line)
+    final_payload = json.loads(final_line.removeprefix("data: "))
+    assert set(final_payload) == {"conversation_id", "message_id", "answer", "handoff_required", "handoff_reason"}
+    assert "sources" not in final_payload
+    assert "confidence" not in final_payload
+
+
+def test_key_user_cannot_call_legacy_debug_chat_endpoint() -> None:
+    admin = auth_headers()
+    created = client.post("/api/admin/access-keys", json={"name": "受限用户", "expires_in": "7d"}, headers=admin)
+    key_login = client.post("/api/auth/key-login", json={"access_key": created.json()["access_key"]})
+    headers = {"Authorization": f"Bearer {key_login.json()['access_token']}"}
+
+    response = client.post("/api/chat", json={"question": "能看到来源吗？"}, headers=headers)
+
+    assert response.status_code == 403
+
+
+def test_admin_chat_stream_route_keeps_debug_fields() -> None:
+    headers = auth_headers()
+    with client.stream("POST", "/api/admin/chat/stream", json={"question": "设备离线怎么处理？"}, headers=headers) as response:
+        assert response.status_code == 200
+        body = response.read().decode("utf-8")
+
+    final_line = next(line for line in body.splitlines() if line.startswith("data: ") and '"message_id"' in line)
+    final_payload = json.loads(final_line.removeprefix("data: "))
+    assert "sources" in final_payload
+    assert "confidence" in final_payload
+
+
 def test_openai_provider_adapts_support_prompt_to_chat_messages() -> None:
     provider = OpenAICompatibleProvider("https://llm.example.test", "test-key", "test-model")
     prompt = build_support_prompt("怎么配置 MCP？", product_line="内部工具", context="使用 .mcp.json 配置服务器。")

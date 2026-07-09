@@ -16,9 +16,9 @@ export default async function LoginPage() {
         </div>
 
         <div className="login-copy">
-          <p className="eyebrow">内部访问</p>
-          <h1 id="login-title">登录后继续处理售后问题。</h1>
-          <p>当前阶段使用内置管理员账号验证登录链路，后续会接入用户表和正式密码策略。</p>
+          <p className="eyebrow">AidBot 访问</p>
+          <h1 id="login-title">输入访问码，开始售后问答。</h1>
+          <p>普通用户使用管理员分配的访问码进入聊天；管理员可切换到邮箱密码登录后台。</p>
         </div>
 
         <LoginForm />

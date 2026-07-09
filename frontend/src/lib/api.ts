@@ -1,4 +1,7 @@
 import type {
+  AccessKey,
+  AccessKeyCreateRequest,
+  AccessKeyCreateResponse,
   ChatRequest,
   ChatResponse,
   ChatStreamEvent,
@@ -19,6 +22,7 @@ import type {
   LoginResponse,
   ManualKnowledgeRequest,
   MarkdownKnowledgeRequest,
+  UserChatResponse,
 } from "./types";
 
 const PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8010";
@@ -60,6 +64,22 @@ export async function login(email: string, password: string): Promise<LoginRespo
   return response.json();
 }
 
+export async function keyLogin(accessKey: string): Promise<LoginResponse> {
+  const response = await fetch(`${apiBaseUrl()}/api/auth/key-login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ access_key: accessKey }),
+  });
+
+  if (!response.ok) {
+    throw new Error("访问码无效、已过期或已被禁用");
+  }
+
+  return response.json();
+}
+
 async function authorized<T>(path: string, token: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${apiBaseUrl()}${path}`, {
     ...init,
@@ -80,7 +100,32 @@ export async function askQuestionStream(
   token: string,
   onEvent: (event: ChatStreamEvent) => void,
 ): Promise<ChatResponse> {
-  const response = await fetch(`${apiBaseUrl()}/api/chat/stream`, {
+  return askAdminQuestionStream(request, token, onEvent);
+}
+
+export async function askAdminQuestionStream(
+  request: ChatRequest,
+  token: string,
+  onEvent: (event: ChatStreamEvent) => void,
+): Promise<ChatResponse> {
+  return streamChat<ChatResponse>("/api/admin/chat/stream", request, token, onEvent);
+}
+
+export async function askUserQuestionStream(
+  request: ChatRequest,
+  token: string,
+  onEvent: (event: ChatStreamEvent) => void,
+): Promise<UserChatResponse> {
+  return streamChat<UserChatResponse>("/api/user/chat/stream", request, token, onEvent);
+}
+
+async function streamChat<T extends ChatResponse | UserChatResponse>(
+  path: string,
+  request: ChatRequest,
+  token: string,
+  onEvent: (event: ChatStreamEvent) => void,
+): Promise<T> {
+  const response = await fetch(`${apiBaseUrl()}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(request),
@@ -94,7 +139,7 @@ export async function askQuestionStream(
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
-  let finalResult: ChatResponse | null = null;
+  let finalResult: T | null = null;
 
   while (true) {
     const { done, value } = await reader.read();
@@ -107,7 +152,7 @@ export async function askQuestionStream(
       if (!event) continue;
       onEvent(event);
       if (event.event === "final") {
-        finalResult = event.data;
+        finalResult = event.data as T;
       }
       if (event.event === "error") {
         throw new Error(event.data.message);
@@ -209,6 +254,31 @@ export function createFeedback(request: FeedbackCreateRequest, token: string): P
   return authorized("/api/feedback", token, { method: "POST", body: JSON.stringify(request) });
 }
 
+export function createUserFeedback(request: FeedbackCreateRequest, token: string): Promise<{ id: string; status: string }> {
+  return authorized("/api/user/feedback", token, { method: "POST", body: JSON.stringify(request) });
+}
+
 export function updateFeedbackStatus(id: string, request: FeedbackStatusRequest, token: string): Promise<FeedbackItem> {
   return authorized(`/api/feedback/${id}`, token, { method: "PATCH", body: JSON.stringify(request) });
+}
+
+export async function listAccessKeys(token: string): Promise<AccessKey[]> {
+  const payload = await authorized<{ items: AccessKey[] }>("/api/admin/access-keys", token);
+  return payload.items;
+}
+
+export function createAccessKey(request: AccessKeyCreateRequest, token: string): Promise<AccessKeyCreateResponse> {
+  return authorized("/api/admin/access-keys", token, { method: "POST", body: JSON.stringify(request) });
+}
+
+export function disableAccessKey(id: string, token: string): Promise<AccessKey> {
+  return authorized(`/api/admin/access-keys/${id}/disable`, token, { method: "POST" });
+}
+
+export function enableAccessKey(id: string, token: string): Promise<AccessKey> {
+  return authorized(`/api/admin/access-keys/${id}/enable`, token, { method: "POST" });
+}
+
+export function deleteAccessKey(id: string, token: string): Promise<void> {
+  return authorized(`/api/admin/access-keys/${id}`, token, { method: "DELETE" });
 }

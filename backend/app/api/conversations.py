@@ -39,7 +39,19 @@ def get_conversation(conversation_id: str, current_user: CurrentUser = Depends(g
     item = db.scalar(select(Conversation).options(selectinload(Conversation.messages)).where(Conversation.id == conversation_id, Conversation.user_id == current_user.id))
     if item is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
-    messages = [MessageResponse(id=m.id, role=m.role, content=m.content, solution_steps=m.solution_steps, sources=m.sources, confidence=m.confidence, created_at=m.created_at.isoformat()) for m in item.messages]
+    include_debug = bool(set(current_user.roles).intersection({"admin", "support"}))
+    messages = [
+        MessageResponse(
+            id=m.id,
+            role=m.role,
+            content=m.content,
+            solution_steps=m.solution_steps if include_debug else [],
+            sources=m.sources if include_debug else [],
+            confidence=m.confidence if include_debug else "low",
+            created_at=m.created_at.isoformat(),
+        )
+        for m in item.messages
+    ]
     return ConversationDetail(
         id=item.id,
         title=item.title,

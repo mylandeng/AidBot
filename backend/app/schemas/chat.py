@@ -44,6 +44,14 @@ class ChatResponse(BaseModel):
     handoff_reason: str = ""
 
 
+class UserChatResponse(BaseModel):
+    conversation_id: str
+    message_id: str
+    answer: str
+    handoff_required: bool = False
+    handoff_reason: str = ""
+
+
 class MessageResponse(BaseModel):
     id: str
     role: Literal["user", "assistant"]

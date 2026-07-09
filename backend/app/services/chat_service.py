@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.models.conversation import Conversation, Message, utcnow
 from app.schemas.auth import CurrentUser
-from app.schemas.chat import ChatRequest, ChatResponse
+from app.schemas.chat import ChatRequest, ChatResponse, UserChatResponse
 from app.services.llm_service import LLMService
 from app.services.rag_service import RAGService
 from app.services.retrieval_service import RetrievalService
@@ -46,7 +46,7 @@ class ChatService:
         db.refresh(assistant)
         return ChatResponse(conversation_id=conversation.id, message_id=assistant.id, answer=assistant.content, solution_steps=assistant.solution_steps, confidence="medium" if sources else "low", sources=sources, handoff_required=False, handoff_reason="")
 
-    def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> Iterator[str]:
+    def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session, include_debug: bool = True) -> Iterator[str]:
         try:
             conversation = self._resolve_conversation(request, current_user, db)
             question = request.question.strip()
@@ -92,7 +92,18 @@ class ChatService:
             handoff_required=False,
             handoff_reason="",
         )
-        yield self._event("final", final.model_dump())
+        if include_debug:
+            yield self._event("final", final.model_dump())
+            return
+
+        user_final = UserChatResponse(
+            conversation_id=final.conversation_id,
+            message_id=final.message_id,
+            answer=final.answer,
+            handoff_required=final.handoff_required,
+            handoff_reason=final.handoff_reason,
+        )
+        yield self._event("final", user_final.model_dump())
 
     def _resolve_conversation(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> Conversation:
         if request.conversation_id:

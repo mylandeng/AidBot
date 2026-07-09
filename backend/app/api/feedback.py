@@ -1,6 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
-router = APIRouter()
+from app.core.security import require_admin
+
+router = APIRouter(dependencies=[Depends(require_admin)])
 
 
 @router.get("")
