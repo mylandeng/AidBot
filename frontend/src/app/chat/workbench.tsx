@@ -2,13 +2,14 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { archiveConversation, askQuestionStream, deleteConversation, getConversation, listConversations, restoreConversation } from "@/lib/api";
-import type { ConversationMessage, ConversationSummary } from "@/lib/types";
+import type { ConversationMessage, ConversationSummary, RetrievalProvider } from "@/lib/types";
 
 export function ChatWorkbench({ token }: { token: string }) {
   const [items, setItems] = useState<ConversationSummary[]>([]);
   const [messages, setMessages] = useState<ConversationMessage[]>([]);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [question, setQuestion] = useState("");
+  const [retrievalProvider, setRetrievalProvider] = useState<RetrievalProvider>("local");
   const [historyQuery, setHistoryQuery] = useState("");
   const [includeArchived, setIncludeArchived] = useState(false);
   const [error, setError] = useState("");
@@ -45,6 +46,7 @@ export function ChatWorkbench({ token }: { token: string }) {
     const detail = await getConversation(id, token);
     setConversationId(id);
     setMessages(detail.messages);
+    setRetrievalProvider(detail.retrieval_provider ?? "local");
     setError("");
   }
 
@@ -101,7 +103,7 @@ export function ChatWorkbench({ token }: { token: string }) {
     ]);
 
     try {
-      const result = await askQuestionStream({ question: text, conversation_id: conversationId }, token, (streamEvent) => {
+      const result = await askQuestionStream({ question: text, conversation_id: conversationId, retrieval_provider: retrievalProvider }, token, (streamEvent) => {
         if (streamEvent.event === "message_start") {
           setConversationId(streamEvent.data.conversation_id);
           return;
@@ -208,17 +210,32 @@ export function ChatWorkbench({ token }: { token: string }) {
             <p className="eyebrow">会话记录</p>
             <h1>{conversationId ? "继续排查这个售后问题" : "新建一次可追溯的售后问答"}</h1>
           </div>
-          <button
-            className="secondary-button"
-            onClick={() => {
-              setConversationId(null);
-              setMessages([]);
-              setError("");
-            }}
-            type="button"
-          >
-            新会话
-          </button>
+          <div className="topbar-actions">
+            <label className="provider-select" htmlFor="retrieval-provider">
+              <span>知识来源</span>
+              <select
+                disabled={Boolean(conversationId)}
+                id="retrieval-provider"
+                title={conversationId ? "继续会话时沿用创建时的知识来源" : "选择新会话的知识来源"}
+                value={retrievalProvider}
+                onChange={(event) => setRetrievalProvider(event.target.value as RetrievalProvider)}
+              >
+                <option value="local">本地知识库</option>
+                <option value="external">外部知识库（未配置）</option>
+              </select>
+            </label>
+            <button
+              className="secondary-button"
+              onClick={() => {
+                setConversationId(null);
+                setMessages([]);
+                setError("");
+              }}
+              type="button"
+            >
+              新会话
+            </button>
+          </div>
         </header>
 
         <section className="content chat-content">

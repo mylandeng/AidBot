@@ -42,3 +42,5 @@ def ensure_runtime_schema(engine: Engine) -> None:
             columns = {column["name"] for column in inspector.get_columns("conversations")}
             if "status" not in columns:
                 connection.execute(text("ALTER TABLE conversations ADD COLUMN status VARCHAR(24) NOT NULL DEFAULT 'active'"))
+            if "retrieval_provider" not in columns:
+                connection.execute(text("ALTER TABLE conversations ADD COLUMN retrieval_provider VARCHAR(24) NOT NULL DEFAULT 'local'"))

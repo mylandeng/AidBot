@@ -11,20 +11,30 @@ from app.schemas.auth import CurrentUser
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.services.llm_service import LLMService
 from app.services.rag_service import RAGService
+from app.services.retrieval_service import RetrievalService
 
 
 class ChatService:
-    def __init__(self, llm_service: LLMService | None = None, rag_service: RAGService | None = None) -> None:
+    def __init__(
+        self,
+        llm_service: LLMService | None = None,
+        rag_service: RAGService | None = None,
+        retrieval_service: RetrievalService | None = None,
+    ) -> None:
         self.llm_service = llm_service or LLMService()
-        self.rag_service = rag_service or RAGService()
+        self.retrieval_service = retrieval_service or RetrievalService(rag_service or RAGService())
 
     def answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> ChatResponse:
         conversation = self._resolve_conversation(request, current_user, db)
 
         question = request.question.strip()
         contextual_question = self._question_with_recent_context(conversation.id, question, db)
-        retrieved = self.rag_service.retrieve(contextual_question, current_user, db)
-        context = self.rag_service.context_for_prompt(retrieved)
+        try:
+            retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+        except HTTPException:
+            db.rollback()
+            raise
+        context = self.retrieval_service.context_for_prompt(retrieved)
         sources = [item.citation().model_dump() for item in retrieved]
 
         db.add(Message(conversation_id=conversation.id, role="user", content=question))
@@ -37,11 +47,16 @@ class ChatService:
         return ChatResponse(conversation_id=conversation.id, message_id=assistant.id, answer=assistant.content, solution_steps=assistant.solution_steps, confidence="medium" if sources else "low", sources=sources, handoff_required=False, handoff_reason="")
 
     def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> Iterator[str]:
-        conversation = self._resolve_conversation(request, current_user, db)
-        question = request.question.strip()
-        contextual_question = self._question_with_recent_context(conversation.id, question, db)
-        retrieved = self.rag_service.retrieve(contextual_question, current_user, db)
-        context = self.rag_service.context_for_prompt(retrieved)
+        try:
+            conversation = self._resolve_conversation(request, current_user, db)
+            question = request.question.strip()
+            contextual_question = self._question_with_recent_context(conversation.id, question, db)
+            retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+            context = self.retrieval_service.context_for_prompt(retrieved)
+        except HTTPException as exc:
+            db.rollback()
+            yield self._event("error", {"message": str(exc.detail)})
+            return
         sources = [item.citation().model_dump() for item in retrieved]
 
         db.add(Message(conversation_id=conversation.id, role="user", content=question))
@@ -88,7 +103,12 @@ class ChatService:
                 raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Archived conversations cannot receive new messages")
             return conversation
 
-        conversation = Conversation(user_id=current_user.id, title=request.question.strip()[:80], product_line=request.product_line)
+        conversation = Conversation(
+            user_id=current_user.id,
+            title=request.question.strip()[:80],
+            product_line=request.product_line,
+            retrieval_provider=request.retrieval_provider,
+        )
         db.add(conversation)
         db.flush()
         return conversation

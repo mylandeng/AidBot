@@ -40,6 +40,7 @@ def test_chat_persists_conversation_and_sources_field() -> None:
     assert isinstance(payload["sources"], list)
     history = client.get(f"/api/conversations/{payload['conversation_id']}", headers=headers)
     assert history.status_code == 200
+    assert history.json()["retrieval_provider"] == "local"
     assert [message["role"] for message in history.json()["messages"]] == ["user", "assistant"]
 
 
@@ -52,6 +53,22 @@ def test_chat_can_continue_existing_conversation() -> None:
     listing = client.get("/api/conversations", headers=headers)
     assert listing.status_code == 200
     assert any(item["id"] == first["conversation_id"] and item["message_count"] == 4 for item in listing.json())
+
+
+def test_chat_persists_retrieval_provider_on_new_conversation() -> None:
+    headers = auth_headers()
+    response = client.post("/api/chat", json={"question": "用本地知识库回答", "retrieval_provider": "local"}, headers=headers)
+    assert response.status_code == 200
+    detail = client.get(f"/api/conversations/{response.json()['conversation_id']}", headers=headers)
+    assert detail.status_code == 200
+    assert detail.json()["retrieval_provider"] == "local"
+
+
+def test_external_retrieval_provider_fails_until_configured() -> None:
+    headers = auth_headers()
+    response = client.post("/api/chat", json={"question": "查外部知识库", "retrieval_provider": "external"}, headers=headers)
+    assert response.status_code == 400
+    assert "外部知识库尚未配置" in response.json()["detail"]
 
 
 def test_chat_contextualizes_followup_questions_for_retrieval() -> None:

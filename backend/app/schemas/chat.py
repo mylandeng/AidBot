@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 
 
 Confidence = Literal["low", "medium", "high"]
+RetrievalProvider = Literal["local", "external"]
 StrategyName = Literal["template", "rag", "local_kb", "langchain"]
 
 
@@ -11,6 +12,7 @@ class ChatRequest(BaseModel):
     question: str = Field(min_length=1, max_length=4000)
     conversation_id: str | None = None
     product_line: str | None = None
+    retrieval_provider: RetrievalProvider = "local"
 
 
 class SourceCitation(BaseModel):
@@ -56,6 +58,7 @@ class ConversationSummary(BaseModel):
     id: str
     title: str
     product_line: str | None = None
+    retrieval_provider: RetrievalProvider = "local"
     status: Literal["active", "archived"] = "active"
     updated_at: str
     message_count: int

@@ -17,6 +17,7 @@ class Conversation(Base):
     user_id: Mapped[str] = mapped_column(String(64), index=True, nullable=False)
     title: Mapped[str] = mapped_column(String(160), nullable=False)
     product_line: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    retrieval_provider: Mapped[str] = mapped_column(String(24), default="local", nullable=False)
     status: Mapped[str] = mapped_column(String(24), default="active", index=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)

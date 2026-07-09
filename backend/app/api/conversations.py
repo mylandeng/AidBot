@@ -40,7 +40,16 @@ def get_conversation(conversation_id: str, current_user: CurrentUser = Depends(g
     if item is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
     messages = [MessageResponse(id=m.id, role=m.role, content=m.content, solution_steps=m.solution_steps, sources=m.sources, confidence=m.confidence, created_at=m.created_at.isoformat()) for m in item.messages]
-    return ConversationDetail(id=item.id, title=item.title, product_line=item.product_line, status=item.status, updated_at=item.updated_at.isoformat(), message_count=len(messages), messages=messages)
+    return ConversationDetail(
+        id=item.id,
+        title=item.title,
+        product_line=item.product_line,
+        retrieval_provider=item.retrieval_provider,
+        status=item.status,
+        updated_at=item.updated_at.isoformat(),
+        message_count=len(messages),
+        messages=messages,
+    )
 
 
 @router.post("/{conversation_id}/archive", response_model=ConversationSummary)
@@ -82,6 +91,7 @@ def _summary_response(item: Conversation, message_count: int) -> ConversationSum
         id=item.id,
         title=item.title,
         product_line=item.product_line,
+        retrieval_provider=item.retrieval_provider,
         status=item.status,
         updated_at=item.updated_at.isoformat(),
         message_count=message_count,

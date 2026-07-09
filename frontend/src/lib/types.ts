@@ -1,5 +1,6 @@
 export type Confidence = "low" | "medium" | "high";
 export type SourceType = "upload" | "feishu" | "manual" | "ticket";
+export type RetrievalProvider = "local" | "external";
 export type FeedbackRating = "useful" | "not_useful" | "needs_review";
 export type FeedbackStatus = "pending" | "processing" | "resolved" | "ignored";
 
@@ -27,6 +28,7 @@ export interface ChatRequest {
   question: string;
   conversation_id?: string | null;
   product_line?: string | null;
+  retrieval_provider?: RetrievalProvider;
 }
 
 export interface SourceCitation {
@@ -59,6 +61,7 @@ export interface ConversationSummary {
   id: string;
   title: string;
   product_line?: string | null;
+  retrieval_provider: RetrievalProvider;
   status: "active" | "archived";
   updated_at: string;
   message_count: number;
