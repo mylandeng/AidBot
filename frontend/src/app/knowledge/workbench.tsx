@@ -182,53 +182,7 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
   }
 
   return (
-    <div className="app-shell">
-      <aside className="sidebar">
-        <a className="brand-lockup" href="/" aria-label="AidBot 首页">
-          <span className="brand-mark">A</span>
-          <span>
-            <strong>AidBot</strong>
-            <small>售后知识中枢</small>
-          </span>
-        </a>
-
-        <nav className="nav-list" aria-label="主导航">
-          <a className="nav-item" href="/">
-            <span>问答分诊</span>
-            <small>首页</small>
-          </a>
-          <a className="nav-item" href="/chat">
-            <span>会话记录</span>
-            <small>追溯</small>
-          </a>
-          <a className="nav-item active" href="/knowledge">
-            <span>知识入库</span>
-            <small>{sources.length} 条</small>
-          </a>
-          <a className="nav-item" href="/feedback">
-            <span>反馈复盘</span>
-            <small>待处理</small>
-          </a>
-          <a className="nav-item" href="/admin">
-            <span>系统设置</span>
-            <small>内部</small>
-          </a>
-        </nav>
-
-        <section className="sidebar-block" aria-labelledby="knowledge-status-title">
-          <h2 id="knowledge-status-title">检索状态</h2>
-          <ul>
-            <li>
-              <a href="/chat">{totalChunks} 个知识片段可用于聊天引用</a>
-            </li>
-            <li>
-              <a href="/knowledge">{spaces.length} 个知识库可管理</a>
-            </li>
-          </ul>
-        </section>
-      </aside>
-
-      <main className="main knowledge-main">
+    <>
         <header className="topbar">
           <div>
             <p className="eyebrow">知识入库</p>
@@ -334,7 +288,7 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
               ) : (
                 <div className="empty-chat knowledge-empty">
                   <b>先录入一条真实售后处理方案。</b>
-                  <p>保存后去会话里提相近问题，回答会返回来源引用。</p>
+                  <p>保存后去聊一聊提相近问题，回答会返回来源引用。</p>
                 </div>
               )}
             </div>
@@ -374,8 +328,7 @@ export function KnowledgeWorkbench({ token }: { token: string }) {
             </div>
           </section>
         </section>
-      </main>
-    </div>
+    </>
   );
 }
 

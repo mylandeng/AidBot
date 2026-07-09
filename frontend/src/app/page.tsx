@@ -1,5 +1,8 @@
+import { redirect } from "next/navigation";
+
 import { HealthBadge } from "@/components/layout/health-badge";
-import { requireSession } from "@/lib/auth";
+import { AdminShell } from "@/components/layout/admin-shell";
+import { getCurrentUser, requireSession } from "@/lib/auth";
 
 const sources = [
   { title: "AX-42 联网排查手册", type: "上传文档", score: "0.86" },
@@ -14,55 +17,28 @@ const conversations = [
 ];
 
 export default async function Home() {
-  await requireSession();
+  const token = await requireSession();
+  const user = await getCurrentUser(token);
+  if (!user?.roles.includes("admin")) {
+    redirect("/user/chat");
+  }
 
   return (
-    <div className="app-shell">
-      <aside className="sidebar">
-        <a className="brand-lockup" href="/" aria-label="AidBot 首页">
-          <span className="brand-mark">A</span>
-          <span>
-            <strong>AidBot</strong>
-            <small>售后知识中枢</small>
-          </span>
-        </a>
-
-        <nav className="nav-list" aria-label="主导航">
-          <a className="nav-item active" href="/">
-            <span>问答分诊</span>
-            <small>当前</small>
-          </a>
-          <a className="nav-item" href="/chat">
-            <span>会话记录</span>
-            <small>3 条</small>
-          </a>
-          <a className="nav-item" href="/knowledge">
-            <span>知识入库</span>
-            <small>待接入</small>
-          </a>
-          <a className="nav-item" href="/feedback">
-            <span>反馈复盘</span>
-            <small>待处理</small>
-          </a>
-          <a className="nav-item" href="/admin">
-            <span>系统设置</span>
-            <small>内部</small>
-          </a>
-        </nav>
-
-        <section className="sidebar-block" aria-labelledby="recent-title">
+    <AdminShell
+      active="triage"
+      sidebarPanel={
+        <>
           <h2 id="recent-title">最近问题</h2>
-          <ul>
+          <ul aria-labelledby="recent-title">
             {conversations.map((item) => (
               <li key={item}>
-                <a href="/chat">{item}</a>
+                <a href="/">{item}</a>
               </li>
             ))}
           </ul>
-        </section>
-      </aside>
-
-      <main className="main">
+        </>
+      }
+    >
         <header className="topbar">
           <div>
             <p className="eyebrow">内部支持台</p>
@@ -162,7 +138,6 @@ export default async function Home() {
             </aside>
           </div>
         </section>
-      </main>
-    </div>
+    </AdminShell>
   );
 }
