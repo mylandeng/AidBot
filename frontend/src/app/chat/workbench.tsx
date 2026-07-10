@@ -11,11 +11,27 @@ const examples = [
   "固件升级失败后，应该先让客户检查哪些信息？",
 ];
 
-const feedbackOptions: { rating: FeedbackRating; label: string; tags: string[] }[] = [
-  { rating: "useful", label: "有帮助", tags: [] },
-  { rating: "not_useful", label: "没帮助", tags: ["低分回答"] },
-  { rating: "needs_human", label: "需要人工跟进", tags: ["需要人工"] },
-];
+const feedbackReasons = ["准确理解问题", "内容回复简洁明了", "我有其他想法"];
+const starScores = [1, 2, 3, 4, 5];
+
+interface PendingFeedback {
+  messageId: string;
+  score: number;
+}
+
+interface SubmittedFeedback {
+  score: number;
+}
+
+function scoreToRating(score: number): FeedbackRating {
+  if (score >= 4) return "useful";
+  if (score === 3) return "needs_review";
+  return "not_useful";
+}
+
+function toggleTag(tags: string[], tag: string): string[] {
+  return tags.includes(tag) ? tags.filter((item) => item !== tag) : [...tags, tag];
+}
 
 export function ChatWorkbench({ token }: { token: string }) {
   const [items, setItems] = useState<ConversationSummary[]>([]);
@@ -24,7 +40,11 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  const [feedbackByMessage, setFeedbackByMessage] = useState<Record<string, FeedbackRating>>({});
+  const [feedbackByMessage, setFeedbackByMessage] = useState<Record<string, SubmittedFeedback>>({});
+  const [pendingFeedback, setPendingFeedback] = useState<PendingFeedback | null>(null);
+  const [feedbackTags, setFeedbackTags] = useState<string[]>([]);
+  const [feedbackNote, setFeedbackNote] = useState("");
+  const [submittingFeedback, setSubmittingFeedback] = useState(false);
   const [busy, setBusy] = useState(false);
   const streamEndRef = useRef<HTMLDivElement | null>(null);
   const lastMessageContent = messages.at(-1)?.content ?? "";
@@ -95,21 +115,50 @@ export function ChatWorkbench({ token }: { token: string }) {
     }
   }
 
-  async function sendFeedback(messageId: string, rating: FeedbackRating, tags: string[]) {
-    if (messageId.startsWith("assistant-")) return;
-    setNotice("");
+  function openFeedback(messageId: string, score: number) {
+    if (messageId.startsWith("assistant-") || submittingFeedback) return;
+    setPendingFeedback({ messageId, score });
+    setFeedbackTags([]);
+    setFeedbackNote("");
     setError("");
-    setFeedbackByMessage((current) => ({ ...current, [messageId]: rating }));
+    setNotice("");
+  }
+
+  function closeFeedback() {
+    if (submittingFeedback) return;
+    setPendingFeedback(null);
+    setFeedbackTags([]);
+    setFeedbackNote("");
+  }
+
+  async function submitFeedback(includeDetail: boolean) {
+    if (!pendingFeedback || submittingFeedback) return;
+    const { messageId, score } = pendingFeedback;
+    const rating = scoreToRating(score);
+    const tags = includeDetail ? [`${score}星`, ...feedbackTags] : [`${score}星`];
+
+    setSubmittingFeedback(true);
+    setError("");
+    setNotice("");
     try {
-      await createUserFeedback({ message_id: messageId, rating, tags, note: "" }, token);
-      setNotice("反馈已提交，感谢补充。");
+      await createUserFeedback(
+        {
+          message_id: messageId,
+          rating,
+          tags,
+          note: includeDetail ? feedbackNote.trim() : "",
+        },
+        token,
+      );
+      setFeedbackByMessage((current) => ({ ...current, [messageId]: { score } }));
+      setNotice(`${score} 星反馈已提交，感谢补充。`);
+      setPendingFeedback(null);
+      setFeedbackTags([]);
+      setFeedbackNote("");
     } catch (reason) {
-      setFeedbackByMessage((current) => {
-        const next = { ...current };
-        delete next[messageId];
-        return next;
-      });
       setError(reason instanceof Error ? reason.message : "反馈提交失败");
+    } finally {
+      setSubmittingFeedback(false);
     }
   }
 
@@ -185,26 +234,38 @@ export function ChatWorkbench({ token }: { token: string }) {
 
             <section className="message-stream">
               {messages.length ? (
-                messages.map((message) => (
-                  <article className={`message ${message.role}`} key={message.id}>
-                    <span>{message.role === "user" ? "你的问题" : "AidBot 回复"}</span>
-                    <p>{message.content}</p>
-                    {message.role === "assistant" && !message.id.startsWith("assistant-") ? (
-                      <div className="message-feedback" aria-label="回答反馈">
-                        {feedbackOptions.map((option) => (
-                          <button
-                            className={feedbackByMessage[message.id] === option.rating ? "active" : ""}
-                            key={option.rating}
-                            onClick={() => sendFeedback(message.id, option.rating, option.tags)}
-                            type="button"
-                          >
-                            {option.label}
-                          </button>
-                        ))}
-                      </div>
-                    ) : null}
-                  </article>
-                ))
+                messages.map((message) => {
+                  const submitted = feedbackByMessage[message.id];
+                  const activeScore = pendingFeedback?.messageId === message.id ? pendingFeedback.score : submitted?.score ?? 0;
+                  return (
+                    <article className={`message ${message.role}`} key={message.id}>
+                      <span>{message.role === "user" ? "你的问题" : "AidBot 回复"}</span>
+                      <p>{message.content}</p>
+                      {message.role === "assistant" && !message.id.startsWith("assistant-") ? (
+                        <div className="message-feedback" aria-label="回答反馈">
+                          <div className="star-rating" role="group" aria-label="五星彩评">
+                            {starScores.map((score) => (
+                              <button
+                                aria-label={`${score} 星`}
+                                className={score <= activeScore ? "active" : ""}
+                                disabled={submittingFeedback}
+                                key={score}
+                                onClick={() => openFeedback(message.id, score)}
+                                title={`${score} 星`}
+                                type="button"
+                              >
+                                <StarIcon filled={score <= activeScore} />
+                              </button>
+                            ))}
+                          </div>
+                          <small className={submitted ? "feedback-status submitted" : "feedback-status"}>
+                            {submitted ? `已提交 ${submitted.score} 星` : "点击星星评分"}
+                          </small>
+                        </div>
+                      ) : null}
+                    </article>
+                  );
+                })
               ) : (
                 <div className="empty-chat">
                   <b>把现象说具体一点，回答会更准确。</b>
@@ -243,7 +304,70 @@ export function ChatWorkbench({ token }: { token: string }) {
           </section>
         </section>
       </main>
+
+      {pendingFeedback ? (
+        <div className="feedback-dialog-backdrop" role="presentation">
+          <section
+            aria-describedby="feedback-dialog-description"
+            aria-labelledby="feedback-dialog-title"
+            aria-modal="true"
+            className="feedback-dialog"
+            role="dialog"
+          >
+            <div className="feedback-dialog-heading">
+              <div>
+                <p className="eyebrow">{pendingFeedback.score} 星</p>
+                <h2 id="feedback-dialog-title">这次回答怎么样？</h2>
+                <p id="feedback-dialog-description">可以补充原因，也可以直接忽略留言。</p>
+              </div>
+            </div>
+
+            <div className="feedback-reasons" aria-label="反馈原因">
+              {feedbackReasons.map((reason) => (
+                <button
+                  className={feedbackTags.includes(reason) ? "active" : ""}
+                  key={reason}
+                  onClick={() => setFeedbackTags((current) => toggleTag(current, reason))}
+                  type="button"
+                >
+                  {reason}
+                </button>
+              ))}
+            </div>
+
+            <label className="feedback-note" htmlFor="feedback-note">
+              <span>留言</span>
+              <textarea
+                id="feedback-note"
+                onChange={(event) => setFeedbackNote(event.target.value)}
+                placeholder="您的建议，将促使本系统持续进步"
+                value={feedbackNote}
+              />
+            </label>
+
+            <div className="feedback-dialog-actions">
+              <button className="secondary-button" disabled={submittingFeedback} onClick={() => submitFeedback(false)} type="button">
+                {submittingFeedback ? "提交中" : "忽略"}
+              </button>
+              <button className="primary-button" disabled={submittingFeedback} onClick={() => submitFeedback(true)} type="button">
+                {submittingFeedback ? "提交中" : "提交"}
+              </button>
+            </div>
+            <button aria-label="关闭反馈弹窗" className="dialog-close" disabled={submittingFeedback} onClick={closeFeedback} type="button">
+              ×
+            </button>
+          </section>
+        </div>
+      ) : null}
     </div>
+  );
+}
+
+function StarIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg aria-hidden="true" className={filled ? "star-icon filled" : "star-icon"} focusable="false" viewBox="0 0 24 24">
+      <path d="M12 3.15l2.58 5.22 5.76.84-4.17 4.06.98 5.73L12 16.3 6.85 19l.98-5.73-4.17-4.06 5.76-.84L12 3.15z" />
+    </svg>
   );
 }
 

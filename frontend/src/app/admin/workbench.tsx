@@ -20,6 +20,7 @@ export function AdminWorkbench({ token }: { token: string }) {
   const [createdKey, setCreatedKey] = useState("");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const [copiedValue, setCopiedValue] = useState("");
   const [busyId, setBusyId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
 
@@ -49,7 +50,7 @@ export function AdminWorkbench({ token }: { token: string }) {
         token,
       );
       setCreatedKey(result.access_key);
-      setNotice("访问码已创建。明文只显示这一次，请及时复制给用户。");
+      setNotice("访问码已创建，可直接复制给用户。");
       setName("");
       setMaxRequests("");
       setNote("");
@@ -58,6 +59,30 @@ export function AdminWorkbench({ token }: { token: string }) {
       setError(reason instanceof Error ? reason.message : "创建访问码失败");
     } finally {
       setCreating(false);
+    }
+  }
+
+  async function copyKey(value: string) {
+    if (!value) return;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.setAttribute("readonly", "true");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+      setCopiedValue(value);
+      setError("");
+      setNotice("访问码已复制。");
+    } catch {
+      setError("复制失败，请手动选择访问码复制");
     }
   }
 
@@ -130,7 +155,12 @@ export function AdminWorkbench({ token }: { token: string }) {
               {notice ? <p className="form-notice">{notice}</p> : null}
               {createdKey ? (
                 <div className="created-key">
-                  <span>新访问码</span>
+                  <div className="created-key-header">
+                    <span>新访问码</span>
+                    <button className="source-action" onClick={() => copyKey(createdKey)} type="button">
+                      {copiedValue === createdKey ? "已复制" : "复制"}
+                    </button>
+                  </div>
                   <code>{createdKey}</code>
                 </div>
               ) : null}
@@ -152,9 +182,10 @@ export function AdminWorkbench({ token }: { token: string }) {
               {items.length ? (
                 items.map((item) => (
                   <article className="key-item" key={item.id}>
-                    <div>
+                    <div className="key-primary">
                       <strong>{item.name}</strong>
-                      <span>{item.key_prefix}...</span>
+                      <code>{item.key_prefix}...</code>
+                      <small>完整访问码仅创建后显示一次；如遗失请删除后重新创建。</small>
                     </div>
                     <div className="key-meta">
                       <span>{statusLabel(item.status)}</span>

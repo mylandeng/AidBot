@@ -84,6 +84,9 @@ export function FeedbackWorkbench({ token }: { token: string }) {
                     <span>{ratingLabel(item.rating)}</span>
                     <span>{statusLabel(item.status)}</span>
                     <span>{item.source_count} 条来源</span>
+                    {item.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
                   </div>
                   <h3>{item.question_preview || "未找到原问题"}</h3>
                   <p>{item.answer_preview || "未找到回答内容"}</p>
