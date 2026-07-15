@@ -12,6 +12,14 @@ from app.schemas.chat import ChatRequest, ChatResponse, UserChatResponse
 from app.services.llm_service import LLMService
 from app.services.rag_service import RAGService
 from app.services.retrieval_service import RetrievalService
+from app.services.tracing import (
+    end_trace,
+    summarize_chat_request,
+    summarize_chat_response,
+    summarize_exception,
+    summarize_user,
+    trace_run,
+)
 
 
 class ChatService:
@@ -25,85 +33,100 @@ class ChatService:
         self.retrieval_service = retrieval_service or RetrievalService(rag_service or RAGService())
 
     def answer(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> ChatResponse:
-        conversation = self._resolve_conversation(request, current_user, db)
-
-        question = request.question.strip()
-        contextual_question = self._question_with_recent_context(conversation.id, question, db)
-        try:
-            retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
-        except HTTPException:
-            db.rollback()
-            raise
-        context = self.retrieval_service.context_for_prompt(retrieved)
-        sources = [item.citation().model_dump() for item in retrieved]
-
-        db.add(Message(conversation_id=conversation.id, role="user", content=question))
-        completion = self.llm_service.complete(contextual_question, request.product_line, context)
-        assistant = self._assistant_message(conversation.id, completion.answer, completion.solution_steps, completion.model_name, sources)
-        db.add(assistant)
-        conversation.updated_at = utcnow()
-        db.commit()
-        db.refresh(assistant)
-        return ChatResponse(conversation_id=conversation.id, message_id=assistant.id, answer=assistant.content, solution_steps=assistant.solution_steps, confidence="medium" if sources else "low", sources=sources, handoff_required=False, handoff_reason="")
-
-    def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session, include_debug: bool = True) -> Iterator[str]:
-        try:
+        with trace_run(
+            "AidBot Chat Answer",
+            "chain",
+            inputs={"request": summarize_chat_request(request), "user": summarize_user(current_user)},
+        ) as run:
             conversation = self._resolve_conversation(request, current_user, db)
+
             question = request.question.strip()
             contextual_question = self._question_with_recent_context(conversation.id, question, db)
-            retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+            try:
+                retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+            except HTTPException:
+                db.rollback()
+                raise
             context = self.retrieval_service.context_for_prompt(retrieved)
-        except HTTPException as exc:
-            db.rollback()
-            yield self._event("error", {"message": str(exc.detail)})
-            return
-        sources = [item.citation().model_dump() for item in retrieved]
+            sources = [item.citation().model_dump() for item in retrieved]
 
-        db.add(Message(conversation_id=conversation.id, role="user", content=question))
-        conversation.updated_at = utcnow()
-        db.commit()
+            db.add(Message(conversation_id=conversation.id, role="user", content=question))
+            completion = self.llm_service.complete(contextual_question, request.product_line, context)
+            assistant = self._assistant_message(conversation.id, completion.answer, completion.solution_steps, completion.model_name, sources)
+            db.add(assistant)
+            conversation.updated_at = utcnow()
+            db.commit()
+            db.refresh(assistant)
+            response = ChatResponse(conversation_id=conversation.id, message_id=assistant.id, answer=assistant.content, solution_steps=assistant.solution_steps, confidence="medium" if sources else "low", sources=sources, handoff_required=False, handoff_reason="")
+            end_trace(run, summarize_chat_response(response))
+            return response
 
-        yield self._event("message_start", {"conversation_id": conversation.id})
+    def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session, include_debug: bool = True) -> Iterator[str]:
+        with trace_run(
+            "AidBot Chat Stream",
+            "chain",
+            inputs={"request": summarize_chat_request(request), "user": summarize_user(current_user), "include_debug": include_debug},
+        ) as run:
+            try:
+                conversation = self._resolve_conversation(request, current_user, db)
+                question = request.question.strip()
+                contextual_question = self._question_with_recent_context(conversation.id, question, db)
+                retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+                context = self.retrieval_service.context_for_prompt(retrieved)
+            except HTTPException as exc:
+                db.rollback()
+                end_trace(run, {"status": "error", "error": {"type": "HTTPException", "message": str(exc.detail)}})
+                yield self._event("error", {"message": str(exc.detail)})
+                return
+            sources = [item.citation().model_dump() for item in retrieved]
 
-        answer_parts: list[str] = []
-        try:
-            for delta in self.llm_service.stream_answer(contextual_question, request.product_line, context):
-                answer_parts.append(delta)
-                yield self._event("answer_delta", {"delta": delta})
-        except Exception:
-            db.rollback()
-            yield self._event("error", {"message": "模型暂时不可用，请稍后重试。"})
-            return
+            db.add(Message(conversation_id=conversation.id, role="user", content=question))
+            conversation.updated_at = utcnow()
+            db.commit()
 
-        answer = "".join(answer_parts).strip() or "暂时没有生成有效回答，请补充故障现象后重试。"
-        assistant = self._assistant_message(conversation.id, answer, [], settings.llm_model, sources)
-        db.add(assistant)
-        conversation.updated_at = utcnow()
-        db.commit()
-        db.refresh(assistant)
+            yield self._event("message_start", {"conversation_id": conversation.id})
 
-        final = ChatResponse(
-            conversation_id=conversation.id,
-            message_id=assistant.id,
-            answer=assistant.content,
-            solution_steps=assistant.solution_steps,
-            confidence="medium" if sources else "low",
-            sources=sources,
-            handoff_required=False,
-            handoff_reason="",
-        )
-        if include_debug:
-            yield self._event("final", final.model_dump())
-            return
+            answer_parts: list[str] = []
+            try:
+                for delta in self.llm_service.stream_answer(contextual_question, request.product_line, context):
+                    answer_parts.append(delta)
+                    yield self._event("answer_delta", {"delta": delta})
+            except Exception as exc:
+                db.rollback()
+                end_trace(run, {"status": "error", "error": summarize_exception(exc)})
+                yield self._event("error", {"message": "模型暂时不可用，请稍后重试。"})
+                return
 
-        user_final = UserChatResponse(
-            conversation_id=final.conversation_id,
-            message_id=final.message_id,
-            answer=final.answer,
-            handoff_required=final.handoff_required,
-            handoff_reason=final.handoff_reason,
-        )
-        yield self._event("final", user_final.model_dump())
+            answer = "".join(answer_parts).strip() or "暂时没有生成有效回答，请补充故障现象后重试。"
+            assistant = self._assistant_message(conversation.id, answer, [], settings.llm_model, sources)
+            db.add(assistant)
+            conversation.updated_at = utcnow()
+            db.commit()
+            db.refresh(assistant)
+
+            final = ChatResponse(
+                conversation_id=conversation.id,
+                message_id=assistant.id,
+                answer=assistant.content,
+                solution_steps=assistant.solution_steps,
+                confidence="medium" if sources else "low",
+                sources=sources,
+                handoff_required=False,
+                handoff_reason="",
+            )
+            end_trace(run, summarize_chat_response(final))
+            if include_debug:
+                yield self._event("final", final.model_dump())
+                return
+
+            user_final = UserChatResponse(
+                conversation_id=final.conversation_id,
+                message_id=final.message_id,
+                answer=final.answer,
+                handoff_required=final.handoff_required,
+                handoff_reason=final.handoff_reason,
+            )
+            yield self._event("final", user_final.model_dump())
 
     def _resolve_conversation(self, request: ChatRequest, current_user: CurrentUser, db: Session) -> Conversation:
         if request.conversation_id:

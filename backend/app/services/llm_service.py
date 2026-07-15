@@ -5,6 +5,7 @@ from typing import Iterator, Protocol
 import httpx
 from app.core.config import settings
 from app.services.prompt_service import SupportPrompt, build_support_prompt
+from app.services.tracing import end_trace, summarize_exception, summarize_llm_completion, text_fingerprint, trace_run
 
 
 @dataclass(frozen=True)
@@ -107,7 +108,40 @@ class LLMService:
         self.provider = provider or create_provider()
 
     def complete(self, question: str, product_line: str | None = None, context: str | None = None) -> LLMCompletion:
-        return self.provider.complete(question, product_line, context)
+        with trace_run(
+            "AidBot LLM Complete",
+            "llm",
+            inputs={
+                "question": text_fingerprint(question),
+                "product_line": product_line or "",
+                "context": text_fingerprint(context),
+                "model_name": getattr(self.provider, "model_name", settings.llm_model),
+                "provider": self.provider.__class__.__name__,
+            },
+        ) as run:
+            completion = self.provider.complete(question, product_line, context)
+            end_trace(run, summarize_llm_completion(completion))
+            return completion
 
     def stream_answer(self, question: str, product_line: str | None = None, context: str | None = None) -> Iterator[str]:
-        return self.provider.stream_answer(question, product_line, context)
+        with trace_run(
+            "AidBot LLM Stream",
+            "llm",
+            inputs={
+                "question": text_fingerprint(question),
+                "product_line": product_line or "",
+                "context": text_fingerprint(context),
+                "model_name": getattr(self.provider, "model_name", settings.llm_model),
+                "provider": self.provider.__class__.__name__,
+            },
+        ) as run:
+            answer_parts: list[str] = []
+            try:
+                for delta in self.provider.stream_answer(question, product_line, context):
+                    answer_parts.append(delta)
+                    yield delta
+            except Exception as exc:
+                end_trace(run, {"status": "error", "error": summarize_exception(exc), "partial_answer": text_fingerprint("".join(answer_parts))})
+                raise
+            completion = LLMCompletion(answer="".join(answer_parts).strip(), solution_steps=[], model_name=getattr(self.provider, "model_name", settings.llm_model))
+            end_trace(run, summarize_llm_completion(completion))

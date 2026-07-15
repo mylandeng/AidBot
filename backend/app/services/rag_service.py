@@ -20,6 +20,7 @@ from app.schemas.knowledge import (
 )
 from app.services.document_service import DocumentService
 from app.services.embedding_service import EmbeddingService
+from app.services.tracing import end_trace, summarize_retrieved_chunks, summarize_user, text_fingerprint, trace_run
 
 
 def _clean_markdown_for_prompt(text: str) -> str:
@@ -293,48 +294,55 @@ class RAGService:
         ]
 
     def retrieve(self, query_text: str, current_user: CurrentUser, db: Session, limit: int = 3) -> list[RetrievedChunk]:
-        query_vector = self.embedding_service.embed(query_text)
-        rows = db.execute(
-            select(KnowledgeChunk, KnowledgeSource, KnowledgeDocument)
-            .join(KnowledgeSource, KnowledgeChunk.source_id == KnowledgeSource.id)
-            .join(KnowledgeDocument, KnowledgeChunk.document_id == KnowledgeDocument.id)
-            .outerjoin(KnowledgeSpace, KnowledgeSource.space_id == KnowledgeSpace.id)
-            .where(KnowledgeSource.status == "active")
-            .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.status == "active"))
-            .where(or_(KnowledgeSource.visibility == "internal", KnowledgeSource.owner_user_id == current_user.id))
-            .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.visibility == "internal", KnowledgeSpace.owner_user_id == current_user.id))
-        ).all()
-        query_terms = self._lexical_terms(query_text)
-        exact_terms = self._exact_terms(query_text)
-        query_entities = self._extract_entities(query_text)
-        scored = []
-        for chunk, source, document in rows:
-            vector_score = (
-                self.embedding_service.similarity(query_vector, chunk.embedding or [])
-                if self.embedding_service.is_compatible(chunk.embedding_provider, chunk.embedding_model, chunk.embedding_dimensions)
-                else 0.0
-            )
-            searchable_text = "\n".join(
-                part
-                for part in [
-                    source.space.name if source.space else "",
-                    source.title,
-                    source.filename,
-                    source.content_format,
-                    document.title,
-                    chunk.content,
-                ]
-                if part
-            )
-            lexical_score = self._lexical_score(query_terms, searchable_text)
-            exact_score = self._exact_score(exact_terms, searchable_text)
-            title_score = self._exact_score(exact_terms, "\n".join(part for part in [source.title, document.title, chunk.title] if part))
-            metadata_score = self._metadata_score(query_entities, _merge_entity_metadata(source.search_metadata or {}, chunk.entities or {}))
-            hybrid_score = (vector_score * 0.4) + (lexical_score * 0.4) + (exact_score * 0.65) + (title_score * 0.25) + (metadata_score * 0.45)
-            scored.append(RetrievedChunk(chunk=chunk, source=source, document=document, score=hybrid_score))
-        ranked = [item for item in sorted(scored, key=lambda item: item.score, reverse=True) if item.score > 0.1]
-        ranked = ranked[: max(self.candidate_pool_size, limit * 6)]
-        return self._diversify_sources(ranked, limit)
+        with trace_run(
+            "AidBot RAG Retrieve",
+            "retriever",
+            inputs={"query": text_fingerprint(query_text), "limit": limit, "user": summarize_user(current_user)},
+        ) as run:
+            query_vector = self.embedding_service.embed(query_text)
+            rows = db.execute(
+                select(KnowledgeChunk, KnowledgeSource, KnowledgeDocument)
+                .join(KnowledgeSource, KnowledgeChunk.source_id == KnowledgeSource.id)
+                .join(KnowledgeDocument, KnowledgeChunk.document_id == KnowledgeDocument.id)
+                .outerjoin(KnowledgeSpace, KnowledgeSource.space_id == KnowledgeSpace.id)
+                .where(KnowledgeSource.status == "active")
+                .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.status == "active"))
+                .where(or_(KnowledgeSource.visibility == "internal", KnowledgeSource.owner_user_id == current_user.id))
+                .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.visibility == "internal", KnowledgeSpace.owner_user_id == current_user.id))
+            ).all()
+            query_terms = self._lexical_terms(query_text)
+            exact_terms = self._exact_terms(query_text)
+            query_entities = self._extract_entities(query_text)
+            scored = []
+            for chunk, source, document in rows:
+                vector_score = (
+                    self.embedding_service.similarity(query_vector, chunk.embedding or [])
+                    if self.embedding_service.is_compatible(chunk.embedding_provider, chunk.embedding_model, chunk.embedding_dimensions)
+                    else 0.0
+                )
+                searchable_text = "\n".join(
+                    part
+                    for part in [
+                        source.space.name if source.space else "",
+                        source.title,
+                        source.filename,
+                        source.content_format,
+                        document.title,
+                        chunk.content,
+                    ]
+                    if part
+                )
+                lexical_score = self._lexical_score(query_terms, searchable_text)
+                exact_score = self._exact_score(exact_terms, searchable_text)
+                title_score = self._exact_score(exact_terms, "\n".join(part for part in [source.title, document.title, chunk.title] if part))
+                metadata_score = self._metadata_score(query_entities, _merge_entity_metadata(source.search_metadata or {}, chunk.entities or {}))
+                hybrid_score = (vector_score * 0.4) + (lexical_score * 0.4) + (exact_score * 0.65) + (title_score * 0.25) + (metadata_score * 0.45)
+                scored.append(RetrievedChunk(chunk=chunk, source=source, document=document, score=hybrid_score))
+            ranked = [item for item in sorted(scored, key=lambda item: item.score, reverse=True) if item.score > 0.1]
+            ranked = ranked[: max(self.candidate_pool_size, limit * 6)]
+            chunks = self._diversify_sources(ranked, limit)
+            end_trace(run, {"candidate_count": len(rows), "ranked_count": len(ranked), "chunks": summarize_retrieved_chunks(chunks)})
+            return chunks
 
     def context_for_prompt(self, chunks: list[RetrievedChunk]) -> str:
         if not chunks:
