@@ -1,8 +1,9 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { MessageContent } from "@/components/chat/message-content";
 import { LogoutButton } from "@/components/layout/logout-button";
-import { askUserQuestionStream, createUserFeedback, getConversation, listConversations } from "@/lib/api";
+import { askUserQuestionStream, createUserFeedback, deleteConversation, getConversation, listConversations } from "@/lib/api";
 import type { ConversationMessage, ConversationSummary, FeedbackRating } from "@/lib/types";
 
 const examples = [
@@ -40,6 +41,8 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [copiedId, setCopiedId] = useState("");
+  const [deletingConversationId, setDeletingConversationId] = useState("");
   const [feedbackByMessage, setFeedbackByMessage] = useState<Record<string, SubmittedFeedback>>({});
   const [pendingFeedback, setPendingFeedback] = useState<PendingFeedback | null>(null);
   const [feedbackTags, setFeedbackTags] = useState<string[]>([]);
@@ -67,6 +70,50 @@ export function ChatWorkbench({ token }: { token: string }) {
     setMessages(detail.messages);
     setError("");
     setNotice("");
+  }
+
+  async function copyText(id: string, text: string) {
+    if (!text.trim()) return;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+      setCopiedId(id);
+      window.setTimeout(() => setCopiedId((current) => (current === id ? "" : current)), 1400);
+    } catch {
+      setError("复制失败，请手动选择文本复制");
+    }
+  }
+
+  async function removeConversation(id: string) {
+    if (deletingConversationId || !window.confirm("确定删除这条会话记录吗？")) return;
+    setDeletingConversationId(id);
+    setError("");
+    setNotice("");
+    try {
+      await deleteConversation(id, token);
+      setItems((current) => current.filter((item) => item.id !== id));
+      if (id === conversationId) {
+        setConversationId(null);
+        setMessages([]);
+        setFeedbackByMessage({});
+        setPendingFeedback(null);
+      }
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "删除会话失败");
+    } finally {
+      setDeletingConversationId("");
+    }
   }
 
   async function submit(event: FormEvent) {
@@ -190,6 +237,11 @@ export function ChatWorkbench({ token }: { token: string }) {
                     <strong>{item.title}</strong>
                     <small>{item.message_count} 条消息</small>
                   </button>
+                  <div className="history-actions">
+                    <button className="danger" disabled={deletingConversationId === item.id} onClick={() => removeConversation(item.id)} type="button">
+                      {deletingConversationId === item.id ? "删除中" : "删除"}
+                    </button>
+                  </div>
                 </article>
               ))
             ) : (
@@ -239,8 +291,13 @@ export function ChatWorkbench({ token }: { token: string }) {
                   const activeScore = pendingFeedback?.messageId === message.id ? pendingFeedback.score : submitted?.score ?? 0;
                   return (
                     <article className={`message ${message.role}`} key={message.id}>
-                      <span>{message.role === "user" ? "你的问题" : "AidBot 回复"}</span>
-                      <p>{message.content}</p>
+                      <div className="message-header">
+                        <span>{message.role === "user" ? "你的问题" : "AidBot 回复"}</span>
+                        <button className="copy-button" onClick={() => copyText(message.id, message.content)} type="button">
+                          {copiedId === message.id ? "已复制" : "复制"}
+                        </button>
+                      </div>
+                      <MessageContent content={message.content} markdown={message.role === "assistant"} />
                       {message.role === "assistant" && !message.id.startsWith("assistant-") ? (
                         <div className="message-feedback" aria-label="回答反馈">
                           <div className="star-rating" role="group" aria-label="五星彩评">
@@ -283,18 +340,23 @@ export function ChatWorkbench({ token }: { token: string }) {
             </section>
 
             <form className="chat-composer" onSubmit={submit}>
-              <textarea
-                aria-label="售后问题"
-                placeholder="输入产品型号、故障现象、已尝试步骤"
-                value={question}
-                onChange={(event) => setQuestion(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" && !event.shiftKey) {
-                    event.preventDefault();
-                    event.currentTarget.form?.requestSubmit();
-                  }
-                }}
-              />
+              <div className="composer-input">
+                <textarea
+                  aria-label="售后问题"
+                  placeholder="输入产品型号、故障现象、已尝试步骤"
+                  value={question}
+                  onChange={(event) => setQuestion(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" && !event.shiftKey) {
+                      event.preventDefault();
+                      event.currentTarget.form?.requestSubmit();
+                    }
+                  }}
+                />
+                <button className="composer-copy" disabled={!question.trim()} onClick={() => copyText("composer", question)} type="button">
+                  {copiedId === "composer" ? "已复制" : "复制输入"}
+                </button>
+              </div>
               {error ? <p className="form-error">{error}</p> : null}
               {notice ? <p className="form-notice">{notice}</p> : null}
               <button className="primary-button" disabled={busy} type="submit">

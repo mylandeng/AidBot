@@ -41,6 +41,8 @@ export interface SourceCitation {
   chunk_id: string;
   score: number;
   updated_at: string;
+  section_path: string;
+  excerpt: string;
 }
 
 export interface ChatResponse {

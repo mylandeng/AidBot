@@ -125,8 +125,10 @@ class RetrievedChunk:
             source_type=self.source.source_type,
             doc_id=self.document.id,
             chunk_id=self.chunk.id,
-            score=round(self.score, 4),
-            updated_at=self.chunk.updated_at.isoformat(),
+            score=round(min(max(self.score, 0.0), 1.0), 4),
+            updated_at=self.chunk.updated_at.isoformat() if self.chunk.updated_at else "",
+            section_path=self.chunk.section_path or _heading_path_from_chunk(self.chunk.content),
+            excerpt=_clean_markdown_for_prompt(self.chunk.content)[:1200],
         )
 
     def context_block(self) -> str:
@@ -148,6 +150,28 @@ class RAGService:
     chunk_size = 900
     chunk_overlap = 120
     candidate_pool_size = 20
+    min_hybrid_score = 0.18
+    min_lexical_signal = 0.18
+    lexical_stop_terms = {
+        "how",
+        "what",
+        "why",
+        "when",
+        "where",
+        "should",
+        "please",
+        "怎么",
+        "什么",
+        "如何",
+        "是否",
+        "应该",
+        "可以",
+        "需要",
+        "帮我",
+        "一下",
+        "处理",
+        "排查",
+    }
 
     def __init__(self, embedding_service: EmbeddingService | None = None, document_service: DocumentService | None = None) -> None:
         self.embedding_service = embedding_service or EmbeddingService()
@@ -335,10 +359,15 @@ class RAGService:
                 lexical_score = self._lexical_score(query_terms, searchable_text)
                 exact_score = self._exact_score(exact_terms, searchable_text)
                 title_score = self._exact_score(exact_terms, "\n".join(part for part in [source.title, document.title, chunk.title] if part))
-                metadata_score = self._metadata_score(query_entities, _merge_entity_metadata(source.search_metadata or {}, chunk.entities or {}))
-                hybrid_score = (vector_score * 0.4) + (lexical_score * 0.4) + (exact_score * 0.65) + (title_score * 0.25) + (metadata_score * 0.45)
-                scored.append(RetrievedChunk(chunk=chunk, source=source, document=document, score=hybrid_score))
-            ranked = [item for item in sorted(scored, key=lambda item: item.score, reverse=True) if item.score > 0.1]
+                candidate_entities = _merge_entity_metadata(source.search_metadata or {}, chunk.entities or {})
+                if self._has_component_conflict(query_entities, candidate_entities):
+                    continue
+                metadata_score = self._metadata_score(query_entities, candidate_entities)
+                raw_hybrid_score = (vector_score * 0.4) + (lexical_score * 0.4) + (exact_score * 0.65) + (title_score * 0.25) + (metadata_score * 0.45)
+                hybrid_score = min(raw_hybrid_score, 1.0)
+                if self._passes_relevance_gate(hybrid_score, lexical_score, exact_score, title_score, metadata_score):
+                    scored.append(RetrievedChunk(chunk=chunk, source=source, document=document, score=hybrid_score))
+            ranked = sorted(scored, key=lambda item: item.score, reverse=True)
             ranked = ranked[: max(self.candidate_pool_size, limit * 6)]
             chunks = self._diversify_sources(ranked, limit)
             end_trace(run, {"candidate_count": len(rows), "ranked_count": len(ranked), "chunks": summarize_retrieved_chunks(chunks)})
@@ -571,12 +600,12 @@ class RAGService:
         terms = {token for token in re.findall(r"[a-z0-9_]{2,}", lowered)}
         cjk_runs = re.findall(r"[\u4e00-\u9fff]+", lowered)
         for run in cjk_runs:
-            terms.update(run)
             if len(run) == 1:
                 terms.add(run)
                 continue
+            terms.add(run)
             terms.update(run[index : index + 2] for index in range(len(run) - 1))
-        return terms
+        return self._filter_stop_terms(terms)
 
     def _lexical_score(self, query_terms: set[str], candidate_text: str) -> float:
         if not query_terms:
@@ -591,7 +620,17 @@ class RAGService:
         terms = {token for token in re.findall(r"[a-z0-9]+(?:[-_][a-z0-9]+)+|[a-z0-9]{2,}", lowered)}
         terms.update(re.findall(r"\d+(?:\.\d+)+", lowered))
         terms.update(re.findall(r"[\u4e00-\u9fff]{2,}", lowered))
-        return terms
+        return self._filter_stop_terms(terms)
+
+    def _filter_stop_terms(self, terms: set[str]) -> set[str]:
+        filtered: set[str] = set()
+        for term in terms:
+            if term in self.lexical_stop_terms:
+                continue
+            if any(stop in term for stop in self.lexical_stop_terms if re.search(r"[\u4e00-\u9fff]", stop)):
+                continue
+            filtered.add(term)
+        return filtered
 
     def _exact_score(self, query_terms: set[str], candidate_text: str) -> float:
         if not query_terms:
@@ -607,6 +646,9 @@ class RAGService:
             "App",
             "DNS",
             "LED",
+            "充电底座",
+            "充电座",
+            "底座",
             "主控",
             "传感器",
             "充电器",
@@ -635,3 +677,21 @@ class RAGService:
         if not candidate_values:
             return 0.0
         return len(query_values & candidate_values) / len(query_values)
+
+    def _has_component_conflict(self, query_entities: dict[str, list[str]], candidate_entities: dict[str, list[str]]) -> bool:
+        query_components = set(query_entities.get("components") or [])
+        candidate_components = set(candidate_entities.get("components") or [])
+        if not query_components or not candidate_components or query_components & candidate_components:
+            return False
+
+        strong_keys = {"products", "fault_codes", "versions"}
+        query_strong = {value for key in strong_keys for value in query_entities.get(key, [])}
+        candidate_strong = {value for key in strong_keys for value in candidate_entities.get(key, [])}
+        return not bool(query_strong & candidate_strong)
+
+    def _passes_relevance_gate(self, hybrid_score: float, lexical_score: float, exact_score: float, title_score: float, metadata_score: float) -> bool:
+        if hybrid_score < self.min_hybrid_score:
+            return False
+        if metadata_score > 0 or exact_score > 0 or title_score > 0:
+            return True
+        return lexical_score >= self.min_lexical_signal

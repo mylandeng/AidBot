@@ -22,6 +22,8 @@ class SourceCitation(BaseModel):
     chunk_id: str
     score: float
     updated_at: str
+    section_path: str = ""
+    excerpt: str = ""
 
 
 class AnswerResult(BaseModel):

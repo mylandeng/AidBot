@@ -339,6 +339,78 @@ def test_hybrid_search_prioritizes_exact_entity_tokens() -> None:
     assert search.json()["items"][0]["title"] == "HYB-901 电池灯语精确说明"
 
 
+def test_retrieval_rejects_vector_only_matches_without_text_signal() -> None:
+    service = RAGService()
+
+    assert not service._passes_relevance_gate(
+        hybrid_score=0.32,
+        lexical_score=0.0,
+        exact_score=0.0,
+        title_score=0.0,
+        metadata_score=0.0,
+    )
+    assert service._passes_relevance_gate(
+        hybrid_score=0.32,
+        lexical_score=0.0,
+        exact_score=0.0,
+        title_score=0.0,
+        metadata_score=1.0,
+    )
+
+
+def test_search_returns_empty_when_query_has_no_relevance_signal() -> None:
+    headers = auth_headers()
+    client.post(
+        "/api/knowledge/manual",
+        json={
+            "title": "LOWREL-51 电池线束排查",
+            "content": "LOWREL-51 充电异常时检查电池线束、充电器规格和固件版本。",
+            "visibility": "internal",
+        },
+        headers=headers,
+    )
+
+    search = client.get("/api/knowledge/search", params={"q": "午饭应该点什么"}, headers=headers)
+
+    assert search.status_code == 200
+    assert search.json()["items"] == []
+
+
+def test_citation_score_is_capped_at_one() -> None:
+    chunk = KnowledgeChunk(
+        id="score-chunk",
+        document_id="score-doc",
+        source_id="score-source",
+        title="主控说明",
+        content="主控绿灯闪烁说明。",
+        embedding=[],
+    )
+    source = KnowledgeSource(id="score-source", title="主控说明", source_type="manual", owner_user_id="user")
+    document = KnowledgeDocument(id="score-doc", title="主控说明", source_id="score-source", content="主控绿灯闪烁说明。")
+
+    citation = RetrievedChunk(chunk, source, document, 1.034).citation()
+
+    assert citation.score == 1.0
+
+
+def test_component_conflict_filters_charging_dock_for_controller_query() -> None:
+    service = RAGService()
+    query_entities = service._extract_entities("主控绿灯闪两次是什么故障？")
+    candidate_entities = service._extract_entities("充电底座红灯闪烁时检查底座电源和触点。")
+
+    assert "主控" in query_entities["components"]
+    assert "充电底座" in candidate_entities["components"]
+    assert service._has_component_conflict(query_entities, candidate_entities)
+
+
+def test_component_conflict_keeps_same_product_strong_match() -> None:
+    service = RAGService()
+    query_entities = service._extract_entities("FP10-9 主控绿灯闪两次是什么故障？")
+    candidate_entities = service._extract_entities("FP10-9 充电底座红灯闪烁时检查底座电源和触点。")
+
+    assert not service._has_component_conflict(query_entities, candidate_entities)
+
+
 def test_retrieval_eval_fixture_matches_expected_sources() -> None:
     headers = auth_headers()
     cases = json.loads((Path(__file__).parent / "fixtures" / "rag_retrieval_eval.json").read_text(encoding="utf-8"))
@@ -450,3 +522,5 @@ def test_chat_returns_citations_when_knowledge_matches() -> None:
     assert sources
     assert sources[0]["source_type"] == "manual"
     assert sources[0]["title"] == "ZX-9 指示灯红色闪烁"
+    assert sources[0]["section_path"] == ""
+    assert "传感器自检失败" in sources[0]["excerpt"]

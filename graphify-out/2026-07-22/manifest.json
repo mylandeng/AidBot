@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/chat/workbench.tsx": {
-    "mtime": 1784720164.678756,
-    "ast_hash": "2048f24de9a83f41b9592fc54a716ea7",
+    "mtime": 1784719743.060283,
+    "ast_hash": "281f42effb5a7a341d08154d7bf695c3",
     "semantic_hash": ""
   },
   "backend/tests/test_knowledge.py": {
@@ -495,8 +495,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/admin/chat/workbench.tsx": {
-    "mtime": 1784720173.4544413,
-    "ast_hash": "d7dd8db1d475f4aa47bcb1c303987851",
+    "mtime": 1784719755.4828973,
+    "ast_hash": "adeab80fd2254de14868a96d750609c4",
     "semantic_hash": ""
   },
   "frontend/src/app/user/chat/page.tsx": {

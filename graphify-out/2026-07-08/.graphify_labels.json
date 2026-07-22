@@ -41,19 +41,6 @@
   "39": "阶段.md",
   "40": "feedback.py",
   "41": "feedback.py",
-  "42": "__init__.py",
-  "43": "__init__.py",
-  "44": "__init__.py",
-  "45": "__init__.py",
-  "46": "ChatRequest",
-  "47": "CurrentUser",
-  "48": "Community 48",
-  "49": "FeedbackCreateRequest",
-  "50": "FeedbackItem",
-  "51": "FeedbackStatusRequest",
-  "52": "Session",
-  "53": "ChatRequest",
-  "54": "__init__.py",
-  "55": "conftest.py",
-  "56": "workbench.tsx"
+  "42": "Base",
+  "48": "Community 48"
 }
