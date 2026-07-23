@@ -100,24 +100,27 @@ export async function askQuestionStream(
   request: ChatRequest,
   token: string,
   onEvent: (event: ChatStreamEvent) => void,
+  signal?: AbortSignal,
 ): Promise<ChatResponse> {
-  return askAdminQuestionStream(request, token, onEvent);
+  return askAdminQuestionStream(request, token, onEvent, signal);
 }
 
 export async function askAdminQuestionStream(
   request: ChatRequest,
   token: string,
   onEvent: (event: ChatStreamEvent) => void,
+  signal?: AbortSignal,
 ): Promise<ChatResponse> {
-  return streamChat<ChatResponse>("/api/admin/chat/stream", request, token, onEvent);
+  return streamChat<ChatResponse>("/api/admin/chat/stream", request, token, onEvent, signal);
 }
 
 export async function askUserQuestionStream(
   request: ChatRequest,
   token: string,
   onEvent: (event: ChatStreamEvent) => void,
+  signal?: AbortSignal,
 ): Promise<UserChatResponse> {
-  return streamChat<UserChatResponse>("/api/user/chat/stream", request, token, onEvent);
+  return streamChat<UserChatResponse>("/api/user/chat/stream", request, token, onEvent, signal);
 }
 
 async function streamChat<T extends ChatResponse | UserChatResponse>(
@@ -125,12 +128,14 @@ async function streamChat<T extends ChatResponse | UserChatResponse>(
   request: ChatRequest,
   token: string,
   onEvent: (event: ChatStreamEvent) => void,
+  signal?: AbortSignal,
 ): Promise<T> {
   const response = await fetch(`${apiBaseUrl()}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(request),
     cache: "no-store",
+    signal,
   });
 
   if (!response.ok || !response.body) {
