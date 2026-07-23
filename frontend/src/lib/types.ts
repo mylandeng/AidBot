@@ -94,6 +94,10 @@ export interface ConversationDetail extends ConversationSummary {
   messages: ConversationMessage[];
 }
 
+export interface DeleteConversationsResponse {
+  deleted_count: number;
+}
+
 export interface KnowledgeSource {
   id: string;
   space_id?: string | null;

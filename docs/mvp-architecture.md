@@ -311,7 +311,7 @@ flowchart LR
 
 - 登录页
 - 问答工作台
-- 会话历史侧栏
+- 会话历史侧栏，支持单条删除和清空全部聊天记录
 - AI 回答卡片
 - 引用来源展开面板
 - 每条回答评分组件
@@ -325,7 +325,7 @@ flowchart LR
 - `auth`: 登录、用户、角色、权限
 - `chat`: 问答接口、流式输出可后置
 - `answer_router`: 回答策略路由，决定走固定模板、RAG、本地知识库或未来 LangChain 编排
-- `conversation`: 会话和消息持久化
+- `conversation`: 会话和消息持久化、会话历史查询、单条删除和当前用户全部清空
 - `knowledge`: 文档上传、知识源、元数据
 - `rag`: 检索、rerank 预留、来源引用
 - `llm`: OpenAI-compatible provider 抽象
@@ -421,7 +421,7 @@ AidBot/
 
 - 账号登录
 - 问答工作台
-- 会话历史
+- 会话历史，支持单条删除和清空全部聊天记录
 - 基础 LLM 调用
 - 文档上传
 - 基础 RAG 检索

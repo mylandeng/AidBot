@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 import { MessageContent } from "@/components/chat/message-content";
-import { askAdminQuestionStream, deleteConversation, getConversation, listConversations } from "@/lib/api";
+import { askAdminQuestionStream, clearConversations, deleteConversation, getConversation, listConversations } from "@/lib/api";
 import type { ChatResponse, ConversationMessage, ConversationSummary, SourceCitation } from "@/lib/types";
 
 const examples = [
@@ -22,6 +22,7 @@ export function AdminChatWorkbench({ token }: { token: string }) {
   const [copiedId, setCopiedId] = useState("");
   const [selectedSource, setSelectedSource] = useState<SourceCitation | null>(null);
   const [deletingConversationId, setDeletingConversationId] = useState("");
+  const [clearingConversations, setClearingConversations] = useState(false);
   const [busy, setBusy] = useState(false);
   const streamEndRef = useRef<HTMLDivElement | null>(null);
   const lastMessageContent = messages.at(-1)?.content ?? "";
@@ -43,7 +44,11 @@ export function AdminChatWorkbench({ token }: { token: string }) {
     setConversationId(id);
     setMessages(detail.messages);
     setLastResult(null);
+    setQuestion("");
     setError("");
+    setCopiedId("");
+    setSelectedSource(null);
+    setBusy(false);
   }
 
   async function copyText(id: string, text: string) {
@@ -80,12 +85,34 @@ export function AdminChatWorkbench({ token }: { token: string }) {
         setConversationId(null);
         setMessages([]);
         setLastResult(null);
+        setQuestion("");
         setSelectedSource(null);
+        setBusy(false);
       }
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "删除会话失败");
     } finally {
       setDeletingConversationId("");
+    }
+  }
+
+  async function removeAllConversations() {
+    if (clearingConversations || !items.length || !window.confirm("确定清空全部聊天记录吗？此操作不可恢复。")) return;
+    setClearingConversations(true);
+    setError("");
+    try {
+      await clearConversations(token);
+      setItems([]);
+      setConversationId(null);
+      setMessages([]);
+      setLastResult(null);
+      setQuestion("");
+      setSelectedSource(null);
+      setBusy(false);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "清空聊天记录失败");
+    } finally {
+      setClearingConversations(false);
     }
   }
 
@@ -157,7 +184,10 @@ export function AdminChatWorkbench({ token }: { token: string }) {
             setConversationId(null);
             setMessages([]);
             setLastResult(null);
+            setQuestion("");
             setError("");
+            setSelectedSource(null);
+            setBusy(false);
           }}
           type="button"
         >
@@ -245,6 +275,11 @@ export function AdminChatWorkbench({ token }: { token: string }) {
                 <p className="eyebrow">最近会话</p>
                 <h2>{items.length ? `${items.length} 条记录` : "暂无记录"}</h2>
               </div>
+              {items.length ? (
+                <button className="history-clear" disabled={clearingConversations} onClick={removeAllConversations} type="button">
+                  {clearingConversations ? "清空中" : "清空全部"}
+                </button>
+              ) : null}
             </div>
             <div className="chat-history-list">
               {items.map((item) => (

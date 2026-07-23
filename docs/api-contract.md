@@ -61,7 +61,7 @@
 }
 ```
 
-聊天和会话接口均要求 `Authorization: Bearer <access_token>`。`GET /api/conversations` 返回当前用户的会话摘要，`GET /api/conversations/{id}` 返回消息历史；服务端不会返回其他用户的会话。
+聊天和会话接口均要求 `Authorization: Bearer <access_token>`。`GET /api/conversations` 返回当前用户的会话摘要，`GET /api/conversations/{id}` 返回消息历史；`DELETE /api/conversations/{id}` 删除当前用户指定会话，`DELETE /api/conversations` 清空当前用户全部会话；服务端不会返回、删除或影响其他用户的会话。
 
 `GET /api/auth/me`
 
@@ -133,6 +133,32 @@ data: {"conversation_id":"...","message_id":"...","answer":"...","solution_steps
 ```text
 event: error
 data: {"message":"模型暂时不可用，请稍后重试。"}
+```
+
+## 会话接口
+
+`DELETE /api/conversations/{conversation_id}`
+
+删除当前用户的一条会话记录及其消息。若删除的是前端当前打开的会话，前端应回到新会话状态。
+
+响应：
+
+```json
+{
+  "deleted_count": 1
+}
+```
+
+`DELETE /api/conversations`
+
+清空当前用户的全部会话记录及其消息。该操作只影响当前登录用户，不能删除其他用户的会话。
+
+响应：
+
+```json
+{
+  "deleted_count": 12
+}
 ```
 
 ## 核心类型

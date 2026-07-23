@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { MessageContent } from "@/components/chat/message-content";
 import { LogoutButton } from "@/components/layout/logout-button";
-import { askUserQuestionStream, createUserFeedback, deleteConversation, getConversation, listConversations } from "@/lib/api";
+import { askUserQuestionStream, clearConversations, createUserFeedback, deleteConversation, getConversation, listConversations } from "@/lib/api";
 import type { ConversationMessage, ConversationSummary, FeedbackRating } from "@/lib/types";
 
 const examples = [
@@ -43,6 +43,7 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [notice, setNotice] = useState("");
   const [copiedId, setCopiedId] = useState("");
   const [deletingConversationId, setDeletingConversationId] = useState("");
+  const [clearingConversations, setClearingConversations] = useState(false);
   const [feedbackByMessage, setFeedbackByMessage] = useState<Record<string, SubmittedFeedback>>({});
   const [pendingFeedback, setPendingFeedback] = useState<PendingFeedback | null>(null);
   const [feedbackTags, setFeedbackTags] = useState<string[]>([]);
@@ -68,8 +69,12 @@ export function ChatWorkbench({ token }: { token: string }) {
     const detail = await getConversation(id, token);
     setConversationId(id);
     setMessages(detail.messages);
+    setQuestion("");
     setError("");
     setNotice("");
+    setCopiedId("");
+    setPendingFeedback(null);
+    setBusy(false);
   }
 
   async function copyText(id: string, text: string) {
@@ -106,13 +111,37 @@ export function ChatWorkbench({ token }: { token: string }) {
       if (id === conversationId) {
         setConversationId(null);
         setMessages([]);
+        setQuestion("");
         setFeedbackByMessage({});
         setPendingFeedback(null);
+        setBusy(false);
       }
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "删除会话失败");
     } finally {
       setDeletingConversationId("");
+    }
+  }
+
+  async function removeAllConversations() {
+    if (clearingConversations || !items.length || !window.confirm("确定清空全部聊天记录吗？此操作不可恢复。")) return;
+    setClearingConversations(true);
+    setError("");
+    setNotice("");
+    try {
+      const result = await clearConversations(token);
+      setItems([]);
+      setConversationId(null);
+      setMessages([]);
+      setQuestion("");
+      setFeedbackByMessage({});
+      setPendingFeedback(null);
+      setBusy(false);
+      setNotice(result.deleted_count ? `已清空 ${result.deleted_count} 条聊天记录。` : "没有可清空的聊天记录。");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "清空聊天记录失败");
+    } finally {
+      setClearingConversations(false);
     }
   }
 
@@ -228,7 +257,14 @@ export function ChatWorkbench({ token }: { token: string }) {
         </nav>
 
         <section className="sidebar-block" aria-labelledby="chat-history-title">
-          <h2 id="chat-history-title">最近会话</h2>
+          <div className="history-heading">
+            <h2 id="chat-history-title">最近会话</h2>
+            {items.length ? (
+              <button className="history-clear" disabled={clearingConversations} onClick={removeAllConversations} type="button">
+                {clearingConversations ? "清空中" : "清空全部"}
+              </button>
+            ) : null}
+          </div>
           <div className="chat-history-list">
             {items.length ? (
               items.map((item) => (
@@ -266,8 +302,11 @@ export function ChatWorkbench({ token }: { token: string }) {
             onClick={() => {
               setConversationId(null);
               setMessages([]);
+              setQuestion("");
               setError("");
               setNotice("");
+              setPendingFeedback(null);
+              setBusy(false);
             }}
             type="button"
           >

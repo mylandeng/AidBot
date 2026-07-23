@@ -7,6 +7,7 @@ import type {
   ChatStreamEvent,
   ConversationDetail,
   ConversationSummary,
+  DeleteConversationsResponse,
   FeedbackCreateRequest,
   FeedbackItem,
   FeedbackList,
@@ -204,6 +205,10 @@ export function restoreConversation(id: string, token: string): Promise<Conversa
 
 export function deleteConversation(id: string, token: string): Promise<void> {
   return authorized(`/api/conversations/${id}`, token, { method: "DELETE" });
+}
+
+export function clearConversations(token: string): Promise<DeleteConversationsResponse> {
+  return authorized("/api/conversations", token, { method: "DELETE" });
 }
 
 export async function listKnowledgeSources(token: string): Promise<KnowledgeSource[]> {

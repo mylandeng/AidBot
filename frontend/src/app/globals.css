@@ -752,6 +752,11 @@ textarea {
 .history-search input::placeholder { color: #8d9b95; }
 .history-search button { height: 38px; border: 1px solid rgba(255, 253, 248, .14); border-radius: 10px; padding: 0 10px; background: transparent; color: #dbe3df; cursor: pointer; font-size: 12px; font-weight: 800; }
 .history-search button.active { border-color: rgba(240,194,135,.48); background: rgba(240,194,135,.14); color: #fffdf8; }
+.history-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.history-heading h2 { margin: 0; }
+.history-clear { min-height: 28px; border: 1px solid rgba(242, 167, 155, .26); border-radius: 999px; padding: 0 10px; background: rgba(180, 73, 61, .08); color: #f2a79b; cursor: pointer; font-size: 12px; font-weight: 800; white-space: nowrap; }
+.history-clear:hover { border-color: rgba(242, 167, 155, .48); background: rgba(180, 73, 61, .16); }
+.history-clear:disabled { cursor: wait; opacity: .6; }
 .chat-history-list { min-height: 0; max-height: min(52vh, 520px); overflow-y: auto; display: grid; align-content: start; gap: 8px; padding-right: 7px; scrollbar-width: thin; scrollbar-color: rgba(255, 253, 248, .18) transparent; }
 .chat-history-list:hover { scrollbar-color: rgba(240, 194, 135, .58) transparent; }
 .chat-history-list::-webkit-scrollbar { width: 5px; }

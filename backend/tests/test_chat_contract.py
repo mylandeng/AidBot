@@ -126,6 +126,39 @@ def test_conversations_can_be_searched_archived_restored_and_deleted() -> None:
     assert missing.status_code == 404
 
 
+def test_clear_conversations_deletes_only_current_user_records() -> None:
+    admin_headers = auth_headers()
+    admin_conversation = client.post("/api/chat", json={"question": "管理员保留的会话"}, headers=admin_headers).json()
+    created_key = client.post("/api/admin/access-keys", json={"name": "清空会话测试", "expires_in": "7d"}, headers=admin_headers)
+    key_id = created_key.json()["item"]["id"]
+    key_login = client.post("/api/auth/key-login", json={"access_key": created_key.json()["access_key"]})
+    key_headers = {"Authorization": f"Bearer {key_login.json()['access_token']}"}
+
+    db = SessionLocal()
+    try:
+        db.add_all(
+            [
+                Conversation(user_id=f"access-key:{key_id}", title="访问码会话 A"),
+                Conversation(user_id=f"access-key:{key_id}", title="访问码会话 B"),
+            ]
+        )
+        db.commit()
+    finally:
+        db.close()
+
+    before_clear = client.get("/api/conversations", headers=key_headers)
+    assert before_clear.status_code == 200
+    assert len(before_clear.json()) == 2
+
+    cleared = client.delete("/api/conversations", headers=key_headers)
+    assert cleared.status_code == 200
+    assert cleared.json() == {"deleted_count": 2}
+    assert client.get("/api/conversations", headers=key_headers).json() == []
+
+    admin_detail = client.get(f"/api/conversations/{admin_conversation['conversation_id']}", headers=admin_headers)
+    assert admin_detail.status_code == 200
+
+
 def test_stream_chat_emits_delta_and_structured_final() -> None:
     headers = auth_headers()
     with client.stream("POST", "/api/chat/stream", json={"question": "设备离线怎么处理？"}, headers=headers) as response:

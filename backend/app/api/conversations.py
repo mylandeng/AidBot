@@ -91,6 +91,16 @@ def delete_conversation(conversation_id: str, current_user: CurrentUser = Depend
     db.commit()
 
 
+@router.delete("")
+def delete_all_conversations(current_user: CurrentUser = Depends(get_current_user), db: Session = Depends(get_db)) -> dict[str, int]:
+    items = list(db.scalars(select(Conversation).where(Conversation.user_id == current_user.id)).all())
+    deleted_count = len(items)
+    for item in items:
+        db.delete(item)
+    db.commit()
+    return {"deleted_count": deleted_count}
+
+
 def _get_owned_conversation(conversation_id: str, current_user: CurrentUser, db: Session) -> Conversation:
     item = db.scalar(select(Conversation).options(selectinload(Conversation.messages)).where(Conversation.id == conversation_id, Conversation.user_id == current_user.id))
     if item is None:

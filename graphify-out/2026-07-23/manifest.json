@@ -325,8 +325,8 @@
     "semantic_hash": ""
   },
   "docs/progress.md": {
-    "mtime": 1784781288.337102,
-    "ast_hash": "a6b685e79341549f04d27adc740eba26",
+    "mtime": 1784779355.1527386,
+    "ast_hash": "23d7e731ca8a3c6a2eedb8c3beeb1170",
     "semantic_hash": ""
   },
   "docs/task_plan.md": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/chat/workbench.tsx": {
-    "mtime": 1784781248.5906088,
-    "ast_hash": "ae81c7e9a7039d11d53b70a4d7ca1da5",
+    "mtime": 1784779102.164763,
+    "ast_hash": "66af58fafd06737b9121f20aa68fb4b6",
     "semantic_hash": ""
   },
   "backend/tests/test_knowledge.py": {
@@ -495,8 +495,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/admin/chat/workbench.tsx": {
-    "mtime": 1784781248.1880746,
-    "ast_hash": "a1930669a9e088bd95b9f659c7f2965f",
+    "mtime": 1784779102.5196471,
+    "ast_hash": "ce5172119ce84f6122ea4fbe393ee05f",
     "semantic_hash": ""
   },
   "frontend/src/app/user/chat/page.tsx": {
