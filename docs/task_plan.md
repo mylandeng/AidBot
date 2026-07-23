@@ -5,9 +5,9 @@
 ## 当前状态
 
 - 更新日期：2026-07-23
-- 当前主线：最近会话 UI 收尾 + 阶段 4 补齐 + 阶段 5/6 建立可审计和发布门槛
+- 当前主线：最近会话 UI 收尾 + 阶段 4 补齐 + 飞书工作台嵌入路线验证 + 阶段 5/6 建立可审计和发布门槛
 - 最近 graph 证据：`graphify query "daily project progress tracker compare task_plan bug-list current graph implemented missing phase status"`
-- 当前最大缺口：最近会话折叠展开、反馈按产品线筛选、检索/审计日志、发布 smoke 流程
+- 当前最大缺口：最近会话折叠展开、反馈按产品线筛选、飞书工作台免登验证、检索/审计日志、发布 smoke 流程
 
 ## 阶段进度
 
@@ -78,6 +78,18 @@
 - 未完成：部署前验收清单。
 - 下一步：新增 `docs/release-checklist.md` 或脚本化 smoke 命令，并把必跑命令写入 README。
 
+### 飞书接入专项：工作台 H5 优先，机器人消息增强
+- 状态：路线已确认，待实现 POC。
+- 官方结论：飞书将机器人和网页应用（H5）定义为不同应用形态；已有 H5 系统可以通过网页应用能力嵌入飞书工作台，并结合 SSO 免登快速迁移。机器人能力可以作为后续增强，与网页应用组合使用。
+- 官方参考：`https://open.feishu.cn/document/embed-web-app-into-feishu-workbench/introduction`、`https://open.feishu.cn/document/develop-an-echo-bot/explanation-of-example-code?lang=zh-CN`。
+- 推荐主链路：`飞书工作台 -> Next.js H5 -> 飞书身份/免登 -> AidBot API -> ChatService/RAG`。
+- 第一阶段：创建网页应用，配置桌面端主页和移动端主页，确认现有 Next.js 页面可在飞书工作台打开。
+- 第二阶段：实现飞书用户身份映射和免登校验，把飞书用户映射到现有 `CurrentUser`/权限模型；不改动 `/api/chat` 外部合同。
+- 第三阶段：按需补充机器人事件接入，使用飞书官方 SDK 的 `im.message.receive_v1` 和长连接/事件回调，作为群聊问答、通知和快捷入口。
+- 消息层设计：参考 OpenClaw 的 Channel Adapter、Gateway、Router、SessionKey、去重和队列，但只实现 AidBot 当前需要的最小子集。
+- MCP 边界：工作台嵌入和机器人消息接入均不依赖 MCP；MCP 仅作为未来工具调用或外部知识源协议评估。
+- 当前判断：工作台 H5 优先级高于机器人直连，能最快复用现有登录、聊天、知识库和反馈 UI；机器人作为第二入口保留。
+
 ## Bug 清单对照
 
 | Bug | 当前判断 | 证据 | 下一步 |
@@ -102,7 +114,8 @@
 
 ## 下一步优先级
 
-1. 最近会话 UI：默认只展示 5 条，支持展开剩余会话，悬停时显示弱化滚动条。
-2. 阶段 4 补齐：反馈列表增加产品线筛选，管理员处理反馈时可写自定义备注。
-3. 阶段 5 起步：新增 `retrieval_logs` 表，并让聊天回答保存检索证据。
-4. 阶段 6 起步：沉淀一条本地 smoke 验收命令或清单。
+1. 飞书工作台 H5 POC：创建网页应用，配置桌面端/移动端主页，验证 Next.js 页面在飞书内打开。
+2. 最近会话 UI：默认只展示 5 条，支持展开剩余会话，悬停时显示弱化滚动条。
+3. 阶段 4 补齐：反馈列表增加产品线筛选，管理员处理反馈时可写自定义备注。
+4. 阶段 5 起步：新增 `retrieval_logs` 表，并让聊天回答保存检索证据。
+5. 阶段 6 起步：沉淀一条本地 smoke 验收命令或清单。
