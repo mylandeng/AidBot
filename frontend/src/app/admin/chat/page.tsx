@@ -8,6 +8,7 @@ export default async function AdminChatPage() {
   return (
     <AdminShell
       active="chat"
+      mainClassName="main admin-chat-main"
       sidebarPanel={
         <>
           <h2>测试聊天</h2>

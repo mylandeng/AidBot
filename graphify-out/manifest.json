@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/api.ts": {
-    "mtime": 1784779101.7849355,
-    "ast_hash": "2e4f2b4edd9040fd9e8067d784f790ff",
+    "mtime": 1784862511.0256975,
+    "ast_hash": "b53f61547b0389c14b67507d2bab5a09",
     "semantic_hash": ""
   },
   "frontend/src/lib/auth.ts": {
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1784799741.0596595,
-    "ast_hash": "831c622800cbf9ddbe5024dbe07f124d",
+    "mtime": 1784862470.257826,
+    "ast_hash": "7daf39c103b3123897ef68d03faff671",
     "semantic_hash": ""
   },
   "backend/requirements.txt": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/chat/workbench.tsx": {
-    "mtime": 1784781248.5906088,
-    "ast_hash": "ae81c7e9a7039d11d53b70a4d7ca1da5",
+    "mtime": 1784862511.0199327,
+    "ast_hash": "54791eda1bdc5d42c4fa6394cd438946",
     "semantic_hash": ""
   },
   "backend/tests/test_knowledge.py": {
@@ -490,13 +490,13 @@
     "semantic_hash": ""
   },
   "frontend/src/app/admin/chat/page.tsx": {
-    "mtime": 1783591612.2475855,
-    "ast_hash": "277d2723a475be8d6af3e642a94660d5",
+    "mtime": 1784865570.0493448,
+    "ast_hash": "a0018f0b6e9db9cd1241392452c98501",
     "semantic_hash": ""
   },
   "frontend/src/app/admin/chat/workbench.tsx": {
-    "mtime": 1784781248.1880746,
-    "ast_hash": "a1930669a9e088bd95b9f659c7f2965f",
+    "mtime": 1784862511.0175436,
+    "ast_hash": "e1cb2b8b52719f87eb3b34eb19a2b124",
     "semantic_hash": ""
   },
   "frontend/src/app/user/chat/page.tsx": {
@@ -535,7 +535,7 @@
     "semantic_hash": ""
   },
   "docker-compose.prod.yml": {
-    "mtime": 1784803127.7763383,
+    "mtime": 1784864438.0619378,
     "ast_hash": "f257205dcce89d18b7e73cd282411897",
     "semantic_hash": ""
   },
@@ -547,6 +547,16 @@
   ".github/workflows/docker-publish.yml": {
     "mtime": 1784799739.1886137,
     "ast_hash": "60f170bb21642299cd495fab4392dad9",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ui/composer-send-button.tsx": {
+    "mtime": 1784862511.0235245,
+    "ast_hash": "ca9db639aa207de01e0f8d78ecac4a0c",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ui/delete-confirm-dialog.tsx": {
+    "mtime": 1784864688.928959,
+    "ast_hash": "b82e943107b55a74faf52ffafedafccd",
     "semantic_hash": ""
   }
 }

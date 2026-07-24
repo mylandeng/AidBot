@@ -27,7 +27,6 @@
   "25": "Community 25",
   "26": "Community 26",
   "27": "AidBot MVP 架构审阅进度",
-  "28": "test_auth.py",
   "29": "create_chat_response",
   "30": "Community 30",
   "31": "__init__.py",
@@ -56,7 +55,5 @@
   "54": "__init__.py",
   "55": "conftest.py",
   "56": "workbench.tsx",
-  "57": "apiBaseUrl",
-  "58": "test_feedback.py",
-  "59": "ensure_runtime_schema"
+  "57": "apiBaseUrl"
 }
