@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/layout.tsx": {
-    "mtime": 1783303629.609274,
-    "ast_hash": "892dbd97d27a232ccc56973cdc538f4b",
+    "mtime": 1784880391.790393,
+    "ast_hash": "62c450ef9ecaa258a1d8cddd3cf86293",
     "semantic_hash": ""
   },
   "frontend/src/app/login/page.tsx": {
@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/api.ts": {
-    "mtime": 1784862511.0256975,
-    "ast_hash": "b53f61547b0389c14b67507d2bab5a09",
+    "mtime": 1784880392.5472507,
+    "ast_hash": "1d815f1153185fd53573a6fc0e90e974",
     "semantic_hash": ""
   },
   "frontend/src/lib/auth.ts": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "docker-compose.yml": {
-    "mtime": 1784111816.654911,
-    "ast_hash": "2b227de3760095b49f8bb456116f78da",
+    "mtime": 1784883518.6074383,
+    "ast_hash": "01a903231e381a20bab0b1f9eaae5301",
     "semantic_hash": ""
   },
   "docs/api-contract.md": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/chat/workbench.tsx": {
-    "mtime": 1784862511.0199327,
-    "ast_hash": "54791eda1bdc5d42c4fa6394cd438946",
+    "mtime": 1784887236.4089625,
+    "ast_hash": "56b7a7ec1e7f9be52c387a3ee9a12382",
     "semantic_hash": ""
   },
   "backend/tests/test_knowledge.py": {
@@ -495,8 +495,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/admin/chat/workbench.tsx": {
-    "mtime": 1784862511.0175436,
-    "ast_hash": "e1cb2b8b52719f87eb3b34eb19a2b124",
+    "mtime": 1784887237.4679687,
+    "ast_hash": "d887a67b2568c278b0c833186bcc1a91",
     "semantic_hash": ""
   },
   "frontend/src/app/user/chat/page.tsx": {
@@ -540,13 +540,13 @@
     "semantic_hash": ""
   },
   "docs/docker-deployment.md": {
-    "mtime": 1784803128.4771938,
-    "ast_hash": "283d27b8f30429dd35b814f74bcf6dd7",
+    "mtime": 1784883262.9639196,
+    "ast_hash": "cd1f82b82996af9c231a7640d23f54ba",
     "semantic_hash": ""
   },
   ".github/workflows/docker-publish.yml": {
-    "mtime": 1784799739.1886137,
-    "ast_hash": "60f170bb21642299cd495fab4392dad9",
+    "mtime": 1784880570.0295384,
+    "ast_hash": "d80aeedb64d38b3b147005a1eed841c6",
     "semantic_hash": ""
   },
   "frontend/src/components/ui/composer-send-button.tsx": {
@@ -557,6 +557,21 @@
   "frontend/src/components/ui/delete-confirm-dialog.tsx": {
     "mtime": 1784864688.928959,
     "ast_hash": "b82e943107b55a74faf52ffafedafccd",
+    "semantic_hash": ""
+  },
+  "frontend/docker-entrypoint.sh": {
+    "mtime": 1784880395.0609593,
+    "ast_hash": "8c5ad44db8bad17e8a47264ae321d4d6",
+    "semantic_hash": ""
+  },
+  "frontend/public/runtime-config.js": {
+    "mtime": 1784880394.0473578,
+    "ast_hash": "8e6048634da5a3c2c10e5cb5a9a74914",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/client-id.ts": {
+    "mtime": 1784887235.1529171,
+    "ast_hash": "b6958a38869fb2541d9ae602152e2db5",
     "semantic_hash": ""
   }
 }

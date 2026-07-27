@@ -6,6 +6,7 @@ import { LogoutButton } from "@/components/layout/logout-button";
 import { ComposerSendButton } from "@/components/ui/composer-send-button";
 import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
 import { askUserQuestionStream, clearConversations, createUserFeedback, deleteConversation, getConversation, listConversations } from "@/lib/api";
+import { createClientId } from "@/lib/client-id";
 import type { ConversationMessage, ConversationSummary, FeedbackRating } from "@/lib/types";
 
 const examples = [
@@ -197,8 +198,8 @@ export function ChatWorkbench({ token }: { token: string }) {
     if (!question.trim() || busy) return;
 
     const text = question.trim();
-    const userTempId = `user-${crypto.randomUUID()}`;
-    const assistantTempId = `assistant-${crypto.randomUUID()}`;
+    const userTempId = createClientId("user");
+    const assistantTempId = createClientId("assistant");
     const controller = new AbortController();
     abortRef.current = controller;
     setBusy(true);

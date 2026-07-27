@@ -1,16 +1,16 @@
 # Graph Report - AidBot  (2026-07-24)
 
 ## Corpus Check
-- 95 files · ~24,978 words
+- 98 files · ~25,105 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 741 nodes · 1447 edges · 57 communities (38 shown, 19 thin omitted)
+- 748 nodes · 1455 edges · 57 communities (37 shown, 20 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 189 edges (avg confidence: 0.71)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ec925665`
+- Built from commit: `03339eb1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -35,7 +35,6 @@
 - [[_COMMUNITY_admin.py|admin.py]]
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 19|Community 19]]
-- [[_COMMUNITY_workbench.tsx|workbench.tsx]]
 - [[_COMMUNITY_test_chat_contract.py|test_chat_contract.py]]
 - [[_COMMUNITY_Community 22|Community 22]]
 - [[_COMMUNITY_Community 23|Community 23]]
@@ -80,8 +79,6 @@
 10. `KnowledgeSourceResponse` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `list_feedback()` --references--> `FeedbackStatus`  [EXTRACTED]
-  backend/app/api/feedback.py → frontend/src/lib/types.ts
 - `test_component_conflict_filters_charging_dock_for_controller_query()` --calls--> `RAGService`  [INFERRED]
   backend/tests/test_knowledge.py → backend/app/services/rag_service.py
 - `test_component_conflict_keeps_same_product_strong_match()` --calls--> `RAGService`  [INFERRED]
@@ -90,19 +87,21 @@
   backend/tests/test_knowledge.py → backend/app/services/rag_service.py
 - `test_markdown_splitter_keeps_heading_context_and_merges_short_sections()` --calls--> `RAGService`  [INFERRED]
   backend/tests/test_knowledge.py → backend/app/services/rag_service.py
+- `test_retrieval_rejects_vector_only_matches_without_text_signal()` --calls--> `RAGService`  [INFERRED]
+  backend/tests/test_knowledge.py → backend/app/services/rag_service.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (57 total, 19 thin omitted)
+## Communities (57 total, 20 thin omitted)
 
 ### Community 0 - "AidBot MVP 架构演进图"
 Cohesion: 0.43
 Nodes (5): Block, isTableStart(), MessageContent(), parseMarkdown(), splitTableRow()
 
 ### Community 1 - "10. 后续扩展边界"
-Cohesion: 0.08
-Nodes (36): ChatService, ChatRequest, ChatResponse, CurrentUser, Session, create_provider(), LLMCompletion, LLMProvider (+28 more)
+Cohesion: 0.17
+Nodes (23): ChatService, ChatRequest, ChatResponse, CurrentUser, Session, CurrentUser, Session, end_trace() (+15 more)
 
 ### Community 2 - "7. MVP 模块清单"
 Cohesion: 0.10
@@ -118,7 +117,7 @@ Nodes (12): Architecture, Backend (`backend/app`), Commands, Database, Docker (a
 
 ### Community 5 - "Community 5"
 Cohesion: 0.06
-Nodes (28): create_user_feedback(), ChatRequest, CurrentUser, FeedbackCreateRequest, FeedbackItem, Session, StreamingResponse, stream_user_chat() (+20 more)
+Nodes (24): create_chat_response(), ChatRequest, ChatResponse, CurrentUser, Session, StreamingResponse, stream_chat_response(), create_user_feedback() (+16 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.10
@@ -130,15 +129,15 @@ Nodes (19): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModu
 
 ### Community 8 - "Community 8"
 Cohesion: 0.06
-Nodes (42): AccessKeyCreateResponse, create_access_key(), delete_access_key(), disable_access_key(), enable_access_key(), list_access_keys(), AccessKeyCreateRequest, ChatRequest (+34 more)
+Nodes (53): AccessKeyCreateResponse, create_access_key(), delete_access_key(), disable_access_key(), enable_access_key(), list_access_keys(), AccessKeyCreateRequest, ChatRequest (+45 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.13
-Nodes (18): KnowledgeWorkbench(), archiveConversation(), askQuestion(), authorized(), clearConversations(), createFeedback(), createKnowledgeSpace(), createManualKnowledge() (+10 more)
+Cohesion: 0.12
+Nodes (29): AdminWorkbench(), durationLabels, archiveConversation(), askQuestion(), authorized(), createAccessKey(), createFeedback(), createKnowledgeSpace() (+21 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.13
-Nodes (28): AccessKey, AccessKeyCreateRequest, AccessKeyCreateResponse, AccessKeyStatus, ChatRequest, ChatResponse, ChatStreamEvent, Confidence (+20 more)
+Cohesion: 0.09
+Nodes (24): AccessKeyCreateRequest, AccessKeyCreateResponse, AccessKeyStatus, ChatRequest, ChatStreamEvent, Confidence, ConversationDetail, ConversationSummary (+16 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.50
@@ -149,24 +148,24 @@ Cohesion: 0.12
 Nodes (15): AidBot 项目开发进度条, Bug 清单对照, 下一步优先级, 当前状态, 每日推进流程, 阶段 0：项目脚手架与接口合同, 阶段 1：认证与最小工作台, 阶段 2：问答 MVP 与会话历史 (+7 more)
 
 ### Community 13 - "Community 13"
-Cohesion: 0.31
-Nodes (9): create_feedback(), list_feedback(), CurrentUser, FeedbackCreateRequest, FeedbackItem, FeedbackStatusRequest, Session, update_feedback_status() (+1 more)
+Cohesion: 0.27
+Nodes (10): create_feedback(), list_feedback(), CurrentUser, FeedbackCreateRequest, FeedbackItem, FeedbackStatusRequest, Session, update_feedback_status() (+2 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.13
-Nodes (23): AdminChatPage(), AdminPage(), ChatPage(), FeedbackPage(), KnowledgePage(), LoginForm(), LoginMode, LoginPage() (+15 more)
+Cohesion: 0.12
+Nodes (25): AdminChatPage(), AdminPage(), ChatPage(), FeedbackPage(), KnowledgePage(), KnowledgeWorkbench(), LoginForm(), LoginPage() (+17 more)
 
 ### Community 15 - "Community 15"
-Cohesion: 0.12
-Nodes (20): auth_headers(), test_chat_returns_citations_when_knowledge_matches(), test_component_conflict_filters_charging_dock_for_controller_query(), test_component_conflict_keeps_same_product_strong_match(), test_html_document_recall_prioritizes_exact_product_tokens(), test_html_parser_preserves_heading_context_for_chunking(), test_html_parser_preserves_table_row_relationships(), test_hybrid_search_prioritizes_exact_entity_tokens() (+12 more)
+Cohesion: 0.11
+Nodes (21): auth_headers(), test_chat_returns_citations_when_knowledge_matches(), test_component_conflict_filters_charging_dock_for_controller_query(), test_component_conflict_keeps_same_product_strong_match(), test_html_document_recall_prioritizes_exact_product_tokens(), test_html_parser_preserves_heading_context_for_chunking(), test_html_parser_preserves_table_row_relationships(), test_hybrid_search_prioritizes_exact_entity_tokens() (+13 more)
 
 ### Community 16 - "Community 16"
 Cohesion: 0.29
 Nodes (6): AidBot API 合同草案, 会话接口, 健康检查, 核心类型, 聊天接口, 认证接口
 
 ### Community 17 - "admin.py"
-Cohesion: 0.30
-Nodes (14): create_knowledge_space(), create_manual_knowledge(), delete_knowledge_source(), delete_knowledge_space(), import_knowledge_document(), import_markdown_knowledge(), list_knowledge_sources(), list_knowledge_spaces() (+6 more)
+Cohesion: 0.08
+Nodes (24): create_provider(), LLMCompletion, LLMProvider, LLMService, LocalSupportProvider, OpenAICompatibleProvider, Deterministic phase-2 provider; replaceable without changing the chat contract., auth_headers() (+16 more)
 
 ### Community 18 - "Community 18"
 Cohesion: 0.15
@@ -176,25 +175,21 @@ Nodes (11): AccessKey, AccessKey, AccessKeyService, AccessKeyCreateRequest, Curr
 Cohesion: 0.25
 Nodes (7): AidBot Docker 部署, 使用 GitHub Actions 自动构建, 手动推送到其他镜像仓库, 推送到镜像仓库, 本地开发, 构建生产镜像, 生产注意事项
 
-### Community 20 - "workbench.tsx"
-Cohesion: 0.20
-Nodes (8): AdminWorkbench(), durationLabels, createAccessKey(), deleteAccessKey(), disableAccessKey(), enableAccessKey(), listAccessKeys(), AccessKeyDuration
-
 ### Community 21 - "test_chat_contract.py"
 Cohesion: 0.33
 Nodes (5): AidBot, Docker 一键启动, 本地开发, 本机分别启动, 阶段 1 默认登录
 
 ### Community 22 - "Community 22"
-Cohesion: 0.08
-Nodes (28): _clean_markdown_for_prompt(), _heading_path_from_chunk(), _markdown_sections_for_context(), _merge_entity_metadata(), _parent_section_excerpt(), CurrentUser, Session, RAGService (+20 more)
+Cohesion: 0.09
+Nodes (27): import_knowledge_document(), _clean_markdown_for_prompt(), _heading_path_from_chunk(), _markdown_sections_for_context(), _merge_entity_metadata(), _parent_section_excerpt(), CurrentUser, Session (+19 more)
 
 ### Community 23 - "Community 23"
 Cohesion: 0.18
 Nodes (10): 2026-07-22, AidBot Bug 清单, 助手输出未按 Markdown 渲染, 引用命中分数超过 1 且跨组件误命中, 引用片段打分和命中可信度偏假, 引用调试区域用途不清, 最近会话区域视觉主题不一致, 最近会话展示数量和展开交互需要调整 (+2 more)
 
 ### Community 24 - "Community 24"
-Cohesion: 0.29
-Nodes (5): FeedbackWorkbench(), statusFilters, statusLabel(), listFeedback(), updateFeedbackStatus()
+Cohesion: 0.25
+Nodes (6): FeedbackWorkbench(), statusFilters, statusLabel(), listFeedback(), updateFeedbackStatus(), FeedbackItem
 
 ### Community 25 - "Community 25"
 Cohesion: 0.29
@@ -204,39 +199,35 @@ Nodes (6): AidBot MVP 架构审阅发现, 初步审阅发现, 当前项目状态
 Cohesion: 0.33
 Nodes (5): 2026-07-03, 2026-07-06, 2026-07-07, 2026-07-23, AidBot MVP 架构审阅进度
 
-### Community 29 - "create_chat_response"
-Cohesion: 0.36
-Nodes (7): create_chat_response(), ChatRequest, ChatResponse, CurrentUser, Session, StreamingResponse, stream_chat_response()
-
 ### Community 37 - "create_chat_response"
-Cohesion: 0.12
-Nodes (13): create_embedding_provider(), EmbeddingProvider, EmbeddingService, HashEmbeddingProvider, _normalize(), OpenAICompatibleEmbeddingProvider, test_create_embedding_provider_requires_openai_compatible_config(), test_hash_embedding_provider_is_deterministic_and_normalized() (+5 more)
+Cohesion: 0.13
+Nodes (12): create_embedding_provider(), EmbeddingProvider, EmbeddingService, HashEmbeddingProvider, _normalize(), OpenAICompatibleEmbeddingProvider, test_create_embedding_provider_requires_openai_compatible_config(), test_hash_embedding_provider_is_deterministic_and_normalized() (+4 more)
 
 ### Community 39 - "阶段.md"
-Cohesion: 0.15
-Nodes (17): admin_login(), key_login(), login(), me(), CurrentUser, Session, _b64decode(), _b64encode() (+9 more)
+Cohesion: 0.12
+Nodes (20): admin_login(), key_login(), login(), me(), CurrentUser, Session, _b64decode(), _b64encode() (+12 more)
 
 ### Community 56 - "workbench.tsx"
 Cohesion: 0.08
-Nodes (22): AdminChatWorkbench(), confidenceLabel(), DeleteDialogState, examples, sourceTypeLabel(), ChatWorkbench(), DeleteDialogState, examples (+14 more)
+Nodes (23): AdminChatWorkbench(), confidenceLabel(), DeleteDialogState, examples, sourceTypeLabel(), ChatWorkbench(), DeleteDialogState, examples (+15 more)
 
 ### Community 57 - "apiBaseUrl"
-Cohesion: 0.20
-Nodes (10): HealthBadge(), apiBaseUrl(), askAdminQuestionStream(), askQuestionStream(), askUserQuestionStream(), getHealth(), keyLogin(), login() (+2 more)
+Cohesion: 0.22
+Nodes (9): LoginMode, apiBaseUrl(), askAdminQuestionStream(), askQuestionStream(), askUserQuestionStream(), keyLogin(), login(), parseStreamEvent() (+1 more)
 
 ## Knowledge Gaps
-- **128 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+123 more)
+- **131 isolated node(s):** `docker-entrypoint.sh script`, `AIDBOT_RUNTIME_API_BASE_URL`, `nextConfig`, `name`, `version` (+126 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `RAGService` connect `Community 22` to `Community 8`, `10. 后续扩展边界`, `create_chat_response`, `Community 15`?**
-  _High betweenness centrality (0.094) - this node is a cross-community bridge._
-- **Why does `RetrievalProvider` connect `10. 后续扩展边界` to `Community 10`?**
+- **Why does `RetrievalProvider` connect `Community 10` to `10. 后续扩展边界`?**
   _High betweenness centrality (0.093) - this node is a cross-community bridge._
-- **Why does `RetrievedChunk` connect `Community 22` to `Community 8`, `10. 后续扩展边界`, `create_chat_response`, `Community 15`?**
+- **Why does `RAGService` connect `Community 22` to `10. 后续扩展边界`, `create_chat_response`, `阶段.md`, `Community 8`, `Community 15`, `admin.py`?**
+  _High betweenness centrality (0.092) - this node is a cross-community bridge._
+- **Why does `RetrievedChunk` connect `Community 22` to `10. 后续扩展边界`, `create_chat_response`, `阶段.md`, `Community 8`, `Community 15`?**
   _High betweenness centrality (0.062) - this node is a cross-community bridge._
 - **Are the 18 inferred relationships involving `RAGService` (e.g. with `ChatService` and `CurrentUser`) actually correct?**
   _`RAGService` has 18 INFERRED edges - model-reasoned connections that need verification._
@@ -245,4 +236,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 12 inferred relationships involving `RetrievedChunk` (e.g. with `CurrentUser` and `SourceCitation`) actually correct?**
   _`RetrievedChunk` has 12 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `AidBot backend package.`, `Core configuration and infrastructure.`, `Service layer boundaries.` to the rest of the system?**
-  _133 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _136 weakly-connected nodes found - possible documentation gaps or missing edges._

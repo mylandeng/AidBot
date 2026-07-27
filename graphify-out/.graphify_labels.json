@@ -19,7 +19,6 @@
   "17": "admin.py",
   "18": "Community 18",
   "19": "Community 19",
-  "20": "workbench.tsx",
   "21": "test_chat_contract.py",
   "22": "Community 22",
   "23": "Community 23",
@@ -55,5 +54,6 @@
   "54": "__init__.py",
   "55": "conftest.py",
   "56": "workbench.tsx",
-  "57": "apiBaseUrl"
+  "57": "apiBaseUrl",
+  "58": "runtime-config.js"
 }

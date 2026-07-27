@@ -6,6 +6,7 @@ import { MessageContent } from "@/components/chat/message-content";
 import { ComposerSendButton } from "@/components/ui/composer-send-button";
 import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
 import { askAdminQuestionStream, clearConversations, deleteConversation, getConversation, listConversations } from "@/lib/api";
+import { createClientId } from "@/lib/client-id";
 import type { ChatResponse, ConversationMessage, ConversationSummary, SourceCitation } from "@/lib/types";
 
 const examples = [
@@ -168,8 +169,8 @@ export function AdminChatWorkbench({ token }: { token: string }) {
     if (!question.trim() || busy) return;
 
     const text = question.trim();
-    const userTempId = `user-${crypto.randomUUID()}`;
-    const assistantTempId = `assistant-${crypto.randomUUID()}`;
+    const userTempId = createClientId("user");
+    const assistantTempId = createClientId("assistant");
     const controller = new AbortController();
     abortRef.current = controller;
     setBusy(true);
