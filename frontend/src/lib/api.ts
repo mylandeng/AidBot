@@ -26,11 +26,20 @@ import type {
   UserChatResponse,
 } from "./types";
 
-const PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8010";
-const SERVER_API_BASE_URL = process.env.API_INTERNAL_BASE_URL ?? PUBLIC_API_BASE_URL;
+declare global {
+  interface Window {
+    __AIDBOT_CONFIG__?: {
+      apiBaseUrl?: string;
+    };
+  }
+}
+
+const BUILD_PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8010";
+const SERVER_API_BASE_URL = process.env.API_INTERNAL_BASE_URL ?? BUILD_PUBLIC_API_BASE_URL;
 
 function apiBaseUrl(): string {
-  return typeof window === "undefined" ? SERVER_API_BASE_URL : PUBLIC_API_BASE_URL;
+  if (typeof window === "undefined") return SERVER_API_BASE_URL;
+  return window.__AIDBOT_CONFIG__?.apiBaseUrl || BUILD_PUBLIC_API_BASE_URL;
 }
 
 export async function getHealth(): Promise<HealthResponse | null> {
