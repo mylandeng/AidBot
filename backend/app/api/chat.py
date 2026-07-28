@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
@@ -18,9 +18,9 @@ def create_chat_response(request: ChatRequest, current_user: CurrentUser = Depen
 
 
 @router.post("/stream")
-def stream_chat_response(request: ChatRequest, current_user: CurrentUser = Depends(require_internal_user), db: Session = Depends(get_db)) -> StreamingResponse:
+def stream_chat_response(request: ChatRequest, http_request: Request, current_user: CurrentUser = Depends(require_internal_user), db: Session = Depends(get_db)) -> StreamingResponse:
     return StreamingResponse(
-        chat_service.stream_answer(request, current_user, db),
+        chat_service.stream_answer(request, current_user, db, request_id=http_request.state.request_id),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )

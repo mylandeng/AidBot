@@ -875,6 +875,15 @@ textarea {
 }
 
 .message-plain { margin: 0; white-space: pre-wrap; line-height: 1.58; }
+.chat-delivery-notice { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; border-left: 3px solid #b13a32; padding: 8px 0 8px 12px; color: #7f2924; }
+.chat-delivery-notice.stopped { border-left-color: #a66b18; color: #765018; }
+.chat-delivery-notice div { min-width: 0; }
+.chat-delivery-notice strong { display: block; font-size: 13px; }
+.chat-delivery-notice p { margin: 3px 0 0; color: inherit; font-size: 13px; line-height: 1.5; }
+.chat-delivery-notice small { display: block; margin-top: 6px; overflow-wrap: anywhere; color: var(--muted); font-family: var(--mono); font-size: 11px; }
+.chat-delivery-notice button { flex: 0 0 auto; min-height: 30px; border: 1px solid currentColor; border-radius: 6px; padding: 0 9px; background: transparent; color: inherit; cursor: pointer; font-size: 12px; font-weight: 800; }
+.chat-delivery-notice button:hover { background: rgba(177, 58, 50, .08); }
+.chat-delivery-notice.stopped button:hover { background: rgba(166, 107, 24, .09); }
 .message-markdown { display: grid; gap: 8px; color: var(--ink-soft); line-height: 1.58; }
 .message-markdown > * { margin: 0; }
 .message-markdown h1,

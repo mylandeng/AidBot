@@ -14,6 +14,29 @@
 }
 ```
 
+## 统一错误合同
+
+所有 HTTP 错误响应都包含统一的 `error` 对象，并通过响应头 `X-Request-ID` 返回同一个请求 ID。为兼容现有客户端，`detail` 字段暂时保留。
+
+```json
+{
+  "error": {
+    "code": "CONVERSATION_ARCHIVED",
+    "message": "已归档的会话不能继续提问。",
+    "retryable": false,
+    "request_id": "req_...",
+    "details": null
+  },
+  "detail": "Archived conversations cannot receive new messages"
+}
+```
+
+- `code` 是稳定的英文错误码，前端逻辑不得依赖自然语言文案。
+- `message` 是可直接展示的中文提示。
+- `retryable` 表示用户是否可以在不修改请求的情况下重试。
+- `request_id` 用于管理员关联后端日志，不得包含 token、密钥或认证头。
+- `details` 只保存安全的校验信息或业务上下文；生产环境的未知异常统一返回 `INTERNAL_ERROR`，不返回堆栈和内部异常文本。
+
 ## 认证接口
 
 阶段 1 使用内置种子管理员账号验证登录链路：
@@ -140,8 +163,10 @@ data: {"conversation_id":"...","message_id":"...","answer":"...","solution_steps
 
 ```text
 event: error
-data: {"message":"模型暂时不可用，请稍后重试。"}
+data: {"code":"LLM_UNAVAILABLE","message":"模型暂时不可用，请稍后重试。","retryable":true,"request_id":"req_...","details":null}
 ```
+
+SSE `error` 事件与 HTTP 错误使用相同的 `ErrorPayload`。聊天前端必须保留对应的失败回答位置并展示错误；超时标记为失败，用户主动停止标记为“已停止生成”，不能静默删除状态。
 
 ## 会话接口
 

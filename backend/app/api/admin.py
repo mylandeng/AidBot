@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, Request
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
@@ -52,9 +52,9 @@ def delete_access_key(key_id: str, db: Session = Depends(get_db)) -> None:
 
 
 @router.post("/chat/stream")
-def stream_admin_chat(request: ChatRequest, current_user: CurrentUser = Depends(require_admin), db: Session = Depends(get_db)) -> StreamingResponse:
+def stream_admin_chat(request: ChatRequest, http_request: Request, current_user: CurrentUser = Depends(require_admin), db: Session = Depends(get_db)) -> StreamingResponse:
     return StreamingResponse(
-        chat_service.stream_answer(request, current_user, db, include_debug=True),
+        chat_service.stream_answer(request, current_user, db, include_debug=True, request_id=http_request.state.request_id),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )

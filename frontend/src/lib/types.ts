@@ -67,11 +67,19 @@ export interface UserChatResponse {
   handoff_reason: string;
 }
 
+export interface ErrorPayload {
+  code: string;
+  message: string;
+  retryable: boolean;
+  request_id: string;
+  details?: unknown;
+}
+
 export type ChatStreamEvent =
   | { event: "message_start"; data: { conversation_id: string } }
   | { event: "answer_delta"; data: { delta: string } }
   | { event: "final"; data: ChatResponse | UserChatResponse }
-  | { event: "error"; data: { message: string } };
+  | { event: "error"; data: ErrorPayload };
 
 export interface ConversationSummary {
   id: string;
@@ -91,6 +99,11 @@ export interface ConversationMessage {
   sources: SourceCitation[];
   confidence: Confidence;
   created_at: string;
+  delivery_status?: "failed" | "stopped";
+  error_code?: string;
+  error_message?: string;
+  error_request_id?: string;
+  retry_question?: string;
 }
 
 export interface ConversationDetail extends ConversationSummary {

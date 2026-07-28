@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-import { keyLogin, login } from "@/lib/api";
+import { keyLogin, login, requestErrorMessage } from "@/lib/api";
 import { SESSION_COOKIE_NAME } from "@/lib/session";
 
 const defaultEmail = "admin@aidbot.local";
@@ -30,7 +30,7 @@ export function LoginForm() {
       router.push(result.user.roles.includes("admin") ? "/" : "/user/chat");
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "登录失败，请稍后重试");
+      setError(requestErrorMessage(err, "登录失败，请稍后重试。"));
     } finally {
       setIsSubmitting(false);
     }

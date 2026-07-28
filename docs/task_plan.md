@@ -7,7 +7,7 @@
 - 更新日期：2026-07-28
 - 当前主线：聊天/RAG 体验收尾 + 阶段 4 补齐 + 阶段 5/6 建立可审计和发布门槛 + 飞书工作台嵌入路线验证
 - 最近 graph 证据：`graphify query "task_plan api-contract SourceCitation 当前进度 长会话回归 文档更新"`
-- 当前最大缺口：反馈处理自定义备注、版本化数据库迁移、持久化检索/审计日志、发布 smoke 流程、飞书工作台免登验证
+- 当前最大缺口：反馈处理自定义备注、版本化数据库迁移、持久化检索/审计日志、发布 smoke 流程、飞书工作台免登验证；统一错误处理 P0 已完成
 
 ## 阶段进度
 
@@ -19,7 +19,7 @@
 | 阶段 3：手动知识库与基础 RAG | 基本完成 | 96% | 一库一产品线、知识库工作台、手动/文档导入、指定知识库检索、来源引用和重建索引已完成；RAG 质量仍有调优项 |
 | 阶段 4：反馈采集与管理员复盘队列 | 进行中 | 90% | 评分、反馈 API/UI、队列、状态流转和产品线筛选已完成；缺自定义处理备注 |
 | 阶段 5：知识运维与可审计性 | 未完成 | 30% | 知识列表/状态页已有；缺入库失败可见、持久化 retrieval logs、audit logs、完整追溯链 |
-| 阶段 6：MVP 加固与发布门槛 | 未完成 | 45% | 后端核心测试已有；缺统一 smoke 脚本、前端 smoke、日志密钥审查和发布验收清单 |
+| 阶段 6：MVP 加固与发布门槛 | 未完成 | 55% | 后端核心测试和统一错误合同已有；缺统一 smoke 脚本、前端 smoke、日志密钥审查和发布验收清单 |
 
 ## 阶段明细
 
@@ -31,7 +31,7 @@
 
 ### 阶段 1：认证与最小工作台
 - 状态：已完成。
-- 已完成：种子管理员登录、访问码登录、当前用户接口、管理员受保护页面、用户聊天入口。
+- 已完成：种子管理员登录、访问码登录、当前用户接口、管理员受保护页面、用户聊天入口；两个登录入口的网络异常均转换为统一中文提示，不暴露浏览器原生错误文案。
 - 证据：`backend/app/api/auth.py`、`backend/app/services/access_key_service.py`、`frontend/src/app/login`、`backend/tests/test_auth.py`。
 - 下一步：后续安全审查纳入阶段 6。
 
@@ -76,8 +76,8 @@
 
 ### 阶段 6：MVP 加固与发布门槛
 - 状态：未完成。
-- 已完成：后端 auth/chat/knowledge/feedback/health 测试。
-- 证据：`backend/tests/test_auth.py`、`backend/tests/test_chat_contract.py`、`backend/tests/test_knowledge.py`、`backend/tests/test_feedback.py`、`backend/tests/test_health.py`。
+- 已完成：后端 auth/chat/knowledge/feedback/health 测试；HTTP/SSE 统一错误载荷、请求 ID、生产未知异常脱敏，以及聊天失败/超时/主动停止的前端可见状态。
+- 证据：`backend/tests/test_auth.py`、`backend/tests/test_chat_contract.py`、`backend/tests/test_knowledge.py`、`backend/tests/test_feedback.py`、`backend/tests/test_health.py`、`backend/tests/test_error_contract.py`。
 - 未完成：统一 smoke 流程脚本。
 - 未完成：前端 smoke 或端到端浏览器验证。
 - 未完成：日志不输出密钥的自动检查。
@@ -125,20 +125,30 @@
 ## 下一步优先级
 
 ### 业务功能推进
-1. 阶段 4 收尾：管理员处理反馈时可写自定义备注。
-2. 阶段 5 起步：建立 Alembic 基线，新增 `retrieval_logs`/`retrieval_log_items`，让聊天回答保存检索证据。
-3. 阶段 6 起步：沉淀一条本地 smoke 验收命令或清单，覆盖登录、提问、引用来源、会话删除、知识库重建。
-4. 飞书工作台 H5 POC：创建网页应用，配置桌面端/移动端主页，验证 Next.js 页面在飞书内打开。
-5. RAG eval 扩展：增加低相关问题、组件实体冲突、指定知识库调试的回归样例。
+1. P0 已完成：统一 HTTP/SSE 错误码和请求 ID，聊天失败、超时、网络异常与主动停止均有可见状态。
+2. 阶段 4 收尾：管理员处理反馈时可写自定义备注。
+3. 阶段 5 起步：建立 Alembic 基线，新增 `retrieval_logs`/`retrieval_log_items`，让聊天回答保存检索证据。
+4. 阶段 6 起步：沉淀一条本地 smoke 验收命令或清单，覆盖登录、提问、引用来源、会话删除、知识库重建。
+5. 飞书工作台 H5 POC：创建网页应用，配置桌面端/移动端主页，验证 Next.js 页面在飞书内打开。
+6. RAG eval 扩展：增加低相关问题、组件实体冲突、指定知识库调试的回归样例。
 
 ### 技术债务清理（根据 2026-07-28 代码审查）
 
 #### 🔴 高优先级（影响CI和代码质量）
 1. **测试隔离问题（已完成）**
    - `test_retrieval_eval_fixture_matches_expected_sources` 改为创建独立评测知识库，并通过 `space_id` 限定导入和搜索范围。
-   - 证据：`backend/.venv/Scripts/python.exe -m pytest tests -q` 为 57/57 通过。
+   - 证据：隔离修复完成时为 57/57；加入统一错误合同测试后，完整套件为 62/62 通过。
 
-2. **添加代码质量门禁**
+2. **后端统一错误处理（已完成）**
+   - 已完成统一 `ErrorPayload`：`code`、中文 `message`、`retryable`、`request_id` 和安全 `details`。
+   - 已在 `main.py` 注册 `AppException`、`HTTPException`、`RequestValidationError` 和未知异常处理器；未知异常只记录服务端日志并向客户端返回通用文案。
+   - 已保留旧 `detail` 字段作为兼容层，现有散落的 `HTTPException` 会被全局处理器统一转换；后续修改相关服务时再逐步迁移为 `AppException`，不做一次性高风险替换。
+   - 已统一 SSE `error` 事件，检索和模型异常均携带稳定错误码与请求 ID。
+   - 已实现前端 `ApiError`，非 2xx 响应读取后端正文；登录网络异常显示统一中文提示；聊天失败、超时和主动停止在对应回答位置显示，管理员可见错误码和请求 ID。
+   - 已补测试覆盖登录失败、参数校验、检索不可用和模型异常，并验证内部异常文本不返回客户端。
+   - **相关文件**：`backend/app/main.py`、`backend/app/core/errors.py`、`backend/app/schemas/error.py`、`backend/app/services/chat_service.py`、`frontend/src/lib/api.ts`、`frontend/src/components/chat/chat-delivery-notice.tsx`、`backend/tests/test_error_contract.py`。
+
+3. **添加代码质量门禁**
    - 当前状态：无 linter、无类型检查、无格式化工具
    - 方案：
      * 后端：安装 `ruff`（linter）+ `mypy`（类型检查）
@@ -149,7 +159,7 @@
    - 预计工作量：1-2 小时
    - 目标：CI 中运行并阻止不合规代码合并
 
-3. **添加前端核心组件测试**
+4. **添加前端核心组件测试**
    - 当前状态：21 个 TSX 组件，0 个测试文件（覆盖率 0%）
    - 方案：使用 Jest + React Testing Library
    - 优先测试文件：
@@ -161,14 +171,14 @@
    - 目标覆盖率：核心路径 > 60%
 
 #### 🟡 中优先级（提升稳定性）
-4. **环境变量验证**
+5. **环境变量验证**
    - 问题：`.env.example` 有 50 行配置，但无验证机制
    - 方案：在 `backend/app/core/config.py` 添加 `validate_config()` 函数
    - 关键检查：生产环境 `AUTH_SECRET_KEY` 不能是默认值、LLM_API_KEY 必填（非 local provider）
    - 优先级：🟡 中
    - 预计工作量：30 分钟
 
-5. **添加 API 性能监控**
+6. **添加 API 性能监控**
    - 当前状态：只有 LangSmith tracing，缺少响应时间指标
    - 方案：
      * 添加 `/health/detail` 端点（数据库连接、provider 状态）
@@ -176,31 +186,6 @@
      * 慢查询日志（>100ms）
    - 优先级：🟡 中
    - 预计工作量：2-3 小时
-
-6. **后端统一错误处理**（重点任务）
-   - **现状问题**（2026-07-28 代码审查确认）：
-     * `main.py` 没有任何全局异常处理器（无 `@app.exception_handler`），未捕获异常会返回 FastAPI 默认 500，可能泄露堆栈信息
-     * 46 处 `HTTPException` 散落在 9 个文件（auth/conversations/chat_service/access_key_service/feedback_service/document_service/rag_service/retrieval_service/security）
-     * **错误 detail 格式两套并存且不统一**：
-       - 纯字符串：`detail="Knowledge source not found"`（见 `rag_service.py:287,305,414`）
-       - 结构化字典：`detail={"code": "KEY_DELETED", "message": "..."}`（见 `access_key_service.py:102-137`）
-     * **语言混用**：内部错误用英文（`"Access key not found"`），面向用户的错误用中文，前端需同时兼容两种格式
-   - **改造方案**：
-     1. 定义统一错误响应模型（如 `{"code": str, "message": str, "detail": dict | None}`），放在 `app/schemas/error.py`
-     2. 定义错误码枚举 `app/core/errors.py`（如 `KEY_DELETED`、`SOURCE_NOT_FOUND`、`QUOTA_EXCEEDED` 等），集中管理错误码 → HTTP 状态码 → 默认文案的映射
-     3. 自定义业务异常基类 `AppException`，替换散落的 `raise HTTPException`，服务层只抛业务异常、不关心 HTTP 细节
-     4. 在 `main.py` 注册全局处理器：
-        - `AppException` → 统一结构化响应
-        - `RequestValidationError` → 422 统一格式
-        - `Exception`（兜底）→ 500，**生产环境隐藏堆栈**、记录日志、返回通用文案
-     5. 统一面向用户文案语言（建议中文），内部错误码保持英文常量
-   - **注意事项**：
-     * 改造需保持 `/api/chat`、`/api/auth` 等**外部合同不破坏**，前端错误处理逻辑（`frontend/src/lib/api.ts` 的 SSE `error` 事件解析）要同步核对
-     * 流式接口（`chat.py:/stream`）的错误走 SSE `error` 事件，不是 HTTP 状态码，需单独确认统一格式如何落到流式协议
-     * 补充测试：每类异常至少一个用例，验证响应结构、状态码、生产环境不泄露堆栈
-   - **相关文件**：`backend/app/main.py`、`backend/app/core/errors.py`（新建）、`backend/app/schemas/error.py`（新建）、上述 9 个抛异常文件、`frontend/src/lib/api.ts`、`frontend/src/lib/types.ts`
-   - 优先级：🟡 中（用户重点关注项）
-   - 预计工作量：4-6 小时（含测试和前端联调）
 
 7. **Docker 镜像优化**
    - 当前状态：单阶段构建
@@ -232,8 +217,8 @@
 
 #### 📊 当前技术指标
 - **测试覆盖**: 后端 ~40%（估算），前端 0%
-- **测试通过率**: 100%（57/57）
-- **代码质量工具**: 无 linter、无类型检查
+- **测试通过率**: 100%（62/62）
+- **代码质量工具**: 前端已有 TypeScript 类型检查；后端尚无统一 linter 与静态类型门禁
 - **文档覆盖**: README + CLAUDE.md + api-contract.md + task_plan.md
 - **类型安全**: Python 类型忽略仅 1 处，前端 0 个 `any` 类型 ✅
 

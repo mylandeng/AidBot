@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
@@ -18,11 +18,11 @@ feedback_service = FeedbackService()
 
 
 @router.post("/chat/stream")
-def stream_user_chat(request: ChatRequest, current_user: CurrentUser = Depends(get_current_user), db: Session = Depends(get_db)) -> StreamingResponse:
+def stream_user_chat(request: ChatRequest, http_request: Request, current_user: CurrentUser = Depends(get_current_user), db: Session = Depends(get_db)) -> StreamingResponse:
     access_key_service.ensure_session_key_is_usable(current_user.key_id, db)
     request = request.model_copy(update={"retrieval_provider": "local"})
     response = StreamingResponse(
-        chat_service.stream_answer(request, current_user, db, include_debug=False),
+        chat_service.stream_answer(request, current_user, db, include_debug=False, request_id=http_request.state.request_id),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )

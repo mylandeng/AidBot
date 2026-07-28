@@ -8,6 +8,7 @@ import type {
   ConversationDetail,
   ConversationSummary,
   DeleteConversationsResponse,
+  ErrorPayload,
   FeedbackCreateRequest,
   FeedbackItem,
   FeedbackList,
@@ -37,6 +38,22 @@ declare global {
 
 const BUILD_PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8010";
 const SERVER_API_BASE_URL = process.env.API_INTERNAL_BASE_URL ?? BUILD_PUBLIC_API_BASE_URL;
+
+export class ApiError extends Error {
+  readonly code: string;
+  readonly retryable: boolean;
+  readonly requestId: string;
+  readonly status: number;
+
+  constructor(payload: ErrorPayload, status = 0) {
+    super(payload.message);
+    this.name = "ApiError";
+    this.code = payload.code;
+    this.retryable = payload.retryable;
+    this.requestId = payload.request_id;
+    this.status = status;
+  }
+}
 
 function apiBaseUrl(): string {
   if (typeof window === "undefined") return SERVER_API_BASE_URL;
@@ -69,7 +86,7 @@ export async function login(email: string, password: string): Promise<LoginRespo
   });
 
   if (!response.ok) {
-    throw new Error("邮箱或密码不正确");
+    throw await apiErrorFromResponse(response, "邮箱或密码不正确");
   }
 
   return response.json();
@@ -85,7 +102,7 @@ export async function keyLogin(accessKey: string): Promise<LoginResponse> {
   });
 
   if (!response.ok) {
-    throw new Error("访问码无效、已过期或已被禁用");
+    throw await apiErrorFromResponse(response, "访问码无效、已过期或已被禁用");
   }
 
   return response.json();
@@ -97,7 +114,9 @@ async function authorized<T>(path: string, token: string, init?: RequestInit): P
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, ...init?.headers },
     cache: "no-store",
   });
-  if (!response.ok) throw new Error(response.status === 401 ? "登录已失效，请重新登录" : "请求失败，请稍后重试");
+  if (!response.ok) {
+    throw await apiErrorFromResponse(response, response.status === 401 ? "登录已失效，请重新登录" : "请求失败，请稍后重试");
+  }
   if (response.status === 204) return undefined as T;
   return response.json();
 }
@@ -149,7 +168,18 @@ async function streamChat<T extends ChatResponse | UserChatResponse>(
   });
 
   if (!response.ok || !response.body) {
-    throw new Error(response.status === 401 ? "登录已失效，请重新登录" : "请求失败，请稍后重试");
+    if (!response.ok) {
+      throw await apiErrorFromResponse(response, response.status === 401 ? "登录已失效，请重新登录" : "请求失败，请稍后重试");
+    }
+    throw new ApiError(
+      {
+        code: "STREAM_UNAVAILABLE",
+        message: "回答通道不可用，请稍后重试。",
+        retryable: true,
+        request_id: response.headers.get("X-Request-ID") ?? "",
+      },
+      response.status,
+    );
   }
 
   const reader = response.body.getReader();
@@ -172,7 +202,7 @@ async function streamChat<T extends ChatResponse | UserChatResponse>(
           finalResult = event.data as T;
         }
         if (event.event === "error") {
-          throw new Error(event.data.message);
+          throw new ApiError(event.data, response.status);
         }
       }
     }
@@ -184,6 +214,75 @@ async function streamChat<T extends ChatResponse | UserChatResponse>(
     throw new Error("回答生成中断，请重试");
   }
   return finalResult;
+}
+
+export function requestErrorMessage(reason: unknown, fallback = "请求失败，请稍后重试。"): string {
+  if (reason instanceof ApiError) return reason.message;
+  if (reason instanceof TypeError) return "无法连接到服务器，请检查网络后重试。";
+  if (reason instanceof Error && reason.message.trim()) {
+    const message = reason.message.trim();
+    const normalizedMessage = message.toLowerCase();
+    if (
+      normalizedMessage.includes("failed to fetch") ||
+      normalizedMessage.includes("networkerror") ||
+      normalizedMessage.includes("load failed")
+    ) {
+      return "无法连接到服务器，请检查网络后重试。";
+    }
+    return message;
+  }
+  return fallback;
+}
+
+async function apiErrorFromResponse(response: Response, fallbackMessage: string): Promise<ApiError> {
+  const requestId = response.headers.get("X-Request-ID") ?? "";
+  let body: unknown;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  const payload = errorPayloadFromBody(body, fallbackMessage, requestId);
+  return new ApiError(payload, response.status);
+}
+
+function errorPayloadFromBody(body: unknown, fallbackMessage: string, requestId: string): ErrorPayload {
+  if (isRecord(body) && isRecord(body.error)) {
+    const error = body.error;
+    return {
+      code: stringValue(error.code) || "REQUEST_FAILED",
+      message: stringValue(error.message) || fallbackMessage,
+      retryable: error.retryable === true,
+      request_id: stringValue(error.request_id) || requestId,
+      details: error.details,
+    };
+  }
+
+  if (isRecord(body) && isRecord(body.detail)) {
+    return {
+      code: stringValue(body.detail.code) || "REQUEST_FAILED",
+      message: stringValue(body.detail.message) || fallbackMessage,
+      retryable: false,
+      request_id: requestId,
+    };
+  }
+
+  const legacyMessage = isRecord(body) ? stringValue(body.detail) : "";
+  return {
+    code: "REQUEST_FAILED",
+    message: legacyMessage || fallbackMessage,
+    retryable: false,
+    request_id: requestId,
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function stringValue(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
 }
 
 function parseStreamEvent(rawEvent: string): ChatStreamEvent | null {

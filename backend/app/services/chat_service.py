@@ -1,11 +1,13 @@
 import json
 from collections.abc import Iterator
+from uuid import uuid4
 
 from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
+from app.core.errors import ErrorCode, payload_for_http_exception
 from app.models.conversation import Conversation, Message, utcnow
 from app.schemas.auth import CurrentUser
 from app.schemas.chat import ChatRequest, ChatResponse, UserChatResponse
@@ -68,7 +70,15 @@ class ChatService:
             end_trace(run, summarize_chat_response(response))
             return response
 
-    def stream_answer(self, request: ChatRequest, current_user: CurrentUser, db: Session, include_debug: bool = True) -> Iterator[str]:
+    def stream_answer(
+        self,
+        request: ChatRequest,
+        current_user: CurrentUser,
+        db: Session,
+        include_debug: bool = True,
+        request_id: str | None = None,
+    ) -> Iterator[str]:
+        request_id = request_id or f"req_{uuid4().hex}"
         with trace_run(
             "AidBot Chat Stream",
             "chain",
@@ -90,13 +100,24 @@ class ChatService:
             except HTTPException as exc:
                 db.rollback()
                 end_trace(run, {"status": "error", "error": {"type": "HTTPException", "message": str(exc.detail)}})
-                yield self._event("error", {"message": str(exc.detail)})
+                yield self._event("error", payload_for_http_exception(exc, request_id).model_dump(mode="json"))
+                return
+            except Exception as exc:
+                db.rollback()
+                end_trace(run, {"status": "error", "error": summarize_exception(exc)})
+                yield self._error_event(ErrorCode.INTERNAL_ERROR, "服务暂时不可用，请稍后重试。", request_id, retryable=True)
                 return
             sources = [item.citation().model_dump() for item in retrieved]
 
-            db.add(Message(conversation_id=conversation.id, role="user", content=question))
-            conversation.updated_at = utcnow()
-            db.commit()
+            try:
+                db.add(Message(conversation_id=conversation.id, role="user", content=question))
+                conversation.updated_at = utcnow()
+                db.commit()
+            except Exception as exc:
+                db.rollback()
+                end_trace(run, {"status": "error", "error": summarize_exception(exc)})
+                yield self._error_event(ErrorCode.INTERNAL_ERROR, "问题保存失败，请稍后重试。", request_id, retryable=True)
+                return
 
             yield self._event("message_start", {"conversation_id": conversation.id})
 
@@ -108,15 +129,21 @@ class ChatService:
             except Exception as exc:
                 db.rollback()
                 end_trace(run, {"status": "error", "error": summarize_exception(exc)})
-                yield self._event("error", {"message": "模型暂时不可用，请稍后重试。"})
+                yield self._error_event(ErrorCode.LLM_UNAVAILABLE, "模型暂时不可用，请稍后重试。", request_id, retryable=True)
                 return
 
             answer = "".join(answer_parts).strip() or "暂时没有生成有效回答，请补充故障现象后重试。"
             assistant = self._assistant_message(conversation.id, answer, [], settings.llm_model, sources)
-            db.add(assistant)
-            conversation.updated_at = utcnow()
-            db.commit()
-            db.refresh(assistant)
+            try:
+                db.add(assistant)
+                conversation.updated_at = utcnow()
+                db.commit()
+                db.refresh(assistant)
+            except Exception as exc:
+                db.rollback()
+                end_trace(run, {"status": "error", "error": summarize_exception(exc)})
+                yield self._error_event(ErrorCode.INTERNAL_ERROR, "回答保存失败，请稍后重试。", request_id, retryable=True)
+                return
 
             final = ChatResponse(
                 conversation_id=conversation.id,
@@ -219,3 +246,15 @@ class ChatService:
 
     def _event(self, event: str, payload: dict) -> str:
         return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+    def _error_event(self, code: ErrorCode, message: str, request_id: str, *, retryable: bool) -> str:
+        return self._event(
+            "error",
+            {
+                "code": code,
+                "message": message,
+                "retryable": retryable,
+                "request_id": request_id,
+                "details": None,
+            },
+        )

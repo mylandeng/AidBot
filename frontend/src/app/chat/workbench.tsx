@@ -1,11 +1,12 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { ChatDeliveryNotice } from "@/components/chat/chat-delivery-notice";
 import { MessageContent } from "@/components/chat/message-content";
 import { LogoutButton } from "@/components/layout/logout-button";
 import { ComposerSendButton } from "@/components/ui/composer-send-button";
 import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
-import { askUserQuestionStream, clearConversations, createUserFeedback, deleteConversation, getConversation, listConversations } from "@/lib/api";
+import { ApiError, askUserQuestionStream, clearConversations, createUserFeedback, deleteConversation, getConversation, listConversations, requestErrorMessage } from "@/lib/api";
 import { createClientId } from "@/lib/client-id";
 import type { ConversationMessage, ConversationSummary, FeedbackRating } from "@/lib/types";
 
@@ -62,6 +63,7 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
   const [busy, setBusy] = useState(false);
   const streamEndRef = useRef<HTMLDivElement | null>(null);
+  const composerFormRef = useRef<HTMLFormElement | null>(null);
   const questionInputRef = useRef<HTMLTextAreaElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const deltaBufferRef = useRef("");
@@ -128,6 +130,15 @@ export function ChatWorkbench({ token }: { token: string }) {
     deltaFrameRef.current = window.requestAnimationFrame(() => {
       deltaFrameRef.current = null;
       flushAssistantDelta(messageId);
+    });
+  }
+
+  function submitQuestion(text: string) {
+    if (!text.trim() || busy) return;
+    setQuestion(text);
+    window.requestAnimationFrame(() => {
+      questionInputRef.current?.focus();
+      composerFormRef.current?.requestSubmit();
     });
   }
 
@@ -263,15 +274,39 @@ export function ChatWorkbench({ token }: { token: string }) {
       setConversationId(result.conversation_id);
       await Promise.all([openConversation(result.conversation_id), refreshList()]);
     } catch (reason) {
+      flushAssistantDelta(assistantTempId);
       if (reason instanceof DOMException && reason.name === "AbortError") {
-        setMessages((current) => current.filter((message) => message.id !== assistantTempId || message.content.trim()));
-        if (timedOut) {
-          setError("回答生成超时，已自动停止。请稍后重试。");
-        }
+        const message = timedOut ? "回答生成超时，请稍后重试。" : "本次回答已由你主动停止。";
+        setMessages((current) =>
+          current.map((item) =>
+            item.id === assistantTempId
+              ? {
+                  ...item,
+                  delivery_status: timedOut ? "failed" : "stopped",
+                  error_code: timedOut ? "LLM_TIMEOUT" : "USER_ABORTED",
+                  error_message: message,
+                  retry_question: text,
+                }
+              : item,
+          ),
+        );
         return;
       }
-      setError(reason instanceof Error ? reason.message : "提问失败");
-      setMessages((current) => current.filter((message) => message.id !== assistantTempId));
+      const message = requestErrorMessage(reason, "提问失败，请稍后重试。");
+      setMessages((current) =>
+        current.map((item) =>
+          item.id === assistantTempId
+            ? {
+                ...item,
+                delivery_status: "failed",
+                error_code: reason instanceof ApiError ? reason.code : "NETWORK_ERROR",
+                error_message: message,
+                error_request_id: reason instanceof ApiError ? reason.requestId : "",
+                retry_question: text,
+              }
+            : item,
+        ),
+      );
     } finally {
       window.clearTimeout(timeoutId);
       flushAssistantDelta(assistantTempId);
@@ -429,11 +464,14 @@ export function ChatWorkbench({ token }: { token: string }) {
                     <article className={`message ${message.role}`} key={message.id}>
                       <div className="message-header">
                         <span>{message.role === "user" ? "你的问题" : "AidBot 回复"}</span>
-                        <button className="copy-button" onClick={() => copyText(message.id, message.content)} type="button">
-                          {copiedId === message.id ? "已复制" : "复制"}
-                        </button>
+                        {message.content ? (
+                          <button className="copy-button" onClick={() => copyText(message.id, message.content)} type="button">
+                            {copiedId === message.id ? "已复制" : "复制"}
+                          </button>
+                        ) : null}
                       </div>
-                      <MessageContent content={message.content} markdown={message.role === "assistant"} />
+                      {message.content ? <MessageContent content={message.content} markdown={message.role === "assistant"} /> : null}
+                      {message.role === "assistant" ? <ChatDeliveryNotice message={message} onRetry={submitQuestion} /> : null}
                       {message.role === "assistant" && !message.id.startsWith("assistant-") ? (
                         <div className="message-feedback" aria-label="回答反馈">
                           <div className="star-rating" role="group" aria-label="五星彩评">
@@ -466,7 +504,7 @@ export function ChatWorkbench({ token }: { token: string }) {
                   <p>例如：</p>
                   <div className="example-list">
                     {examples.map((example) => (
-                      <button key={example} onClick={() => setQuestion(example)} type="button">
+                      <button key={example} onClick={() => submitQuestion(example)} type="button">
                         {example}
                       </button>
                     ))}
@@ -476,7 +514,7 @@ export function ChatWorkbench({ token }: { token: string }) {
               <div aria-hidden="true" ref={streamEndRef} />
             </section>
 
-            <form className="chat-composer" onSubmit={submit}>
+            <form className="chat-composer" onSubmit={submit} ref={composerFormRef}>
               <div className="composer-input">
                 <textarea
                   aria-label="售后问题"
