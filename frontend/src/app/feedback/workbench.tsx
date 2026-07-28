@@ -7,14 +7,21 @@ import type { FeedbackItem, FeedbackStatus } from "@/lib/types";
 export function FeedbackWorkbench({ token }: { token: string }) {
   const [items, setItems] = useState<FeedbackItem[]>([]);
   const [status, setStatus] = useState<FeedbackStatus | "all">("pending");
+  const [productLine, setProductLine] = useState("all");
+  const [productLines, setProductLines] = useState<string[]>([]);
   const [busyId, setBusyId] = useState<string | null>(null);
-  const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
 
   const visibleItems = useMemo(() => items, [items]);
 
-  async function refresh(nextStatus = status) {
-    setItems(await listFeedback(token, nextStatus === "all" ? undefined : nextStatus));
+  async function refresh(nextStatus = status, nextProductLine = productLine) {
+    const payload = await listFeedback(
+      token,
+      nextStatus === "all" ? undefined : nextStatus,
+      nextProductLine === "all" ? undefined : nextProductLine,
+    );
+    setItems(payload.items);
+    setProductLines(payload.product_lines);
   }
 
   useEffect(() => {
@@ -24,9 +31,18 @@ export function FeedbackWorkbench({ token }: { token: string }) {
   async function changeStatus(nextStatus: FeedbackStatus | "all") {
     setStatus(nextStatus);
     setError("");
-    setNotice("");
     try {
       await refresh(nextStatus);
+    } catch {
+      setError("反馈队列加载失败");
+    }
+  }
+
+  async function changeProductLine(nextProductLine: string) {
+    setProductLine(nextProductLine);
+    setError("");
+    try {
+      await refresh(status, nextProductLine);
     } catch {
       setError("反馈队列加载失败");
     }
@@ -35,11 +51,9 @@ export function FeedbackWorkbench({ token }: { token: string }) {
   async function processFeedback(item: FeedbackItem, nextStatus: FeedbackStatus) {
     setBusyId(item.id);
     setError("");
-    setNotice("");
     try {
       const updated = await updateFeedbackStatus(item.id, { status: nextStatus, admin_note: statusNote(nextStatus) }, token);
       setItems((current) => (status === "all" ? current.map((entry) => (entry.id === updated.id ? updated : entry)) : current.filter((entry) => entry.id !== updated.id)));
-      setNotice(`已标记为${statusLabel(nextStatus)}。`);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "反馈状态更新失败");
     } finally {
@@ -54,16 +68,28 @@ export function FeedbackWorkbench({ token }: { token: string }) {
           <p className="eyebrow">反馈复盘</p>
           <h1>把低分回答转成可处理的知识改进队列</h1>
         </div>
-        <div className="feedback-filter" aria-label="反馈状态筛选">
-          {statusFilters.map((filter) => (
-            <button className={status === filter.value ? "active" : ""} key={filter.value} onClick={() => changeStatus(filter.value)} type="button">
-              {filter.label}
-            </button>
-          ))}
+        <div className="feedback-toolbar">
+          <label className="feedback-product-filter">
+            <span>产品线</span>
+            <select onChange={(event) => changeProductLine(event.target.value)} value={productLine}>
+              <option value="all">全部产品线</option>
+              {productLines.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="feedback-filter" aria-label="反馈状态筛选">
+            {statusFilters.map((filter) => (
+              <button className={status === filter.value ? "active" : ""} key={filter.value} onClick={() => changeStatus(filter.value)} type="button">
+                {filter.label}
+              </button>
+            ))}
+          </div>
         </div>
       </header>
 
-      {notice ? <div className="feedback-banner">{notice}</div> : null}
       {error ? <div className="feedback-banner error">{error}</div> : null}
 
       <section className="content feedback-grid">
@@ -81,6 +107,7 @@ export function FeedbackWorkbench({ token }: { token: string }) {
               visibleItems.map((item) => (
                 <article className="feedback-item" key={item.id}>
                   <div className="feedback-meta">
+                    {item.product_line ? <span>{item.product_line}</span> : null}
                     <span>{ratingLabel(item.rating)}</span>
                     <span>{statusLabel(item.status)}</span>
                     <span>{item.source_count} 条来源</span>

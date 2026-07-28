@@ -11,7 +11,13 @@ from app.schemas.feedback import FeedbackCreateRequest, FeedbackItem, FeedbackSt
 
 
 class FeedbackService:
-    def list(self, current_user: CurrentUser, db: Session, status_filter: str | None = None) -> list[FeedbackItem]:
+    def list(
+        self,
+        current_user: CurrentUser,
+        db: Session,
+        status_filter: str | None = None,
+        product_line_filter: str | None = None,
+    ) -> list[FeedbackItem]:
         query = (
             select(AnswerFeedback)
             .options(joinedload(AnswerFeedback.message), joinedload(AnswerFeedback.conversation))
@@ -19,10 +25,24 @@ class FeedbackService:
         )
         if status_filter:
             query = query.where(AnswerFeedback.status == status_filter)
+        if product_line_filter:
+            query = query.where(AnswerFeedback.conversation.has(Conversation.product_line == product_line_filter.strip()))
         if "admin" not in current_user.roles:
             query = query.where(AnswerFeedback.user_id == current_user.id)
         items = db.scalars(query).all()
         return [self._response(item, db) for item in items]
+
+    def product_lines(self, current_user: CurrentUser, db: Session) -> list[str]:
+        query = (
+            select(Conversation.product_line)
+            .join(AnswerFeedback, AnswerFeedback.conversation_id == Conversation.id)
+            .where(Conversation.product_line.is_not(None), Conversation.product_line != "")
+            .distinct()
+            .order_by(Conversation.product_line)
+        )
+        if "admin" not in current_user.roles:
+            query = query.where(AnswerFeedback.user_id == current_user.id)
+        return list(db.scalars(query).all())
 
     def create(self, request: FeedbackCreateRequest, current_user: CurrentUser, db: Session) -> FeedbackItem:
         message = db.scalar(
@@ -76,6 +96,7 @@ class FeedbackService:
             id=item.id,
             message_id=item.message_id,
             conversation_id=item.conversation_id,
+            product_line=item.conversation.product_line if item.conversation else None,
             rating=item.rating,
             status=item.status,
             tags=item.tags,

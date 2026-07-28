@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
 import { createAccessKey, deleteAccessKey, disableAccessKey, enableAccessKey, listAccessKeys } from "@/lib/api";
 import type { AccessKey, AccessKeyDuration } from "@/lib/types";
 
@@ -18,9 +19,9 @@ export function AdminWorkbench({ token }: { token: string }) {
   const [maxRequests, setMaxRequests] = useState("");
   const [note, setNote] = useState("");
   const [createdKey, setCreatedKey] = useState("");
-  const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [copiedValue, setCopiedValue] = useState("");
+  const [pendingDeleteItem, setPendingDeleteItem] = useState<AccessKey | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
 
@@ -37,7 +38,6 @@ export function AdminWorkbench({ token }: { token: string }) {
     if (!name.trim() || creating) return;
     setCreating(true);
     setError("");
-    setNotice("");
     setCreatedKey("");
     try {
       const result = await createAccessKey(
@@ -50,7 +50,6 @@ export function AdminWorkbench({ token }: { token: string }) {
         token,
       );
       setCreatedKey(result.access_key);
-      setNotice("访问码已创建，可直接复制给用户。");
       setName("");
       setMaxRequests("");
       setNote("");
@@ -80,7 +79,6 @@ export function AdminWorkbench({ token }: { token: string }) {
       }
       setCopiedValue(value);
       setError("");
-      setNotice("访问码已复制。");
     } catch {
       setError("复制失败，请手动选择访问码复制");
     }
@@ -89,7 +87,6 @@ export function AdminWorkbench({ token }: { token: string }) {
   async function toggle(item: AccessKey) {
     setBusyId(item.id);
     setError("");
-    setNotice("");
     try {
       await (item.status === "disabled" ? enableAccessKey(item.id, token) : disableAccessKey(item.id, token));
       await refresh();
@@ -101,13 +98,12 @@ export function AdminWorkbench({ token }: { token: string }) {
   }
 
   async function remove(item: AccessKey) {
-    if (!window.confirm(`删除访问码“${item.name}”？删除后用户将无法再登录，历史用量记录会保留。`)) return;
     setBusyId(item.id);
     setError("");
-    setNotice("");
     try {
       await deleteAccessKey(item.id, token);
       await refresh();
+      setPendingDeleteItem(null);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "删除访问码失败");
     } finally {
@@ -152,7 +148,6 @@ export function AdminWorkbench({ token }: { token: string }) {
               <textarea id="key-note" value={note} onChange={(event) => setNote(event.target.value)} placeholder="记录用途、客户或交付说明" />
 
               {error ? <p className="form-error">{error}</p> : null}
-              {notice ? <p className="form-notice">{notice}</p> : null}
               {createdKey ? (
                 <div className="created-key">
                   <div className="created-key-header">
@@ -199,7 +194,7 @@ export function AdminWorkbench({ token }: { token: string }) {
                       <button className="source-action" disabled={busyId === item.id} onClick={() => toggle(item)} type="button">
                         {item.status === "disabled" ? "启用" : "禁用"}
                       </button>
-                      <button className="source-action danger" disabled={busyId === item.id} onClick={() => remove(item)} type="button">
+                      <button className="source-action danger" disabled={busyId === item.id} onClick={() => setPendingDeleteItem(item)} type="button">
                         删除
                       </button>
                     </div>
@@ -211,6 +206,19 @@ export function AdminWorkbench({ token }: { token: string }) {
             </div>
           </section>
         </section>
+
+        {pendingDeleteItem ? (
+          <DeleteConfirmDialog
+            busy={busyId === pendingDeleteItem.id}
+            description="删除后用户将无法再使用该访问码登录，历史用量记录会保留。"
+            onCancel={() => {
+              if (!busyId) setPendingDeleteItem(null);
+            }}
+            onConfirm={() => remove(pendingDeleteItem)}
+            subject={pendingDeleteItem.name}
+            title="确认删除访问码？"
+          />
+        ) : null}
     </>
   );
 }

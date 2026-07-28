@@ -13,6 +13,7 @@ class KnowledgeSpace(Base):
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid4()))
     name: Mapped[str] = mapped_column(String(160), nullable=False)
+    product_line: Mapped[str | None] = mapped_column(String(120), unique=True, index=True, nullable=True)
     description: Mapped[str] = mapped_column(Text, default="", nullable=False)
     visibility: Mapped[str] = mapped_column(String(24), default="internal", nullable=False)
     status: Mapped[str] = mapped_column(String(24), default="active", index=True, nullable=False)

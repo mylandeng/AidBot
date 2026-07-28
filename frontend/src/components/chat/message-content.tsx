@@ -1,5 +1,7 @@
 "use client";
 
+import { memo, useMemo } from "react";
+
 type Block =
   | { type: "paragraph"; lines: string[] }
   | { type: "heading"; level: number; text: string }
@@ -8,12 +10,13 @@ type Block =
   | { type: "list"; ordered: boolean; items: string[] }
   | { type: "table"; rows: string[][] };
 
-export function MessageContent({ content, markdown = false }: { content: string; markdown?: boolean }) {
+export const MessageContent = memo(function MessageContent({ content, markdown = false }: { content: string; markdown?: boolean }) {
+  const blocks = useMemo(() => (markdown ? parseMarkdown(content) : []), [content, markdown]);
+
   if (!markdown) {
     return <p className="message-plain">{content}</p>;
   }
 
-  const blocks = parseMarkdown(content);
   return (
     <div className="message-markdown">
       {blocks.map((block, index) => {
@@ -87,7 +90,7 @@ export function MessageContent({ content, markdown = false }: { content: string;
       })}
     </div>
   );
-}
+});
 
 function parseMarkdown(content: string): Block[] {
   const lines = content.replace(/\r\n/g, "\n").split("\n");

@@ -11,14 +11,21 @@ class RetrievalService:
     def __init__(self, local_rag_service: RAGService | None = None) -> None:
         self.local_rag_service = local_rag_service or RAGService()
 
-    def retrieve(self, provider: RetrievalProvider, query: str, current_user: CurrentUser, db: Session) -> list[RetrievedChunk]:
+    def retrieve(
+        self,
+        provider: RetrievalProvider,
+        query: str,
+        current_user: CurrentUser,
+        db: Session,
+        space_id: str | None = None,
+    ) -> list[RetrievedChunk]:
         with trace_run(
             "AidBot Retrieve",
             "chain",
             inputs={"provider": provider, "query": text_fingerprint(query), "user": summarize_user(current_user)},
         ) as run:
             if provider == "local":
-                chunks = self.local_rag_service.retrieve(query, current_user, db)
+                chunks = self.local_rag_service.retrieve(query, current_user, db, space_id=space_id)
                 end_trace(run, summarize_retrieved_chunks(chunks))
                 return chunks
             end_trace(run, {"status": "error", "reason": "external_retrieval_not_configured"})

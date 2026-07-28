@@ -39,11 +39,18 @@ class ChatService:
             inputs={"request": summarize_chat_request(request), "user": summarize_user(current_user)},
         ) as run:
             conversation = self._resolve_conversation(request, current_user, db)
+            space_id = self._resolve_space_id(request, conversation, current_user, db)
 
             question = request.question.strip()
             contextual_question = self._question_with_recent_context(conversation.id, question, db)
             try:
-                retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+                retrieved = self.retrieval_service.retrieve(
+                    conversation.retrieval_provider,
+                    contextual_question,
+                    current_user,
+                    db,
+                    space_id=space_id,
+                )
             except HTTPException:
                 db.rollback()
                 raise
@@ -51,7 +58,7 @@ class ChatService:
             sources = [item.citation().model_dump() for item in retrieved]
 
             db.add(Message(conversation_id=conversation.id, role="user", content=question))
-            completion = self.llm_service.complete(contextual_question, request.product_line, context)
+            completion = self.llm_service.complete(contextual_question, conversation.product_line, context)
             assistant = self._assistant_message(conversation.id, completion.answer, completion.solution_steps, completion.model_name, sources)
             db.add(assistant)
             conversation.updated_at = utcnow()
@@ -69,9 +76,16 @@ class ChatService:
         ) as run:
             try:
                 conversation = self._resolve_conversation(request, current_user, db)
+                space_id = self._resolve_space_id(request, conversation, current_user, db)
                 question = request.question.strip()
                 contextual_question = self._question_with_recent_context(conversation.id, question, db)
-                retrieved = self.retrieval_service.retrieve(conversation.retrieval_provider, contextual_question, current_user, db)
+                retrieved = self.retrieval_service.retrieve(
+                    conversation.retrieval_provider,
+                    contextual_question,
+                    current_user,
+                    db,
+                    space_id=space_id,
+                )
                 context = self.retrieval_service.context_for_prompt(retrieved)
             except HTTPException as exc:
                 db.rollback()
@@ -88,7 +102,7 @@ class ChatService:
 
             answer_parts: list[str] = []
             try:
-                for delta in self.llm_service.stream_answer(contextual_question, request.product_line, context):
+                for delta in self.llm_service.stream_answer(contextual_question, conversation.product_line, context):
                     answer_parts.append(delta)
                     yield self._event("answer_delta", {"delta": delta})
             except Exception as exc:
@@ -146,6 +160,27 @@ class ChatService:
         db.add(conversation)
         db.flush()
         return conversation
+
+    def _resolve_space_id(
+        self,
+        request: ChatRequest,
+        conversation: Conversation,
+        current_user: CurrentUser,
+        db: Session,
+    ) -> str | None:
+        if request.space_id:
+            space = self.retrieval_service.local_rag_service.get_retrieval_space(request.space_id, current_user, db)
+            if not space.product_line:
+                raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Knowledge space has no product line")
+            if conversation.product_line and conversation.product_line.lower() != space.product_line.lower():
+                raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conversation is bound to another knowledge space")
+            conversation.product_line = space.product_line
+            return space.id
+        if conversation.product_line:
+            space = self.retrieval_service.local_rag_service.find_space_for_product_line(conversation.product_line, current_user, db)
+            if space:
+                return space.id
+        return None
 
     def _assistant_message(self, conversation_id: str, answer: str, steps: list[str], model_name: str, sources: list[dict]) -> Message:
         return Message(

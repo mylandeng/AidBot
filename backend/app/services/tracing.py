@@ -78,6 +78,7 @@ def summarize_chat_request(request: Any) -> dict[str, Any]:
         "question": text_fingerprint(getattr(request, "question", "")),
         "conversation_id_hash": id_fingerprint(getattr(request, "conversation_id", "")),
         "has_conversation_id": bool(getattr(request, "conversation_id", None)),
+        "space_id_hash": id_fingerprint(getattr(request, "space_id", "")),
         "product_line": getattr(request, "product_line", None) or "",
         "retrieval_provider": getattr(request, "retrieval_provider", ""),
     }

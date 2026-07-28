@@ -64,6 +64,55 @@ def test_chat_persists_retrieval_provider_on_new_conversation() -> None:
     assert detail.json()["retrieval_provider"] == "local"
 
 
+def test_admin_chat_binds_conversation_to_selected_knowledge_space() -> None:
+    headers = auth_headers()
+    fp10_space = client.post(
+        "/api/knowledge/spaces",
+        json={"name": "CHAT-FP10 产品知识库", "product_line": "CHAT-FP10", "description": "", "visibility": "internal"},
+        headers=headers,
+    ).json()
+    fp20_space = client.post(
+        "/api/knowledge/spaces",
+        json={"name": "CHAT-FP20 产品知识库", "product_line": "CHAT-FP20", "description": "", "visibility": "internal"},
+        headers=headers,
+    ).json()
+    imported = client.post(
+        "/api/knowledge/manual",
+        json={
+            "space_id": fp10_space["id"],
+            "title": "CHAT-FP10 主控灯语",
+            "content": "CHAT-FP10 主控出现蓝灯呼吸时表示设备处于正常待机状态。",
+            "visibility": "internal",
+        },
+        headers=headers,
+    )
+    assert imported.status_code == 200
+
+    response = client.post(
+        "/api/chat",
+        json={"question": "CHAT-FP10 主控蓝灯呼吸代表什么？", "space_id": fp10_space["id"]},
+        headers=headers,
+    )
+    assert response.status_code == 200
+    assert response.json()["sources"]
+    assert all(source["space_id"] == fp10_space["id"] for source in response.json()["sources"])
+
+    detail = client.get(f"/api/conversations/{response.json()['conversation_id']}", headers=headers)
+    assert detail.status_code == 200
+    assert detail.json()["product_line"] == "CHAT-FP10"
+
+    switched = client.post(
+        "/api/chat",
+        json={
+            "question": "切换知识库继续提问",
+            "conversation_id": response.json()["conversation_id"],
+            "space_id": fp20_space["id"],
+        },
+        headers=headers,
+    )
+    assert switched.status_code == 409
+
+
 def test_external_retrieval_provider_fails_until_configured() -> None:
     headers = auth_headers()
     response = client.post("/api/chat", json={"question": "查外部知识库", "retrieval_provider": "external"}, headers=headers)

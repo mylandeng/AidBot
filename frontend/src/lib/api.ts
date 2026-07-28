@@ -19,6 +19,7 @@ import type {
   KnowledgeSpace,
   KnowledgeSpaceList,
   KnowledgeSpaceRequest,
+  KnowledgeSpaceUpdateRequest,
   KnowledgeDocumentRequest,
   LoginResponse,
   ManualKnowledgeRequest,
@@ -156,23 +157,27 @@ async function streamChat<T extends ChatResponse | UserChatResponse>(
   let buffer = "";
   let finalResult: T | null = null;
 
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer += decoder.decode(value, { stream: true });
-    const events = buffer.split("\n\n");
-    buffer = events.pop() ?? "";
-    for (const rawEvent of events) {
-      const event = parseStreamEvent(rawEvent);
-      if (!event) continue;
-      onEvent(event);
-      if (event.event === "final") {
-        finalResult = event.data as T;
-      }
-      if (event.event === "error") {
-        throw new Error(event.data.message);
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const events = buffer.split("\n\n");
+      buffer = events.pop() ?? "";
+      for (const rawEvent of events) {
+        const event = parseStreamEvent(rawEvent);
+        if (!event) continue;
+        onEvent(event);
+        if (event.event === "final") {
+          finalResult = event.data as T;
+        }
+        if (event.event === "error") {
+          throw new Error(event.data.message);
+        }
       }
     }
+  } finally {
+    reader.releaseLock();
   }
 
   if (!finalResult) {
@@ -225,8 +230,9 @@ export function clearConversations(token: string): Promise<DeleteConversationsRe
   return authorized("/api/conversations", token, { method: "DELETE" });
 }
 
-export async function listKnowledgeSources(token: string): Promise<KnowledgeSource[]> {
-  const payload = await authorized<KnowledgeSourceList>("/api/knowledge/sources", token);
+export async function listKnowledgeSources(token: string, spaceId?: string): Promise<KnowledgeSource[]> {
+  const query = spaceId ? `?space_id=${encodeURIComponent(spaceId)}` : "";
+  const payload = await authorized<KnowledgeSourceList>(`/api/knowledge/sources${query}`, token);
   return payload.items;
 }
 
@@ -237,6 +243,10 @@ export async function listKnowledgeSpaces(token: string): Promise<KnowledgeSpace
 
 export function createKnowledgeSpace(request: KnowledgeSpaceRequest, token: string): Promise<KnowledgeSpace> {
   return authorized("/api/knowledge/spaces", token, { method: "POST", body: JSON.stringify(request) });
+}
+
+export function updateKnowledgeSpace(id: string, request: KnowledgeSpaceUpdateRequest, token: string): Promise<KnowledgeSpace> {
+  return authorized(`/api/knowledge/spaces/${id}`, token, { method: "PATCH", body: JSON.stringify(request) });
 }
 
 export function deleteKnowledgeSpace(id: string, token: string): Promise<void> {
@@ -263,10 +273,12 @@ export function deleteKnowledgeSource(id: string, token: string): Promise<void> 
   return authorized(`/api/knowledge/sources/${id}`, token, { method: "DELETE" });
 }
 
-export async function listFeedback(token: string, status?: FeedbackStatus): Promise<FeedbackItem[]> {
-  const query = status ? `?status=${status}` : "";
-  const payload = await authorized<FeedbackList>(`/api/feedback${query}`, token);
-  return payload.items;
+export function listFeedback(token: string, status?: FeedbackStatus, productLine?: string): Promise<FeedbackList> {
+  const query = new URLSearchParams();
+  if (status) query.set("status", status);
+  if (productLine) query.set("product_line", productLine);
+  const suffix = query.size ? `?${query.toString()}` : "";
+  return authorized<FeedbackList>(`/api/feedback${suffix}`, token);
 }
 
 export function createFeedback(request: FeedbackCreateRequest, token: string): Promise<FeedbackItem> {

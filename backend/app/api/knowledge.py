@@ -12,6 +12,7 @@ from app.schemas.knowledge import (
     KnowledgeSpaceCreate,
     KnowledgeSpaceList,
     KnowledgeSpaceResponse,
+    KnowledgeSpaceUpdate,
     ManualKnowledgeCreate,
     MarkdownKnowledgeImport,
 )
@@ -22,8 +23,12 @@ rag_service = RAGService()
 
 
 @router.get("/sources", response_model=KnowledgeSourceList)
-def list_knowledge_sources(current_user: CurrentUser = Depends(get_current_user), db: Session = Depends(get_db)) -> KnowledgeSourceList:
-    return KnowledgeSourceList(items=rag_service.list_sources(current_user, db))
+def list_knowledge_sources(
+    space_id: str | None = Query(default=None, min_length=1, max_length=36),
+    current_user: CurrentUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> KnowledgeSourceList:
+    return KnowledgeSourceList(items=rag_service.list_sources(current_user, db, space_id))
 
 
 @router.get("/spaces", response_model=KnowledgeSpaceList)
@@ -38,6 +43,16 @@ def create_knowledge_space(
     db: Session = Depends(get_db),
 ) -> KnowledgeSpaceResponse:
     return rag_service.create_space(payload, current_user, db)
+
+
+@router.patch("/spaces/{space_id}", response_model=KnowledgeSpaceResponse)
+def update_knowledge_space(
+    space_id: str,
+    payload: KnowledgeSpaceUpdate,
+    current_user: CurrentUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> KnowledgeSpaceResponse:
+    return rag_service.update_space(space_id, payload, current_user, db)
 
 
 @router.delete("/spaces/{space_id}", status_code=204)
@@ -97,7 +112,8 @@ def delete_knowledge_source(
 @router.get("/search", response_model=KnowledgeSearchResponse)
 def search_knowledge(
     q: str = Query(min_length=1, max_length=500),
+    space_id: str | None = Query(default=None, min_length=1, max_length=36),
     current_user: CurrentUser = Depends(get_current_user),
     db: Session = Depends(get_db),
 ) -> KnowledgeSearchResponse:
-    return KnowledgeSearchResponse(items=rag_service.search(q, current_user, db))
+    return KnowledgeSearchResponse(items=rag_service.search(q, current_user, db, space_id=space_id))

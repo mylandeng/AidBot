@@ -11,8 +11,12 @@ def auth_headers() -> dict[str, str]:
     return {"Authorization": f"Bearer {response.json()['access_token']}"}
 
 
-def create_answer(headers: dict[str, str]) -> dict:
-    response = client.post("/api/chat", json={"question": "如何处理低分回答？"}, headers=headers)
+def create_answer(headers: dict[str, str], product_line: str | None = None) -> dict:
+    response = client.post(
+        "/api/chat",
+        json={"question": "如何处理低分回答？", "product_line": product_line},
+        headers=headers,
+    )
     assert response.status_code == 200
     return response.json()
 
@@ -52,12 +56,22 @@ def test_user_can_create_and_update_answer_feedback() -> None:
 
 def test_admin_can_list_filter_and_process_feedback() -> None:
     headers = auth_headers()
-    answer = create_answer(headers)
+    answer = create_answer(headers, product_line="FP10")
     created = client.post("/api/feedback", json={"message_id": answer["message_id"], "rating": "needs_review"}, headers=headers).json()
 
     listing = client.get("/api/feedback", headers=headers)
     assert listing.status_code == 200
     assert any(item["id"] == created["id"] for item in listing.json()["items"])
+    assert "FP10" in listing.json()["product_lines"]
+    assert next(item for item in listing.json()["items"] if item["id"] == created["id"])["product_line"] == "FP10"
+
+    product_line_listing = client.get("/api/feedback", params={"product_line": "FP10"}, headers=headers)
+    assert product_line_listing.status_code == 200
+    assert any(item["id"] == created["id"] for item in product_line_listing.json()["items"])
+
+    other_product_line = client.get("/api/feedback", params={"product_line": "FP20"}, headers=headers)
+    assert other_product_line.status_code == 200
+    assert all(item["id"] != created["id"] for item in other_product_line.json()["items"])
 
     processed = client.patch(
         f"/api/feedback/{created['id']}",

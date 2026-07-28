@@ -17,7 +17,8 @@ const examples = [
 
 const feedbackReasons = ["准确理解问题", "内容回复简洁明了", "我有其他想法"];
 const starScores = [1, 2, 3, 4, 5];
-const collapsedHistoryCount = 5;
+const maxVisibleMessages = 80;
+const streamTimeoutMs = 90_000;
 
 interface PendingFeedback {
   messageId: string;
@@ -49,12 +50,11 @@ export function ChatWorkbench({ token }: { token: string }) {
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
   const [copiedId, setCopiedId] = useState("");
   const [deletingConversationId, setDeletingConversationId] = useState("");
   const [clearingConversations, setClearingConversations] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState<DeleteDialogState>(null);
-  const [historyExpanded, setHistoryExpanded] = useState(false);
+  const [showAllMessages, setShowAllMessages] = useState(false);
   const [feedbackByMessage, setFeedbackByMessage] = useState<Record<string, SubmittedFeedback>>({});
   const [pendingFeedback, setPendingFeedback] = useState<PendingFeedback | null>(null);
   const [feedbackTags, setFeedbackTags] = useState<string[]>([]);
@@ -64,12 +64,11 @@ export function ChatWorkbench({ token }: { token: string }) {
   const streamEndRef = useRef<HTMLDivElement | null>(null);
   const questionInputRef = useRef<HTMLTextAreaElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const deltaBufferRef = useRef("");
+  const deltaFrameRef = useRef<number | null>(null);
   const lastMessageContent = messages.at(-1)?.content ?? "";
-  const visibleHistoryItems = useMemo(
-    () => (historyExpanded ? items : items.slice(0, collapsedHistoryCount)),
-    [historyExpanded, items],
-  );
-  const hiddenHistoryCount = Math.max(items.length - collapsedHistoryCount, 0);
+  const visibleMessages = useMemo(() => (showAllMessages ? messages : messages.slice(-maxVisibleMessages)), [messages, showAllMessages]);
+  const hiddenMessageCount = Math.max(messages.length - visibleMessages.length, 0);
 
   async function refreshList() {
     setItems(await listConversations(token));
@@ -77,6 +76,15 @@ export function ChatWorkbench({ token }: { token: string }) {
 
   useEffect(() => {
     refreshList().catch(() => setError("会话列表加载失败"));
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+      if (deltaFrameRef.current !== null) {
+        window.cancelAnimationFrame(deltaFrameRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -93,15 +101,34 @@ export function ChatWorkbench({ token }: { token: string }) {
   }, [question]);
 
   async function openConversation(id: string) {
+    abortRef.current?.abort();
     const detail = await getConversation(id, token);
     setConversationId(id);
     setMessages(detail.messages);
+    setShowAllMessages(false);
     setQuestion("");
     setError("");
-    setNotice("");
     setCopiedId("");
     setPendingFeedback(null);
     setBusy(false);
+  }
+
+  function flushAssistantDelta(messageId: string) {
+    if (!deltaBufferRef.current) return;
+    const delta = deltaBufferRef.current;
+    deltaBufferRef.current = "";
+    setMessages((current) =>
+      current.map((message) => (message.id === messageId ? { ...message, content: `${message.content}${delta}` } : message)),
+    );
+  }
+
+  function scheduleAssistantDelta(messageId: string, delta: string) {
+    deltaBufferRef.current += delta;
+    if (deltaFrameRef.current !== null) return;
+    deltaFrameRef.current = window.requestAnimationFrame(() => {
+      deltaFrameRef.current = null;
+      flushAssistantDelta(messageId);
+    });
   }
 
   async function copyText(id: string, text: string) {
@@ -141,13 +168,13 @@ export function ChatWorkbench({ token }: { token: string }) {
     if (deletingConversationId) return;
     setDeletingConversationId(id);
     setError("");
-    setNotice("");
     try {
       await deleteConversation(id, token);
       setItems((current) => current.filter((item) => item.id !== id));
       if (id === conversationId) {
         setConversationId(null);
         setMessages([]);
+        setShowAllMessages(false);
         setQuestion("");
         setFeedbackByMessage({});
         setPendingFeedback(null);
@@ -165,17 +192,16 @@ export function ChatWorkbench({ token }: { token: string }) {
     if (clearingConversations || !items.length) return;
     setClearingConversations(true);
     setError("");
-    setNotice("");
     try {
-      const result = await clearConversations(token);
+      await clearConversations(token);
       setItems([]);
       setConversationId(null);
       setMessages([]);
+      setShowAllMessages(false);
       setQuestion("");
       setFeedbackByMessage({});
       setPendingFeedback(null);
       setBusy(false);
-      setNotice(result.deleted_count ? `已清空 ${result.deleted_count} 条聊天记录。` : "没有可清空的聊天记录。");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "清空聊天记录失败");
     } finally {
@@ -200,17 +226,23 @@ export function ChatWorkbench({ token }: { token: string }) {
     const text = question.trim();
     const userTempId = createClientId("user");
     const assistantTempId = createClientId("assistant");
+    abortRef.current?.abort();
     const controller = new AbortController();
     abortRef.current = controller;
+    let timedOut = false;
+    const timeoutId = window.setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, streamTimeoutMs);
     setBusy(true);
     setError("");
-    setNotice("");
     setQuestion("");
     setMessages((current) => [
       ...current,
       createTempMessage(userTempId, "user", text),
       createTempMessage(assistantTempId, "assistant", ""),
     ]);
+    setShowAllMessages(false);
 
     try {
       const result = await askUserQuestionStream({ question: text, conversation_id: conversationId }, token, (streamEvent) => {
@@ -219,14 +251,11 @@ export function ChatWorkbench({ token }: { token: string }) {
           return;
         }
         if (streamEvent.event === "answer_delta") {
-          setMessages((current) =>
-            current.map((message) =>
-              message.id === assistantTempId ? { ...message, content: `${message.content}${streamEvent.data.delta}` } : message,
-            ),
-          );
+          scheduleAssistantDelta(assistantTempId, streamEvent.data.delta);
           return;
         }
         if (streamEvent.event === "final") {
+          flushAssistantDelta(assistantTempId);
           setConversationId(streamEvent.data.conversation_id);
           setMessages((current) => current.map((message) => (message.id === assistantTempId ? { ...message, id: streamEvent.data.message_id } : message)));
         }
@@ -234,11 +263,19 @@ export function ChatWorkbench({ token }: { token: string }) {
       setConversationId(result.conversation_id);
       await Promise.all([openConversation(result.conversation_id), refreshList()]);
     } catch (reason) {
-      if (reason instanceof DOMException && reason.name === "AbortError") return;
+      if (reason instanceof DOMException && reason.name === "AbortError") {
+        setMessages((current) => current.filter((message) => message.id !== assistantTempId || message.content.trim()));
+        if (timedOut) {
+          setError("回答生成超时，已自动停止。请稍后重试。");
+        }
+        return;
+      }
       setError(reason instanceof Error ? reason.message : "提问失败");
       setMessages((current) => current.filter((message) => message.id !== assistantTempId));
     } finally {
-      abortRef.current = null;
+      window.clearTimeout(timeoutId);
+      flushAssistantDelta(assistantTempId);
+      if (abortRef.current === controller) abortRef.current = null;
       setBusy(false);
     }
   }
@@ -249,7 +286,6 @@ export function ChatWorkbench({ token }: { token: string }) {
     setFeedbackTags([]);
     setFeedbackNote("");
     setError("");
-    setNotice("");
   }
 
   function closeFeedback() {
@@ -267,7 +303,6 @@ export function ChatWorkbench({ token }: { token: string }) {
 
     setSubmittingFeedback(true);
     setError("");
-    setNotice("");
     try {
       await createUserFeedback(
         {
@@ -279,7 +314,6 @@ export function ChatWorkbench({ token }: { token: string }) {
         token,
       );
       setFeedbackByMessage((current) => ({ ...current, [messageId]: { score } }));
-      setNotice(`${score} 星反馈已提交，感谢补充。`);
       setPendingFeedback(null);
       setFeedbackTags([]);
       setFeedbackNote("");
@@ -308,7 +342,7 @@ export function ChatWorkbench({ token }: { token: string }) {
           </a>
         </nav>
 
-        <section className={historyExpanded ? "sidebar-block history-block expanded" : "sidebar-block history-block"} aria-labelledby="chat-history-title">
+        <section className="sidebar-block history-block" aria-labelledby="chat-history-title">
           <div className="history-heading">
             <h2 id="chat-history-title">最近会话</h2>
             {items.length ? (
@@ -317,9 +351,9 @@ export function ChatWorkbench({ token }: { token: string }) {
               </button>
             ) : null}
           </div>
-          <div className={historyExpanded ? "chat-history-list expanded" : "chat-history-list"}>
+          <div className="chat-history-list">
             {items.length ? (
-              visibleHistoryItems.map((item) => (
+              items.map((item) => (
                 <article className={`history-item ${item.id === conversationId ? "active" : ""}`} key={item.id}>
                   <button className="history-open" onClick={() => openConversation(item.id)} type="button">
                     <strong>{item.title}</strong>
@@ -336,11 +370,6 @@ export function ChatWorkbench({ token }: { token: string }) {
               <p className="sidebar-empty">暂无会话</p>
             )}
           </div>
-          {hiddenHistoryCount ? (
-            <button className="history-expand" onClick={() => setHistoryExpanded((expanded) => !expanded)} type="button">
-              {historyExpanded ? "收起会话" : `展开其余 ${hiddenHistoryCount} 条`}
-            </button>
-          ) : null}
         </section>
 
         <div className="sidebar-footer">
@@ -359,9 +388,9 @@ export function ChatWorkbench({ token }: { token: string }) {
             onClick={() => {
               setConversationId(null);
               setMessages([]);
+              setShowAllMessages(false);
               setQuestion("");
               setError("");
-              setNotice("");
               setPendingFeedback(null);
               setBusy(false);
             }}
@@ -382,7 +411,18 @@ export function ChatWorkbench({ token }: { token: string }) {
 
             <section className="message-stream">
               {messages.length ? (
-                messages.map((message) => {
+                <>
+                  {hiddenMessageCount ? (
+                    <button className="message-window-toggle" onClick={() => setShowAllMessages(true)} type="button">
+                      仅显示最近 {visibleMessages.length} 条消息，点击查看全部 {messages.length} 条
+                    </button>
+                  ) : null}
+                  {showAllMessages && messages.length > maxVisibleMessages ? (
+                    <button className="message-window-toggle" onClick={() => setShowAllMessages(false)} type="button">
+                      正在显示全部 {messages.length} 条消息，点击回到最近 {maxVisibleMessages} 条
+                    </button>
+                  ) : null}
+                  {visibleMessages.map((message) => {
                   const submitted = feedbackByMessage[message.id];
                   const activeScore = pendingFeedback?.messageId === message.id ? pendingFeedback.score : submitted?.score ?? 0;
                   return (
@@ -418,7 +458,8 @@ export function ChatWorkbench({ token }: { token: string }) {
                       ) : null}
                     </article>
                   );
-                })
+                })}
+                </>
               ) : (
                 <div className="empty-chat">
                   <b>把现象说具体一点，回答会更准确。</b>
@@ -453,7 +494,6 @@ export function ChatWorkbench({ token }: { token: string }) {
                 <ComposerSendButton busy={busy} onStop={() => abortRef.current?.abort()} />
               </div>
               {error ? <p className="form-error">{error}</p> : null}
-              {notice ? <p className="form-notice">{notice}</p> : null}
             </form>
           </section>
         </section>

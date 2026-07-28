@@ -23,6 +23,7 @@ class FeedbackItem(BaseModel):
     id: str
     message_id: str
     conversation_id: str
+    product_line: str | None = None
     rating: FeedbackRating
     status: FeedbackStatus
     tags: list[str] = Field(default_factory=list)
@@ -37,3 +38,4 @@ class FeedbackItem(BaseModel):
 
 class FeedbackList(BaseModel):
     items: list[FeedbackItem]
+    product_lines: list[str] = Field(default_factory=list)

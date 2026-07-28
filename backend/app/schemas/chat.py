@@ -11,6 +11,7 @@ StrategyName = Literal["template", "rag", "local_kb", "langchain"]
 class ChatRequest(BaseModel):
     question: str = Field(min_length=1, max_length=4000)
     conversation_id: str | None = None
+    space_id: str | None = None
     product_line: str | None = None
     retrieval_provider: RetrievalProvider = "local"
 
@@ -24,6 +25,8 @@ class SourceCitation(BaseModel):
     updated_at: str
     section_path: str = ""
     excerpt: str = ""
+    space_id: str | None = None
+    space_name: str | None = None
 
 
 class AnswerResult(BaseModel):

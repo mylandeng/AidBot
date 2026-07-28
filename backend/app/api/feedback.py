@@ -14,10 +14,14 @@ feedback_service = FeedbackService()
 @router.get("", response_model=FeedbackList)
 def list_feedback(
     status: FeedbackStatus | None = Query(default=None),
+    product_line: str | None = Query(default=None, min_length=1, max_length=120),
     current_user: CurrentUser = Depends(require_admin),
     db: Session = Depends(get_db),
 ) -> FeedbackList:
-    return FeedbackList(items=feedback_service.list(current_user, db, status))
+    return FeedbackList(
+        items=feedback_service.list(current_user, db, status, product_line),
+        product_lines=feedback_service.product_lines(current_user, db),
+    )
 
 
 @router.post("", response_model=FeedbackItem)

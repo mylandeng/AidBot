@@ -30,6 +30,7 @@ export interface LoginResponse {
 export interface ChatRequest {
   question: string;
   conversation_id?: string | null;
+  space_id?: string | null;
   product_line?: string | null;
   retrieval_provider?: RetrievalProvider;
 }
@@ -43,6 +44,8 @@ export interface SourceCitation {
   updated_at: string;
   section_path: string;
   excerpt: string;
+  space_id?: string | null;
+  space_name?: string | null;
 }
 
 export interface ChatResponse {
@@ -119,6 +122,7 @@ export interface KnowledgeSourceList {
 export interface KnowledgeSpace {
   id: string;
   name: string;
+  product_line?: string | null;
   description: string;
   visibility: "internal" | "private";
   status: string;
@@ -133,8 +137,14 @@ export interface KnowledgeSpaceList {
 
 export interface KnowledgeSpaceRequest {
   name: string;
+  product_line: string;
   description: string;
   visibility: "internal" | "private";
+}
+
+export interface KnowledgeSpaceUpdateRequest {
+  name: string;
+  product_line: string;
 }
 
 export interface ManualKnowledgeRequest {
@@ -169,6 +179,7 @@ export interface FeedbackItem {
   id: string;
   message_id: string;
   conversation_id: string;
+  product_line?: string | null;
   rating: FeedbackRating;
   status: FeedbackStatus;
   tags: string[];
@@ -183,6 +194,7 @@ export interface FeedbackItem {
 
 export interface FeedbackList {
   items: FeedbackItem[];
+  product_lines: string[];
 }
 
 export type AccessKeyDuration = "7d" | "30d" | "180d" | "365d";

@@ -47,8 +47,6 @@
 
 ```json
 {
-  "conversation_id": "...",
-  "message_id": "...",
   "access_token": "...",
   "token_type": "bearer",
   "expires_in": 28800,
@@ -92,9 +90,13 @@ Authorization: Bearer <access_token>
 {
   "question": "产品无法联网时如何排查？",
   "conversation_id": null,
-  "product_line": null
+  "space_id": null,
+  "product_line": null,
+  "retrieval_provider": "local"
 }
 ```
+
+管理员调试入口应传 `space_id`。服务端会校验知识库，从该知识库派生并保存会话 `product_line`，且只检索该知识库；同一会话不能切换到其他产品线。`product_line` 字段暂时保留用于旧客户端兼容，不作为管理员选择知识库的替代。
 
 响应：
 
@@ -114,6 +116,12 @@ Authorization: Bearer <access_token>
 `POST /api/chat/stream`
 
 返回 `text/event-stream`。流式事件只用于前端展示中的打字机效果；结构化结果以后端 `final` 事件为准，前端不得从模型自然语言中反推结构化字段。
+
+入口差异：
+
+- `POST /api/user/chat/stream`：普通访问码/用户入口，强制 `retrieval_provider="local"`，`final` 事件返回 `UserChatResponse`，不包含 `sources`、`confidence`、`solution_steps`。
+- `POST /api/admin/chat/stream`：管理员入口，`final` 事件返回完整 `ChatResponse`，用于引用来源弹窗和调试。
+- `POST /api/chat/stream`：内部用户完整入口，保留完整 `ChatResponse`。
 
 事件：
 
@@ -137,17 +145,19 @@ data: {"message":"模型暂时不可用，请稍后重试。"}
 
 ## 会话接口
 
+`GET /api/conversations`
+
+返回当前用户的会话摘要列表，服务端默认按最近更新时间倒序返回。
+
+`GET /api/conversations/{conversation_id}`
+
+返回当前用户拥有的一条会话及其消息历史。消息中的 `sources` 使用 `SourceCitation` 结构保存引用来源快照。
+
 `DELETE /api/conversations/{conversation_id}`
 
 删除当前用户的一条会话记录及其消息。若删除的是前端当前打开的会话，前端应回到新会话状态。
 
-响应：
-
-```json
-{
-  "deleted_count": 1
-}
-```
+响应：`204 No Content`
 
 `DELETE /api/conversations`
 
@@ -172,9 +182,83 @@ data: {"message":"模型暂时不可用，请稍后重试。"}
   "doc_id": "...",
   "chunk_id": "...",
   "score": 0.82,
-  "updated_at": "2026-07-03T00:00:00Z"
+  "updated_at": "2026-07-03T00:00:00Z",
+  "section_path": "安装 > 联网排查",
+  "excerpt": "用于弹窗展示的引用片段摘要。",
+  "space_id": "...",
+  "space_name": "默认知识空间"
 }
 ```
+
+`score` 的展示语义固定为 0 到 1 的相关性分数；服务端生成引用时必须裁剪异常值，前端不应展示超过 1 的分数。`section_path` 和 `excerpt` 用于引用来源弹窗；`space_id` 和 `space_name` 用于管理员确认命中的知识库。
+
+面向普通用户的聊天流接口不得暴露 `sources`、`confidence`、`solution_steps` 等调试字段；管理员聊天流可以保留完整 `ChatResponse`，并通过回答下方的引用来源弹窗查看来源、片段、分数和知识库归属。
+
+## 知识库接口
+
+`POST /api/knowledge/spaces`
+
+新建知识库时 `product_line` 必填；一个产品线只能对应一个知识库。
+
+```json
+{
+  "name": "FP10 产品知识库",
+  "product_line": "FP10",
+  "description": "FP10 全系列手册与售后案例",
+  "visibility": "internal"
+}
+```
+
+`GET /api/knowledge/sources?space_id=<space_id>`
+
+返回指定知识库的源文档。`space_id` 省略时保留旧行为，返回当前用户可见的全部源文档。
+
+`PATCH /api/knowledge/spaces/{space_id}`
+
+修改知识库名称和产品线；旧知识库也可通过该接口补齐产品线。该操作只更新知识库元数据，不需要重新导入文档或重建索引。
+
+```json
+{
+  "name": "FP10 产品知识库",
+  "product_line": "FP10"
+}
+```
+
+`GET /api/knowledge/search?q=<query>&space_id=<space_id>`
+
+在指定知识库范围内检索；管理员聊天也使用同一 `space_id` 边界，避免跨产品线召回。
+
+## 反馈接口
+
+`GET /api/feedback?status=pending&product_line=FP10`
+
+仅管理员可访问。`status` 和 `product_line` 均为可选筛选参数；产品线取自反馈所属会话，不在反馈表重复存储。
+
+```json
+{
+  "items": [
+    {
+      "id": "...",
+      "message_id": "...",
+      "conversation_id": "...",
+      "product_line": "FP10",
+      "rating": "needs_review",
+      "status": "pending",
+      "tags": [],
+      "note": "",
+      "admin_note": "",
+      "question_preview": "...",
+      "answer_preview": "...",
+      "source_count": 2,
+      "created_at": "...",
+      "updated_at": "..."
+    }
+  ],
+  "product_lines": ["FP10", "FP20"]
+}
+```
+
+`product_lines` 返回当前管理员反馈队列中可用的非空产品线，用于前端筛选控件；它不受当前 `status` 和 `product_line` 参数影响。
 
 `AnswerResult` 是内部策略输出，统一由 `chat_service` 转成 `ChatResponse`：
 

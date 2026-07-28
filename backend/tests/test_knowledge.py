@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from uuid import uuid4
 
 from fastapi.testclient import TestClient
 from sqlalchemy import select
@@ -9,7 +10,7 @@ from app.core.database import SessionLocal
 from app.services.prompt_service import build_support_prompt
 from app.services.document_service import DocumentService
 from app.services.rag_service import RAGService, RetrievedChunk, _clean_markdown_for_prompt
-from app.models.knowledge import KnowledgeChunk, KnowledgeDocument, KnowledgeSource
+from app.models.knowledge import KnowledgeChunk, KnowledgeDocument, KnowledgeSource, KnowledgeSpace
 
 
 client = TestClient(app)
@@ -67,7 +68,7 @@ def test_knowledge_spaces_can_group_sources_and_be_deleted() -> None:
     headers = auth_headers()
     space = client.post(
         "/api/knowledge/spaces",
-        json={"name": "产品售后常见问题知识库", "description": "售后 FAQ", "visibility": "internal"},
+        json={"name": "产品售后常见问题知识库", "product_line": "SPACE-9", "description": "售后 FAQ", "visibility": "internal"},
         headers=headers,
     )
     assert space.status_code == 200
@@ -91,8 +92,9 @@ def test_knowledge_spaces_can_group_sources_and_be_deleted() -> None:
 
     spaces = client.get("/api/knowledge/spaces", headers=headers)
     assert any(item["id"] == space_id and item["source_count"] >= 1 for item in spaces.json()["items"])
+    assert any(item["id"] == space_id and item["product_line"] == "SPACE-9" for item in spaces.json()["items"])
 
-    matched = client.get("/api/knowledge/search", params={"q": "SPACE-9 E01 怎么处理"}, headers=headers)
+    matched = client.get("/api/knowledge/search", params={"q": "SPACE-9 E01 怎么处理", "space_id": space_id}, headers=headers)
     assert matched.status_code == 200
     assert matched.json()["items"]
 
@@ -102,6 +104,32 @@ def test_knowledge_spaces_can_group_sources_and_be_deleted() -> None:
     after_delete = client.get("/api/knowledge/search", params={"q": "SPACE-9 E01 怎么处理"}, headers=headers)
     assert after_delete.status_code == 200
     assert all(item["title"] != "SPACE-9 售后处理" for item in after_delete.json()["items"])
+
+
+def test_legacy_knowledge_space_can_be_assigned_to_a_product_line() -> None:
+    with SessionLocal() as db:
+        legacy_space = KnowledgeSpace(
+            name="旧知识库产品线迁移",
+            description="保留现有索引",
+            visibility="internal",
+            owner_user_id="seed-admin",
+        )
+        db.add(legacy_space)
+        db.commit()
+        db.refresh(legacy_space)
+        space_id = legacy_space.id
+
+    headers = auth_headers()
+    updated = client.patch(
+        f"/api/knowledge/spaces/{space_id}",
+        json={"name": "旧知识库已完成归属", "product_line": "LEGACY-SPACE-71"},
+        headers=headers,
+    )
+
+    assert updated.status_code == 200
+    assert updated.json()["name"] == "旧知识库已完成归属"
+    assert updated.json()["product_line"] == "LEGACY-SPACE-71"
+    assert client.delete(f"/api/knowledge/spaces/{space_id}", headers=headers).status_code == 204
 
 
 def test_html_document_recall_prioritizes_exact_product_tokens() -> None:
@@ -413,6 +441,14 @@ def test_component_conflict_keeps_same_product_strong_match() -> None:
 
 def test_retrieval_eval_fixture_matches_expected_sources() -> None:
     headers = auth_headers()
+    product_line = f"EVAL-{uuid4().hex[:8]}"
+    space = client.post(
+        "/api/knowledge/spaces",
+        json={"name": f"{product_line} 检索评测", "product_line": product_line, "description": "隔离 RAG 评测数据", "visibility": "internal"},
+        headers=headers,
+    )
+    assert space.status_code == 200
+    space_id = space.json()["id"]
     cases = json.loads((Path(__file__).parent / "fixtures" / "rag_retrieval_eval.json").read_text(encoding="utf-8"))
     documents = [
         {
@@ -432,7 +468,7 @@ def test_retrieval_eval_fixture_matches_expected_sources() -> None:
     for document in documents:
         response = client.post(
             "/api/knowledge/markdown",
-            json={**document, "filename": f"{document['title']}.md", "visibility": "internal"},
+            json={**document, "filename": f"{document['title']}.md", "visibility": "internal", "space_id": space_id},
             headers=headers,
         )
         assert response.status_code == 200
@@ -444,9 +480,11 @@ def test_retrieval_eval_fixture_matches_expected_sources() -> None:
             for value in values:
                 assert value in extracted[key]
 
-        search = client.get("/api/knowledge/search", params={"q": case["query"]}, headers=headers)
+        search = client.get("/api/knowledge/search", params={"q": case["query"], "space_id": space_id}, headers=headers)
         assert search.status_code == 200
         assert search.json()["items"][0]["title"] == case["expected_title"]
+
+    assert client.delete(f"/api/knowledge/spaces/{space_id}", headers=headers).status_code == 204
 
 
 def test_prompt_context_strips_markdown_formatting() -> None:
@@ -522,5 +560,7 @@ def test_chat_returns_citations_when_knowledge_matches() -> None:
     assert sources
     assert sources[0]["source_type"] == "manual"
     assert sources[0]["title"] == "ZX-9 指示灯红色闪烁"
+    assert sources[0]["space_id"]
+    assert sources[0]["space_name"] == "默认知识空间"
     assert sources[0]["section_path"] == ""
     assert "传感器自检失败" in sources[0]["excerpt"]

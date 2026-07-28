@@ -18,6 +18,11 @@ def ensure_runtime_schema(engine: Engine) -> None:
                 if column_name not in columns:
                     connection.execute(text(f"ALTER TABLE knowledge_sources ADD COLUMN {column_name} {ddl}"))
 
+        if "knowledge_spaces" in table_names:
+            columns = {column["name"] for column in inspector.get_columns("knowledge_spaces")}
+            if "product_line" not in columns:
+                connection.execute(text("ALTER TABLE knowledge_spaces ADD COLUMN product_line VARCHAR(120)"))
+
         if "knowledge_documents" in table_names:
             columns = {column["name"] for column in inspector.get_columns("knowledge_documents")}
             additions = {

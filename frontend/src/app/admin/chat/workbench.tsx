@@ -5,16 +5,17 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { MessageContent } from "@/components/chat/message-content";
 import { ComposerSendButton } from "@/components/ui/composer-send-button";
 import { DeleteConfirmDialog } from "@/components/ui/delete-confirm-dialog";
-import { askAdminQuestionStream, clearConversations, deleteConversation, getConversation, listConversations } from "@/lib/api";
+import { askAdminQuestionStream, clearConversations, deleteConversation, getConversation, listConversations, listKnowledgeSpaces } from "@/lib/api";
 import { createClientId } from "@/lib/client-id";
-import type { ChatResponse, ConversationMessage, ConversationSummary, SourceCitation } from "@/lib/types";
+import type { ChatResponse, ConversationMessage, ConversationSummary, KnowledgeSpace, SourceCitation } from "@/lib/types";
 
 const examples = [
   "AX-42 配网后 App 仍显示离线，应该如何排查？",
   "客户反馈固件升级失败，后台应该先看哪些证据？",
   "哪些情况应该建议转人工处理？",
 ];
-const collapsedHistoryCount = 5;
+const maxVisibleMessages = 80;
+const streamTimeoutMs = 90_000;
 
 type DeleteDialogState =
   | { id: string; kind: "single"; title: string }
@@ -23,6 +24,8 @@ type DeleteDialogState =
 
 export function AdminChatWorkbench({ token }: { token: string }) {
   const [items, setItems] = useState<ConversationSummary[]>([]);
+  const [spaces, setSpaces] = useState<KnowledgeSpace[]>([]);
+  const [selectedSpaceId, setSelectedSpaceId] = useState("");
   const [messages, setMessages] = useState<ConversationMessage[]>([]);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [lastResult, setLastResult] = useState<ChatResponse | null>(null);
@@ -33,24 +36,32 @@ export function AdminChatWorkbench({ token }: { token: string }) {
   const [deletingConversationId, setDeletingConversationId] = useState("");
   const [clearingConversations, setClearingConversations] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState<DeleteDialogState>(null);
-  const [historyExpanded, setHistoryExpanded] = useState(false);
+  const [showAllMessages, setShowAllMessages] = useState(false);
   const [busy, setBusy] = useState(false);
   const streamEndRef = useRef<HTMLDivElement | null>(null);
   const questionInputRef = useRef<HTMLTextAreaElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const deltaBufferRef = useRef("");
+  const deltaFrameRef = useRef<number | null>(null);
   const lastMessageContent = messages.at(-1)?.content ?? "";
-  const visibleHistoryItems = useMemo(
-    () => (historyExpanded ? items : items.slice(0, collapsedHistoryCount)),
-    [historyExpanded, items],
-  );
-  const hiddenHistoryCount = Math.max(items.length - collapsedHistoryCount, 0);
+  const visibleMessages = useMemo(() => (showAllMessages ? messages : messages.slice(-maxVisibleMessages)), [messages, showAllMessages]);
+  const hiddenMessageCount = Math.max(messages.length - visibleMessages.length, 0);
 
   async function refreshList() {
     setItems(await listConversations(token));
   }
 
   useEffect(() => {
-    refreshList().catch(() => setError("会话列表加载失败"));
+    Promise.all([refreshList(), listKnowledgeSpaces(token).then(setSpaces)]).catch(() => setError("会话或知识库列表加载失败"));
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+      if (deltaFrameRef.current !== null) {
+        window.cancelAnimationFrame(deltaFrameRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -67,15 +78,37 @@ export function AdminChatWorkbench({ token }: { token: string }) {
   }, [question]);
 
   async function openConversation(id: string) {
-    const detail = await getConversation(id, token);
+    abortRef.current?.abort();
+    const [detail, nextSpaces] = await Promise.all([getConversation(id, token), listKnowledgeSpaces(token)]);
+    setSpaces(nextSpaces);
+    setSelectedSpaceId(nextSpaces.find((space) => space.product_line === detail.product_line)?.id ?? "");
     setConversationId(id);
     setMessages(detail.messages);
+    setShowAllMessages(false);
     setLastResult(null);
     setQuestion("");
     setError("");
     setCopiedId("");
     setSelectedSource(null);
     setBusy(false);
+  }
+
+  function flushAssistantDelta(messageId: string) {
+    if (!deltaBufferRef.current) return;
+    const delta = deltaBufferRef.current;
+    deltaBufferRef.current = "";
+    setMessages((current) =>
+      current.map((message) => (message.id === messageId ? { ...message, content: `${message.content}${delta}` } : message)),
+    );
+  }
+
+  function scheduleAssistantDelta(messageId: string, delta: string) {
+    deltaBufferRef.current += delta;
+    if (deltaFrameRef.current !== null) return;
+    deltaFrameRef.current = window.requestAnimationFrame(() => {
+      deltaFrameRef.current = null;
+      flushAssistantDelta(messageId);
+    });
   }
 
   async function copyText(id: string, text: string) {
@@ -121,8 +154,10 @@ export function AdminChatWorkbench({ token }: { token: string }) {
       if (id === conversationId) {
         setConversationId(null);
         setMessages([]);
+        setShowAllMessages(false);
         setLastResult(null);
         setQuestion("");
+        setSelectedSpaceId("");
         setSelectedSource(null);
         setBusy(false);
       }
@@ -143,8 +178,10 @@ export function AdminChatWorkbench({ token }: { token: string }) {
       setItems([]);
       setConversationId(null);
       setMessages([]);
+      setShowAllMessages(false);
       setLastResult(null);
       setQuestion("");
+      setSelectedSpaceId("");
       setSelectedSource(null);
       setBusy(false);
     } catch (reason) {
@@ -167,12 +204,22 @@ export function AdminChatWorkbench({ token }: { token: string }) {
   async function submit(event: FormEvent) {
     event.preventDefault();
     if (!question.trim() || busy) return;
+    if (!selectedSpaceId) {
+      setError("请先选择要调试的产品知识库");
+      return;
+    }
 
     const text = question.trim();
     const userTempId = createClientId("user");
     const assistantTempId = createClientId("assistant");
+    abortRef.current?.abort();
     const controller = new AbortController();
     abortRef.current = controller;
+    let timedOut = false;
+    const timeoutId = window.setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, streamTimeoutMs);
     setBusy(true);
     setError("");
     setQuestion("");
@@ -182,22 +229,20 @@ export function AdminChatWorkbench({ token }: { token: string }) {
       createTempMessage(userTempId, "user", text),
       createTempMessage(assistantTempId, "assistant", ""),
     ]);
+    setShowAllMessages(false);
 
     try {
-      const result = await askAdminQuestionStream({ question: text, conversation_id: conversationId }, token, (streamEvent) => {
+      const result = await askAdminQuestionStream({ question: text, conversation_id: conversationId, space_id: selectedSpaceId }, token, (streamEvent) => {
         if (streamEvent.event === "message_start") {
           setConversationId(streamEvent.data.conversation_id);
           return;
         }
         if (streamEvent.event === "answer_delta") {
-          setMessages((current) =>
-            current.map((message) =>
-              message.id === assistantTempId ? { ...message, content: `${message.content}${streamEvent.data.delta}` } : message,
-            ),
-          );
+          scheduleAssistantDelta(assistantTempId, streamEvent.data.delta);
           return;
         }
         if (streamEvent.event === "final") {
+          flushAssistantDelta(assistantTempId);
           const data = streamEvent.data as ChatResponse;
           setLastResult(data);
           setConversationId(data.conversation_id);
@@ -214,11 +259,19 @@ export function AdminChatWorkbench({ token }: { token: string }) {
       await Promise.all([openConversation(result.conversation_id), refreshList()]);
       setLastResult(result);
     } catch (reason) {
-      if (reason instanceof DOMException && reason.name === "AbortError") return;
+      if (reason instanceof DOMException && reason.name === "AbortError") {
+        setMessages((current) => current.filter((message) => message.id !== assistantTempId || message.content.trim()));
+        if (timedOut) {
+          setError("回答生成超时，已自动停止。请稍后重试。");
+        }
+        return;
+      }
       setError(reason instanceof Error ? reason.message : "提问失败");
       setMessages((current) => current.filter((message) => message.id !== assistantTempId));
     } finally {
-      abortRef.current = null;
+      window.clearTimeout(timeoutId);
+      flushAssistantDelta(assistantTempId);
+      if (abortRef.current === controller) abortRef.current = null;
       setBusy(false);
     }
   }
@@ -235,10 +288,12 @@ export function AdminChatWorkbench({ token }: { token: string }) {
           onClick={() => {
             setConversationId(null);
             setMessages([]);
+            setShowAllMessages(false);
             setLastResult(null);
             setQuestion("");
             setError("");
             setSelectedSource(null);
+            setSelectedSpaceId("");
             setBusy(false);
           }}
           type="button"
@@ -259,7 +314,18 @@ export function AdminChatWorkbench({ token }: { token: string }) {
 
           <section className="message-stream">
             {messages.length ? (
-              messages.map((message) => (
+              <>
+                {hiddenMessageCount ? (
+                  <button className="message-window-toggle" onClick={() => setShowAllMessages(true)} type="button">
+                    仅显示最近 {visibleMessages.length} 条消息，点击查看全部 {messages.length} 条
+                  </button>
+                ) : null}
+                {showAllMessages && messages.length > maxVisibleMessages ? (
+                  <button className="message-window-toggle" onClick={() => setShowAllMessages(false)} type="button">
+                    正在显示全部 {messages.length} 条消息，点击回到最近 {maxVisibleMessages} 条
+                  </button>
+                ) : null}
+                {visibleMessages.map((message) => (
                 <article className={`message ${message.role}`} key={message.id}>
                   <div className="message-header">
                     <span>{message.role === "user" ? "测试问题" : "AidBot 回复"}</span>
@@ -272,13 +338,14 @@ export function AdminChatWorkbench({ token }: { token: string }) {
                     <div className="admin-source-list">
                       {message.sources.map((source) => (
                         <button className="source-chip" key={`${message.id}-${source.chunk_id}`} onClick={() => setSelectedSource(source)} type="button">
-                          {source.title} · {source.score.toFixed(2)}
+                          {source.space_name ? `${source.space_name} · ` : ""}{source.title} · {source.score.toFixed(2)}
                         </button>
                       ))}
                     </div>
                   ) : null}
                 </article>
-              ))
+              ))}
+              </>
             ) : (
               <div className="empty-chat">
                 <b>这个聊天框只用于管理员测试。</b>
@@ -296,6 +363,21 @@ export function AdminChatWorkbench({ token }: { token: string }) {
           </section>
 
           <form className="chat-composer" onSubmit={submit}>
+            <label className="chat-space-selector">
+              <span>产品知识库</span>
+              <select
+                disabled={(Boolean(conversationId) && Boolean(selectedSpaceId)) || busy}
+                onChange={(event) => setSelectedSpaceId(event.target.value)}
+                value={selectedSpaceId}
+              >
+                <option value="">选择知识库</option>
+                {spaces.map((space) => (
+                  <option disabled={!space.product_line} key={space.id} value={space.id}>
+                    {space.product_line ? `${space.product_line} / ${space.name}` : `${space.name}（未配置产品线）`}
+                  </option>
+                ))}
+              </select>
+            </label>
             <div className="composer-input">
               <textarea
                 aria-label="测试问题"
@@ -317,7 +399,7 @@ export function AdminChatWorkbench({ token }: { token: string }) {
         </section>
 
         <aside className="side-stack" aria-label="会话与调试信息">
-          <section className={historyExpanded ? "source-panel history-panel expanded" : "source-panel history-panel"}>
+          <section className="source-panel history-panel">
             <div className="panel-heading compact">
               <div>
                 <p className="eyebrow">最近会话</p>
@@ -329,8 +411,8 @@ export function AdminChatWorkbench({ token }: { token: string }) {
                 </button>
               ) : null}
             </div>
-            <div className={historyExpanded ? "chat-history-list expanded" : "chat-history-list"}>
-              {visibleHistoryItems.map((item) => (
+            <div className="chat-history-list">
+              {items.map((item) => (
                 <article className={`history-item ${item.id === conversationId ? "active" : ""}`} key={item.id}>
                   <button className="history-open" onClick={() => openConversation(item.id)} type="button">
                     <strong>{item.title}</strong>
@@ -344,11 +426,6 @@ export function AdminChatWorkbench({ token }: { token: string }) {
                 </article>
               ))}
             </div>
-            {hiddenHistoryCount ? (
-              <button className="history-expand" onClick={() => setHistoryExpanded((expanded) => !expanded)} type="button">
-                {historyExpanded ? "收起会话" : `展开其余 ${hiddenHistoryCount} 条`}
-              </button>
-            ) : null}
           </section>
         </aside>
       </section>
@@ -377,6 +454,16 @@ export function AdminChatWorkbench({ token }: { token: string }) {
               <h2 id="source-dialog-title">{selectedSource.title}</h2>
             </div>
             <dl className="source-detail-list">
+              <div>
+                <dt>知识库</dt>
+                <dd>{selectedSource.space_name || "未归属知识库"}</dd>
+              </div>
+              {selectedSource.space_id ? (
+                <div>
+                  <dt>知识库 ID</dt>
+                  <dd>{selectedSource.space_id}</dd>
+                </div>
+              ) : null}
               <div>
                 <dt>命中分数</dt>
                 <dd>{selectedSource.score.toFixed(4)}</dd>

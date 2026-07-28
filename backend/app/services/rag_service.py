@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass
 
 from fastapi import HTTPException, status
-from sqlalchemy import Select, or_, select
+from sqlalchemy import Select, func, or_, select
 from sqlalchemy.orm import Session, selectinload
 
 from app.models.conversation import utcnow
@@ -15,6 +15,7 @@ from app.schemas.knowledge import (
     KnowledgeSourceResponse,
     KnowledgeSpaceCreate,
     KnowledgeSpaceResponse,
+    KnowledgeSpaceUpdate,
     ManualKnowledgeCreate,
     MarkdownKnowledgeImport,
 )
@@ -129,6 +130,8 @@ class RetrievedChunk:
             updated_at=self.chunk.updated_at.isoformat() if self.chunk.updated_at else "",
             section_path=self.chunk.section_path or _heading_path_from_chunk(self.chunk.content),
             excerpt=_clean_markdown_for_prompt(self.chunk.content)[:1200],
+            space_id=self.source.space_id,
+            space_name=self.source.space.name if self.source.space else None,
         )
 
     def context_block(self) -> str:
@@ -178,8 +181,13 @@ class RAGService:
         self.document_service = document_service or DocumentService()
 
     def create_space(self, payload: KnowledgeSpaceCreate, current_user: CurrentUser, db: Session) -> KnowledgeSpaceResponse:
+        product_line = payload.product_line.strip()
+        existing = db.scalar(select(KnowledgeSpace).where(func.lower(KnowledgeSpace.product_line) == product_line.lower()))
+        if existing is not None:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Product line already has a knowledge space")
         space = KnowledgeSpace(
             name=payload.name.strip(),
+            product_line=product_line,
             description=payload.description.strip(),
             visibility=payload.visibility,
             owner_user_id=current_user.id,
@@ -197,6 +205,29 @@ class RAGService:
             .order_by(KnowledgeSpace.updated_at.desc())
         ).all()
         return [self._space_response(space) for space in rows]
+
+    def update_space(
+        self,
+        space_id: str,
+        payload: KnowledgeSpaceUpdate,
+        current_user: CurrentUser,
+        db: Session,
+    ) -> KnowledgeSpaceResponse:
+        space = self._get_editable_space(space_id, current_user, db)
+        product_line = payload.product_line.strip()
+        existing = db.scalar(
+            select(KnowledgeSpace).where(
+                KnowledgeSpace.id != space.id,
+                func.lower(KnowledgeSpace.product_line) == product_line.lower(),
+            )
+        )
+        if existing is not None:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Product line already has a knowledge space")
+        space.name = payload.name.strip()
+        space.product_line = product_line
+        db.commit()
+        db.refresh(space)
+        return self._space_response(space)
 
     def delete_space(self, space_id: str, current_user: CurrentUser, db: Session) -> None:
         space = self._get_editable_space(space_id, current_user, db)
@@ -304,27 +335,44 @@ class RAGService:
         db.delete(source)
         db.commit()
 
-    def list_sources(self, current_user: CurrentUser, db: Session) -> list[KnowledgeSourceResponse]:
+    def list_sources(self, current_user: CurrentUser, db: Session, space_id: str | None = None) -> list[KnowledgeSourceResponse]:
         query = self._visible_sources_query(current_user).order_by(KnowledgeSource.updated_at.desc())
+        if space_id:
+            self.get_retrieval_space(space_id, current_user, db)
+            query = query.where(KnowledgeSource.space_id == space_id)
         return [self._source_response(source) for source in db.scalars(query).all()]
 
-    def search(self, query_text: str, current_user: CurrentUser, db: Session, limit: int = 5) -> list[KnowledgeSearchResult]:
+    def search(
+        self,
+        query_text: str,
+        current_user: CurrentUser,
+        db: Session,
+        limit: int = 5,
+        space_id: str | None = None,
+    ) -> list[KnowledgeSearchResult]:
         return [
             KnowledgeSearchResult(
                 **item.citation().model_dump(),
                 preview=item.chunk.content[:180],
             )
-            for item in self.retrieve(query_text, current_user, db, limit=limit)
+            for item in self.retrieve(query_text, current_user, db, limit=limit, space_id=space_id)
         ]
 
-    def retrieve(self, query_text: str, current_user: CurrentUser, db: Session, limit: int = 3) -> list[RetrievedChunk]:
+    def retrieve(
+        self,
+        query_text: str,
+        current_user: CurrentUser,
+        db: Session,
+        limit: int = 3,
+        space_id: str | None = None,
+    ) -> list[RetrievedChunk]:
         with trace_run(
             "AidBot RAG Retrieve",
             "retriever",
             inputs={"query": text_fingerprint(query_text), "limit": limit, "user": summarize_user(current_user)},
         ) as run:
             query_vector = self.embedding_service.embed(query_text)
-            rows = db.execute(
+            query = (
                 select(KnowledgeChunk, KnowledgeSource, KnowledgeDocument)
                 .join(KnowledgeSource, KnowledgeChunk.source_id == KnowledgeSource.id)
                 .join(KnowledgeDocument, KnowledgeChunk.document_id == KnowledgeDocument.id)
@@ -333,7 +381,11 @@ class RAGService:
                 .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.status == "active"))
                 .where(or_(KnowledgeSource.visibility == "internal", KnowledgeSource.owner_user_id == current_user.id))
                 .where(or_(KnowledgeSource.space_id.is_(None), KnowledgeSpace.visibility == "internal", KnowledgeSpace.owner_user_id == current_user.id))
-            ).all()
+            )
+            if space_id:
+                self.get_retrieval_space(space_id, current_user, db)
+                query = query.where(KnowledgeSource.space_id == space_id)
+            rows = db.execute(query).all()
             query_terms = self._lexical_terms(query_text)
             exact_terms = self._exact_terms(query_text)
             query_entities = self._extract_entities(query_text)
@@ -384,6 +436,25 @@ class RAGService:
     def _visible_spaces_query(self, current_user: CurrentUser) -> Select[tuple[KnowledgeSpace]]:
         return select(KnowledgeSpace).where(or_(KnowledgeSpace.visibility == "internal", KnowledgeSpace.owner_user_id == current_user.id))
 
+    def get_retrieval_space(self, space_id: str, current_user: CurrentUser, db: Session) -> KnowledgeSpace:
+        space = db.scalar(
+            self._visible_spaces_query(current_user).where(
+                KnowledgeSpace.id == space_id,
+                KnowledgeSpace.status == "active",
+            )
+        )
+        if space is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Knowledge space not found")
+        return space
+
+    def find_space_for_product_line(self, product_line: str, current_user: CurrentUser, db: Session) -> KnowledgeSpace | None:
+        return db.scalar(
+            self._visible_spaces_query(current_user).where(
+                func.lower(KnowledgeSpace.product_line) == product_line.lower(),
+                KnowledgeSpace.status == "active",
+            )
+        )
+
     def _resolve_space(self, space_id: str | None, visibility: str, current_user: CurrentUser, db: Session) -> KnowledgeSpace:
         if space_id:
             return self._get_editable_space(space_id, current_user, db)
@@ -418,6 +489,7 @@ class RAGService:
         return KnowledgeSpaceResponse(
             id=space.id,
             name=space.name,
+            product_line=space.product_line,
             description=space.description,
             visibility=space.visibility,
             status=space.status,

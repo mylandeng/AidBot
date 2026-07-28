@@ -32,13 +32,20 @@ class KnowledgeDocumentImport(BaseModel):
 
 class KnowledgeSpaceCreate(BaseModel):
     name: str = Field(min_length=2, max_length=160)
+    product_line: str = Field(min_length=1, max_length=120)
     description: str = Field(default="", max_length=1000)
     visibility: Literal["internal", "private"] = "internal"
+
+
+class KnowledgeSpaceUpdate(BaseModel):
+    name: str = Field(min_length=2, max_length=160)
+    product_line: str = Field(min_length=1, max_length=120)
 
 
 class KnowledgeSpaceResponse(BaseModel):
     id: str
     name: str
+    product_line: str | None = None
     description: str
     visibility: Literal["internal", "private"]
     status: str
