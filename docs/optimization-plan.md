@@ -147,7 +147,7 @@ def health_detail(db: Session = Depends(get_db)):
 1. **docs/architecture.md** - 架构图 + 数据流
 2. **docs/troubleshooting.md** - 常见问题排查
 3. **CONTRIBUTING.md** - 贡献指南
-4. **docs/deployment.md** - 生产部署检查清单 (已有 docker-deployment.md，可扩展)
+4. **docs/deployment.md** - 持续补充生产部署检查清单
 
 ### 需要更新的文档
 1. **README.md** - 添加测试运行说明

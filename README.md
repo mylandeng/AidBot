@@ -1,15 +1,17 @@
 # AidBot
 专门给公司设计的售后问答系统。
 
-## 本地开发
-
-阶段 0 已提供可运行脚手架：
+## 项目结构
 
 - `backend/`: FastAPI 后端，包含健康检查、基础路由和服务层边界。
 - `frontend/`: Next.js 前端，包含基础工作台页面和 API 客户端。
 - `docker-compose.yml`: PostgreSQL、后端、前端的本地开发栈。
 - `.env.example`: 本地环境变量示例。
-- `docs/api-contract.md`: 当前 API/数据合同草案。
+- `docs/api-contract.md`: 当前 API 和数据合同。
+- `docker-compose.prod.yml`、`.env.prod.example`：生产镜像和部署配置，详见[部署指南](docs/deployment.md)。
+- `.github/workflows/docker-publish.yml`：推送到 `main` 后自动构建并发布 GHCR 镜像。
+
+## 本地开发
 
 ### Docker 一键启动
 
@@ -55,3 +57,7 @@ npm run dev
 - 密码：`aidbot123`
 
 这些值只用于本地阶段验证，部署前需要在 `.env` 中覆盖 `AUTH_SECRET_KEY`、`SEED_ADMIN_EMAIL` 和 `SEED_ADMIN_PASSWORD`。
+
+## 生产部署
+
+生产环境使用预构建镜像和 `docker-compose.prod.yml`，不挂载本地源码。环境变量准备、镜像发布、服务器启动和升级步骤参见[部署指南](docs/deployment.md)。

@@ -52,9 +52,6 @@
   "50": "FeedbackItem",
   "51": "FeedbackStatusRequest",
   "52": "Session",
-  "53": "ChatRequest",
-  "54": "__init__.py",
-  "55": "conftest.py",
   "56": "workbench.tsx",
   "57": "apiBaseUrl",
   "58": "runtime-config.js"
